@@ -107,17 +107,17 @@
 					<div class="col-lg-4 col-md-6 banner-right">
 						<ul class="nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="flight-tab" data-toggle="tab" href="#flight" role="tab" aria-controls="flight" aria-selected="true">Player</a>
+								<a class="nav-link active" id="player-tab" data-toggle="tab" href="#player" role="tab" aria-controls="player" aria-selected="true">Player</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">Coach</a>
+								<a class="nav-link" id="coach-tab" data-toggle="tab" href="#coach" role="tab" aria-controls="coach" aria-selected="false">Coach</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="holiday-tab" data-toggle="tab" href="#holiday" role="tab" aria-controls="holiday" aria-selected="false">Academy</a>
+								<a class="nav-link" id="academy-tab" data-toggle="tab" href="#academy" role="tab" aria-controls="academy" aria-selected="false">Academy</a>
 							</li>
 						</ul>
 						<div class="tab-content" id="myTabContent">
-							<div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
+							<div class="tab-pane fade show active" id="player" role="tabpanel" aria-labelledby="player-tab">
 								<form class="form-wrap" action="PlayerPDO.php" method="post">
 									<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
 									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">
@@ -127,7 +127,7 @@
 									<button type="submit" href="#" class="primary-btn text-uppercase">Register</a>
 								</form>
 							</div>
-							<div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
+							<div class="tab-pane fade" id="coach" role="tabpanel" aria-labelledby="coach-tab">
 								<form class="form-wrap" action="CoachPDO.php" method="post">
 								<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
 									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">
@@ -137,7 +137,7 @@
 									<button type="submit" href="#" class="primary-btn text-uppercase">Register</a>
 								</form>
 							</div>
-							<div class="tab-pane fade" id="holiday" role="tabpanel" aria-labelledby="holiday-tab">
+							<div class="tab-pane fade" id="academy" role="tabpanel" aria-labelledby="academy-tab">
 								<form class="form-wrap" action="AcademyPDO.php" method="post">
 								<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
 									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">
