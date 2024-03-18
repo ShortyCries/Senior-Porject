@@ -57,7 +57,7 @@
 			<div class="container main-menu">
 				<div class="row align-items-center justify-content-between d-flex">
 					<div id="logo" style="height: 30px; width: 145px;">
-						<a href="index.html"><img style="height: 30px; width: 145px;" src="img/logo.png" alt="" title="" /></a>
+						<a href="index.php"><img style="height: 30px; width: 145px;" src="img/logo.png" alt="" title="" /></a>
 					</div>
 					<nav id="nav-menu-container">
 						<ul class="nav-menu">
