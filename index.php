@@ -68,13 +68,13 @@
 							<li><a href="insurance.php">Insurence</a></li>
 							<li class="menu-has-children"><a href="">Blog</a>
 								<ul>
-									<li><a href="blog-home.html">Blog Home</a></li>
-									<li><a href="blog-single.html">Blog Single</a></li>
+									<li><a href="blog-home.php">Blog Home</a></li>
+									<li><a href="blog-single.php">Blog Single</a></li>
 								</ul>
 							</li>
 							<li class="menu-has-children"><a href="">Pages</a>
 								<ul>
-									<li><a href="elements.html">Elements</a></li>
+									<li><a href="elements.php">Elements</a></li>
 									<li class="menu-has-children"><a href="">Level 2 </a>
 										<ul>
 											<li><a href="#">Item One</a></li>
@@ -83,7 +83,7 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="contact.php">Contact</a></li>
 						</ul>
 					</nav><!-- #nav-menu-container -->
 				</div>
