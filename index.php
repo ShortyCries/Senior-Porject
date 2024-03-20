@@ -95,7 +95,7 @@
 						<p class="text-white">
 							If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see some for as low as $.17 each.
 						</p>
-						<a href="#" class="primary-btn text-uppercase">Already have an account?</a>
+						<a href="Login.php" class="primary-btn text-uppercase">Already have an account?</a>
 					</div>
 
 					<div class="col-lg-4 col-md-6 banner-right">
