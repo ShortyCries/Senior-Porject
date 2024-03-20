@@ -57,11 +57,10 @@
 						<ul class="nav-menu">
 							<li><a href="index.php">Home</a></li>
 							<li><a href="about.php">About</a></li>
-							<li><a href="hotels.php">Hotels</a></li>
 							<li class="menu-has-children"><a href="">Blog</a>
 								<ul>
 									<li><a href="blog-home.php">Blog Home</a></li>
-									<li><a href="blog-single.php">Blog Single</a></li>
+									
 								</ul>
 							</li>
 							<li class="menu-has-children"><a href="">Pages</a>
