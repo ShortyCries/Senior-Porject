@@ -10,7 +10,7 @@ try {
 
 
 
-    $query = "SELECT * FROM login where email ='$email' AND  password = '$ password'";
+    $query = "SELECT * FROM login where email ='$email' AND  password = '$password'";
 
 
 
@@ -24,7 +24,7 @@ try {
       $_SESSION['email'] = $email;
       $row = $result->fetch();
       if ($row['Type'] == "player") {
-
+       
         header("location:PlayerPage.php");
 
       } else if ($row['Type'] == "coach") {
@@ -32,7 +32,7 @@ try {
         header("location:CoachPage.php");
 
       } else if ($row['Type'] == "academy") {
-        
+
         header("location:AcademyPage.php");
       }
     }
