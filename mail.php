@@ -1,5 +1,5 @@
 <?php
-    $to = 'demo@site.com';
+    $to = 'hossamemad39@gmail.com';
     $name = $_POST["name"];
     $email= $_POST["email"];
     $text= $_POST["message"];
@@ -21,11 +21,11 @@
         
     </table>';
 
-    if (@mail($to, $email, $message, $headers))
+    if (mail($to, $subject, $message, $headers))
     {
         echo 'Your message has been sent.';
     }else{
-        echo 'failed';
+        echo 'failedddd';
     }
 
 ?>
