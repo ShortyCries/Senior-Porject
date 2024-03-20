@@ -173,7 +173,7 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-3 col-md-6">
-						<div class="single-other-issue">w
+						<div class="single-other-issue">
 							<div class="thumb">
 								<img class="img-fluid" src="img/football.jpg" alt="">
 							</div>
