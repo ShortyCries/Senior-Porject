@@ -57,7 +57,7 @@
 				          <li><a href="about.php">About</a></li>
 				          <li><a href="packages.php">Packages</a></li>
 				          <li><a href="hotels.php">Hotels</a></li>
-				          <li><a href="insurance.php">Insurence</a></li>
+				          <li></li>
 				          <li class="menu-has-children"><a href="">Blog</a>
 				            <ul>
 				              <li><a href="blog-home.php">Blog Home</a></li>
