@@ -34,20 +34,20 @@
 
 	<body>
 		<header id="header">
-		<div class="header-top">
-					<div class="container">
-			  		<div class="row align-items-center">
-			  			<div class="col-lg-6 col-sm-6 col-6 header-top-left">
-			  			</div>
-			  			<div class="col-lg-6 col-sm-6 col-6 header-top-right">
+			<div class="header-top">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-6 col-sm-6 col-6 header-top-left">
+						</div>
+						<div class="col-lg-6 col-sm-6 col-6 header-top-right">
 							<div class="header-social">
 								<a href="#"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-twitter"></i></a>	
+								<a href="#"><i class="fa fa-twitter"></i></a>
 							</div>
-			  			</div>
-			  		</div>			  					
+						</div>
 					</div>
 				</div>
+			</div>
 			<div class="container main-menu">
 				<div class="row align-items-center justify-content-between d-flex">
 					<div id="logo" style="height: 30px; width: 145px;">
@@ -57,25 +57,25 @@
 						<ul class="nav-menu">
 							<li><a href="index.php">Home</a></li>
 							<li><a href="about.php">About</a></li>
-							<li><a href="packages.php">Packages</a></li>
+							<li></li>
 							<li><a href="hotels.php">Hotels</a></li>
-							<li><a href="insurance.php">Insurence</a></li>
+							<li></li>
 							<li class="menu-has-children"><a href="">Blog</a>
 								<ul>
 									<li><a href="blog-home.php">Blog Home</a></li>
-									<li><a href="blog-single.php">Blog Single</a></li>
+
 								</ul>
 							</li>
-							<li class="menu-has-children"><a href="">Pages</a>
-								<ul>
-									<li><a href="elements.php">Elements</a></li>
-									<li class="menu-has-children"><a href="">Level 2 </a>
-										<ul>
-											<li><a href="#">Item One</a></li>
-											<li><a href="#">Item Two</a></li>
-										</ul>
-									</li>
-								</ul>
+
+							<ul>
+								<li><a href="elements.php">Elements</a></li>
+								<li class="menu-has-children"><a href="">Level 2 </a>
+									<ul>
+										<li><a href="#">Item One</a></li>
+										<li><a href="#">Item Two</a></li>
+									</ul>
+								</li>
+							</ul>
 							</li>
 							<li><a href="contact.php">Contact</a></li>
 						</ul>
@@ -116,28 +116,28 @@
 									<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
 									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">
 									<input type="text" class="form-control date-picker" name="Dob" placeholder="Date of birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of birth'">
-									<input type="password"  class="form-control" name="password" placeholder="Password " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '">
-									<input type="password"  class="form-control" name="re-password" placeholder="Re-password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Re-password'">
+									<input type="password" class="form-control" name="password" placeholder="Password " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '">
+									<input type="password" class="form-control" name="re-password" placeholder="Re-password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Re-password'">
 									<button type="submit" href="#" class="primary-btn text-uppercase">Register</a>
 								</form>
 							</div>
 							<div class="tab-pane fade" id="coach" role="tabpanel" aria-labelledby="coach-tab">
 								<form class="form-wrap" action="CoachPDO.php" method="post">
-								<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
+									<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
 									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">
 									<input type="text" class="form-control date-picker" name="Dob" placeholder="Date of birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of birth'">
-									<input type="password"  class="form-control" name="password" placeholder="Password " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '">
-									<input type="password"  class="form-control" name="re-password" placeholder="Re-password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Re-password'">
+									<input type="password" class="form-control" name="password" placeholder="Password " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '">
+									<input type="password" class="form-control" name="re-password" placeholder="Re-password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Re-password'">
 									<button type="submit" href="#" class="primary-btn text-uppercase">Register</a>
 								</form>
 							</div>
 							<div class="tab-pane fade" id="academy" role="tabpanel" aria-labelledby="academy-tab">
 								<form class="form-wrap" action="AcademyPDO.php" method="post">
-								<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
+									<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
 									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">
 									<input type="text" class="form-control date-picker" name="foundedIn" placeholder="Founded In " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Founded In '">
-									<input type="password"  class="form-control" name="password" placeholder="Password " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '">
-									<input type="password"  class="form-control" name="re-password" placeholder="Re-password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Re-password'">
+									<input type="password" class="form-control" name="password" placeholder="Password " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '">
+									<input type="password" class="form-control" name="re-password" placeholder="Re-password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Re-password'">
 									<button type="submit" href="#" class="primary-btn text-uppercase">Register</a>
 								</form>
 							</div>
@@ -151,12 +151,12 @@
 		<!-- End banner Area -->
 
 		<!-- Start popular-destination Area -->
-		
+
 		<!-- End popular-destination Area -->
 
 
 		<!-- Start price Area -->
-		
+
 		<!-- End price Area -->
 
 
@@ -231,17 +231,17 @@
 
 
 		<!-- Start testimonial Area -->
-		
+
 		<!-- End testimonial Area -->
 
 		<!-- Start home-about Area -->
-		
+
 		<!-- End home-about Area -->
 
 
 		<!-- Start blog Area -->
-		
-		
+
+
 		<!-- End recent-blog Area -->
 
 		<!-- start footer Area -->
