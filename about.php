@@ -63,7 +63,7 @@
 									
 								</ul>
 							</li>
-							<li class="menu-has-children"><a href="">Pages</a>
+							
 								<ul>
 									<li><a href="elements.php">Elements</a></li>
 									<li class="menu-has-children"><a href="">Level 2 </a>

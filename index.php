@@ -58,7 +58,7 @@
 							<li><a href="index.php">Home</a></li>
 							<li><a href="about.php">About</a></li>
 							<li></li>
-							<li><a href="hotels.php">Hotels</a></li>
+
 							<li></li>
 							<li class="menu-has-children"><a href="">Blog</a>
 								<ul>
