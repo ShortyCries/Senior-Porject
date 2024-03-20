@@ -15,7 +15,7 @@
 		<!-- meta character set -->
 		<meta charset="UTF-8">
 		<!-- Site Title -->
-		<title>Travel</title>
+		<title>FIELD FRENZY</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 		<!--
@@ -90,10 +90,10 @@
 			<div class="container">
 				<div class="row fullscreen align-items-center justify-content-between">
 					<div class="col-lg-6 col-md-6 banner-left">
-						<h6 class="text-white">Away from monotonous life</h6>
+						<h6 class="text-white">FINDING GAMES TO PLAY IS MUCH EASIER USING : </h6>
 						<h1 class="text-white">FieldFrenzy</h1>
 						<p class="text-white">
-							If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see some for as low as $.17 each.
+							FIELDFRENZY is your one-stop destination for booking courts across a variety of sports, from tennis and basketball to volleyball and others. With easy-to-use scheduling tools and real-time availability updates, finding and reserving the perfect court for your game has never been simpler.
 						</p>
 						<a href="Login.php" class="primary-btn text-uppercase">Already have an account?</a>
 					</div>
@@ -167,7 +167,7 @@
 					<div class="menu-content pb-70 col-lg-9">
 						<div class="title text-center">
 							<h1 class="mb-10">Other issues we can help you with</h1>
-							<p>We all live in an age that belongs to the young at heart. Life that is.</p>
+							<p>In this era, sports reign as the eternal fountain of youth, captivating hearts young and old alike with its boundless energy and vibrant spirit.</p>
 						</div>
 					</div>
 				</div>
@@ -175,52 +175,52 @@
 					<div class="col-lg-3 col-md-6">
 						<div class="single-other-issue">
 							<div class="thumb">
-								<img class="img-fluid" src="img/o1.jpg" alt="">
+								<img class="img-fluid" src="img/football.jpg" alt="">
 							</div>
 							<a href="#">
-								<h4>Rent a Car</h4>
+								<h4>Football</h4>
 							</a>
 							<p>
-								The preservation of human life is the ultimate value, a pillar of ethics and the foundation.
+								Football, the electrifying spectacle that ignites passions worldwide, promises an adrenaline-fueled fusion of teamwork, strategy, and sheer exhilaration on the field of dreams!
 							</p>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-6">
 						<div class="single-other-issue">
 							<div class="thumb">
-								<img class="img-fluid" src="img/o2.jpg" alt="">
+								<img class="img-fluid" src="img/basketball.jpg" alt="">
 							</div>
 							<a href="#">
-								<h4>Cruise Booking</h4>
+								<h4>Basketball</h4>
 							</a>
 							<p>
-								I was always somebody who felt quite sorry for myself, what I had not got compared.
+								Basketball, where gravity-defying dunks, jaw-dropping crossovers, and buzzer-beating three-pointers come together in a whirlwind of hoop dreams and hardwood magic!
 							</p>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-6">
 						<div class="single-other-issue">
 							<div class="thumb">
-								<img class="img-fluid" src="img/o3.jpg" alt="">
+								<img class="img-fluid" src="img/tennis.jpg" alt="">
 							</div>
 							<a href="#">
-								<h4>To Do List</h4>
+								<h4>Tennis</h4>
 							</a>
 							<p>
-								The following article covers a topic that has recently moved to center stage–at least it seems.
+								Tennis, the sport of swinging serves, smashing aces, and chasing fuzzy yellow balls under the sun, where every match is a thrilling dance of finesse and power!
 							</p>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-6">
 						<div class="single-other-issue">
 							<div class="thumb">
-								<img class="img-fluid" src="img/o4.jpg" alt="">
+								<img class="img-fluid" src="img/volleyball.jpg" alt="">
 							</div>
 							<a href="#">
-								<h4>Food Features</h4>
+								<h4>Volleyball</h4>
 							</a>
 							<p>
-								There are many kinds of narratives and organizing principles. Science is driven by evidence.
+								Volleyball: Where every bump, set, and spike creates a symphony of teamwork and excitement!
 							</p>
 						</div>
 					</div>
