@@ -1,4 +1,4 @@
 <?php
 session_start();
 echo 'academy  page <br>';
-echo "hi " . $_SESSION['email'] . " by";
+echo "hi " . $_SESSION['name'] . " by";

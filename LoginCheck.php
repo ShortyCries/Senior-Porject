@@ -21,8 +21,10 @@ try {
 
     if ($r == 1) {
       session_start();
-      $_SESSION['email'] = $email;
+      $_SESSION['Logged'] = true;
+      
       $row = $result->fetch();
+      $_SESSION['name'] = $row['name'];
       if ($row['Type'] == "player") {
        
         header("location:PlayerPage.php");
