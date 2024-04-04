@@ -66,17 +66,6 @@
 
 								</ul>
 							</li>
-
-							<ul>
-								<li><a href="elements.php">Elements</a></li>
-								<li class="menu-has-children"><a href="">Level 2 </a>
-									<ul>
-										<li><a href="#">Item One</a></li>
-										<li><a href="#">Item Two</a></li>
-									</ul>
-								</li>
-							</ul>
-							</li>
 							<li><a href="contact.php">Contact</a></li>
 						</ul>
 					</nav><!-- #nav-menu-container -->
