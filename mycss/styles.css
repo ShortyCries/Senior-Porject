@@ -1,12 +1,12 @@
 .mygrid{
     display: grid;
     background-color: transparent;
-
+    
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 50px 50px 50px;
     grid-gap: 20px;
-padding: 20px;
-    align-items: center;
+    padding: 20px;
+    align-items: center;    
     justify-items: center;
     justify-content: center;
 
@@ -16,4 +16,12 @@ padding: 20px;
     background-color: lightgrey;
     padding: 20px;
     text-align: center;
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+}
+.mygridItems img {
+    max-width: 200px; /* Make the image responsive to the grid item's width */
+    max-height: 200px; /* Maintain aspect ratio */
 }

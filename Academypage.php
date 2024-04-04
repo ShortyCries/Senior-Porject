@@ -107,12 +107,30 @@
 			<div class="overlay overlay-bg"></div>
 			<div class="container">
               <div class="mygrid">
-                <div class="mygridItems">Class</div>
-                <div class="mygridItems">Helo</div>
-                <div class="mygridItems">Helo</div>
-                <div class="mygridItems">Helo</div>
-                <div class="mygridItems">Helo</div>
-                <div class="mygridItems">Helo</div>
+                <div class="mygridItems">
+                    <img src="/img/gifs/ball.gif">
+                    <p>Classes</p>
+                </div>
+                <div class="mygridItems">
+                <img src="/img/gifs/ball.gif">
+                    <p>Classes</p>
+                </div>
+                <div class="mygridItems">
+                <img src="/img/gifs/ball.gif">
+                    <p>Classes</p>
+                </div>
+                <div class="mygridItems">
+                <img src="/img/gifs/ball.gif">
+                    <p>Classes</p>
+                </div>
+                <div class="mygridItems">
+                <img src="/img/gifs/ball.gif">
+                    <p>Classes</p>
+                </div>
+                <div class="mygridItems">
+                <img src="/img/gifs/ball.gif">
+                    <p>Classes</p>
+                </div>
                 
             </div>
         </section>
