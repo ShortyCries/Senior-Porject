@@ -38,9 +38,18 @@
      <meta property="og:title" content="Page 2">
      <meta property="og:type" content="website">
      <meta data-intl-tel-input-cdn-path="intlTelInput/">
+     <link rel="stylesheet" href="css/linearicons.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/magnific-popup.css">
+		<link rel="stylesheet" href="css/jquery-ui.css">
+		<link rel="stylesheet" href="css/nice-select.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="css/owl.carousel.css">
+		<link rel="stylesheet" href="css/main.css">
  </head>
 
- <body data-path-to-root="./" data-include-products="false" class="u-body u-xl-mode" data-lang="en">
+ <body class="u-body u-xl-mode" data-lang="en">
      <header class="u-clearfix u-custom-color-1 u-header u-sticky u-header" id="sec-1576">
          <div class="u-clearfix u-sheet u-sheet-1">
              <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
@@ -85,34 +94,46 @@
                      <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
                  </div>
              </nav>
-             <p class="u-align-center u-text u-text-default u-text-1">Sample Headline</p>
+             <p style="border-left: solid; padding-left: 30px;" class="u-align-center u-text u-text-default u-text-1">Sample Headline</p>
              <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="498" data-image-height="102">
                  <img src="img/2-1.png" class="u-logo-image u-logo-image-1">
              </a>
          </div>
      </header>
-     <section class="u-align-right u-clearfix u-container-align-center u-image u-shading u-section-1" id="carousel_304e" data-image-width="1980" data-image-height="1320">
-         <div class="u-clearfix u-sheet u-sheet-1">
-         </div>
-     </section>
-     <section class="u-clearfix u-section-2" id="sec-5326">
-         <div class="u-clearfix u-sheet u-sheet-1"></div>
-     </section>
+
+
+     <section class="banner-area relative">
+			<div class="overlay overlay-bg"></div>
+			<div class="container">
+                hello</br>
+                hello</br>
+                hello</br>
+                hello</br>
+
+                 hello</br>
+                  hello</br>
+
+                  hello</br>
+                  hello</br>
+
+                  hello</br>
+
+                  hello</br>
+
+                  hello</br>
+
+                  hello</br>
+
+                  hello</br>
+                  
+            </div>
+        </section>
 
 
 
 
-     <section class="u-backlink u-clearfix u-grey-80">
-         <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-             <span>Website Templates</span>
-         </a>
-         <p class="u-text">
-             <span>created with</span>
-         </p>
-         <a class="u-link" href="" target="_blank">
-             <span>Website Builder Software</span>
-         </a>.
-     </section>
+
+
 
  </body>
 
