@@ -47,6 +47,7 @@
 		<link rel="stylesheet" href="css/animate.min.css">
 		<link rel="stylesheet" href="css/owl.carousel.css">
 		<link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="mycss/styles.css">
  </head>
 
  <body class="u-body u-xl-mode" data-lang="en">
@@ -105,27 +106,14 @@
      <section class="banner-area relative">
 			<div class="overlay overlay-bg"></div>
 			<div class="container">
-                hello</br>
-                hello</br>
-                hello</br>
-                hello</br>
-
-                 hello</br>
-                  hello</br>
-
-                  hello</br>
-                  hello</br>
-
-                  hello</br>
-
-                  hello</br>
-
-                  hello</br>
-
-                  hello</br>
-
-                  hello</br>
-                  
+              <div class="mygrid">
+                <div class="mygridItems">Class</div>
+                <div class="mygridItems">Helo</div>
+                <div class="mygridItems">Helo</div>
+                <div class="mygridItems">Helo</div>
+                <div class="mygridItems">Helo</div>
+                <div class="mygridItems">Helo</div>
+                
             </div>
         </section>
 

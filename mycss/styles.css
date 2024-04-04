@@ -1,39 +1,19 @@
-* {
-    text-decoration: none;
+.mygrid{
+    display: grid;
+    background-color: transparent;
 
-}
-
-.navbar {
-    background: chartreuse;
-    font-family: calibri;
-    padding-right: 15px;
-    padding-left: 15px;
-
-}
-
-.navdiv {
-    display: flex;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50px 50px 50px;
+    grid-gap: 20px;
+padding: 20px;
     align-items: center;
-    justify-content: space-between;
+    justify-items: center;
+    justify-content: center;
 
 }
 
-.logo a {
-
-    font-size: 35px;
-    font-weight: 600;
-    color: white;
-}
-
-li{
-    list-style: none;
-    display: inline-block;
-}
-
-li a{
-    color:white;
-    font-size: 18px;
-    font-weight: bold;
-    margin-right: 25px;
-
+.mygridItems{
+    background-color: lightgrey;
+    padding: 20px;
+    text-align: center;
 }
