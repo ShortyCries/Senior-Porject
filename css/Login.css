@@ -145,7 +145,12 @@ input[type=text]:placeholder {
   color: #cccccc;
 }
 
-
+body{
+  background-image: url(../img/football.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 /* ANIMATIONS */
 

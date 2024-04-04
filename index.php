@@ -58,15 +58,15 @@
 							<li><a href="index.php">Home</a></li>
 							<li><a href="about.php">About</a></li>
 							<li></li>
-
 							<li></li>
-							<li class="menu-has-children"><a href="">Blog</a>
-								<ul>
-									<li><a href="blog-home.php">Blog Home</a></li>
 
+							<li><a href="contact.php">Contact</a></li>
+							<li class="menu-has-children"><a href="">More</a>
+								<ul>
+									<li><a href="More-home.php">More</a></li>
+									<li class="menu-has-children"><a href="Settings.php">Settings</li></a>
 								</ul>
 							</li>
-							<li><a href="contact.php">Contact</a></li>
 						</ul>
 					</nav><!-- #nav-menu-container -->
 				</div>
@@ -91,9 +91,6 @@
 						<ul class="nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active" id="player-tab" data-toggle="tab" href="#player" role="tab" aria-controls="player" aria-selected="true">Player</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="coach-tab" data-toggle="tab" href="#coach" role="tab" aria-controls="coach" aria-selected="false">Coach</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="academy-tab" data-toggle="tab" href="#academy" role="tab" aria-controls="academy" aria-selected="false">Academy</a>
