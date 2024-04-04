@@ -1,27 +1,71 @@
-.mygrid{
-    display: grid;
-    background-color: transparent;
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+
+.container{
     
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 50px 50px 50px;
-    grid-gap: 20px;
-    padding: 20px;
-    align-items: center;    
-    justify-items: center;
-    justify-content: center;
+    background: transparent;
+    padding: 15px 9%;
+   
+    padding-bottom: 100px;
+}
+
+.container .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 15px;
+    margin-top: 50px;
 
 }
 
-.mygridItems{
-    background-color: lightgrey;
-    padding: 20px;
+.container .box-container .box{
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    background:#ffff;
     text-align: center;
-    min-width: 200px;
-    min-height: 200px;
-    max-width: 200px;
-    max-height: 200px;
+    padding: 30px 20px;
+
 }
-.mygridItems img {
-    max-width: 200px; /* Make the image responsive to the grid item's width */
-    max-height: 200px; /* Maintain aspect ratio */
+
+
+.container .box-container .box img{
+    height: 80px;
+
+}
+
+
+.container .box-container .box p{
+   color:#777;
+   font-size: 15px;
+   line-height: 1.8;
+
+}
+
+.container .box-container .box:hover{
+
+  box-shadow: 0 10px 15px rgba(0,0,0,.3);
+  transform: scale(1.02);
+}
+
+.mybackground-img{
+    margin: 0;
+    padding: 0;
+   
+    height: 650px; /* Change this value to your desired height */
+    
+    background-size: cover;
+   
+    background-position: center;
+    
+    background-repeat: no-repeat;
+   
+    background-image: url('/img/test1.jpg');
 }

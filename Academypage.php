@@ -102,37 +102,39 @@
      </header>
 
 
-     <section class="banner-area relative">
-			<div class="overlay overlay-bg"></div>
+     <div class="mybackground-img">
+
 			<div class="container">
-              <div class="mygrid">
-                <div class="mygridItems">
-                    <img src="/img/gifs/ball.gif">
+
+            <div class="box-container">
+                <div class="box">
+                    <img src="img/i1.jpg" alt="">
                     <p>Classes</p>
                 </div>
-                <div class="mygridItems">
-                <img src="/img/gifs/ball.gif">
+                <div class="box">
+                    <img src="img/i1.jpg" alt="">
                     <p>Classes</p>
                 </div>
-                <div class="mygridItems">
-                <img src="/img/gifs/ball.gif">
+                <div class="box">
+                    <img src="img/i1.jpg" alt="">
                     <p>Classes</p>
                 </div>
-                <div class="mygridItems">
-                <img src="/img/gifs/ball.gif">
+                <div class="box">
+                    <img src="img/i1.jpg" alt="">
                     <p>Classes</p>
                 </div>
-                <div class="mygridItems">
-                <img src="/img/gifs/ball.gif">
+                <div class="box">
+                    <img src="img/i1.jpg" alt="">
                     <p>Classes</p>
                 </div>
-                <div class="mygridItems">
-                <img src="/img/gifs/ball.gif">
+                <div class="box">
+                    <img src="img/i1.jpg" alt="">
                     <p>Classes</p>
                 </div>
-                
             </div>
-        </section>
+            
+            </div>
+        </div>
 
 
 
