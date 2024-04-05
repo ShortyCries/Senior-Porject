@@ -20,7 +20,7 @@
      <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
      <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
-    
+
 
 
 
@@ -38,15 +38,15 @@
      <meta property="og:type" content="website">
      <meta data-intl-tel-input-cdn-path="intlTelInput/">
      <link rel="stylesheet" href="css/linearicons.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<link rel="stylesheet" href="css/magnific-popup.css">
-		<link rel="stylesheet" href="css/jquery-ui.css">
-		<link rel="stylesheet" href="css/nice-select.css">
-		<link rel="stylesheet" href="css/animate.min.css">
-		<link rel="stylesheet" href="css/owl.carousel.css">
-		<link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="mycss/styles.css">
+     <link rel="stylesheet" href="css/font-awesome.min.css">
+     <link rel="stylesheet" href="css/bootstrap.css">
+     <link rel="stylesheet" href="css/magnific-popup.css">
+     <link rel="stylesheet" href="css/jquery-ui.css">
+     <link rel="stylesheet" href="css/nice-select.css">
+     <link rel="stylesheet" href="css/animate.min.css">
+     <link rel="stylesheet" href="css/owl.carousel.css">
+     <link rel="stylesheet" href="css/main.css">
+     <link rel="stylesheet" href="mycss/styles.css">
  </head>
 
  <body class="u-body u-xl-mode" data-lang="en">
@@ -69,11 +69,11 @@
                  </div>
                  <div class="u-custom-menu u-nav-container">
                      <ul class="u-nav u-unstyled u-nav-1">
-                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html" style="padding: 10px 20px;">Home</a>
+                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
                          </li>
-                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Logout.html" style="padding: 10px 20px;">Logout</a>
+                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index.php" style="padding: 10px 20px;">Logout</a>
                          </li>
-                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="More.html" style="padding: 10px 20px;">More</a>
+                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="More.php" style="padding: 10px 20px;">More</a>
                          </li>
                      </ul>
                  </div>
@@ -104,37 +104,55 @@
 
      <div class="mybackground-img">
 
-			<div class="container">
+         <div class="container">
 
-            <div class="box-container">
-                <div class="box">
-                    <img src="img/i1.jpg" alt="">
-                    <p>Classes</p>
-                </div>
-                <div class="box">
-                    <img src="img/i1.jpg" alt="">
-                    <p>Classes</p>
-                </div>
-                <div class="box">
-                    <img src="img/i1.jpg" alt="">
-                    <p>Classes</p>
-                </div>
-                <div class="box">
-                    <img src="img/i1.jpg" alt="">
-                    <p>Classes</p>
-                </div>
-                <div class="box">
-                    <img src="img/i1.jpg" alt="">
-                    <p>Classes</p>
-                </div>
-                <div class="box">
-                    <img src="img/i1.jpg" alt="">
-                    <p>Classes</p>
-                </div>
-            </div>
-            
-            </div>
-        </div>
+             <div class="box-container">
+                 <div class="box">
+                     <div class="img-container">
+                         <img  class="img"   src="/img/volleyball-.jpg" alt="">
+                         <img  class="gif"   src="/img/gifs/volleyball-.gif" alt="">
+                         </div>
+                     <p>1</p>
+                 </div>
+                 <div class="box">
+                 <div class="img">
+                         <img src="/img/gifs/volleyball-.gif" alt="">
+                         <img src="/img/gifs/volleyball-.gif" alt="">
+                     </div>
+                     <p>Classes</p>
+                 </div>
+                 <div class="box">
+                 <div class="img">
+                         <img src="/img/gifs/volleyball-.gif" alt="">
+                         <img src="/img/gifs/volleyball-.gif" alt="">
+                     </div>
+                     <p>Classes</p>
+                 </div>
+                 <div class="box">
+                 <div class="img">
+                         <img src="/img/gifs/volleyball-.gif" alt="">
+                         <img src="/img/gifs/volleyball-.gif" alt="">
+                     </div>
+                     <p>Classes</p>
+                 </div>
+                 <div class="box">
+                 <div class="img">
+                         <img src="/img/gifs/volleyball-.gif" alt="">
+                         <img src="/img/gifs/volleyball-.gif" alt="">
+                     </div>
+                     <p>Classes</p>
+                 </div>
+                 <div class="box">
+                 <div class="img">
+                         <img src="/img/gifs/volleyball-.gif" alt="">
+                         <img src="/img/gifs/volleyball-.gif" alt="">
+                     </div>
+                     <p>Classes</p>
+                 </div>
+             </div>
+
+         </div>
+     </div>
 
 
 
