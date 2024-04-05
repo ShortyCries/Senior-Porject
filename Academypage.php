@@ -107,45 +107,47 @@
          <div class="container">
 
              <div class="box-container">
-                 <div class="box">
-                     <div class="img-container">
-                         <img  class="img"   src="/img/volleyball-.jpg" alt="">
-                         <img  class="gif"   src="/img/gifs/volleyball-.gif" alt="">
+                 <a href="#">
+                     <div class="box" id="box1">
+                         <div class="img-container">
+                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img1">
+
                          </div>
-                     <p>1</p>
-                 </div>
-                 <div class="box">
-                 <div class="img">
-                         <img src="/img/gifs/volleyball-.gif" alt="">
-                         <img src="/img/gifs/volleyball-.gif" alt="">
+                         <p>Test</p>
+                     </div>
+                 </a>
+                 <div class="box" id="box2">
+                     <div class="img">
+                         <img class="img" src="/img/volleyball-.jpg" alt="" id="img2">
+
                      </div>
                      <p>Classes</p>
                  </div>
-                 <div class="box">
-                 <div class="img">
-                         <img src="/img/gifs/volleyball-.gif" alt="">
-                         <img src="/img/gifs/volleyball-.gif" alt="">
+                 <div class="box" id="box3">
+                     <div class="img">
+                         <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
+
                      </div>
                      <p>Classes</p>
                  </div>
-                 <div class="box">
-                 <div class="img">
-                         <img src="/img/gifs/volleyball-.gif" alt="">
-                         <img src="/img/gifs/volleyball-.gif" alt="">
+                 <div class="box" id="box4">
+                     <div class="img">
+                         <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
+
                      </div>
                      <p>Classes</p>
                  </div>
-                 <div class="box">
-                 <div class="img">
-                         <img src="/img/gifs/volleyball-.gif" alt="">
-                         <img src="/img/gifs/volleyball-.gif" alt="">
+                 <div class="box" id="box5">
+                     <div class="img">
+                         <img class="img" src="/img/volleyball-.jpg" alt=""  id="img5">
+
                      </div>
                      <p>Classes</p>
                  </div>
-                 <div class="box">
-                 <div class="img">
-                         <img src="/img/gifs/volleyball-.gif" alt="">
-                         <img src="/img/gifs/volleyball-.gif" alt="">
+                 <div class="box" id="box6">
+                     <div class="img">
+                         <img class="img" src="/img/volleyball-.jpg" alt="" id="img6">
+
                      </div>
                      <p>Classes</p>
                  </div>
@@ -156,7 +158,132 @@
 
 
 
+     <script>
+        //BOX1
+      var img = document.getElementById('img1');
+      var box = document.getElementById('box1');
 
+     
+
+      
+
+
+
+
+
+      var originalsrc = img.src;
+      var newSrc = '/img/gifs/volleyball-.gif';
+
+
+      box.addEventListener('mouseover' , function() {
+        img.src = newSrc;
+      })
+
+      box.addEventListener('mouseout' , function() {
+        img.src = originalsrc;
+      })
+
+
+
+
+       //BOX2
+      var img2 = document.getElementById('img2');
+      var box2 = document.getElementById('box2');
+ 
+
+      var originalsrc2 = img2.src;
+      var newSrc2 = '/img/gifs/volleyball-.gif';
+
+
+      box2.addEventListener('mouseover' , function() {
+        img2.src = newSrc2;
+      })
+
+      box2.addEventListener('mouseout' , function() {
+        img2.src = originalsrc2;
+      })
+
+
+
+
+
+      //BOX3
+      var img3 = document.getElementById('img3');
+      var box3 = document.getElementById('box3');
+ 
+
+      var originalsrc3 = img3.src;
+      var newSrc3 = '/img/gifs/volleyball-.gif';
+
+
+      box3.addEventListener('mouseover' , function() {
+        img3.src = newSrc3;
+      })
+
+      box3.addEventListener('mouseout' , function() {
+        img3.src = originalsrc3;
+      })
+
+
+       //BOX4
+       var img4 = document.getElementById('img4');
+      var box4 = document.getElementById('box4');
+ 
+
+      var originalsrc4 = img4.src;
+      var newSrc4 = '/img/gifs/volleyball-.gif';
+
+
+      box4.addEventListener('mouseover' , function() {
+        img4.src = newSrc4;
+      })
+
+      box4.addEventListener('mouseout' , function() {
+        img4.src = originalsrc4;
+      })
+
+
+       //BOX5
+       var img5 = document.getElementById('img5');
+      var box5 = document.getElementById('box5');
+ 
+
+      var originalsrc5 = img5.src;
+      var newSrc5 = '/img/gifs/volleyball-.gif';
+
+
+      box5.addEventListener('mouseover' , function() {
+        img5.src = newSrc5;
+      })
+
+      box5.addEventListener('mouseout' , function() {
+        img5.src = originalsrc5;
+      })
+
+
+       //BOX3
+       var img6 = document.getElementById('img6');
+      var box6 = document.getElementById('box6');
+ 
+
+      var originalsrc6 = img6.src;
+      var newSrc6 = '/img/gifs/volleyball-.gif';
+
+
+      box6.addEventListener('mouseover' , function() {
+        img6.src = newSrc6;
+      })
+
+      box6.addEventListener('mouseout' , function() {
+        img6.src = originalsrc6;
+      })
+
+
+
+
+
+
+     </script>
 
 
 
