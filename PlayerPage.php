@@ -71,7 +71,7 @@
                      <ul class="u-nav u-unstyled u-nav-1">
                          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
                          </li>
-                         <li class="u-nav-item"><a  onclick="bootstrapAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
+                         <li class="u-nav-item"><a  onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
                          </li>
                          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="More.php" style="padding: 10px 20px;">More</a>
                          </li>
@@ -94,7 +94,7 @@
                      <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
                  </div>
              </nav>
-             <p style="border-left: solid; padding-left: 30px;" class="u-align-center u-text u-text-default u-text-1">Sample Headline</p>
+             <p style="border-left: solid; padding-left: 30px;" class="u-align-center u-text u-text-default u-text-1"><?php echo "" . $_SESSION['name'] . "" ?></p>
              <a href="PlayerPage.php" class="u-image u-logo u-image-1" data-image-width="498" data-image-height="102">
                  <img src="img/2-1.png" class="u-logo-image u-logo-image-1">
              </a>
@@ -277,15 +277,15 @@
 
 
      </script>
-    <script>
- function bootstrapAlert() {
+        <script>
+ function logoutAlert() {
     // Show the confirmation dialog and store the result
     var result = window.confirm("Are you sure you want to Logout?");
     
     // Check if the user clicked "OK" or "Cancel"
     if (result) {
         // If the user clicked "OK", redirect to 'index.php'
-        window.location.href = 'index.php';
+        window.location.href = 'logout.php';
     } else {
         // If the user clicked "Cancel", do nothing or perform any other action
         return;
