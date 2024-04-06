@@ -116,13 +116,15 @@
                          <p>Games</p>
                      </div>
                  </a>
+                 <a href="#">
                  <div class="box academies-box" id="box2">
-                     <div class="img">
+                     <div class="img-container">
                          <img class="img" src="/img/volleyball-.jpg" alt="" id="img2">
 
                      </div>
                      <p>Academies</p>
                  </div>
+                    </a>
                  <!-- <div class="box" id="box3">
                      <div class="img">
                          <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
@@ -130,6 +132,7 @@
                      </div>
                      <p>Class</p>
                  </div> -->
+                 <a href="#">
                  <div class="box class-box" id="box3">
                      <div class="img">
                          <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
@@ -137,6 +140,8 @@
                      </div>
                      <p>Class</p>
                  </div>
+                </a>
+                <a href="#">
                  <div class="box players-box" id="box4">
                      <div class="img">
                          <img class="img" src="/img/volleyball-.jpg" alt=""  id="img4">
@@ -144,7 +149,7 @@
                      </div>
                      <p>Players</p>
                  </div>
-              
+                 </a>
              </div>
 
          </div>
