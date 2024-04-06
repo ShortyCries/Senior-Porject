@@ -132,14 +132,14 @@
                  </div> -->
                  <div class="box class-box" id="box3">
                      <div class="img">
-                         <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
+                         <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
 
                      </div>
                      <p>Class</p>
                  </div>
                  <div class="box players-box" id="box4">
                      <div class="img">
-                         <img class="img" src="/img/volleyball-.jpg" alt=""  id="img5">
+                         <img class="img" src="/img/volleyball-.jpg" alt=""  id="img4">
 
                      </div>
                      <p>Players</p>
