@@ -91,3 +91,7 @@
 .img-container:hover + .img {
     opacity: 0;
 }
+.players-box{
+    margin-left: 235px;
+    width: 400px;
+}

@@ -71,7 +71,7 @@
                      <ul class="u-nav u-unstyled u-nav-1">
                          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
                          </li>
-                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index.php" style="padding: 10px 20px;">Logout</a>
+                         <li class="u-nav-item"><a onclick="bootstrapAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
                          </li>
                          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="More.php" style="padding: 10px 20px;">More</a>
                          </li>
@@ -94,8 +94,8 @@
                      <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
                  </div>
              </nav>
-             <p style="border-left: solid; padding-left: 30px;" class="u-align-center u-text u-text-default u-text-1">Sample Headline</p>
-             <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="498" data-image-height="102">
+             <p style="border-left: solid; padding-left: 30px;" class="u-align-center u-text u-text-default u-text-1">$_{$name}</p>
+             <a href="Academypage.php" class="u-image u-logo u-image-1" data-image-width="498" data-image-height="102">
                  <img src="img/2-1.png" class="u-logo-image u-logo-image-1">
              </a>
          </div>
@@ -113,7 +113,7 @@
                              <img class="img" src="/img/volleyball-.jpg" alt="" id="img1">
 
                          </div>
-                         <p>Test</p>
+                         <p>Classes</p>
                      </div>
                  </a>
                  <div class="box" id="box2">
@@ -121,35 +121,35 @@
                          <img class="img" src="/img/volleyball-.jpg" alt="" id="img2">
 
                      </div>
-                     <p>Classes</p>
+                     <p>Coaches</p>
                  </div>
                  <div class="box" id="box3">
                      <div class="img">
                          <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
 
                      </div>
-                     <p>Classes</p>
+                     <p>Games</p>
                  </div>
                  <div class="box" id="box4">
                      <div class="img">
                          <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
 
                      </div>
-                     <p>Classes</p>
+                     <p>Courts</p>
                  </div>
                  <div class="box" id="box5">
                      <div class="img">
                          <img class="img" src="/img/volleyball-.jpg" alt=""  id="img5">
 
                      </div>
-                     <p>Classes</p>
+                     <p>Players</p>
                  </div>
                  <div class="box" id="box6">
                      <div class="img">
                          <img class="img" src="/img/volleyball-.jpg" alt="" id="img6">
 
                      </div>
-                     <p>Classes</p>
+                     <p>Academies</p>
                  </div>
              </div>
 
@@ -162,12 +162,6 @@
         //BOX1
       var img = document.getElementById('img1');
       var box = document.getElementById('box1');
-
-     
-
-      
-
-
 
 
 
@@ -284,7 +278,21 @@
 
 
      </script>
-
+        <script>
+ function bootstrapAlert() {
+    // Show the confirmation dialog and store the result
+    var result = window.confirm("Are you sure you want to Logout?");
+    
+    // Check if the user clicked "OK" or "Cancel"
+    if (result) {
+        // If the user clicked "OK", redirect to 'index.php'
+        window.location.href = 'index.php';
+    } else {
+        // If the user clicked "Cancel", do nothing or perform any other action
+        return;
+    }
+}
+</script>
 
 
  </body>
