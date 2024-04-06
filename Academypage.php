@@ -149,7 +149,7 @@
                          <img class="img" src="/img/volleyball-.jpg" alt="" id="img6">
 
                      </div>
-                     <p>Academies</p>
+                     <p>Academissses</p>
                  </div>
              </div>
 
