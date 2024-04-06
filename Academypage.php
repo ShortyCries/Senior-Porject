@@ -116,183 +116,192 @@
                          <p>Classes</p>
                      </div>
                  </a>
-                 <div class="box" id="box2">
-                     <div class="img">
-                         <img class="img" src="/img/volleyball-.jpg" alt="" id="img2">
+                 <a href="CoachesBTN.php">
+                     <div class="box" id="box2">
+                         <div class="img">
+                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img2">
 
+                         </div>
+                         <p>Coaches</p>
                      </div>
-                     <p>Coaches</p>
-                 </div>
-                 <div class="box" id="box3">
-                     <div class="img">
-                         <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
+                 </a>
+                 <a href="#">
+                     <div class="box" id="box3">
+                         <div class="img">
+                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
 
+                         </div>
+                         <p>Games</p>
                      </div>
-                     <p>Games</p>
-                 </div>
-                 <div class="box" id="box4">
-                     <div class="img">
-                         <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
+                 </a>
+                 <a href="#">
+                     <div class="box" id="box4">
+                         <div class="img">
+                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
 
+                         </div>
+                         <p>Courts</p>
                      </div>
-                     <p>Courts</p>
-                 </div>
-                 <div class="box" id="box5">
-                     <div class="img">
-                         <img class="img" src="/img/volleyball-.jpg" alt=""  id="img5">
+                 </a>
+                 <a href="#">
+                     <div class="box" id="box5">
+                         <div class="img">
+                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img5">
 
+                         </div>
+                         <p>Players</p>
                      </div>
-                     <p>Players</p>
-                 </div>
-                 <div class="box" id="box6">
-                     <div class="img">
-                         <img class="img" src="/img/volleyball-.jpg" alt="" id="img6">
+                 </a>
+                 <a href="#">
+                     <div class="box" id="box6">
+                         <div class="img">
+                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img6">
 
+                         </div>
+                         <p>Academissses</p>
                      </div>
-                     <p>Academissses</p>
-                 </div>
+                 </a>
+
              </div>
 
          </div>
+        
      </div>
 
 
 
      <script>
-        //BOX1
-      var img = document.getElementById('img1');
-      var box = document.getElementById('box1');
+         //BOX1
+         var img = document.getElementById('img1');
+         var box = document.getElementById('box1');
 
 
 
-      var originalsrc = img.src;
-      var newSrc = '/img/gifs/volleyball-.gif';
+         var originalsrc = img.src;
+         var newSrc = '/img/gifs/volleyball-.gif';
 
 
-      box.addEventListener('mouseover' , function() {
-        img.src = newSrc;
-      })
+         box.addEventListener('mouseover', function() {
+             img.src = newSrc;
+         })
 
-      box.addEventListener('mouseout' , function() {
-        img.src = originalsrc;
-      })
-
-
-
-
-       //BOX2
-      var img2 = document.getElementById('img2');
-      var box2 = document.getElementById('box2');
- 
-
-      var originalsrc2 = img2.src;
-      var newSrc2 = '/img/gifs/volleyball-.gif';
-
-
-      box2.addEventListener('mouseover' , function() {
-        img2.src = newSrc2;
-      })
-
-      box2.addEventListener('mouseout' , function() {
-        img2.src = originalsrc2;
-      })
+         box.addEventListener('mouseout', function() {
+             img.src = originalsrc;
+         })
 
 
 
 
-
-      //BOX3
-      var img3 = document.getElementById('img3');
-      var box3 = document.getElementById('box3');
- 
-
-      var originalsrc3 = img3.src;
-      var newSrc3 = '/img/gifs/volleyball-.gif';
+         //BOX2
+         var img2 = document.getElementById('img2');
+         var box2 = document.getElementById('box2');
 
 
-      box3.addEventListener('mouseover' , function() {
-        img3.src = newSrc3;
-      })
-
-      box3.addEventListener('mouseout' , function() {
-        img3.src = originalsrc3;
-      })
+         var originalsrc2 = img2.src;
+         var newSrc2 = '/img/gifs/volleyball-.gif';
 
 
-       //BOX4
-       var img4 = document.getElementById('img4');
-      var box4 = document.getElementById('box4');
- 
+         box2.addEventListener('mouseover', function() {
+             img2.src = newSrc2;
+         })
 
-      var originalsrc4 = img4.src;
-      var newSrc4 = '/img/gifs/volleyball-.gif';
-
-
-      box4.addEventListener('mouseover' , function() {
-        img4.src = newSrc4;
-      })
-
-      box4.addEventListener('mouseout' , function() {
-        img4.src = originalsrc4;
-      })
-
-
-       //BOX5
-       var img5 = document.getElementById('img5');
-      var box5 = document.getElementById('box5');
- 
-
-      var originalsrc5 = img5.src;
-      var newSrc5 = '/img/gifs/volleyball-.gif';
-
-
-      box5.addEventListener('mouseover' , function() {
-        img5.src = newSrc5;
-      })
-
-      box5.addEventListener('mouseout' , function() {
-        img5.src = originalsrc5;
-      })
-
-
-       //BOX3
-       var img6 = document.getElementById('img6');
-      var box6 = document.getElementById('box6');
- 
-
-      var originalsrc6 = img6.src;
-      var newSrc6 = '/img/gifs/volleyball-.gif';
-
-
-      box6.addEventListener('mouseover' , function() {
-        img6.src = newSrc6;
-      })
-
-      box6.addEventListener('mouseout' , function() {
-        img6.src = originalsrc6;
-      })
+         box2.addEventListener('mouseout', function() {
+             img2.src = originalsrc2;
+         })
 
 
 
 
 
+         //BOX3
+         var img3 = document.getElementById('img3');
+         var box3 = document.getElementById('box3');
 
+
+         var originalsrc3 = img3.src;
+         var newSrc3 = '/img/gifs/volleyball-.gif';
+
+
+         box3.addEventListener('mouseover', function() {
+             img3.src = newSrc3;
+         })
+
+         box3.addEventListener('mouseout', function() {
+             img3.src = originalsrc3;
+         })
+
+
+         //BOX4
+         var img4 = document.getElementById('img4');
+         var box4 = document.getElementById('box4');
+
+
+         var originalsrc4 = img4.src;
+         var newSrc4 = '/img/gifs/volleyball-.gif';
+
+
+         box4.addEventListener('mouseover', function() {
+             img4.src = newSrc4;
+         })
+
+         box4.addEventListener('mouseout', function() {
+             img4.src = originalsrc4;
+         })
+
+
+         //BOX5
+         var img5 = document.getElementById('img5');
+         var box5 = document.getElementById('box5');
+
+
+         var originalsrc5 = img5.src;
+         var newSrc5 = '/img/gifs/volleyball-.gif';
+
+
+         box5.addEventListener('mouseover', function() {
+             img5.src = newSrc5;
+         })
+
+         box5.addEventListener('mouseout', function() {
+             img5.src = originalsrc5;
+         })
+
+
+         //BOX3
+         var img6 = document.getElementById('img6');
+         var box6 = document.getElementById('box6');
+
+
+         var originalsrc6 = img6.src;
+         var newSrc6 = '/img/gifs/volleyball-.gif';
+
+
+         box6.addEventListener('mouseover', function() {
+             img6.src = newSrc6;
+         })
+
+         box6.addEventListener('mouseout', function() {
+             img6.src = originalsrc6;
+         })
      </script>
-        <script>
- function logoutAlert() {
-    // Show the confirmation dialog and store the result
-    var result = window.confirm("Are you sure you want to Logout?");
-    
-    // Check if the user clicked "OK" or "Cancel"
-    if (result) {
-        // If the user clicked "OK", redirect to 'index.php'
-        window.location.href = 'logout.php';
-    } else {
-        // If the user clicked "Cancel", do nothing or perform any other action
-        return;
-    }
-}
-</script>
+     <script>
+         function logoutAlert() {
+             // Show the confirmation dialog and store the result
+             var result = window.confirm("Are you sure you want to Logout?");
+
+             // Check if the user clicked "OK" or "Cancel"
+             if (result) {
+                 // If the user clicked "OK", redirect to 'index.php'
+                 window.location.href = 'logout.php';
+             } else {
+                 // If the user clicked "Cancel", do nothing or perform any other action
+                 return;
+             }
+         }
+     </script>
+
+
+
 
 
  </body>

@@ -63,7 +63,7 @@
     margin: 0;
     padding: 0;
    
-    height: 900px; /* Change this value to your desired height */
+    height: 650px; /* Change this value to your desired height */
     
     background-size: cover;
    
@@ -75,23 +75,17 @@
 }
 
 
-.gif{   
-    position: absolute;
-    top: 0;
-    right: 33%;
-    opacity: 0;
-    
-}
-.img-container{
-    position: relative;
-}
-.gif:hover{
-    opacity: 1;
-}
-.img-container:hover + .img {
-    opacity: 0;
-}
+
 .players-box{
     margin-left: 235px;
     width: 400px;
+}
+
+.myCenterDiv{
+
+   
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+ 
+
 }
