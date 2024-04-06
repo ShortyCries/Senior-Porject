@@ -135,18 +135,18 @@
                                 <div class="col-lg-5">
                                     <div class="candidate-list-content mt-3 mt-lg-0">
                                         <h5 class="fs-19 mb-0">
-                                            <a class="primary-link" href="#">Charles Dickens</a><span class="badge bg-success ms-1"><i class="mdi mdi-star align-middle"></i>4.8</span>
+                                            <a class="primary-link" href="#">$get player name</a><span class="badge bg-success ms-1"><i class="mdi mdi-star align-middle"></i>$get ratting</span>
                                         </h5>
-                                        <p class="text-muted mb-2">Project Manager</p>
+                                        <p class="text-muted mb-2">Get his sport</p>
                                         <ul class="list-inline mb-0 text-muted">
-                                            <li class="list-inline-item"><i class="mdi mdi-map-marker"></i> Oakridge Lane Richardson</li>
-                                            <li class="list-inline-item"><i class="mdi mdi-wallet"></i> $650 / hours</li>
+                                            <li class="list-inline-item"><i class="mdi mdi-map-marker"></i> $get his sport</li><br>
+                                            <li class="list-inline-item"><i class="mdi mdi-wallet"></i> $get his class</li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
-                                        <span class="badge bg-soft-secondary fs-14 mt-1">Leader</span><span class="badge bg-soft-secondary fs-14 mt-1">Manager</span><span class="badge bg-soft-secondary fs-14 mt-1">Developer</span>
+                                        <span class="badge bg-soft-secondary fs-14 mt-1">$his desc</span><span class="badge bg-soft-secondary fs-14 mt-1">$ his fav sport</span><span class="badge bg-soft-secondary fs-14 mt-1">His prefered role</span>
                                     </div>
                                 </div>
                             </div>
