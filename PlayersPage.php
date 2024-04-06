@@ -151,7 +151,7 @@
                                 </div>
                             </div>
                             <div class="favorite-icon">
-                                <a href="#"><i class="mdi mdi-heart fs-18"></i></a>
+                                <a href="#"> <i></i><i class="mdi mdi-account-plus fs-18"></i></a>
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                                 </div>
                             </div>
                             <div class="favorite-icon">
-                                <a href="#"><i class="mdi mdi-heart fs-18"></i></a>
+                                <a href="#"><i class="mdi mdi-account-plus fs-18"></i></a>
                             </div>
                         </div>
                     </div>
@@ -209,7 +209,7 @@
                                 </div>
                             </div>
                             <div class="favorite-icon">
-                                <a href="#"><i class="mdi mdi-heart fs-18"></i></a>
+                                <a href="#"><i class="mdi mdi-account-plus fs-18"></i></a>
                             </div>
                         </div>
                     </div>
@@ -240,7 +240,7 @@
                                 </div>
                             </div>
                             <div class="favorite-icon">
-                                <a href="#"><i class="mdi mdi-heart fs-18"></i></a>
+                                <a href="#"><i class="mdi mdi-account-plus fs-18"></i></a>
                             </div>
                         </div>
                     </div>
@@ -271,7 +271,7 @@
                                 </div>
                             </div>
                             <div class="favorite-icon">
-                                <a href="#"><i class="mdi mdi-heart fs-18"></i></a>
+                                <a href="#"><i class="mdi mdi-account-plus fs-18"></i></a>
                             </div>
                         </div>
                     </div>
@@ -302,7 +302,7 @@
                                 </div>
                             </div>
                             <div class="favorite-icon">
-                                <a href="#"><i class="mdi mdi-heart fs-18"></i></a>
+                                <a href="#"><i class="mdi mdi-account-plus fs-18"></i></a>
                             </div>
                         </div>
                     </div>
@@ -333,7 +333,7 @@
                                 </div>
                             </div>
                             <div class="favorite-icon">
-                                <a href="#"><i class="mdi mdi-heart fs-18"></i></a>
+                                <a href="#"><i class="mdi mdi-account-plus fs-18"></i></a>
                             </div>
                         </div>
                     </div>
@@ -364,7 +364,7 @@
                                 </div>
                             </div>
                             <div class="favorite-icon">
-                                <a href="#"><i class="mdi mdi-heart fs-18"></i></a>
+                                <a href="#"><i class="mdi mdi-account-plus fs-18"></i></a>
                             </div>
                         </div>
                     </div>
