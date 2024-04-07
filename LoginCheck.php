@@ -22,6 +22,7 @@ try {
     if ($r == 1) {
       session_start();
       $_SESSION['Logged'] = true;
+      $_SESSION['email'] = $email;
       
       $row = $result->fetch();
       $_SESSION['name'] = $row['name'];

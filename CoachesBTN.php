@@ -1,5 +1,17 @@
 <?php
 session_start();
+require_once("config.php");
+$pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+$academyEmail = $_SESSION['email'];
+
+$query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
+
+$result = $pdo->query($query);
+
+$r = $result->rowCount();
+
+echo $r;
+
 
 ?>
 
@@ -47,6 +59,8 @@ session_start();
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="mycss/styles.css">
+
+
 
 
 </head>
@@ -160,7 +174,7 @@ session_start();
                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img6">
 
                         </div>
-                        <p>Academissses</p>
+                        <p>Academies</p>
                     </div>
                 </a>
 
@@ -171,50 +185,94 @@ session_start();
     </div>
 
 
-    <div class="mybackground-img">
+    <div class="mybackground-img2">
         <h2 style="text-align: center; color: orange;">Add coach</h2>
 
-        <form class="row g-3" style="padding-left: 300px; padding-right: 300px;" action="CoachPDO.php">
+        <form class="row g-3" style="padding-left: 300px; padding-right: 300px;" action="CoachPDO.php" method="POST">
 
-            <div class="col-md-3">
-                <label for="validationDefault01" class="form-label" style="color: orange;">First name</label>
-                <input type="text" class="form-control" id="validationDefault01" value="Mark" required>
+            <div class="col-md-4">
+                <label for="validationDefault01" class="form-label" style="color: orange;">Name</label>
+                <input name="name" type="text" class="form-control" id="validationDefault01" placeholder="Mark" required>
             </div>
-            <div class="col-md-3">
-                <label for="validationDefault02" class="form-label" style="color: orange;" >Last name</label>
-                <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
+            <div class="col-md-4">
+                <label for="validationDefault02" class="form-label" style="color: orange;">Password</label>
+                <input name="password" type="text" class="form-control" id="validationDefault02" placeholder="Password" required>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <label for="validationDefault02" class="form-label" style="color: orange;">Re-password</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Re-password" required>
+            </div>
+
+            <div class="col-md-5">
                 <label for="validationDefaultUsername" class="form-label" style="color: orange;">Email</label>
                 <div class="input-group">
                     <span style="background-color:orange;  border-color: orange;" class="input-group-text" id="inputGroupPrepend2">@</span>
-                    <input type="text" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                    <input name="email" type="text" class="form-control" id="validationDefaultUsername" placeholder="example123@hotmail.com" aria-describedby="inputGroupPrepend2" required>
                 </div>
             </div>
-            <div class="col-md-4">
-                <label for="validationDefault03" class="form-label" style="color: orange;">City</label>
-                <select class="form-select" id="validationDefault04" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option>...</option>
-                </select>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label for="validationDefault04" class="form-label" style="color: orange;">Sport Speciality</label>
-                <select class="form-select" id="validationDefault04" required>
+                <select name="sport" class="form-select" id="validationDefault04" required>
                     <option selected disabled value="">Choose...</option>
-                    <option>...</option>
+                    <option>Football</option>
+                    <option>Basketball</option>
+                    <option>Volleyball</option>
+                    <option>Tennis</option>
                 </select>
             </div>
             <div class="col-md-4">
                 <label for="validationDefault05" class="form-label">Date of Birth</label>
                 <input type="date" class="form-control date-picker" name="Dob" placeholder="Date of birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of birth'">
             </div>
-            
-            <div class="col-12" style="text-align: center; padding-top: 30px; color: yellow;" >
-                <button style="background-color: orange; border-color: orange;"class="btn btn-primary" type="submit">Submit form</button>
+
+            <div class="col-12" style="text-align: center; padding-top: 30px; color: yellow;">
+                <button style="background-color: orange; border-color: orange;" class="btn btn-primary" type="submit">Submit form</button>
             </div>
         </form>
     </div>
+
+    <div class="mybackground-img">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="card mt-5">
+
+                        <div class="card-header">
+                            <h4 class="display-6 text-center"> Coach List </h2>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered text-center">
+                                <tr class="bg-dark text-white">
+                                    <td>Name</td>
+                                    <td>Email</td>
+                                    <td>Date of birth</td>
+
+                                </tr>
+                                <?php
+                                for ($i = 0; $i < $r; $i++) {
+                                    $row = $result->fetch(PDO::FETCH_NUM);
+                                    echo "<tr>";
+                                    echo "<td>   $row[0] </td>";
+                                    echo "<td>   $row[1] </td> ";
+                                    echo "<td>  $row[2] </td> ";
+                                    
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
 
 
 
