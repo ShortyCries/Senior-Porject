@@ -171,7 +171,7 @@ echo $r;
                 <a href="#">
                     <div class="box" id="box6" style="background-color: grey;" >
                         <div class="img">
-                            <img class="img" src="/img/academy-.png alt=" id="img6">
+                            <img class="img" src="/img/academy-.png" alt="" id="img6">
 
                         </div>
                         <p>Academies</p>
