@@ -26,7 +26,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
     
 
-    $query="INSERT INTO login VALUES('$email','$name','$password','coach')";
+    $query="INSERT INTO login VALUES('$email','$name','$password','coach' ,'active')";
     
     $result= $pdo->exec($query);
 

@@ -15,7 +15,7 @@ try {
 
 
 
-        $query = "INSERT INTO login VALUES('$email','$name','$password','player')";
+        $query = "INSERT INTO login VALUES('$email','$name','$password','player','active')";
 
         $result = $pdo->exec($query);
 

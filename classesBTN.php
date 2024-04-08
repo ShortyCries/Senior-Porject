@@ -89,7 +89,10 @@ echo $r;
                         </li>
                         <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" style="padding: 10px 20px;">Logout</a>
                         </li>
-                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="More.php" style="padding: 10px 20px;">More</a>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="More.php" style="padding: 10px 20px;">About us</a>
+                        </li>
+                        
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contactus.php" style="padding: 10px 20px;">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -184,60 +187,16 @@ echo $r;
     </div>
 
 
-    <div class="mybackground-img2">
-        <h2 style="text-align: center; color: orange;">Add coach</h2>
-
-        <form class="row g-3" style="padding-left: 300px; padding-right: 300px;" action="CoachPDO.php" method="POST">
-
-            <div class="col-md-4">
-                <label for="validationDefault01" class="form-label" style="color: orange;">Name</label>
-                <input name="name" type="text" class="form-control" id="validationDefault01" placeholder="Mark" required>
-            </div>
-            <div class="col-md-4">
-                <label for="validationDefault02" class="form-label" style="color: orange;">Password</label>
-                <input name="password" type="text" class="form-control" id="validationDefault02" placeholder="Password" required>
-            </div>
-            <div class="col-md-4">
-                <label for="validationDefault02" class="form-label" style="color: orange;">Re-password</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Re-password" required>
-            </div>
-
-            <div class="col-md-5">
-                <label for="validationDefaultUsername" class="form-label" style="color: orange;">Email</label>
-                <div class="input-group">
-                    <span style="background-color:orange;  border-color: orange;" class="input-group-text" id="inputGroupPrepend2">@</span>
-                    <input name="email" type="text" class="form-control" id="validationDefaultUsername" placeholder="example123@hotmail.com" aria-describedby="inputGroupPrepend2" required>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <label for="validationDefault04" class="form-label" style="color: orange;">Sport Speciality</label>
-                <select name="sport" class="form-select" id="validationDefault04" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option>Football</option>
-                    <option>Basketball</option>
-                    <option>Volleyball</option>
-                    <option>Tennis</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <label for="validationDefault05" class="form-label">Date of Birth</label>
-                <input type="date" class="form-control date-picker" name="Dob" placeholder="Date of birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of birth'">
-            </div>
-
-            <div class="col-12" style="text-align: center; padding-top: 30px; color: yellow;">
-                <button style="background-color: orange; border-color: orange;" class="btn btn-primary" type="submit">Submit form</button>
-            </div>
-        </form>
-    </div>
+    
 
     <div class="mybackground-img">
         <div class="container">
             <div class="row mt-5">
                 <div class="col">
-                    <div class="card mt-5">
+                    <!-- <div class="card mt-5">
 
                         <div class="card-header">
-                            <h4 class="display-6 text-center"> Coach List </h2>
+                            <h4 class="display-6 text-center"> Class  List </h2>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered text-center">
@@ -261,7 +220,7 @@ echo $r;
                             </table>
                         </div>
 
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

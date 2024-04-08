@@ -10,7 +10,7 @@ try {
 
 
 
-    $query = "SELECT * FROM login where email ='$email' AND  password = '$password'";
+    $query = "SELECT * FROM login where email ='$email' AND  password = '$password' AND status ='active'";
 
 
 
@@ -23,17 +23,15 @@ try {
       session_start();
       $_SESSION['Logged'] = true;
       $_SESSION['email'] = $email;
-      
+
       $row = $result->fetch();
       $_SESSION['name'] = $row['name'];
       if ($row['Type'] == "player") {
-       
-        header("location:PlayerPage.php");
 
+        header("location:PlayerPage.php");
       } else if ($row['Type'] == "coach") {
 
         header("location:CoachPage.php");
-
       } else if ($row['Type'] == "academy") {
 
         header("location:AcademyPage.php");
