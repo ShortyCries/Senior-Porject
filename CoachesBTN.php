@@ -123,7 +123,7 @@ echo $r;
         <div class="container">
 
             <div class="box-container">
-                <a href="#">
+                <a href="classesBTN.php">
                     <div class="box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/classes-.png" alt="" id="img1">
