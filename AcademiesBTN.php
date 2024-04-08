@@ -126,7 +126,7 @@ echo $r;
                 <a href="classesBTN.php">
                     <div class="box" id="box1">
                         <div class="img-container">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img1">
+                            <img class="img" src="/img/classes-.png" alt="" id="img1">
 
                         </div>
                         <p>Classes</p>
@@ -144,7 +144,7 @@ echo $r;
                 <a href="GamesBTN.php">
                     <div class="box" id="box3">
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
+                            <img class="img" src="/img/games-.png" alt="" id="img3">
 
                         </div>
                         <p>Games</p>
@@ -153,7 +153,7 @@ echo $r;
                 <a href="CourtsBTN.php">
                     <div class="box" id="box4">
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
+                            <img class="img" src="/img/court.png" alt="" id="img4">
 
                         </div>
                         <p>Courts</p>
@@ -162,7 +162,7 @@ echo $r;
                 <a href="PlayersBTN.php">
                     <div class="box" id="box5">
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img5">
+                            <img class="img" src="/img/player-.png" alt="" id="img5">
 
                         </div>
                         <p>Players</p>
@@ -171,7 +171,7 @@ echo $r;
                 <a href="#">
                     <div class="box" id="box6" style="background-color: grey;" >
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img6">
+                            <img class="img" src="/img/academy-.png alt=" id="img6">
 
                         </div>
                         <p>Academies</p>
@@ -576,7 +576,7 @@ echo $r;
 
 
         var originalsrc = img.src;
-        var newSrc = '/img/gifs/volleyball-.gif';
+        var newSrc = '/img/gifs/classes.gif';
 
 
         box.addEventListener('mouseover', function() {
@@ -617,7 +617,7 @@ echo $r;
 
 
         var originalsrc3 = img3.src;
-        var newSrc3 = '/img/gifs/volleyball-.gif';
+        var newSrc3 = '/img/gifs/games-.gif';
 
 
         box3.addEventListener('mouseover', function() {
@@ -635,7 +635,7 @@ echo $r;
 
 
         var originalsrc4 = img4.src;
-        var newSrc4 = '/img/gifs/volleyball-.gif';
+        var newSrc4 = '/img/gifs/court-.gif';
 
 
         box4.addEventListener('mouseover', function() {
@@ -653,7 +653,7 @@ echo $r;
 
 
         var originalsrc5 = img5.src;
-        var newSrc5 = '/img/gifs/volleyball-.gif';
+        var newSrc5 = '/img/gifs/player-.gif';
 
 
         box5.addEventListener('mouseover', function() {
@@ -665,13 +665,13 @@ echo $r;
         })
 
 
-        //BOX3
+        //BOX6
         var img6 = document.getElementById('img6');
         var box6 = document.getElementById('box6');
 
 
         var originalsrc6 = img6.src;
-        var newSrc6 = '/img/gifs/volleyball-.gif';
+        var newSrc6 = '/img/gifs/academy-.gif';
 
 
         box6.addEventListener('mouseover', function() {
