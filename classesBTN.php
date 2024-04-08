@@ -25,7 +25,7 @@ echo $r;
     <meta charset="utf-8">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>CoachesBTN</title>
+    <title>Page 2</title>
     <link rel="stylesheet" href="css/nicepage.css" media="screen">
     <link rel="stylesheet" href="css/nav.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
@@ -141,7 +141,7 @@ echo $r;
                         <p>Coaches</p>
                     </div>
                 </a>
-                <a href="GamesBTN.php">
+                <a href="#">
                     <div class="box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
@@ -150,7 +150,7 @@ echo $r;
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="CourtsBTN.php">
+                <a href="#">
                     <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
@@ -159,7 +159,7 @@ echo $r;
                         <p>Courts</p>
                     </div>
                 </a>
-                <a href="PlayersBTN.php">
+                <a href="#">
                     <div class="box" id="box5">
                         <div class="img">
                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img5">
@@ -168,7 +168,7 @@ echo $r;
                         <p>Players</p>
                     </div>
                 </a>
-                <a href="AcademiesBTN.php">
+                <a href="#">
                     <div class="box" id="box6">
                         <div class="img">
                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img6">

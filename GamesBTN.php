@@ -25,7 +25,7 @@ echo $r;
     <meta charset="utf-8">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>CoachesBTN</title>
+    <title>GamesBTN</title>
     <link rel="stylesheet" href="css/nicepage.css" media="screen">
     <link rel="stylesheet" href="css/nav.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
@@ -123,28 +123,28 @@ echo $r;
         <div class="container">
 
             <div class="box-container">
-                <a href="#">
+                <a href="classesBTN.php">
                     <div class="box" id="box1">
                         <div class="img-container">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img1">
+                            <img class="img" src="/img/classes-.png" alt="" id="img1">
 
                         </div>
                         <p>Classes</p>
                     </div>
                 </a>
                 <a href="CoachesBTN.php">
-                    <div class="box" id="box2" style="background-color: grey;">
+                    <div class="box" id="box2" >
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img2">
+                            <img class="img" src="/img/coach-.png" alt="" id="img2">
 
                         </div>
                         <p>Coaches</p>
                     </div>
                 </a>
                 <a href="GamesBTN.php">
-                    <div class="box" id="box3">
+                    <div class="box" id="box3" style="background-color: grey;">
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
+                            <img class="img" src="/img/games-.png" alt="" id="img3">
 
                         </div>
                         <p>Games</p>
@@ -153,7 +153,7 @@ echo $r;
                 <a href="CourtsBTN.php">
                     <div class="box" id="box4">
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
+                            <img class="img" src="/img/court.png" alt="" id="img4">
 
                         </div>
                         <p>Courts</p>
@@ -162,7 +162,7 @@ echo $r;
                 <a href="PlayersBTN.php">
                     <div class="box" id="box5">
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img5">
+                            <img class="img" src="/img/player-.png" alt="" id="img5">
 
                         </div>
                         <p>Players</p>
@@ -171,7 +171,7 @@ echo $r;
                 <a href="AcademiesBTN.php">
                     <div class="box" id="box6">
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img6">
+                            <img class="img" src="/img/academy-.png" alt="" id="img6">
 
                         </div>
                         <p>Academies</p>
@@ -186,88 +186,11 @@ echo $r;
 
 
     <div class="mybackground-img2">
-        <h2 style="text-align: center; color: orange;">Add coach</h2>
-
-        <form class="row g-3" style="padding-left: 300px; padding-right: 300px;" action="CoachPDO.php" method="POST">
-
-            <div class="col-md-4">
-                <label for="validationDefault01" class="form-label" style="color: orange;">Name</label>
-                <input name="name" type="text" class="form-control" id="validationDefault01" placeholder="Mark" required>
-            </div>
-            <div class="col-md-4">
-                <label for="validationDefault02" class="form-label" style="color: orange;">Password</label>
-                <input name="password" type="text" class="form-control" id="validationDefault02" placeholder="Password" required>
-            </div>
-            <div class="col-md-4">
-                <label for="validationDefault02" class="form-label" style="color: orange;">Re-password</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Re-password" required>
-            </div>
-
-            <div class="col-md-5">
-                <label for="validationDefaultUsername" class="form-label" style="color: orange;">Email</label>
-                <div class="input-group">
-                    <span style="background-color:orange;  border-color: orange;" class="input-group-text" id="inputGroupPrepend2">@</span>
-                    <input name="email" type="text" class="form-control" id="validationDefaultUsername" placeholder="example123@hotmail.com" aria-describedby="inputGroupPrepend2" required>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <label for="validationDefault04" class="form-label" style="color: orange;">Sport Speciality</label>
-                <select name="sport" class="form-select" id="validationDefault04" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option>Football</option>
-                    <option>Basketball</option>
-                    <option>Volleyball</option>
-                    <option>Tennis</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <label for="validationDefault05" class="form-label">Date of Birth</label>
-                <input type="date" class="form-control date-picker" name="Dob" placeholder="Date of birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of birth'">
-            </div>
-
-            <div class="col-12" style="text-align: center; padding-top: 30px; color: yellow;">
-                <button style="background-color: orange; border-color: orange;" class="btn btn-primary" type="submit">Submit form</button>
-            </div>
-        </form>
+        
     </div>
 
     <div class="mybackground-img">
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col">
-                    <div class="card mt-5">
-
-                        <div class="card-header">
-                            <h4 class="display-6 text-center"> Coach List </h2>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-bordered text-center">
-                                <tr class="bg-dark text-white">
-                                    <td>Name</td>
-                                    <td>Email</td>
-                                    <td>Date of birth</td>
-
-                                </tr>
-                                <?php
-                                for ($i = 0; $i < $r; $i++) {
-                                    $row = $result->fetch(PDO::FETCH_NUM);
-                                    echo "<tr>";
-                                    echo "<td>   $row[0] </td>";
-                                    echo "<td>   $row[1] </td> ";
-                                    echo "<td>  $row[2] </td> ";
-                                    
-                                    echo "</tr>";
-                                }
-                                ?>
-                            </table>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
+        
     </div>
 
 
@@ -286,7 +209,7 @@ echo $r;
 
 
         var originalsrc = img.src;
-        var newSrc = '/img/gifs/volleyball-.gif';
+        var newSrc = '/img/gifs/classes.gif';
 
 
         box.addEventListener('mouseover', function() {
@@ -306,7 +229,7 @@ echo $r;
 
 
         var originalsrc2 = img2.src;
-        var newSrc2 = '/img/gifs/volleyball-.gif';
+        var newSrc2 = '/img/gifs/coach-.gif';
 
 
         box2.addEventListener('mouseover', function() {
@@ -327,7 +250,7 @@ echo $r;
 
 
         var originalsrc3 = img3.src;
-        var newSrc3 = '/img/gifs/volleyball-.gif';
+        var newSrc3 = '/img/gifs/games-.gif';
 
 
         box3.addEventListener('mouseover', function() {
@@ -345,7 +268,7 @@ echo $r;
 
 
         var originalsrc4 = img4.src;
-        var newSrc4 = '/img/gifs/volleyball-.gif';
+        var newSrc4 = '/img/gifs/court-.gif';
 
 
         box4.addEventListener('mouseover', function() {
@@ -363,7 +286,7 @@ echo $r;
 
 
         var originalsrc5 = img5.src;
-        var newSrc5 = '/img/gifs/volleyball-.gif';
+        var newSrc5 = '/img/gifs/player-.gif';
 
 
         box5.addEventListener('mouseover', function() {
@@ -375,13 +298,13 @@ echo $r;
         })
 
 
-        //BOX3
+        //BOX6
         var img6 = document.getElementById('img6');
         var box6 = document.getElementById('box6');
 
 
         var originalsrc6 = img6.src;
-        var newSrc6 = '/img/gifs/volleyball-.gif';
+        var newSrc6 = '/img/gifs/academy-.gif';
 
 
         box6.addEventListener('mouseover', function() {
