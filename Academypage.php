@@ -69,9 +69,9 @@
                  </div>
                  <div class="u-custom-menu u-nav-container">
                      <ul class="u-nav u-unstyled u-nav-1">
-                         <li class="u-nav-item"><a     class="" href="Academypage.php" style="color:white ; padding: 10px 20px;">Home</a>
+                         <li class="u-nav-item"><a class="" href="Academypage.php" style="color:white ; padding: 10px 20px;">Home</a>
                          </li>
-                         <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" style="padding: 10px 20px;">Logout</a>
+                         <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
                          </li>
                          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Aboutus.php" style="padding: 10px 20px;">About us</a>
                          </li>
@@ -166,141 +166,141 @@
              </div>
 
          </div>
-        
+
      </div>
 
 
 
      <script>
-        //BOX1
-        var img = document.getElementById('img1');
-        var box = document.getElementById('box1');
+         //BOX1
+         var img = document.getElementById('img1');
+         var box = document.getElementById('box1');
 
 
 
-        var originalsrc = img.src;
-        var newSrc = '/img/gifs/classes.gif';
+         var originalsrc = img.src;
+         var newSrc = '/img/gifs/classes.gif';
 
 
-        box.addEventListener('mouseover', function() {
-            img.src = newSrc;
-        })
+         box.addEventListener('mouseover', function() {
+             img.src = newSrc;
+         })
 
-        box.addEventListener('mouseout', function() {
-            img.src = originalsrc;
-        })
-
-
-
-
-        //BOX2
-        var img2 = document.getElementById('img2');
-        var box2 = document.getElementById('box2');
-
-
-        var originalsrc2 = img2.src;
-        var newSrc2 = '/img/gifs/coach-.gif';
-
-
-        box2.addEventListener('mouseover', function() {
-            img2.src = newSrc2;
-        })
-
-        box2.addEventListener('mouseout', function() {
-            img2.src = originalsrc2;
-        })
+         box.addEventListener('mouseout', function() {
+             img.src = originalsrc;
+         })
 
 
 
 
-
-        //BOX3
-        var img3 = document.getElementById('img3');
-        var box3 = document.getElementById('box3');
-
-
-        var originalsrc3 = img3.src;
-        var newSrc3 = '/img/gifs/games-.gif';
+         //BOX2
+         var img2 = document.getElementById('img2');
+         var box2 = document.getElementById('box2');
 
 
-        box3.addEventListener('mouseover', function() {
-            img3.src = newSrc3;
-        })
-
-        box3.addEventListener('mouseout', function() {
-            img3.src = originalsrc3;
-        })
+         var originalsrc2 = img2.src;
+         var newSrc2 = '/img/gifs/coach-.gif';
 
 
-        //BOX4
-        var img4 = document.getElementById('img4');
-        var box4 = document.getElementById('box4');
+         box2.addEventListener('mouseover', function() {
+             img2.src = newSrc2;
+         })
+
+         box2.addEventListener('mouseout', function() {
+             img2.src = originalsrc2;
+         })
 
 
-        var originalsrc4 = img4.src;
-        var newSrc4 = '/img/gifs/court-.gif';
 
 
-        box4.addEventListener('mouseover', function() {
-            img4.src = newSrc4;
-        })
 
-        box4.addEventListener('mouseout', function() {
-            img4.src = originalsrc4;
-        })
+         //BOX3
+         var img3 = document.getElementById('img3');
+         var box3 = document.getElementById('box3');
 
 
-        //BOX5
-        var img5 = document.getElementById('img5');
-        var box5 = document.getElementById('box5');
+         var originalsrc3 = img3.src;
+         var newSrc3 = '/img/gifs/games-.gif';
 
 
-        var originalsrc5 = img5.src;
-        var newSrc5 = '/img/gifs/player-.gif';
+         box3.addEventListener('mouseover', function() {
+             img3.src = newSrc3;
+         })
+
+         box3.addEventListener('mouseout', function() {
+             img3.src = originalsrc3;
+         })
 
 
-        box5.addEventListener('mouseover', function() {
-            img5.src = newSrc5;
-        })
-
-        box5.addEventListener('mouseout', function() {
-            img5.src = originalsrc5;
-        })
+         //BOX4
+         var img4 = document.getElementById('img4');
+         var box4 = document.getElementById('box4');
 
 
-        //BOX6
-        var img6 = document.getElementById('img6');
-        var box6 = document.getElementById('box6');
+         var originalsrc4 = img4.src;
+         var newSrc4 = '/img/gifs/court-.gif';
 
 
-        var originalsrc6 = img6.src;
-        var newSrc6 = '/img/gifs/academy-.gif';
+         box4.addEventListener('mouseover', function() {
+             img4.src = newSrc4;
+         })
+
+         box4.addEventListener('mouseout', function() {
+             img4.src = originalsrc4;
+         })
 
 
-        box6.addEventListener('mouseover', function() {
-            img6.src = newSrc6;
-        })
+         //BOX5
+         var img5 = document.getElementById('img5');
+         var box5 = document.getElementById('box5');
 
-        box6.addEventListener('mouseout', function() {
-            img6.src = originalsrc6;
-        })
-    </script>
 
-<script>
-        function logoutAlert() {
-            // Show the confirmation dialog and store the result
-            var result = window.confirm("Are you sure you want to Logout?");
+         var originalsrc5 = img5.src;
+         var newSrc5 = '/img/gifs/player-.gif';
 
-            // Check if the user clicked "OK" or "Cancel"
-            if (result) {
-                // If the user clicked "OK", redirect to 'index.php'
-                window.location.href = 'logout.php';
-            } else {
-                // If the user clicked "Cancel", do nothing or perform any other action
-                return;
-            }
-        }
-    </script>
+
+         box5.addEventListener('mouseover', function() {
+             img5.src = newSrc5;
+         })
+
+         box5.addEventListener('mouseout', function() {
+             img5.src = originalsrc5;
+         })
+
+
+         //BOX6
+         var img6 = document.getElementById('img6');
+         var box6 = document.getElementById('box6');
+
+
+         var originalsrc6 = img6.src;
+         var newSrc6 = '/img/gifs/academy-.gif';
+
+
+         box6.addEventListener('mouseover', function() {
+             img6.src = newSrc6;
+         })
+
+         box6.addEventListener('mouseout', function() {
+             img6.src = originalsrc6;
+         })
+     </script>
+
+     <script>
+         function logoutAlert() {
+             // Show the confirmation dialog and store the result
+             var result = window.confirm("Are you sure you want to Logout?");
+
+             // Check if the user clicked "OK" or "Cancel"
+             if (result) {
+                 // If the user clicked "OK", redirect to 'index.php'
+                 window.location.href = 'logout.php';
+             } else {
+                 // If the user clicked "Cancel", do nothing or perform any other action
+                 return;
+             }
+         }
+     </script>
 
 
  </body>
