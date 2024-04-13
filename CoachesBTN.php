@@ -2,6 +2,21 @@
 session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+
+if (isset($_GET['email'])) {
+    $coachEmail = $_GET['email'];
+    $delete1 = "DELETE FROM coach WHERE email = '$coachEmail' ";
+    $delResult1 = $pdo->exec($delete1);
+    $delete2 = "DELETE FROM login WHERE email = '$coachEmail' ";
+    $delResult2 = $pdo->exec($delete2);
+   
+}
+
+
+
+
+
+
 $academyEmail = $_SESSION['email'];
 
 $query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
@@ -12,10 +27,6 @@ $r = $result->rowCount();
 
 echo $r;
 
-if (isset($_GET['email'])) {
-     echo $_GET['email'];
-    
-}
 
 
 ?>
