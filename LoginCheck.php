@@ -35,6 +35,9 @@ try {
       } else if ($row['Type'] == "academy") {
 
         header("location:AcademyPage.php");
+      } else if ($row['Type'] == "admin") {
+        
+        header("location:adminPage.php");
       }
     }
   }
