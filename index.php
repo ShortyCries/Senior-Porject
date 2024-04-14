@@ -107,16 +107,6 @@
 									<button type="submit" href="#" class="primary-btn text-uppercase">Register</a>
 								</form>
 							</div>
-							<div class="tab-pane fade" id="coach" role="tabpanel" aria-labelledby="coach-tab">
-								<form class="form-wrap" action="CoachPDO.php" method="post">
-									<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
-									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">
-									<input type="text" class="form-control date-picker" name="Dob" placeholder="Date of birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of birth'">
-									<input type="password" class="form-control" name="password" placeholder="Password " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '">
-									<input type="password" class="form-control" name="re-password" placeholder="Re-password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Re-password'">
-									<button type="submit" href="#" class="primary-btn text-uppercase">Register</a>
-								</form>
-							</div>
 							<div class="tab-pane fade" id="academy" role="tabpanel" aria-labelledby="academy-tab">
 								<form class="form-wrap" action="AcademyPDO.php" method="post">
 									<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
@@ -152,7 +142,7 @@
 				<div class="row d-flex justify-content-center">
 					<div class="menu-content pb-70 col-lg-9">
 						<div class="title text-center">
-							<h1 class="mb-10">Other issues we can help you with</h1>
+							<h1 class="mb-10">Follow your sport passion with FIELDFRENZY</h1>
 							<p>In this era, sports reign as the eternal fountain of youth, captivating hearts young and old alike with its boundless energy and vibrant spirit.</p>
 						</div>
 					</div>
