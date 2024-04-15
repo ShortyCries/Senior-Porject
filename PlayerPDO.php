@@ -19,7 +19,7 @@ try {
 
         $result = $pdo->exec($query);
 
-        $query1 = "INSERT INTO player VALUES('$email','$name','$date','$password', NULL) ";
+        $query1 = "INSERT INTO player VALUES('$email','$name','$date','$password', NULL, NULL) ";
 
         $result1 = $pdo->exec($query1);
 

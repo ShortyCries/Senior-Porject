@@ -4,7 +4,7 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $academyEmail = $_SESSION['email'];
 
-$query = "SELECT name, email, DOB FROM player ";
+$query = "SELECT name, email, DOB, description FROM player ";
 
 $result = $pdo->query($query);
 
@@ -306,7 +306,11 @@ echo $r;
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
-                                        <p style="font-size: 16px;"></p>
+                                    ';
+                                    echo "
+                                        <p style=\"font-size: 16px;\">{$row[3]}</p>
+                                        ";
+                                echo '
                                     </div>
                                 </div>
                             </div>
