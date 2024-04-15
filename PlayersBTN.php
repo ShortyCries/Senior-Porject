@@ -273,13 +273,13 @@ echo $r;
                             <div class="align-items-center row">
                                 <div class="col-auto">
                                     <div class="candidate-list-images">
-                                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="avatar-md img-thumbnail rounded-circle" /></a>
+                                        <a href="#"><img src="img/profiletest.jpg" alt="" class="avatar-md img-thumbnail rounded-circle" /></a>
                                     </div>
                                 </div>
                                 <div class="col-lg-5">
                                     <div class="candidate-list-content mt-3 mt-lg-0">
                                         <h5 class="fs-19 mb-0">
-                                            <a class="primary-link" href="#">$get player name</a><span class="badge bg-success ms-1"><i class="mdi mdi-star align-middle"></i>$get ratting</span>
+                                            <a class="primary-link" href="#">$get player name</a>
                                         </h5>
                                         <p class="text-muted mb-2">Get his sport</p>
                                         <ul class="list-inline mb-0 text-muted">
