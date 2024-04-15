@@ -3,6 +3,18 @@ session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
+
+if (isset($_GET['email'], $_GET['status'])) {
+    $userStatus = $_GET['status'];
+    $userEmail = $_GET['email'];
+
+    $query1 = "UPDATE login set status='$userStatus' where email = '$userEmail'";
+    $result1 = $pdo->exec($query1);
+
+    
+   
+}
+
 $query = "SELECT name, email, DOB, status FROM coach NATURAL JOIN login where type = 'coach'";
 
 $result = $pdo->query($query);
@@ -160,7 +172,12 @@ $r = $result->rowCount();
                                     echo "<td>   $row[0] </td>";
                                     echo "<td>   $row[1] </td> ";
                                     echo "<td>  $row[2] </td> ";
-                                    echo "<td>  $row[3] </td> ";
+                                    if($row[3] == 'active'){
+                                        echo "<td> <a href='admin-Coaches.php?email={$row[1]}&status=deactive'  > Deactivate </a> </td> ";
+    
+                                        } else {
+                                            echo "<td> <a href='admin-Coaches.php?email={$row[1]}&status=active'  > Activate </a> </td> ";
+                                        }
                                     echo "</tr>";
                                 }
                                 ?>                      
