@@ -77,6 +77,7 @@
                          </li>
                          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" style="padding: 10px 20px;">About us</a>
                          </li>
+                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-player" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
                      </ul>
                  </div>
                  <div class="u-custom-menu u-nav-container-collapse">

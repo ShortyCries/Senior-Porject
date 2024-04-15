@@ -2,6 +2,21 @@
 session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+
+if (isset($_GET['email'])) {
+    $coachEmail = $_GET['email'];
+    $delete1 = "DELETE FROM coach WHERE email = '$coachEmail' ";
+    $delResult1 = $pdo->exec($delete1);
+    $delete2 = "DELETE FROM login WHERE email = '$coachEmail' ";
+    $delResult2 = $pdo->exec($delete2);
+   
+}
+
+
+
+
+
+
 $academyEmail = $_SESSION['email'];
 
 $query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
@@ -11,6 +26,7 @@ $result = $pdo->query($query);
 $r = $result->rowCount();
 
 echo $r;
+
 
 
 ?>
@@ -25,7 +41,7 @@ echo $r;
     <meta charset="utf-8">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>Page 2</title>
+    <title>CoachesBTN</title>
     <link rel="stylesheet" href="css/nicepage.css" media="screen">
     <link rel="stylesheet" href="css/nav.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
@@ -87,13 +103,13 @@ echo $r;
                     <ul class="u-nav u-unstyled u-nav-1">
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
                         </li>
-                        <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#"   style="padding: 10px 20px;">Logout</a>
+                        <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="" style="padding: 10px 20px;">Logout</a>
                         </li>
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" target="_blank" style="padding: 10px 20px;">About us</a>
                         </li>
-                        
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contact.php" target="_blank" style="padding: 10px 20px;">Contact</a>
                         </li>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-academy" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
                     </ul>
                 </div>
                 <div class="u-custom-menu u-nav-container-collapse">
@@ -124,9 +140,10 @@ echo $r;
     <div class="mybackground-img">
 
         <div class="container">
+
             <div class="box-container">
-                <a href="classesBTN.php">
-                    <div class="box" id="box1" style="background-color: grey;">
+                <a href="academy-Classes.php">
+                    <div class="box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/classes-.png" alt="" id="img1">
 
@@ -134,8 +151,8 @@ echo $r;
                         <p>Classes</p>
                     </div>
                 </a>
-                <a href="CoachesBTN.php">
-                    <div class="box" id="box2" >
+                <a href="academy-Coaches.php">
+                    <div class="box" id="box2" style="background-color: grey;">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img2">
 
@@ -143,7 +160,7 @@ echo $r;
                         <p>Coaches</p>
                     </div>
                 </a>
-                <a href="GamesBTN.php">
+                <a href="academy-Games.php">
                     <div class="box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/games-.png" alt="" id="img3">
@@ -152,7 +169,7 @@ echo $r;
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="courtsBTN.php">
+                <a href="academy-Courts.php">
                     <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/court.png" alt="" id="img4">
@@ -161,7 +178,7 @@ echo $r;
                         <p>Courts</p>
                     </div>
                 </a>
-                <a href="PlayersBTN.php">
+                <a href="academy-Players.php">
                     <div class="box" id="box5">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img5">
@@ -170,7 +187,7 @@ echo $r;
                         <p>Players</p>
                     </div>
                 </a>
-                <a href="AcademiesBTN.php">
+                <a href="academy-Academies.php">
                     <div class="box" id="box6">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img6">
@@ -187,16 +204,60 @@ echo $r;
     </div>
 
 
-    
+    <div class="mybackground-img2">
+        <h2 style="text-align: center; color: orange;">Add coach</h2>
+
+        <form class="row g-3" style="padding-left: 300px; padding-right: 300px;" action="CoachPDO.php" method="POST">
+
+            <div class="col-md-4">
+                <label for="validationDefault01" class="form-label" style="color: orange;">Name</label>
+                <input name="name" type="text" class="form-control" id="validationDefault01" placeholder="Mark" required>
+            </div>
+            <div class="col-md-4">
+                <label for="validationDefault02" class="form-label" style="color: orange;">Password</label>
+                <input name="password" type="text" class="form-control" id="validationDefault02" placeholder="Password" required>
+            </div>
+            <div class="col-md-4">
+                <label for="validationDefault02" class="form-label" style="color: orange;">Re-password</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Re-password" required>
+            </div>
+
+            <div class="col-md-5">
+                <label for="validationDefaultUsername" class="form-label" style="color: orange;">Email</label>
+                <div class="input-group">
+                    <span style="background-color:orange;  border-color: orange;" class="input-group-text" id="inputGroupPrepend2">@</span>
+                    <input name="email" type="text" class="form-control" id="validationDefaultUsername" placeholder="example123@hotmail.com" aria-describedby="inputGroupPrepend2" required>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="validationDefault04" class="form-label" style="color: orange;">Sport Speciality</label>
+                <select name="sport" class="form-select" id="validationDefault04" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option>Football</option>
+                    <option>Basketball</option>
+                    <option>Volleyball</option>
+                    <option>Tennis</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="validationDefault05" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control date-picker" name="Dob" placeholder="Date of birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of birth'">
+            </div>
+
+            <div class="col-12" style="text-align: center; padding-top: 30px; color: yellow;">
+                <button style="background-color: orange; border-color: orange;" class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+        </form>
+    </div>
 
     <div class="mybackground-img">
         <div class="container">
             <div class="row mt-5">
                 <div class="col">
-                    <!-- <div class="card mt-5">
+                    <div class="card mt-5">
 
                         <div class="card-header">
-                            <h4 class="display-6 text-center"> Class  List </h2>
+                            <h4 class="display-6 text-center"> Coach List </h2>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered text-center">
@@ -204,6 +265,7 @@ echo $r;
                                     <td>Name</td>
                                     <td>Email</td>
                                     <td>Date of birth</td>
+                                    <td>Remove</td>
 
                                 </tr>
                                 <?php
@@ -214,13 +276,14 @@ echo $r;
                                     echo "<td>   $row[1] </td> ";
                                     echo "<td>  $row[2] </td> ";
                                     
+                                    echo "<td> <a href='CoachesBTN.php?email={$row[1]}'  class='btn btn-danger'> Remove </a> </td> ";
                                     echo "</tr>";
                                 }
                                 ?>
                             </table>
                         </div>
 
-                    </div> -->
+                    </div>
 
                 </div>
             </div>
@@ -350,22 +413,6 @@ echo $r;
             img6.src = originalsrc6;
         })
     </script>
-    <script>
-        function logoutAlert() {
-            // Show the confirmation dialog and store the result
-            var result = window.confirm("Are you sure you want to Logout?");
-
-            // Check if the user clicked "OK" or "Cancel"
-            if (result) {
-                // If the user clicked "OK", redirect to 'index.php'
-                window.location.href = 'logout.php';
-            } else {
-                // If the user clicked "Cancel", do nothing or perform any other action
-                return;
-            }
-        }
-    </script>
-    
 
 
 </body>
