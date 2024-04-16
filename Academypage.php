@@ -76,7 +76,8 @@
                          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" target="_blank" style="padding: 10px 20px;">About us</a>
                          </li>
                          <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contact.php" target="_blank" style="padding: 10px 20px;">Contact us</a>
-                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-academy" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
+                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-academy.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
+                        </li>
                      </ul>
                  </div>
                  <div class="u-custom-menu u-nav-container-collapse">
@@ -109,7 +110,7 @@
          <div class="container">
 
              <div class="box-container">
-                 <a href="classesBTN.php">
+                 <a href="academy-Classes.php">
                      <div class="box" id="box1">
                          <div class="img-container">
                              <img class="img" src="/img/classes-.png" alt="" id="img1">
@@ -118,7 +119,7 @@
                          <p>Classes</p>
                      </div>
                  </a>
-                 <a href="CoachesBTN.php">
+                 <a href="academy-Coaches.php">
                      <div class="box" id="box2">
                          <div class="img">
                              <img class="img" src="/img/coach-.png" alt="" id="img2">
@@ -127,7 +128,7 @@
                          <p>Coaches</p>
                      </div>
                  </a>
-                 <a href="GamesBTN.php">
+                 <a href="academy-Games.php">
                      <div class="box" id="box3">
                          <div class="img">
                              <img class="img" src="/img/games-.png" alt="" id="img3">
@@ -136,7 +137,7 @@
                          <p>Games</p>
                      </div>
                  </a>
-                 <a href="courtsBTN.php">
+                 <a href="academy-Courts.php">
                      <div class="box" id="box4">
                          <div class="img">
                              <img class="img" src="/img/court.png" alt="" id="img4">
@@ -145,7 +146,7 @@
                          <p>Courts</p>
                      </div>
                  </a>
-                 <a href="PlayersBTN.php">
+                 <a href="academy-Players.php">
                      <div class="box" id="box5">
                          <div class="img">
                              <img class="img" src="/img/player-.png" alt="" id="img5">
@@ -154,7 +155,7 @@
                          <p>Players</p>
                      </div>
                  </a>
-                 <a href="AcademiesBTN.php">
+                 <a href="academy-Academies.php">
                      <div class="box" id="box6">
                          <div class="img">
                              <img class="img" src="/img/academy-.png" alt="" id="img6">

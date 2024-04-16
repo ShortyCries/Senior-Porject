@@ -94,6 +94,8 @@ echo $r;
                         </li>
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contact.php" target="_blank" style="padding: 10px 20px;">Contact </a>
                         </li>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-academy.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="u-custom-menu u-nav-container-collapse">
@@ -126,7 +128,7 @@ echo $r;
         <div class="container">
 
             <div class="box-container">
-                <a href="classesBTN.php">
+                <a href="academy-Classes.php">
                     <div class="box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/classes-.png" alt="" id="img1">
@@ -135,7 +137,7 @@ echo $r;
                         <p>Classes</p>
                     </div>
                 </a>
-                <a href="CoachesBTN.php">
+                <a href="academy-Coaches.php">
                     <div class="box" id="box2">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img2">
@@ -144,7 +146,7 @@ echo $r;
                         <p>Coaches</p>
                     </div>
                 </a>
-                <a href="GamesBTN.php">
+                <a href="academy-Games.php">
                     <div class="box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/games-.png" alt="" id="img3">
@@ -153,7 +155,7 @@ echo $r;
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="CourtsBTN.php">
+                <a href="academy-Courts.php">
                     <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/court.png" alt="" id="img4">
@@ -162,7 +164,7 @@ echo $r;
                         <p>Courts</p>
                     </div>
                 </a>
-                <a href="PlayersBTN.php">
+                <a href="academy-Players.php">
                     <div class="box" id="box5" style="background-color: grey;">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img5">
@@ -171,7 +173,7 @@ echo $r;
                         <p>Players</p>
                     </div>
                 </a>
-                <a href="AcademiesBTN.php">
+                <a href="academy-Academies.php">
                     <div class="box" id="box6">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img6">
@@ -292,10 +294,10 @@ echo $r;
                                     <div class="candidate-list-content mt-3 mt-lg-0">
                                         <h5 class="fs-19 mb-0">
                                         ';
-                                        echo "
+                            echo "
                                             <a class=\"primary-link\" href=\"#\">{$row[0]}</a>
                                             ";
-                                            echo '
+                            echo '
                                         </h5>
                                         <p class="text-muted mb-2">Get his sport</p>
                                         <ul class="list-inline mb-0 text-muted">
@@ -307,10 +309,10 @@ echo $r;
                                 <div class="col-lg-4">
                                     <div class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
                                     ';
-                                    echo "
+                            echo "
                                         <p style=\"font-size: 16px;\">{$row[3]}</p>
                                         ";
-                                echo '
+                            echo '
                                     </div>
                                 </div>
                             </div>

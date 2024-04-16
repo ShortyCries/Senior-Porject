@@ -87,14 +87,14 @@ echo $r;
                     <ul class="u-nav u-unstyled u-nav-1">
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
                         </li>
-                        <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"  href="#"    style="padding: 10px 20px;">Logout</a>
+                        <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
                         </li>
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" target="_blank" style="padding: 10px 20px;">Aboout us</a>
                         </li>
-                        
+
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contact.php" target="_blank" style="padding: 10px 20px;">Contact </a>
                         </li>
-                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-academy" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-academy.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a> </li>
                     </ul>
                 </div>
                 <div class="u-custom-menu u-nav-container-collapse">
@@ -137,7 +137,7 @@ echo $r;
                     </div>
                 </a>
                 <a href="academy-Coaches.php">
-                    <div class="box" id="box2" >
+                    <div class="box" id="box2">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img2">
 
@@ -190,11 +190,11 @@ echo $r;
 
 
     <div class="mybackground-img2">
-        
+
     </div>
 
     <div class="mybackground-img">
-        
+
     </div>
 
 
