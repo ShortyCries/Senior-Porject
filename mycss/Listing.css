@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+
+*{
+   font-family: 'Montserrat', sans-serif;
+   margin:0; padding:0;
+   box-sizing: border-box;
+   outline: none; border:none;
+   text-decoration: none;
+   text-transform: capitalize;
+   transition: all .2s linear;
+}
+
+
+
+.container-Listing{
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding:25px 20px;
+}
+
+.container-Listing .heading-Listing{
+  font-size: 40px;
+  margin-bottom: 20px;
+  color:rgb(250, 183, 0);
+}
+
+.container-Listing .box-container-Listing{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  gap:20px;
+}
+
+.container-Listing .box-container-Listing .box-Listing{
+  background-color: #ffffff;
+  padding:20px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  display: none;
+}
+
+.container-Listing .box-container-Listing .box-Listing:nth-child(1),
+.container-Listing .box-container-Listing .box-Listing:nth-child(2),
+.container-Listing .box-container-Listing .box-Listing:nth-child(3),
+.container-Listing .box-container-Listing .box-Listing:nth-child(4){
+  display: inline-block;
+}
+
+.container-Listing .box-container-Listing .box-Listing .image-Listing{
+  margin-bottom: 20px;
+  overflow: hidden;
+  height: 250px;
+  border-radius: 5px;
+}
+
+.container-Listing .box-container-Listing .box-Listing .image-Listing img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.container-Listing .box-container-Listing .box-Listing:hover .image-Listing img{
+  transform: scale(1.1);
+}
+
+.container-Listing .box-container-Listing .box-Listing .content-Listing h3{
+  font-size: 20px;
+  color:#334;
+}
+
+.container-Listing .box-container-Listing .box-Listing .content-Listing p{
+  font-size: 15px;
+  color:#777;
+  line-height: 2;
+  padding:15px 0;
+}
+
+.container-Listing .box-container-Listing .box-Listing .content-Listing .btn-Listing{
+  display: inline-block;
+  padding:10px 30px;
+  border:1px solid #334;
+  color:#334;
+  font-size: 16px;
+}
+
+.container-Listing .box-container-Listing .box-Listing .content-Listing .btn-Listing:hover{
+  background-color: crimson;
+  border-color: crimson;
+  color:#fff;
+}
+
+.container-Listing .box-container-Listing .box-Listing.content-Listing .icons-Listing{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top:1px solid #334;
+}
+
+.container-Listing .box-container-Listing .box-Listing .content-Listing .icons-Listing span{
+  font-size: 14px;
+  color:#777;
+}
+
+.container-Listing .box-container-Listing .box-Listing .content-Listing .icons-Listing span i{
+  color:crimson;
+  padding-right: 5px;
+}
+
+#load-more{
+  margin-top: 20px;
+  display: inline-block;
+  padding:13px 30px;
+  border:1px solid #334;
+  color:#334;
+  font-size: 16px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+#load-more:hover{
+  background-color: crimson;
+  border-color: crimson;
+  color:#fff;
+}
+
+.mymodal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.mymodal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.myclose:hover,
+.myclose:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.myclose {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+
+
+@media (max-width:450px){
+
+  .container-Listing .heading-Listing{
+    font-size: 25px;
+  }
+
+  .container-Listing .box-container-Listing{
+    grid-template-columns: 1fr;
+  }
+
+  .container-Listing .box-container-Listing .box-Listing .image-Listing{
+    height: 200px;
+  }
+
+  .container-Listing .box-container-Listing .box-Listing .content-Listing p{
+    font-size: 12px;
+  }
+
+  .container-Listing .box-container-Listing .box-Listing .content-Listing .icons-Listing span{
+    font-size: 12px;
+  }
+
+}

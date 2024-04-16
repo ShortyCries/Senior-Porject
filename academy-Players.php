@@ -11,6 +11,16 @@ $result = $pdo->query($query);
 $r = $result->rowCount();
 
 
+if (isset($_GET['email'])) {
+    
+    $userEmail = $_GET['email'];
+
+   
+}
+
+
+
+
 
 ?>
 
@@ -61,6 +71,7 @@ $r = $result->rowCount();
         <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="mycss/styles.css">
+        <link rel="stylesheet" href="mycss/Listing.css">
     </head>
 </head>
 
@@ -190,11 +201,179 @@ $r = $result->rowCount();
 
 
     <div class="mybackground-img2">
-        <h2 style="text-align: center; color: orange;">Players</h2>
+        <div class="container-Listing">
+
+            <h1 class="heading-Listing">Players</h1>
+
+            <div class="box-container-Listing">
+
+
+                <?php
+
+                for ($i = 0; $i < $r; $i++) {
+                    $row = $result->fetch(PDO::FETCH_NUM);
+
+                    echo '
+   <div class="box-Listing">
+      <div class="image-Listing">
+         <img src="img/hossamprof.jpeg" alt="">
+      </div>
+      <div class="content-Listing"> ';
+
+                    echo  "<h3>{$row[0]}</h3>";
+
+                    echo '  
+         <p></p>
+         ';
+      echo "   <a  href=\"academy-Players.php?email={$row[1]}\" class=\"btn-Listing\" >Read More</a> ";
+         echo '
+         <div class="icons-Listing">
+            
+         </div>
+      </div>
+   </div>
+
+
+ 
+   
+  ';
+                }
+
+                ?>
+
+
+
+
+
+
+
+
+
+                <div class="box-Listing">
+                    <div class="image-Listing">
+                        <img src="images/img-3.jpg" alt="">
+                    </div>
+                    <div class="content-Listing">
+                        <h3>blog title goes here</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+                        <a href="#" class="btn-Listing">read more</a>
+                        <div class="icons-Listing">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-Listing">
+                    <div class="image-Listing">
+                        <img src="images/img-4.jpg" alt="">
+                    </div>
+                    <div class="content-Listing">
+                        <h3>blog title goes here</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+                        <a href="#" class="btn-Listing">read more</a>
+                        <div class="icons-Listing">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-Listing">
+                    <div class="image-Listing">
+                        <img src="images/img-5.jpg" alt="">
+                    </div>
+                    <div class="content-Listing">
+                        <h3>blog title goes here</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+                        <a href="#" class="btn-Listing">read more</a>
+                        <div class="icons-Listing">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-Listing">
+                    <div class="image-Listing">
+                        <img src="images/img-6.jpg" alt="">
+                    </div>
+                    <div class="content-Listing">
+                        <h3>blog title goes here</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+                        <a href="#" class="btn-Listing">read more</a>
+                        <div class="icons-Listing">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-Listing">
+                    <div class="image-Listing">
+                        <img src="images/img-7.jpg" alt="">
+                    </div>
+                    <div class="content-Listing">
+                        <h3>blog title goes here</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+                        <a href="#" class="btn-Listing">read more</a>
+                        <div class="icons-Listing">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-Listing">
+                    <div class="image-Listing">
+                        <img src="images/img-8.jpg" alt="">
+                    </div>
+                    <div class="content-Listing">
+                        <h3>blog title goes here</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+                        <a href="#" class="btn-Listing">read more</a>
+                        <div class="icons-Listing">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-Listing">
+                    <div class="image-Listing">
+                        <img src="images/img-9.jpg" alt="">
+                    </div>
+                    <div class="content-Listing">
+                        <h3>blog title goes here</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+                        <a class="btn-Listing">read more</a>
+                        <div class="icons-Listing">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="load-more"> load more </div>
+
+        </div>
+
+        <script>
+            let loadMoreBtn = document.querySelector('#load-more');
+            let currentItem = 4;
+
+            loadMoreBtn.onclick = () => {
+                let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+                for (var i = currentItem; i < currentItem + 4; i++) {
+                    boxes[i].style.display = 'inline-block';
+                }
+                currentItem += 4;
+
+                if (currentItem >= boxes.length) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            }
+        </script>
+
 
     </div>
 
-        
+
 
     <div class="mybackground-img2">
 

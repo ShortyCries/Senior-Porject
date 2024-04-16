@@ -277,7 +277,7 @@ echo $r;
                                     echo "<td>   $row[1] </td> ";
                                     echo "<td>  $row[2] </td> ";
                                     
-                                    echo "<td> <a href='CoachesBTN.php?email={$row[1]}'  class='btn btn-danger'> Remove </a> </td> ";
+                                    echo "<td> <a href='academy-Coaches.php?email={$row[1]}'  class='btn btn-danger'> Remove </a> </td> ";
                                     echo "</tr>";
                                 }
                                 ?>
