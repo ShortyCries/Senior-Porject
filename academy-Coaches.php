@@ -25,7 +25,7 @@ $result = $pdo->query($query);
 
 $r = $result->rowCount();
 
-echo $r;
+
 
 
 
@@ -67,7 +67,7 @@ echo $r;
     <meta data-intl-tel-input-cdn-path="intlTelInput/">
     <link rel="stylesheet" href="css/linearicons.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap5/cssbt5/bootstrap.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/nice-select.css">

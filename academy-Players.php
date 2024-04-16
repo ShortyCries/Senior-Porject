@@ -11,12 +11,7 @@ $result = $pdo->query($query);
 $r = $result->rowCount();
 
 
-if (isset($_GET['email'])) {
-    
-    $userEmail = $_GET['email'];
 
-   
-}
 
 
 
@@ -63,7 +58,7 @@ if (isset($_GET['email'])) {
         <meta data-intl-tel-input-cdn-path="intlTelInput/">
         <link rel="stylesheet" href="css/linearicons.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="bootstrap5/cssbt5/bootstrap.css">
         <link rel="stylesheet" href="css/magnific-popup.css">
         <link rel="stylesheet" href="css/jquery-ui.css">
         <link rel="stylesheet" href="css/nice-select.css">
@@ -225,8 +220,8 @@ if (isset($_GET['email'])) {
                     echo '  
          <p></p>
          ';
-      echo "   <a  href=\"academy-Players.php?email={$row[1]}\" class=\"btn-Listing\" >Read More</a> ";
-         echo '
+                    echo "   <a id=\"modal-btn\" href=\"academy-Players.php?email={$row[1]}\" class=\"btn-Listing\" >Read More</a> ";
+                    echo '
          <div class="icons-Listing">
             
          </div>
@@ -239,113 +234,47 @@ if (isset($_GET['email'])) {
   ';
                 }
 
+
                 ?>
 
 
+     <script> 
+    
+    // Get DOM Elements
+const modal = document.querySelector('#my-modal');
+const modalBtn = document.querySelector('#modal-btn');
+const closeBtn = document.querySelector('.close');
+
+// Events
+modalBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+window.addEventListener('click', outsideClick);
+
+// Open
+function openModal() {
+  modal.style.display = 'block';
+}
+
+// Close
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+// Close If Outside Click
+function outsideClick(e) {
+  if (e.target == modal) {
+    modal.style.display = 'none';
+  }
+}
+    
+    
+    </script>
 
 
 
 
 
 
-
-                <div class="box-Listing">
-                    <div class="image-Listing">
-                        <img src="images/img-3.jpg" alt="">
-                    </div>
-                    <div class="content-Listing">
-                        <h3>blog title goes here</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
-                        <a href="#" class="btn-Listing">read more</a>
-                        <div class="icons-Listing">
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box-Listing">
-                    <div class="image-Listing">
-                        <img src="images/img-4.jpg" alt="">
-                    </div>
-                    <div class="content-Listing">
-                        <h3>blog title goes here</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
-                        <a href="#" class="btn-Listing">read more</a>
-                        <div class="icons-Listing">
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box-Listing">
-                    <div class="image-Listing">
-                        <img src="images/img-5.jpg" alt="">
-                    </div>
-                    <div class="content-Listing">
-                        <h3>blog title goes here</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
-                        <a href="#" class="btn-Listing">read more</a>
-                        <div class="icons-Listing">
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box-Listing">
-                    <div class="image-Listing">
-                        <img src="images/img-6.jpg" alt="">
-                    </div>
-                    <div class="content-Listing">
-                        <h3>blog title goes here</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
-                        <a href="#" class="btn-Listing">read more</a>
-                        <div class="icons-Listing">
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box-Listing">
-                    <div class="image-Listing">
-                        <img src="images/img-7.jpg" alt="">
-                    </div>
-                    <div class="content-Listing">
-                        <h3>blog title goes here</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
-                        <a href="#" class="btn-Listing">read more</a>
-                        <div class="icons-Listing">
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box-Listing">
-                    <div class="image-Listing">
-                        <img src="images/img-8.jpg" alt="">
-                    </div>
-                    <div class="content-Listing">
-                        <h3>blog title goes here</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
-                        <a href="#" class="btn-Listing">read more</a>
-                        <div class="icons-Listing">
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box-Listing">
-                    <div class="image-Listing">
-                        <img src="images/img-9.jpg" alt="">
-                    </div>
-                    <div class="content-Listing">
-                        <h3>blog title goes here</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
-                        <a class="btn-Listing">read more</a>
-                        <div class="icons-Listing">
-
-                        </div>
-                    </div>
-                </div>
 
             </div>
 
