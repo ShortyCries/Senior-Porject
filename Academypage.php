@@ -15,7 +15,6 @@
      <meta name="description" content="">
      <title>Page 2</title>
      <link rel="stylesheet" href="css/nicepage.css" media="screen">
-     <link rel="stylesheet" href="css/nav.css" media="screen">
      <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
      <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
      <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
@@ -37,15 +36,8 @@
      <meta property="og:title" content="Page 2">
      <meta property="og:type" content="website">
      <meta data-intl-tel-input-cdn-path="intlTelInput/">
-     <link rel="stylesheet" href="css/linearicons.css">
      <link rel="stylesheet" href="css/font-awesome.min.css">
      <link rel="stylesheet" href="bootstrap5/cssbt5/bootstrap.css">
-     <link rel="stylesheet" href="css/magnific-popup.css">
-     <link rel="stylesheet" href="css/jquery-ui.css">
-     <link rel="stylesheet" href="css/nice-select.css">
-     <link rel="stylesheet" href="css/animate.min.css">
-     <link rel="stylesheet" href="css/owl.carousel.css">
-     <link rel="stylesheet" href="css/main.css">
      <link rel="stylesheet" href="mycss/styles.css">
  </head>
 
@@ -69,7 +61,7 @@
                  </div>
                  <div class="u-custom-menu u-nav-container">
                      <ul class="u-nav u-unstyled u-nav-1">
-                         <li class="u-nav-item"><a class="" href="Academypage.php" style="color:white ; padding: 10px 20px;">Home</a>
+                         <li class="u-nav-item"><a class="" href="Academypage.php"  style="color:white ; padding: 10px 20px; text-decoration: none;">Home</a>
                          </li>
                          <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
                          </li>
@@ -110,7 +102,7 @@
          <div class="container">
 
              <div class="box-container">
-                 <a href="academy-Classes.php">
+                 <a href="academy-Classes.php" style="text-decoration: none;">
                      <div class="box" id="box1">
                          <div class="img-container">
                              <img class="img" src="/img/classes-.png" alt="" id="img1">
@@ -119,7 +111,7 @@
                          <p>Classes</p>
                      </div>
                  </a>
-                 <a href="academy-Coaches.php">
+                 <a href="academy-Coaches.php" style="text-decoration: none;">
                      <div class="box" id="box2">
                          <div class="img">
                              <img class="img" src="/img/coach-.png" alt="" id="img2">
@@ -128,7 +120,7 @@
                          <p>Coaches</p>
                      </div>
                  </a>
-                 <a href="academy-Games.php">
+                 <a href="academy-Games.php" style="text-decoration: none;">
                      <div class="box" id="box3">
                          <div class="img">
                              <img class="img" src="/img/games-.png" alt="" id="img3">
@@ -137,7 +129,7 @@
                          <p>Games</p>
                      </div>
                  </a>
-                 <a href="academy-Courts.php">
+                 <a href="academy-Courts.php" style="text-decoration: none;">
                      <div class="box" id="box4">
                          <div class="img">
                              <img class="img" src="/img/court.png" alt="" id="img4">
@@ -146,7 +138,7 @@
                          <p>Courts</p>
                      </div>
                  </a>
-                 <a href="academy-Players.php">
+                 <a href="academy-Players.php" style="text-decoration: none;">
                      <div class="box" id="box5">
                          <div class="img">
                              <img class="img" src="/img/player-.png" alt="" id="img5">
@@ -155,7 +147,7 @@
                          <p>Players</p>
                      </div>
                  </a>
-                 <a href="academy-Academies.php">
+                 <a href="academy-Academies.php" style="text-decoration: none;">
                      <div class="box" id="box6">
                          <div class="img">
                              <img class="img" src="/img/academy-.png" alt="" id="img6">
