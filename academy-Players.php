@@ -11,12 +11,6 @@ $result = $pdo->query($query);
 $r = $result->rowCount();
 
 
-
-
-
-
-
-
 ?>
 
 
@@ -35,6 +29,7 @@ $r = $result->rowCount();
         <link rel="stylesheet" href="css/nicepage.css" media="screen">
         <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
         <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+        <script src="bootstrap5/jsbt5/bootstrap.bundle.min.js"> </script>
         <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
 
@@ -70,7 +65,7 @@ $r = $result->rowCount();
                         </svg>
                         <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
                             <g>
-                                <rect y="1" width="16" height="2"></rect>
+                                <rect y="1" width="16" height="2"></rect> 
                                 <rect y="7" width="16" height="2"></rect>
                                 <rect y="13" width="16" height="2"></rect>
                             </g>
@@ -191,42 +186,88 @@ $r = $result->rowCount();
             <div class="box-container-Listing">
 
 
-                <?php
 
-                for ($i = 0; $i < $r; $i++) {
+
+
+                <?php for ($i = 0; $i < $r; $i++) {
                     $row = $result->fetch(PDO::FETCH_NUM);
+                ?>
 
-                    echo '
-   <div class="box-Listing">
-      <div class="image-Listing">
-         <img src="img/hossamprof.jpeg" alt="">
-      </div>
-      <div class="content-Listing"> ';
+                    <div class="box-Listing">
+                        <div class="image-Listing">
+                            <img src="img/profiletest.jpg" alt="">
+                        </div>
+                        <div class="content-Listing">
 
-                    echo  "<h3>{$row[0]}</h3>";
-
-                    echo '  
-         <p></p>
-         ';
-                    echo "   <a  href=\"academy-Players.php?email={$row[1]}\" class=\"btn-Listing\" >Read More</a> ";
-                    echo '
-         <div class="icons-Listing">
-            
-         </div>
-      </div>
-   </div>
+                            <h3><?php echo $row[0] ?></h3>
 
 
- 
-   
-  ';
+                            <p class="user_email"><?php echo $row[1] ?></p>
+
+                            <a href="#" type="button" class="btn btn-primary view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Read More
+                            </a>
+                            <a href="#" type="button" class="btn btn-primary view_data" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                Invite
+                            </a>
+
+                            <div class="icons-Listing">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                <?php
                 }
-
-
                 ?>
 
 
-     
+
+
+
+                <!-- READ MORE MODEL -->
+                <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Player Info</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="view_user_data">
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- READ MORE MODEL -->
+
+
+
+                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Hello i ssssssssssssssam the descripttion of this modal and im making my self big so i know how much i fit
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
 
 
 
@@ -391,7 +432,57 @@ $r = $result->rowCount();
         })
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+    <script>
+        $(document).ready(function() {
+
+            $('.view_data').click(function(e) {
+                e.preventDefault();
+
+                var user_email = $(this).closest('div').find('.user_email').text();
+
+
+
+
+
+                $.ajax({
+                    method: "POST",
+                    url: "player-info.php",
+                    data: {
+                        'click_readmore_btn': true,
+                        'user_email': user_email,
+                    },
+                    success: function(response) {
+
+                        $('.view_user_data').html(response);
+                        $('#viewusermodal').modal('show');
+
+                    }
+                });
+
+
+
+
+
+
+
+
+            });
+
+
+
+
+
+        });
+    </script>
+
+
+
+
 
 </body>
+
 
 </html>

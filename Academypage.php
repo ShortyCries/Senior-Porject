@@ -15,7 +15,7 @@
      <meta name="description" content="">
      <title>Page 2</title>
      <link rel="stylesheet" href="css/nicepage.css" media="screen">
-     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
+    
      <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
      <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
