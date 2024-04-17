@@ -226,10 +226,28 @@ $r = $result->rowCount();
                 <label for="validationDefault04" class="form-label" style="color: orange;">Sport Speciality</label>
                 <select name="sport" class="form-select" id="validationDefault04" required>
                     <option selected disabled value="">Choose...</option>
-                    <option>Football</option>
+                    <!-- <option>Football</option>
                     <option>Basketball</option>
                     <option>Volleyball</option>
-                    <option>Tennis</option>
+                    <option>Tennis</option> -->
+                    <?php
+                    $query1 = "SELECT name From sport";
+
+                    $result1 = $pdo->query($query1);
+                    
+                    $r1 = $result1->rowCount();
+                    
+                    for ($i = 0; $i < $r1; $i++) {
+                        $row1 = $result1->fetch(PDO::FETCH_NUM);
+
+                        echo "<option> $row1[0] </option>";
+
+
+                    }
+                    
+                    
+                    
+                    ?>
                 </select>
             </div>
             <div class="col-md-4">

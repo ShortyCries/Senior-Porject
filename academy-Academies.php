@@ -4,13 +4,11 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $academyEmail = $_SESSION['email'];
 
-$query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
+$query = "SELECT name, email FROM academy ";
 
 $result = $pdo->query($query);
 
 $r = $result->rowCount();
-
-
 
 
 ?>
@@ -27,14 +25,12 @@ $r = $result->rowCount();
         <meta charset="utf-8">
         <meta name="keywords" content="">
         <meta name="description" content="">
-        <title>AcademiesBTN</title>
+        <title>academy-Academies</title>
         <link rel="stylesheet" href="css/nicepage.css" media="screen">
         <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
         <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+        <script src="bootstrap5/jsbt5/bootstrap.bundle.min.js"> </script>
         <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
-
-
-
 
 
 
@@ -53,6 +49,7 @@ $r = $result->rowCount();
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="bootstrap5/cssbt5/bootstrap.css">
         <link rel="stylesheet" href="mycss/styles.css">
+        <link rel="stylesheet" href="mycss/Listing.css">
     </head>
 </head>
 
@@ -68,7 +65,7 @@ $r = $result->rowCount();
                         </svg>
                         <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
                             <g>
-                                <rect y="1" width="16" height="2"></rect>
+                                <rect y="1" width="16" height="2"></rect> 
                                 <rect y="7" width="16" height="2"></rect>
                                 <rect y="13" width="16" height="2"></rect>
                             </g>
@@ -83,7 +80,6 @@ $r = $result->rowCount();
                         </li>
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" target="_blank" style="padding: 10px 20px;">About us</a>
                         </li>
-
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contact.php" target="_blank" style="padding: 10px 20px;">Contact </a>
                         </li>
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-academy.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
@@ -166,7 +162,7 @@ $r = $result->rowCount();
                     </div>
                 </a>
                 <a href="academy-Academies.php" style="text-decoration: none;">
-                    <div class="box" id="box6" style="background-color: grey;">
+                    <div class="box" id="box6"  style="background-color: grey;">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img6">
 
@@ -183,30 +179,120 @@ $r = $result->rowCount();
 
 
     <div class="mybackground-img2">
-        <h2 style="text-align: center; color: orange;">Academies</h2>
+        <div class="container-Listing">
 
+            <h1 class="heading-Listing">Academies</h1>
 
-    </div>
-
-    <div class="mybackground-img2">
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col">
-
-                    <div class="card-body">
+            <div class="box-container-Listing">
 
 
 
 
+
+                <?php for ($i = 0; $i < $r; $i++) {
+                    $row = $result->fetch(PDO::FETCH_NUM);
+                ?>
+
+                    <div class="box-Listing">
+                        <div class="image-Listing">
+                            <img src="img/profiletest.jpg" alt="">
+                        </div>
+                        <div class="content-Listing">
+
+                            <h3><?php echo $row[0] ?></h3>
+
+
+                            <p class="user_email"><?php echo $row[1] ?></p>
+
+                            <a href="#" type="button" class="btn btn-primary view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Read More
+                            </a>
+                            <a href="#" type="button" class="btn btn-primary view_data" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                Invite
+                            </a>
+
+                            <div class="icons-Listing">
+
+                            </div>
+                        </div>
                     </div>
 
+
+                <?php
+                }
+                ?>
+
+
+
+
+
+                <!-- READ MORE MODEL -->
+                <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Academy Info</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="view_user_data">
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- READ MORE MODEL -->
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
+
+            <div id="load-more"> load more </div>
+
         </div>
 
+        <script>
+            let loadMoreBtn = document.querySelector('#load-more');
+            let currentItem = 4;
+
+            loadMoreBtn.onclick = () => {
+                let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+                for (var i = currentItem; i < currentItem + 4; i++) {
+                    boxes[i].style.display = 'inline-block';
+                }
+                currentItem += 4;
+
+                if (currentItem >= boxes.length) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            }
+        </script>
+
+
     </div>
+
+
+
+    <div class="mybackground-img2">
+
+
     </div>
+
 
 
 
@@ -330,23 +416,58 @@ $r = $result->rowCount();
             img6.src = originalsrc6;
         })
     </script>
-    <script>
-        function logoutAlert() {
-            // Show the confirmation dialog and store the result
-            var result = window.confirm("Are you sure you want to Logout?");
 
-            // Check if the user clicked "OK" or "Cancel"
-            if (result) {
-                // If the user clicked "OK", redirect to 'index.php'
-                window.location.href = 'logout.php';
-            } else {
-                // If the user clicked "Cancel", do nothing or perform any other action
-                return;
-            }
-        }
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+    <script>
+        $(document).ready(function() {
+
+            $('.view_data').click(function(e) {
+                e.preventDefault();
+
+                var user_email = $(this).closest('div').find('.user_email').text();
+
+
+
+
+
+                $.ajax({
+                    method: "POST",
+                    url: "academy-info.php",
+                    data: {
+                        'click_readmore_btn': true,
+                        'academy_email': user_email,
+                    },
+                    success: function(response) {
+
+                        $('.view_user_data').html(response);
+                        $('#viewusermodal').modal('show');
+
+                    }
+                });
+
+
+
+
+
+
+
+
+            });
+
+
+
+
+
+        });
     </script>
 
 
+
+
+
 </body>
+
 
 </html>

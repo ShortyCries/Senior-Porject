@@ -6,10 +6,10 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
 
 if (isset($_POST['click_readmore_btn'])) {
-    $email = $_POST['player_email'];
+    $email = $_POST['academy_email'];
 
 
-    $query = "SELECT name, email, DOB, description FROM player where email = '$email' ";
+    $query = "SELECT name, email FROM academy where email = '$email' ";
 
     $result = $pdo->query($query);
 
@@ -21,7 +21,6 @@ if (isset($_POST['click_readmore_btn'])) {
 
         echo '<h6>' . $row[0] . '</h6>';
         echo '<h6>' . $row[1] . '</h6>';
-        echo '<h6>' . $row[2] . '</h6>';
       
     }
 

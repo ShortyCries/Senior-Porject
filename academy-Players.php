@@ -25,7 +25,7 @@ $r = $result->rowCount();
         <meta charset="utf-8">
         <meta name="keywords" content="">
         <meta name="description" content="">
-        <title>PlayersBTN</title>
+        <title>academy-Player</title>
         <link rel="stylesheet" href="css/nicepage.css" media="screen">
         <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
         <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
@@ -251,23 +251,6 @@ $r = $result->rowCount();
 
 
 
-                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Hello i ssssssssssssssam the descripttion of this modal and im making my self big so i know how much i fit
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
 
 
 
@@ -452,7 +435,7 @@ $r = $result->rowCount();
                     url: "player-info.php",
                     data: {
                         'click_readmore_btn': true,
-                        'user_email': user_email,
+                        'player_email': user_email,
                     },
                     success: function(response) {
 

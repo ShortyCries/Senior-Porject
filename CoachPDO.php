@@ -37,7 +37,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     $query2="INSERT INTO trains VALUES('$email','$academyEmail', '$sportID'  )";
 
     $result2= $pdo->exec($query2);
-    header("location:CoachesBTN.php");
+    header("location:academy-Coaches.php");
     
 
 }
