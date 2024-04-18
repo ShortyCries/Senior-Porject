@@ -216,6 +216,7 @@ $r = $result->rowCount();
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th scope="col">Id</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Coach</th>
                                         <th scope="col">Sport</th>
@@ -229,7 +230,7 @@ $r = $result->rowCount();
 
                                     <?php
 
-                                    $query3 =  "SELECT cname, name, sportname, capacity, schedule FROM coach NATURAL JOIN class WHERE email = coachemail AND academyemail = '$academyEmail'";
+                                    $query3 =  "SELECT id, cname, name, sportname, capacity, schedule FROM coach NATURAL JOIN class WHERE email = coachemail AND academyemail = '$academyEmail'";
                                     $result3 = $pdo->query($query3);
 
                                     $r3 = $result3->rowCount();
@@ -242,6 +243,7 @@ $r = $result->rowCount();
                                         echo "<td>  $row3[2] </td> ";
                                         echo "<td>  $row3[3] </td> ";
                                         echo "<td>  $row3[4] </td> ";
+                                        echo "<td>  $row3[5] </td> ";
                                         echo "<td>  <a href=\"\" class=\"btn btn-info\">View Class</a> </td> ";
                                         echo "<td>  <a href=\"\" class=\"btn btn-danger\">Remove</a> </td> ";
                                         echo "</tr>";
