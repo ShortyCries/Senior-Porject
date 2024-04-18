@@ -65,7 +65,7 @@ $r = $result->rowCount();
                         </svg>
                         <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
                             <g>
-                                <rect y="1" width="16" height="2"></rect> 
+                                <rect y="1" width="16" height="2"></rect>
                                 <rect y="7" width="16" height="2"></rect>
                                 <rect y="13" width="16" height="2"></rect>
                             </g>
@@ -76,7 +76,7 @@ $r = $result->rowCount();
                     <ul class="u-nav u-unstyled u-nav-1">
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
                         </li>
-                        <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="" style="padding: 10px 20px;">Logout</a>
+                        <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
                         </li>
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" target="_blank" style="padding: 10px 20px;">About us</a>
                         </li>
@@ -460,6 +460,24 @@ $r = $result->rowCount();
 
         });
     </script>
+
+
+    <script>
+        function logoutAlert() {
+            // Show the confirmation dialog and store the result
+            var result = window.confirm("Are you sure you want to Logout?");
+
+            // Check if the user clicked "OK" or "Cancel"
+            if (result) {
+                // If the user clicked "OK", redirect to 'index.php'
+                window.location.href = 'Logout.php';
+            } else {
+                // If the user clicked "Cancel", do nothing or perform any other action
+                return;
+            }
+        }
+    </script>
+
 
 
 

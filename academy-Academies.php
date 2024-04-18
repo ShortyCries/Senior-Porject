@@ -65,7 +65,7 @@ $r = $result->rowCount();
                         </svg>
                         <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
                             <g>
-                                <rect y="1" width="16" height="2"></rect> 
+                                <rect y="1" width="16" height="2"></rect>
                                 <rect y="7" width="16" height="2"></rect>
                                 <rect y="13" width="16" height="2"></rect>
                             </g>
@@ -162,7 +162,7 @@ $r = $result->rowCount();
                     </div>
                 </a>
                 <a href="academy-Academies.php" style="text-decoration: none;">
-                    <div class="box" id="box6"  style="background-color: grey;">
+                    <div class="box" id="box6" style="background-color: grey;">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img6">
 

@@ -9,7 +9,6 @@ if (isset($_GET['email'])) {
     $delResult1 = $pdo->exec($delete1);
     $delete2 = "DELETE FROM login WHERE email = '$coachEmail' ";
     $delResult2 = $pdo->exec($delete2);
-   
 }
 
 
@@ -95,7 +94,7 @@ $r = $result->rowCount();
                     <ul class="u-nav u-unstyled u-nav-1">
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
                         </li>
-                        <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="" style="padding: 10px 20px;">Logout</a>
+                        <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
                         </li>
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" target="_blank" style="padding: 10px 20px;">About us</a>
                         </li>
@@ -234,19 +233,17 @@ $r = $result->rowCount();
                     $query1 = "SELECT name From sport";
 
                     $result1 = $pdo->query($query1);
-                    
+
                     $r1 = $result1->rowCount();
-                    
+
                     for ($i = 0; $i < $r1; $i++) {
                         $row1 = $result1->fetch(PDO::FETCH_NUM);
 
                         echo "<option> $row1[0] </option>";
-
-
                     }
-                    
-                    
-                    
+
+
+
                     ?>
                 </select>
             </div>
@@ -286,7 +283,7 @@ $r = $result->rowCount();
                                     echo "<td>   $row[0] </td>";
                                     echo "<td>   $row[1] </td> ";
                                     echo "<td>  $row[2] </td> ";
-                                    
+
                                     echo "<td> <a href='academy-Coaches.php?email={$row[1]}'  class='btn btn-danger'> Remove </a> </td> ";
                                     echo "</tr>";
                                 }
@@ -424,6 +421,25 @@ $r = $result->rowCount();
             img6.src = originalsrc6;
         })
     </script>
+
+
+
+    <script>
+        function logoutAlert() {
+            // Show the confirmation dialog and store the result
+            var result = window.confirm("Are you sure you want to Logout?");
+
+            // Check if the user clicked "OK" or "Cancel"
+            if (result) {
+                // If the user clicked "OK", redirect to 'index.php'
+                window.location.href = 'Logout.php';
+            } else {
+                // If the user clicked "Cancel", do nothing or perform any other action
+                return;
+            }
+        }
+    </script>
+
 
 
 </body>
