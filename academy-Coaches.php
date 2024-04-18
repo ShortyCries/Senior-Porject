@@ -225,10 +225,7 @@ $r = $result->rowCount();
                 <label for="validationDefault04" class="form-label" style="color: orange;">Sport Speciality</label>
                 <select name="sport" class="form-select" id="validationDefault04" required>
                     <option selected disabled value="">Choose...</option>
-                    <!-- <option>Football</option>
-                    <option>Basketball</option>
-                    <option>Volleyball</option>
-                    <option>Tennis</option> -->
+              
                     <?php
                     $query1 = "SELECT name From sport";
 

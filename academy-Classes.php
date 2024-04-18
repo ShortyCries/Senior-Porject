@@ -27,6 +27,7 @@ $r = $result->rowCount();
     <link rel="stylesheet" href="css/nicepage.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <script src="bootstrap5/jsbt5/bootstrap.bundle.min.js"> </script>
     <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
 
@@ -77,11 +78,11 @@ $r = $result->rowCount();
                     <ul class="u-nav u-unstyled u-nav-1">
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
                         </li>
-                        <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#"   style="padding: 10px 20px;">Logout</a>
+                        <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
                         </li>
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" target="_blank" style="padding: 10px 20px;">About us</a>
                         </li>
-                        
+
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contact.php" target="_blank" style="padding: 10px 20px;">Contact</a>
                         </li>
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-academy.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
@@ -127,7 +128,7 @@ $r = $result->rowCount();
                     </div>
                 </a>
                 <a href="academy-Coaches.php" style="text-decoration: none;">
-                    <div class="box" id="box2" >
+                    <div class="box" id="box2">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img2">
 
@@ -179,48 +180,133 @@ $r = $result->rowCount();
     </div>
 
 
-    
 
-    <div class="mybackground-img">
+
+    <div class="mybackground-img2">
         <div class="container">
-            <div class="row mt-5">
-                <div class="col">
-                    <!-- <div class="card mt-5">
-
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
                         <div class="card-header">
-                            <h4 class="display-6 text-center"> Class  List </h2>
+                            <h4 class="text-center">Classes</h4>
+                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
+                                New Class
+                            </button>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered text-center">
-                                <tr class="bg-dark text-white">
-                                    <td>Name</td>
-                                    <td>Email</td>
-                                    <td>Date of birth</td>
 
-                                </tr>
-                                <?php
-                                for ($i = 0; $i < $r; $i++) {
-                                    $row = $result->fetch(PDO::FETCH_NUM);
-                                    echo "<tr>";
-                                    echo "<td>   $row[0] </td>";
-                                    echo "<td>   $row[1] </td> ";
-                                    echo "<td>  $row[2] </td> ";
-                                    
-                                    echo "</tr>";
-                                }
-                                ?>
-                            </table>
+
                         </div>
-
-                    </div> -->
-
+                    </div>
                 </div>
             </div>
-
         </div>
+
+
     </div>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="insertdata" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="insertdataLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="insertdataLabel">Create New Class</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="ClassPDO.php"  method="POST">
+                    <div class="modal-body">
+
+
+                        <div class="form-group mb-3">
+                            <label>Class name</label>
+                            <input name="className" type="text" class="form-control" placeholder="Enter class name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Capacity</label>
+                            <input name="capacity" type="number" class="form-control" placeholder="Enter capacity" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Choose sport</label>
+                            <select name="sport" class="form-select" required>
+                                <option selected disabled value="">Choose...</option>
+
+                                <?php
+                                $query1 = "SELECT name From sport";
+
+                                $result1 = $pdo->query($query1);
+
+                                $r1 = $result1->rowCount();
+
+                                for ($i = 0; $i < $r1; $i++) {
+                                    $row1 = $result1->fetch(PDO::FETCH_NUM);
+
+                                    echo "<option> $row1[0] </option>";
+                                }
+
+
+
+                                ?>
+
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Choose coach</label>
+                            <select name="coach" class="form-select" required>
+                                <option selected disabled value="">Choose...</option>
+
+                                <?php
+                                $query2 = "SELECT name , email FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail'";
+
+                                $result2 = $pdo->query($query2);
+
+                                $r2 = $result2->rowCount();
+
+                                for ($i = 0; $i < $r2; $i++) {
+                                    $row2 = $result2->fetch(PDO::FETCH_NUM);
+
+                                    echo "<option> $row2[0] | $row2[1] </option>";
+                                }
+
+
+
+                                ?>
+
+                            </select>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="form-check-label">
+                                Schedule:
+                            </label>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <input name="days[]" type="checkbox" class="form-checkbox" value="M"> Monday
+                            <input name="days[]" type="checkbox" class="form-checkbox" value="T"> Tuesday
+                            <input name="days[]" type="checkbox" class="form-checkbox" value="W"> Wednesday
+                            <input name="days[]" type="checkbox" class="form-checkbox" value="Th"> Thursday <br>
+                            <input name="days[]" type="checkbox" class="form-checkbox" value="Fr"> Friday
+                            <input name="days[]" type="checkbox" class="form-checkbox" value="Sa"> Saturday
+                            <input name="days[]" type="checkbox" class="form-checkbox" value="Su"> Sunday
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <input name="timing" type="time">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                </form>
+
+
+
+            </div>
+        </div>
 
 
 
@@ -228,136 +314,138 @@ $r = $result->rowCount();
 
 
 
-    <script>
-        //BOX1
-        var img = document.getElementById('img1');
-        var box = document.getElementById('box1');
+
+
+        <script>
+            //BOX1
+            var img = document.getElementById('img1');
+            var box = document.getElementById('box1');
 
 
 
-        var originalsrc = img.src;
-        var newSrc = '/img/gifs/classes.gif';
+            var originalsrc = img.src;
+            var newSrc = '/img/gifs/classes.gif';
 
 
-        box.addEventListener('mouseover', function() {
-            img.src = newSrc;
-        })
+            box.addEventListener('mouseover', function() {
+                img.src = newSrc;
+            })
 
-        box.addEventListener('mouseout', function() {
-            img.src = originalsrc;
-        })
-
-
-
-
-        //BOX2
-        var img2 = document.getElementById('img2');
-        var box2 = document.getElementById('box2');
-
-
-        var originalsrc2 = img2.src;
-        var newSrc2 = '/img/gifs/coach-.gif';
-
-
-        box2.addEventListener('mouseover', function() {
-            img2.src = newSrc2;
-        })
-
-        box2.addEventListener('mouseout', function() {
-            img2.src = originalsrc2;
-        })
+            box.addEventListener('mouseout', function() {
+                img.src = originalsrc;
+            })
 
 
 
 
-
-        //BOX3
-        var img3 = document.getElementById('img3');
-        var box3 = document.getElementById('box3');
-
-
-        var originalsrc3 = img3.src;
-        var newSrc3 = '/img/gifs/games-.gif';
+            //BOX2
+            var img2 = document.getElementById('img2');
+            var box2 = document.getElementById('box2');
 
 
-        box3.addEventListener('mouseover', function() {
-            img3.src = newSrc3;
-        })
-
-        box3.addEventListener('mouseout', function() {
-            img3.src = originalsrc3;
-        })
+            var originalsrc2 = img2.src;
+            var newSrc2 = '/img/gifs/coach-.gif';
 
 
-        //BOX4
-        var img4 = document.getElementById('img4');
-        var box4 = document.getElementById('box4');
+            box2.addEventListener('mouseover', function() {
+                img2.src = newSrc2;
+            })
+
+            box2.addEventListener('mouseout', function() {
+                img2.src = originalsrc2;
+            })
 
 
-        var originalsrc4 = img4.src;
-        var newSrc4 = '/img/gifs/court-.gif';
 
 
-        box4.addEventListener('mouseover', function() {
-            img4.src = newSrc4;
-        })
 
-        box4.addEventListener('mouseout', function() {
-            img4.src = originalsrc4;
-        })
+            //BOX3
+            var img3 = document.getElementById('img3');
+            var box3 = document.getElementById('box3');
 
 
-        //BOX5
-        var img5 = document.getElementById('img5');
-        var box5 = document.getElementById('box5');
+            var originalsrc3 = img3.src;
+            var newSrc3 = '/img/gifs/games-.gif';
 
 
-        var originalsrc5 = img5.src;
-        var newSrc5 = '/img/gifs/player-.gif';
+            box3.addEventListener('mouseover', function() {
+                img3.src = newSrc3;
+            })
+
+            box3.addEventListener('mouseout', function() {
+                img3.src = originalsrc3;
+            })
 
 
-        box5.addEventListener('mouseover', function() {
-            img5.src = newSrc5;
-        })
-
-        box5.addEventListener('mouseout', function() {
-            img5.src = originalsrc5;
-        })
+            //BOX4
+            var img4 = document.getElementById('img4');
+            var box4 = document.getElementById('box4');
 
 
-        //BOX6
-        var img6 = document.getElementById('img6');
-        var box6 = document.getElementById('box6');
+            var originalsrc4 = img4.src;
+            var newSrc4 = '/img/gifs/court-.gif';
 
 
-        var originalsrc6 = img6.src;
-        var newSrc6 = '/img/gifs/academy-.gif';
+            box4.addEventListener('mouseover', function() {
+                img4.src = newSrc4;
+            })
+
+            box4.addEventListener('mouseout', function() {
+                img4.src = originalsrc4;
+            })
 
 
-        box6.addEventListener('mouseover', function() {
-            img6.src = newSrc6;
-        })
+            //BOX5
+            var img5 = document.getElementById('img5');
+            var box5 = document.getElementById('box5');
 
-        box6.addEventListener('mouseout', function() {
-            img6.src = originalsrc6;
-        })
-    </script>
-    <script>
-        function logoutAlert() {
-            // Show the confirmation dialog and store the result
-            var result = window.confirm("Are you sure you want to Logout?");
 
-            // Check if the user clicked "OK" or "Cancel"
-            if (result) {
-                // If the user clicked "OK", redirect to 'index.php'
-                window.location.href = 'logout.php';
-            } else {
-                // If the user clicked "Cancel", do nothing or perform any other action
-                return;
+            var originalsrc5 = img5.src;
+            var newSrc5 = '/img/gifs/player-.gif';
+
+
+            box5.addEventListener('mouseover', function() {
+                img5.src = newSrc5;
+            })
+
+            box5.addEventListener('mouseout', function() {
+                img5.src = originalsrc5;
+            })
+
+
+            //BOX6
+            var img6 = document.getElementById('img6');
+            var box6 = document.getElementById('box6');
+
+
+            var originalsrc6 = img6.src;
+            var newSrc6 = '/img/gifs/academy-.gif';
+
+
+            box6.addEventListener('mouseover', function() {
+                img6.src = newSrc6;
+            })
+
+            box6.addEventListener('mouseout', function() {
+                img6.src = originalsrc6;
+            })
+        </script>
+        <script>
+            function logoutAlert() {
+                // Show the confirmation dialog and store the result
+                var result = window.confirm("Are you sure you want to Logout?");
+
+                // Check if the user clicked "OK" or "Cancel"
+                if (result) {
+                    // If the user clicked "OK", redirect to 'index.php'
+                    window.location.href = 'logout.php';
+                } else {
+                    // If the user clicked "Cancel", do nothing or perform any other action
+                    return;
+                }
             }
-        }
-    </script>
-    
+        </script>
+
 
 
 </body>

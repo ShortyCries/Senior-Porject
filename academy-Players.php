@@ -286,10 +286,6 @@ $r = $result->rowCount();
 
 
 
-    <div class="mybackground-img2">
-
-
-    </div>
 
 
 
