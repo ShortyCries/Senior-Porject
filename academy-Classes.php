@@ -186,6 +186,25 @@ $r = $result->rowCount();
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
+                    <?php
+
+                    if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+
+
+                    ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                    <?php
+                        unset($_SESSION['status']);
+                    }
+
+
+
+
+                    ?>
                     <div class="card">
                         <div class="card-header">
                             <h4 class="text-center">Classes</h4>
@@ -194,6 +213,44 @@ $r = $result->rowCount();
                             </button>
                         </div>
                         <div class="card-body">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Coach</th>
+                                        <th scope="col">Sport</th>
+                                        <th scope="col">Capacity</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">View</th>
+                                        <th scope="col">Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php
+
+                                    $query3 =  "SELECT cname, name, sportname, capacity, schedule FROM coach NATURAL JOIN class WHERE email = coachemail AND academyemail = '$academyEmail'";
+                                    $result3 = $pdo->query($query3);
+
+                                    $r3 = $result3->rowCount();
+
+                                    for ($i = 0; $i < $r3; $i++) {
+                                        $row3 = $result3->fetch(PDO::FETCH_NUM);
+                                        echo "<tr>";
+                                        echo "<td>   $row3[0] </td>";
+                                        echo "<td>   $row3[1] </td> ";
+                                        echo "<td>  $row3[2] </td> ";
+                                        echo "<td>  $row3[3] </td> ";
+                                        echo "<td>  $row3[4] </td> ";
+                                        echo "<td>  <a href=\"\" class=\"btn btn-info\">View Class</a> </td> ";
+                                        echo "<td>  <a href=\"\" class=\"btn btn-danger\">Remove</a> </td> ";
+                                        echo "</tr>";
+    
+                                    }
+                                    ?>
+            
+                                </tbody>
+                            </table>
 
 
                         </div>
@@ -214,7 +271,7 @@ $r = $result->rowCount();
                     <h5 class="modal-title" id="insertdataLabel">Create New Class</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="ClassPDO.php"  method="POST">
+                <form action="ClassPDO.php" method="POST">
                     <div class="modal-body">
 
 
@@ -233,7 +290,7 @@ $r = $result->rowCount();
                                 <option selected disabled value="">Choose...</option>
 
                                 <?php
-                                $query1 = "SELECT name From sport";
+                                $query1 = "SELECT sname From sport";
 
                                 $result1 = $pdo->query($query1);
 

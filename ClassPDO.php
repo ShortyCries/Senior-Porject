@@ -31,22 +31,22 @@ try {
 
         echo $coachEmail;
 
-        if($sport == "Football"){
-            $sportID = '1';
-        } else if($sport == "Basketball"){
-            $sportID = '2';
-        } else if($sport == "Volleyball"){
-            $sportID = '3';
-        } else if($sport == "Tennis"){
-            $sportID = '4';
-        }
+      
 
 
-        $query = "INSERT INTO class VALUES( '' ,'$className', '$sportID', '$academyEmail', '$coachEmail', '$capacity', '$schedule')";
+        $query = "INSERT INTO class VALUES( '' ,'$className', '$sport', '$academyEmail', '$coachEmail', '$capacity', '$schedule')";
 
         $result = $pdo->exec($query);
 
 
+        if($result){
+             $_SESSION['status'] = "Class created successfully";
+             header("location:academy-Classes.php");
+
+        } else {
+            $_SESSION['status'] = "Class creation was unsuccessful";
+            header("location:academy-Classes.php");
+        }
 
 
 
@@ -54,8 +54,7 @@ try {
 
 
 
-
-        header("location:academy-Classes.php");
+       
     }
 } catch (PDOException $e) {
     die($e->getMessage());

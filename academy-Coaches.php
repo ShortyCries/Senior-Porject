@@ -227,7 +227,7 @@ $r = $result->rowCount();
                     <option selected disabled value="">Choose...</option>
               
                     <?php
-                    $query1 = "SELECT name From sport";
+                    $query1 = "SELECT sname From sport";
 
                     $result1 = $pdo->query($query1);
 

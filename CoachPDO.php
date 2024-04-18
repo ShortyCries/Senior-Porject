@@ -14,17 +14,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     
     echo "<h1>  Hello this is checking if i am  actually a coach </h1> <br>";
     
-    if($sport == "Football"){
-        $sportID = '1';
-    } else if($sport == "Basketball"){
-        $sportID = '2';
-    } else if($sport == "Volleyball"){
-        $sportID = '3';
-    } else if($sport == "Tennis"){
-        $sportID = '4';
-    }
-
-    
+   
 
     $query="INSERT INTO login VALUES('$email','$name','$password','coach' ,'active')";
     
@@ -34,7 +24,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
     $result1= $pdo->exec($query1);
 
-    $query2="INSERT INTO trains VALUES('$email','$academyEmail', '$sportID'  )";
+    $query2="INSERT INTO trains VALUES('$email','$academyEmail', '$sport'  )";
 
     $result2= $pdo->exec($query2);
     header("location:academy-Coaches.php");
