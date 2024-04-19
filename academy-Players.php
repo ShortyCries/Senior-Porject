@@ -207,7 +207,7 @@ $r = $result->rowCount();
                             <a href="#" type="button" class="btn btn-primary view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Read More
                             </a>
-                            <a href="#" type="button" class="btn btn-primary view_data" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                            <a href="#" type="button" onclick="getdata()" class="btn btn-primary Invite_Player" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                                 Invite
                             </a>
 
@@ -248,6 +248,54 @@ $r = $result->rowCount();
                 </div>
 
                 <!-- READ MORE MODEL -->
+
+
+
+                <div class="modal fade" id="viewinvitemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                           <form action="player-invite.php" method="POST">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myheader"></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <label>Choose class</label>
+                                <select name="classname" class="form-select" required>
+                                    <option selected disabled value="">Choose...</option>
+
+                                    <?php
+                                    $query1 = "SELECT id, cname From class where academyemail = '$academyEmail'";
+
+                                    $result1 = $pdo->query($query1);
+
+                                    $r1 = $result1->rowCount();
+
+                                    for ($i = 0; $i < $r1; $i++) {
+                                        $row1 = $result1->fetch(PDO::FETCH_NUM);
+
+                                        echo "<option>$row1[0] | $row1[1]</option>";
+                                    }
+
+
+
+                                    ?>
+
+                                </select>
+
+                                <input type="hidden" id="dataInput" name="playeremail" value="">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Invite</button>
+                            </div>
+
+
+                                </form>
+                        </div>
+                    </div>
+                </div>
 
 
 
@@ -422,10 +470,6 @@ $r = $result->rowCount();
 
                 var user_email = $(this).closest('div').find('.user_email').text();
 
-
-
-
-
                 $.ajax({
                     method: "POST",
                     url: "player-info.php",
@@ -439,23 +483,72 @@ $r = $result->rowCount();
                         $('#viewusermodal').modal('show');
 
                     }
+
                 });
-
-
-
-
-
-
-
 
             });
 
 
+        });
+    </script>
 
+    <script>
+        $(document).ready(function() {
+
+            $('.Invite_Player').click(function(e) {
+                e.preventDefault();
+
+                var user_email = $(this).closest('div').find('.user_email').text();
+
+                console.log(user_email);
+
+                $.ajax({
+                    method: "POST",
+                    url: "player-info.php",
+                    data: {
+                        'click_invite_btn': true,
+                        'player_email': user_email,
+                    },
+                    success: function(response) {
+
+                        $('#myheader').html(response);
+                        $('#viewinvitemodal').modal('show');
+
+
+
+                    }
+
+                });
+
+            });
 
 
         });
     </script>
+
+
+    <script>
+        function getdata() {
+            // Get the element by ID
+
+            setTimeout(function() {
+                
+                var element = document.getElementById('myheader');
+
+                
+                var innerHTMLContent = element.innerHTML;
+                console.log("Inner HTML Content:", innerHTMLContent);
+
+
+                document.getElementById('dataInput').value = innerHTMLContent;
+            }, 100); 
+
+        }
+    </script>
+
+
+
+
 
 
     <script>

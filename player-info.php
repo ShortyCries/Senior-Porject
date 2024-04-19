@@ -17,7 +17,7 @@ if (isset($_POST['click_readmore_btn'])) {
 
 
     for ($i = 0; $i < $r; $i++) {
-        $row = $result->fetch(PDO::FETCH_NUM);
+        $row = $result->fetch(PDO::FETCH_NUM); 
 
         echo '<h6>' . $row[0] . '</h6>';
         echo '<h6>' . $row[1] . '</h6>';
@@ -26,3 +26,27 @@ if (isset($_POST['click_readmore_btn'])) {
     }
 
 }
+
+
+if (isset($_POST['click_invite_btn'])) {
+    $email1 = $_POST['player_email'];
+
+    $query1 = "SELECT email FROM player where email = '$email1' ";
+
+    $result1 = $pdo->query($query1);
+
+    $r1 = $result1->rowCount();
+
+    for ($i = 0; $i < $r1; $i++) {
+        $row1 = $result1->fetch(PDO::FETCH_NUM); 
+
+        echo $row1[0] ;
+      
+      
+    }
+
+
+}
+
+
+?>
