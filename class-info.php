@@ -1,3 +1,21 @@
+<?php
+
+session_start();
+require_once("config.php");
+$pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+
+if (isset($_GET['testingemail'])) {
+    $testingemail = $_GET['testingemail'];
+    $delete1 = "DELETE FROM joins WHERE playeremail = '$testingemail' ";
+    $delResult1 = $pdo->exec($delete1);
+
+    header("location:academy-Classes.php");
+
+}
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,9 +33,6 @@
     
 
 <?php
-session_start();
-require_once("config.php");
-$pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
 
 
@@ -39,12 +54,10 @@ if (isset($_POST['click_view_class_btn'])) {
         echo '<h6>' . $row[1] . '</h6>';
         echo '<h6>' . $row[2] . '</h6>';
 
-
+       echo " <a href='class-info.php?testingemail={$row[1]}'  class='btn btn-danger'> Remove </a> ";
 
       
     }
-
-
 
 
 
@@ -54,6 +67,8 @@ if (isset($_POST['click_view_class_btn'])) {
 
 
 ?>
+
+
 
 
 </body>
