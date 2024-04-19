@@ -237,20 +237,45 @@ $r = $result->rowCount();
 
                                     for ($i = 0; $i < $r3; $i++) {
                                         $row3 = $result3->fetch(PDO::FETCH_NUM);
-                                        echo "<tr>";
-                                        echo "<td>   $row3[0] </td>";
-                                        echo "<td>   $row3[1] </td> ";
-                                        echo "<td>  $row3[2] </td> ";
-                                        echo "<td>  $row3[3] </td> ";
-                                        echo "<td>  $row3[4] </td> ";
-                                        echo "<td>  $row3[5] </td> ";
-                                        echo "<td>  <a href=\"\" class=\"btn btn-info\">View Class</a> </td> ";
-                                        echo "<td>  <a href=\"\" class=\"btn btn-danger\">Remove</a> </td> ";
-                                        echo "</tr>";
-    
+                                        ?>
+                                        <tr>
+                                        <td id="myclassid"><?php echo  $row3[0] ?></td>
+                                        <td><?php echo  $row3[1] ?></td>
+                                        <td><?php echo  $row3[2] ?></td>
+                                        <td><?php echo  $row3[3] ?></td>
+                                        <td><?php echo $row3[4] ?></td>
+                                        <td><?php echo $row3[5] ?></td>
+                                        <td> <a href="#" type="button" class="btn btn-primary view_class" data-bs-toggle="modal" data-bs-target="#viewclassmodal">
+                                        View Class
+                                      </a> </td>
+                                        <td>  <a href="#" class="btn btn-danger">Remove</a> </td>
+                                        </tr>
+                                        <?php
                                     }
                                     ?>
-            
+
+                                    <div class="modal fade" id="viewclassmodal" tabindex="-1" aria-labelledby="viewclassmodalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="viewclassmodalLabel">Modal title</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                        <div class="view_class_data">
+                                                                
+                                                        </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </tbody>
                             </table>
 
@@ -489,6 +514,41 @@ $r = $result->rowCount();
                 img6.src = originalsrc6;
             })
         </script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+        <script>
+            $(document).ready(function() {
+
+                $('.view_class').click(function(e) {
+                    e.preventDefault();
+                    console.log('hello');
+                    var class_id = $(this).closest('tr').find('#myclassid').text();
+
+                    console.log(class_id);
+                    $.ajax({
+                        method: "POST",
+                        url: "class-info.php",
+                        data: {
+                            'click_view_class_btn': true,
+                            'class_id': class_id,
+                        },
+                        success: function(response) {
+
+                            $('.view_class_data').html(response);
+                            $('#viewclassmodal').modal('show');
+
+                        }
+
+                    });
+
+                });
+
+
+            });
+        </script>
+
         <script>
             function logoutAlert() {
                 // Show the confirmation dialog and store the result
