@@ -51,7 +51,6 @@ if (isset($_POST['click_view_class_btn'])) {
         $row = $result->fetch(PDO::FETCH_NUM); 
 
         echo '<h6>' . $row[0] . '</h6>';
-        echo '<h6>' . $row[1] . '</h6>';
         echo '<h6>' . $row[2] . '</h6>';
 
        echo " <a href='class-info.php?testingemail={$row[1]}'  class='btn btn-danger'> Remove </a> ";
