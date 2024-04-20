@@ -204,11 +204,8 @@ $r = $result->rowCount();
 
                             <p class="user_email"><?php echo $row[1] ?></p>
 
-                            <a href="#" type="button" class="btn btn-primary view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Read More
-                            </a>
-                            <a href="#" type="button" class="btn btn-primary view_data" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                Invite
                             </a>
 
                             <div class="icons-Listing">

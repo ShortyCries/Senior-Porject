@@ -237,50 +237,52 @@ $r = $result->rowCount();
 
                                     for ($i = 0; $i < $r3; $i++) {
                                         $row3 = $result3->fetch(PDO::FETCH_NUM);
-                                        ?>
+                                    ?>
                                         <tr>
-                                        <td id="myclassid"><?php echo  $row3[0] ?></td>
-                                        <td><?php echo  $row3[1] ?></td>
-                                        <td><?php echo  $row3[2] ?></td>
-                                        <td><?php echo  $row3[3] ?></td>
-                                        <td><?php echo $row3[4] ?></td>
-                                        <td><?php echo $row3[5] ?></td>
-                                        <td> <a href="#" type="button" class="btn btn-primary view_class" data-bs-toggle="modal" data-bs-target="#viewclassmodal">
-                                        View Class
-                                      </a> </td>
-                                        <td>  <a href="#" class="btn btn-danger">Remove</a> </td>
+                                            <td id="myclassid"><?php echo  $row3[0] ?></td>
+                                            <td><?php echo  $row3[1] ?></td>
+                                            <td><?php echo  $row3[2] ?></td>
+                                            <td><?php echo  $row3[3] ?></td>
+                                            <td><?php echo $row3[4] ?></td>
+                                            <td><?php echo $row3[5] ?></td>
+                                            <td> <a href="#" type="button" class="btn btn-primary view_class" data-bs-toggle="modal" data-bs-target="#viewclassmodal">
+                                                    View Class
+                                                </a> </td>
+                                            <td> <a href="#" class="btn btn-danger">Remove</a> </td>
                                         </tr>
-                                        <?php
+                                    <?php
                                     }
                                     ?>
 
-                                    <div class="modal fade" id="viewclassmodal" tabindex="-1" aria-labelledby="viewclassmodalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="viewclassmodalLabel">Modal title</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
 
-                                                        <div class="view_class_data">
-                                                                
-                                                        </div>
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                 </tbody>
                             </table>
 
 
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="viewclassmodal" tabindex="-1" aria-labelledby="viewclassmodalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="viewclassmodalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="view_class_data">
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+
                     </div>
                 </div>
             </div>
@@ -515,7 +517,7 @@ $r = $result->rowCount();
             })
         </script>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
         <script>
