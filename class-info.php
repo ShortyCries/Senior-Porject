@@ -61,6 +61,7 @@ if (isset($_GET['testingemail'], $_GET['viewreport'])) {
                     <h4 class="text-center">Players</h4>
                 </div>
                 <div class="card-body">
+                <div class="table-responsive">
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -73,6 +74,7 @@ if (isset($_GET['testingemail'], $_GET['viewreport'])) {
                         </thead>
 
 
+                </div>
                 </div>
             </div>
         </div>

@@ -213,52 +213,54 @@ $r = $result->rowCount();
                             </button>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Id</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Coach</th>
-                                        <th scope="col">Sport</th>
-                                        <th scope="col">Capacity</th>
-                                        <th scope="col">Time</th>
-                                        <th scope="col">View</th>
-                                        <th scope="col">Remove</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            <div class="table-responsive">
 
-                                    <?php
-
-                                    $query3 =  "SELECT id, cname, name, sportname, capacity, schedule FROM coach NATURAL JOIN class WHERE email = coachemail AND academyemail = '$academyEmail'";
-                                    $result3 = $pdo->query($query3);
-
-                                    $r3 = $result3->rowCount();
-
-                                    for ($i = 0; $i < $r3; $i++) {
-                                        $row3 = $result3->fetch(PDO::FETCH_NUM);
-                                    ?>
+                                <table class="table table-striped table-bordered">
+                                    <thead>
                                         <tr>
-                                            <td id="myclassid"><?php echo  $row3[0] ?></td>
-                                            <td><?php echo  $row3[1] ?></td>
-                                            <td><?php echo  $row3[2] ?></td>
-                                            <td><?php echo  $row3[3] ?></td>
-                                            <td><?php echo $row3[4] ?></td>
-                                            <td><?php echo $row3[5] ?></td>
-                                            <td> <a href="#" type="button" class="btn btn-primary view_class" data-bs-toggle="modal" data-bs-target="#viewclassmodal">
-                                                    View Class
-                                                </a> </td>
-                                            <td> <a href="#" class="btn btn-danger">Remove</a> </td>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Coach</th>
+                                            <th scope="col">Sport</th>
+                                            <th scope="col">Capacity</th>
+                                            <th scope="col">Time</th>
+                                            <th scope="col">View</th>
+                                            <th scope="col">Remove</th>
                                         </tr>
-                                    <?php
-                                    }
-                                    ?>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php
+
+                                        $query3 =  "SELECT id, cname, name, sportname, capacity, schedule FROM coach NATURAL JOIN class WHERE email = coachemail AND academyemail = '$academyEmail'";
+                                        $result3 = $pdo->query($query3);
+
+                                        $r3 = $result3->rowCount();
+
+                                        for ($i = 0; $i < $r3; $i++) {
+                                            $row3 = $result3->fetch(PDO::FETCH_NUM);
+                                        ?>
+                                            <tr>
+                                                <td id="myclassid"><?php echo  $row3[0] ?></td>
+                                                <td><?php echo  $row3[1] ?></td>
+                                                <td><?php echo  $row3[2] ?></td>
+                                                <td><?php echo  $row3[3] ?></td>
+                                                <td><?php echo $row3[4] ?></td>
+                                                <td><?php echo $row3[5] ?></td>
+                                                <td> <a href="#" type="button" class="btn btn-primary view_class" data-bs-toggle="modal" data-bs-target="#viewclassmodal">
+                                                        View Class
+                                                    </a> </td>
+                                                <td> <a href="#" class="btn btn-danger">Remove</a> </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
 
 
 
-                                </tbody>
-                            </table>
-
+                                    </tbody>
+                                </table>
+                            </div>
 
                         </div>
                     </div>
