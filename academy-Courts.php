@@ -28,6 +28,7 @@ $r = $result->rowCount();
     <link rel="stylesheet" href="css/nicepage.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <script src="bootstrap5/jsbt5/bootstrap.bundle.min.js"> </script>
     <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
 
@@ -138,51 +139,252 @@ $r = $result->rowCount();
                 </a>
                 <a href="academy-Games.php" style="text-decoration: none;">
                     <div class="box" id="box3"">
-                        <div class="img">
-                            <img class="img" src="/img/games-.png" alt="" id="img3">
+                        <div class=" img">
+                        <img class="img" src="/img/games-.png" alt="" id="img3">
 
-                        </div>
-                        <p>Games</p>
                     </div>
-                </a>
-                <a href="academy-Courts.php" style="text-decoration: none;">
-                    <div class="box" id="box4"  style="background-color: grey;" >
-                        <div class="img">
-                            <img class="img" src="/img/court.png" alt="" id="img4">
-
-                        </div>
-                        <p>Courts</p>
-                    </div>
-                </a>
-                <a href="academy-Players.php" style="text-decoration: none;">
-                    <div class="box" id="box5">
-                        <div class="img">
-                            <img class="img" src="/img/player-.png" alt="" id="img5">
-
-                        </div>
-                        <p>Players</p>
-                    </div>
-                </a>
-                <a href="academy-Academies.php" style="text-decoration: none;">
-                    <div class="box" id="box6">
-                        <div class="img">
-                            <img class="img" src="/img/academy-.png" alt="" id="img6">
-
-                        </div>
-                        <p>Academies</p>
-                    </div>
-                </a>
-
+                    <p>Games</p>
             </div>
+            </a>
+            <a href="academy-Courts.php" style="text-decoration: none;">
+                <div class="box" id="box4" style="background-color: grey;">
+                    <div class="img">
+                        <img class="img" src="/img/court.png" alt="" id="img4">
+
+                    </div>
+                    <p>Courts</p>
+                </div>
+            </a>
+            <a href="academy-Players.php" style="text-decoration: none;">
+                <div class="box" id="box5">
+                    <div class="img">
+                        <img class="img" src="/img/player-.png" alt="" id="img5">
+
+                    </div>
+                    <p>Players</p>
+                </div>
+            </a>
+            <a href="academy-Academies.php" style="text-decoration: none;">
+                <div class="box" id="box6">
+                    <div class="img">
+                        <img class="img" src="/img/academy-.png" alt="" id="img6">
+
+                    </div>
+                    <p>Academies</p>
+                </div>
+            </a>
 
         </div>
 
     </div>
 
+    </div>
+
+
 
     <div class="mybackground-img2">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <?php
+
+                    if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+
+
+                    ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                    <?php
+                        unset($_SESSION['status']);
+                    }
+
+
+
+
+                    ?>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="text-center">Courts</h4>
+                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
+                                New Court
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Sport</th>
+                                            <th scope="col">Capacity</th>
+                                            <th scope="col">View</th>
+                                            <th scope="col">Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php
+
+                                        $query3 =  "SELECT id, name, sportname, maxcapacity FROM courts WHERE academyemail = '$academyEmail'";
+                                        $result3 = $pdo->query($query3);
+
+                                        $r3 = $result3->rowCount();
+
+                                        for ($i = 0; $i < $r3; $i++) {
+                                            $row3 = $result3->fetch(PDO::FETCH_NUM);
+                                        ?>
+                                            <tr>
+                                                <td id="myclassid"><?php echo  $row3[0] ?></td>
+                                                <td ><?php echo  $row3[1] ?></td>
+                                                <td ><?php echo  $row3[2] ?></td>
+                                                <td ><?php echo  $row3[3] ?></td>
+                                                <td> <a href="#" type="button" class="btn btn-primary view_class" data-bs-toggle="modal" data-bs-target="#viewclassmodal">
+                                                        View Court
+                                                    </a> </td>
+                                                <td> <a href="#" class="btn btn-danger">Remove</a> </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="viewclassmodal" tabindex="-1" aria-labelledby="viewclassmodalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="viewclassmodalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="view_class_data">
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="insertdata" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="insertdataLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="insertdataLabel">Add new court</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="CourtPDO.php" method="POST">
+                    <div class="modal-body">
+
+
+                        <div class="form-group mb-3">
+                            <label>Court name</label>
+                            <input name="courtname" type="text" class="form-control" placeholder="Enter court name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Location</label>
+                            <select name="city" class="form-select" required>
+                                <option selected disabled value="">Choose...</option>
+
+                                <option> Beirut </option>
+                                <option> Sidon </option>
+                                <option> Tripoli </option>
+                                <option> Barr Elias </option>
+                                <option> Nabatiye </option>
+                                <option> Baalbak </option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div class="form-floating">
+                                <textarea name="description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">Location description</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Choose sport</label>
+                            <select name="sport" class="form-select" required>
+                                <option selected disabled value="">Choose...</option>
+
+                                <?php
+                                $query1 = "SELECT sname From sport";
+
+                                $result1 = $pdo->query($query1);
+
+                                $r1 = $result1->rowCount();
+
+                                for ($i = 0; $i < $r1; $i++) {
+                                    $row1 = $result1->fetch(PDO::FETCH_NUM);
+
+                                    echo "<option> $row1[0] </option>";
+                                }
+
+
+
+                                ?>
+
+
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Size:</label>
+                            <input name="size1" type="number" placeholder="width" style="border:solid; " required> X
+                            <input name="size2" type="number" placeholder="hieght" style="border:solid; " required> m
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Max number of players</label>
+                            <input id="maxcapacity" name="maxcapacity" type="number" placeholder="(optional)" class="form-control">
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <label>Price($)</label>
+                            <input id="price" name="price" type="number" placeholder="(optional)" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+
 
 
 
@@ -307,6 +509,10 @@ $r = $result->rowCount();
             img6.src = originalsrc6;
         })
     </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
     <script>
         function logoutAlert() {
             // Show the confirmation dialog and store the result

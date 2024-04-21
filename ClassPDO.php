@@ -27,9 +27,7 @@ try {
         $coachEmail = $pieces[1];
 
 
-        echo $schedule;
 
-        echo $coachEmail;
 
       
 
