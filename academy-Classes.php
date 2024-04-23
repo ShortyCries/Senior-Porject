@@ -317,7 +317,7 @@ $r = $result->rowCount();
 
                         <div class="form-group mb-3">
                             <label>Choose sport</label>
-                            <select name="sport" class="form-select" required>
+                            <select id="selectSport" name="sport" class="form-select" required>
                                 <option selected disabled value="">Choose...</option>
 
                                 <?php
@@ -341,25 +341,8 @@ $r = $result->rowCount();
                         </div>
                         <div class="form-group mb-3">
                             <label>Choose coach</label>
-                            <select name="coach" class="form-select" required>
-                                <option selected disabled value="">Choose...</option>
-
-                                <?php
-                                $query2 = "SELECT name , email FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail'";
-
-                                $result2 = $pdo->query($query2);
-
-                                $r2 = $result2->rowCount();
-
-                                for ($i = 0; $i < $r2; $i++) {
-                                    $row2 = $result2->fetch(PDO::FETCH_NUM);
-
-                                    echo "<option> $row2[0] | $row2[1] </option>";
-                                }
-
-
-
-                                ?>
+                            <select id="showCoaches" name="coach" class="form-select">
+                                
 
                             </select>
                         </div>
@@ -396,9 +379,32 @@ $r = $result->rowCount();
 
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
 
+    <script>  
+     $(document).ready(function(){
+        $('#selectSport').change(function(){
+            var sportId = $('#selectSport').val();
+
+            $.ajax({
+              method: "POST",
+              url: 'fetch.php',
+              data: {
+                'sportID': sportId,
+              },
+              success: function(response) {
+
+                $('#showCoaches').html(response);
+             
+            }
+
+            });
+        });
+     });
+    
+    </script>
 
 
 
@@ -524,7 +530,6 @@ $r = $result->rowCount();
         })
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
     <script>

@@ -22,17 +22,13 @@ try {
         $schedule .= $timing;
 
 
-        $pieces = explode(" | ", $coach);
-
-        $coachEmail = $pieces[1];
-
 
 
 
       
 
 
-        $query = "INSERT INTO class VALUES( '' ,'$className', '$sport', '$academyEmail', '$coachEmail', '$capacity', '$schedule')";
+        $query = "INSERT INTO class VALUES( '' ,'$className', '$sport', '$academyEmail', '$coach', '$capacity', '$schedule')";
 
         $result = $pdo->exec($query);
 
