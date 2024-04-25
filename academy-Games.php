@@ -28,6 +28,7 @@ $r = $result->rowCount();
     <link rel="stylesheet" href="css/nicepage.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <script src="bootstrap5/jsbt5/bootstrap.bundle.min.js"> </script>
     <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
 
@@ -181,6 +182,37 @@ $r = $result->rowCount();
 
 
     <div class="mybackground-img2">
+        <div class="container">
+            <nav>
+
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-local-tab" data-bs-toggle="tab" data-bs-target="#nav-local" type="button" role="tab" aria-selected="true">Local Matches</button>
+
+                    <button class="nav-link" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Public Matches</button>
+
+                </div>
+            </nav>
+
+
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-local" role="tabpanel" aria-labelledby="nav-local-tab">
+
+                    <p>hello</p>
+
+
+
+                </div>
+
+                <div class="tab-pane fade" id="nav-public" role="tabpanel" aria-labelledby="nav-public-tab">
+
+                    <p>hello23223</p>
+
+
+
+                </div>
+            </div>
+
+        </div>
 
     </div>
 
