@@ -110,7 +110,7 @@ session_start();
         <div class="container">
 
             <div class="box-container">
-                <a href="#">
+                <a href="player-games.php">
                     <div class="box games-box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img1">
@@ -119,7 +119,7 @@ session_start();
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="#">
+                <a href="player-academies.php">
                     <div class="box academies-box" id="box2">
                         <div class="img-container">
                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img2">
@@ -135,7 +135,7 @@ session_start();
                      </div>
                      <p>Class</p>
                  </div> -->
-                <a href="#">
+                <a href="player-class.php">
                     <div class="box class-box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
@@ -144,7 +144,7 @@ session_start();
                         <p>Class</p>
                     </div>
                 </a>
-                <a href="#">
+                <a href="player-players.php">
                     <div class="box players-box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
