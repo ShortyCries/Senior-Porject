@@ -108,9 +108,13 @@
 }
 
 
-
+        
 .players-box{
-    margin-left: 235px;
+    margin-left: 150px;
+    width: 400px;
+}
+.coaches-box{
+    margin-left: 200px;
     width: 400px;
 }
 
@@ -122,5 +126,6 @@
  
 
 }
+
 
 

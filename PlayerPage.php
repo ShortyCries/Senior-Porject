@@ -133,7 +133,7 @@ session_start();
                          <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
 
                      </div>
-                     <p>Class</p>
+                     <p></p>
                  </div> -->
                 <a href="player-class.php">
                     <div class="box class-box" id="box3">
@@ -151,6 +151,15 @@ session_start();
 
                         </div>
                         <p>Players</p>
+                    </div>
+                </a>
+                <a href="player-coaches.php">
+                    <div class="box coaches-box" id="box4">
+                        <div class="img">
+                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
+
+                        </div>
+                        <p>Coaches</p>  
                     </div>
                 </a>
             </div>
