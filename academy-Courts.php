@@ -230,7 +230,7 @@ $r = $result->rowCount();
 
                                         <?php
 
-                                        $query3 =  "SELECT id, name, sportname, maxcapacity FROM courts WHERE academyemail = '$academyEmail'";
+                                        $query3 =  "SELECT CRid, name, sportname, maxcapacity FROM courts WHERE academyemail = '$academyEmail'";
                                         $result3 = $pdo->query($query3);
 
                                         $r3 = $result3->rowCount();
