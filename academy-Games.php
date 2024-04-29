@@ -4,11 +4,8 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $academyEmail = $_SESSION['email'];
 
-$query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
 
-$result = $pdo->query($query);
-
-$r = $result->rowCount();
+$query = "";
 
 
 
@@ -237,20 +234,19 @@ $r = $result->rowCount();
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Id</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Coach</th>
-                                                    <th scope="col">Sport</th>
-                                                    <th scope="col">Capacity</th>
+                                                    <th scope="col">Team1</th>
+                                                    <th scope="col">Team2</th>
+                                                    <th scope="col">Court</th>
+                                                    <th scope="col">Date</th>
                                                     <th scope="col">Time</th>
-                                                    <th scope="col">View</th>
-                                                    <th scope="col">Remove</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                                 <?php
 
-                                                $query3 =  "SELECT id, cname, name, sportname, capacity, schedule FROM coach NATURAL JOIN class WHERE email = coachemail AND academyemail = '$academyEmail'";
+                                                $query3 =  "SELECT Mid, team1, team2, courtid, date, time FROM matchs WHERE Mtype = 'local'";
                                                 $result3 = $pdo->query($query3);
 
                                                 $r3 = $result3->rowCount();
@@ -265,10 +261,7 @@ $r = $result->rowCount();
                                                         <td><?php echo  $row3[3] ?></td>
                                                         <td><?php echo $row3[4] ?></td>
                                                         <td><?php echo $row3[5] ?></td>
-                                                        <td> <a href="#" type="button" class="btn btn-primary view_class" data-bs-toggle="modal" data-bs-target="#viewclassmodal">
-                                                                View Class
-                                                            </a> </td>
-                                                        <td> <a href="#" class="btn btn-danger">Remove</a> </td>
+
                                                     </tr>
                                                 <?php
                                                 }
@@ -478,24 +471,24 @@ $r = $result->rowCount();
                 var date = $('#dateSelect').val();
 
                 if (court && date) {
-                $.ajax({
-                    method: "POST",
-                    url: 'fetch4.php',
-                    data: {
-                        'courtId': court,
-                        'dateSelected': date,
-                    },
-                    success: function(response) {
+                    $.ajax({
+                        method: "POST",
+                        url: 'fetch4.php',
+                        data: {
+                            'courtId': court,
+                            'dateSelected': date,
+                        },
+                        success: function(response) {
 
-                        $('#selectedTime').html(response);
+                            $('#selectedTime').html(response);
 
-                    }
+                        }
 
-                });
+                    });
+                }
+
             }
 
-            }
-            
 
             $('#selectedCourt').change(handleAjaxRequest);
 
