@@ -11,21 +11,20 @@ if (isset($_POST['sportID'])) {
 
     $sportid = $_POST['sportID'];
 
-    $query = "SELECT name FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' AND sportname = '$sportid' ";
+    $query = "SELECT id, cname FROM class WHERE academyemail = '$academyEmail' AND sportname = '$sportid' ";
 
     $result = $pdo->query($query);
 
     $r = $result->rowCount();
 
+   echo "<option selected disabled value=\"\">Choose...</option>";
+
     for ($i = 0; $i < $r; $i++) {
         $row = $result->fetch(PDO::FETCH_NUM);
 
-        echo "<option> $row[0] </option>";
+        echo "<option value=\"$row[0]\"> $row[1] </option>";
     }
 }
-
-
-
 
 
 
