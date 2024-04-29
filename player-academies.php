@@ -56,6 +56,7 @@ $r = $result->rowCount();
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="mycss/styles.css">
+    <link rel="stylesheet" href="mycss/Listing.css">
   </head>
 </head>
 

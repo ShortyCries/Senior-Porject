@@ -2,7 +2,7 @@
 session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-$academyEmail = $_SESSION['email'];
+$playerEmail = $_SESSION['email'];
 
 $query = "SELECT name, email, DOB, description FROM player ";
 
@@ -56,6 +56,7 @@ $r = $result->rowCount();
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="mycss/styles.css">
+    <link rel="stylesheet" href="mycss/Listing.css">
   </head>
 </head>
 
@@ -185,7 +186,7 @@ $r = $result->rowCount();
       <h1 class="heading-Listing">Players</h1>
 
       <div class="box-container-Listing">
-        q
+
 
 
 
