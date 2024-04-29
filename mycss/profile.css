@@ -36,7 +36,7 @@ img {
 }
 .container{
   background-color: #11b34c;
-  background-image: url('');  
+  background-image: url('/img/');  
   background-size: cover;
   background-position: center;
 }

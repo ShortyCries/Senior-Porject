@@ -80,7 +80,7 @@ $r = $result->rowCount();
         </div>
         <div class="u-custom-menu u-nav-container">
           <ul class="u-nav u-unstyled u-nav-1">
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Playerpage.php" style="padding: 10px 20px;">Home</a>
             </li>
             <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
             </li>
@@ -88,7 +88,7 @@ $r = $result->rowCount();
             </li>
             <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contact.php" target="_blank" style="padding: 10px 20px;">Contact </a>
             </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-academy.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-player.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
             </li>
           </ul>
         </div>
@@ -157,14 +157,14 @@ $r = $result->rowCount();
           </div>
         </a>
         <a href="player-players.php">
-          <div class="box players-box" id="box4">
+          <div class="box players-box" id="box4" style="background-color: grey;">
             <div class="img">
               <img class="img" src="/img/player-.png" alt="" id="img4">
             </div>
             <p>Players</p>
           </div>
         </a>
-        <a href="player-coaches.php">
+        <a href="player-coaches.php" style="text-decoration: none;">
           <div class="box coaches-box" id="box5">
             <div class="img">
               <img class="img" src="/img/coach-.png" alt="" id="img5">
@@ -185,7 +185,7 @@ $r = $result->rowCount();
       <h1 class="heading-Listing">Players</h1>
 
       <div class="box-container-Listing">
-q
+        q
 
 
 
@@ -266,7 +266,7 @@ q
                     <option selected disabled value="">Choose...</option>
 
                     <?php
-                    $query1 = "SELECT id, cname From class where academyemail = '$academyEmail'";
+                    $query1 = "SELECT id, cname From class where playeremail = '$playerEmail'";
 
                     $result1 = $pdo->query($query1);
 

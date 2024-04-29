@@ -113,7 +113,7 @@ session_start();
                 <a href="player-games.php">
                     <div class="box games-box" id="box1">
                         <div class="img-container">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img1">
+                            <img class="img" src="/img/games-.png" alt="" id="img1">
 
                         </div>
                         <p>Games</p>
@@ -122,23 +122,23 @@ session_start();
                 <a href="player-academies.php">
                     <div class="box academies-box" id="box2">
                         <div class="img-container">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img2">
+                            <img class="img" src="/img//academy-.png" alt="" id="img2">
 
                         </div>
                         <p>Academies</p>
                     </div>
                 </a>
                 <!-- <div class="box" id="box3">
-                     <div class="img">
-                         <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
+               <div class="img">
+                   <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
 
-                     </div>
-                     <p></p>
-                 </div> -->
+               </div>
+               <p></p>
+           </div> -->
                 <a href="player-class.php">
                     <div class="box class-box" id="box3">
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
+                            <img class="img" src="/img/classes-.png" alt="" id="img3">
 
                         </div>
                         <p>Class</p>
@@ -147,18 +147,18 @@ session_start();
                 <a href="player-players.php">
                     <div class="box players-box" id="box4">
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
+                            <img class="img" src="/img/player-.png" alt="" id="img4">
                         </div>
                         <p>Players</p>
                     </div>
                 </a>
                 <a href="player-coaches.php">
-                    <div class="box coaches-box" id="box4">
+                    <div class="box coaches-box" id="box5">
                         <div class="img">
-                            <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
+                            <img class="img" src="/img/coach-.png" alt="" id="img5">
 
                         </div>
-                        <p>Coaches</p>  
+                        <p>Coaches</p>
                     </div>
                 </a>
             </div>
@@ -176,7 +176,7 @@ session_start();
 
 
         var originalsrc = img.src;
-        var newSrc = '/img/gifs/volleyball-.gif';
+        var newSrc = '/img/gifs/games-.gif';
 
 
         box.addEventListener('mouseover', function() {
@@ -196,7 +196,7 @@ session_start();
 
 
         var originalsrc2 = img2.src;
-        var newSrc2 = '/img/gifs/volleyball-.gif';
+        var newSrc2 = '/img/gifs/academy-.gif';
 
 
         box2.addEventListener('mouseover', function() {
@@ -217,7 +217,7 @@ session_start();
 
 
         var originalsrc3 = img3.src;
-        var newSrc3 = '/img/gifs/volleyball-.gif';
+        var newSrc3 = '/img/gifs/classes.gif';
 
 
         box3.addEventListener('mouseover', function() {
@@ -235,7 +235,7 @@ session_start();
 
 
         var originalsrc4 = img4.src;
-        var newSrc4 = '/img/gifs/volleyball-.gif';
+        var newSrc4 = '/img/gifs/player-.gif';
 
 
         box4.addEventListener('mouseover', function() {
@@ -253,7 +253,7 @@ session_start();
 
 
         var originalsrc5 = img5.src;
-        var newSrc5 = '/img/gifs/volleyball-.gif';
+        var newSrc5 = '/img/gifs/coach-.gif';
 
 
         box5.addEventListener('mouseover', function() {
@@ -265,13 +265,13 @@ session_start();
         })
 
 
-        //BOX3
-        var img6 = document.getElementById('img6');
+        //BOX6
+        var img6 = document.getElementById('img5');
         var box6 = document.getElementById('box6');
 
 
         var originalsrc6 = img6.src;
-        var newSrc6 = '/img/gifs/volleyball-.gif';
+        var newSrc6 = '/img/gifs/coaches-.gif';
 
 
         box6.addEventListener('mouseover', function() {

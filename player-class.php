@@ -47,8 +47,15 @@ $r = $result->rowCount();
   <meta property="og:title" content="Page 2">
   <meta property="og:type" content="website">
   <meta data-intl-tel-input-cdn-path="intlTelInput/">
+  <link rel="stylesheet" href="css/linearicons.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="bootstrap5/cssbt5/bootstrap.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/nice-select.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="mycss/styles.css">
 
 
@@ -76,7 +83,7 @@ $r = $result->rowCount();
         </div>
         <div class="u-custom-menu u-nav-container">
           <ul class="u-nav u-unstyled u-nav-1">
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Playerpage.php" style="padding: 10px 20px;">Home</a>
             </li>
             <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
             </li>
@@ -85,7 +92,7 @@ $r = $result->rowCount();
 
             <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contact.php" target="_blank" style="padding: 10px 20px;">Contact</a>
             </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-academy.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-player.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
             </li>
           </ul>
         </div>
@@ -117,62 +124,59 @@ $r = $result->rowCount();
   <div class="mybackground-img">
 
     <div class="container">
+
       <div class="box-container">
-        <a href="academy-Classes.php" style="text-decoration: none;">
-          <div class="box" id="box1" style="background-color: grey;">
+        <a href="player-games.php">
+          <div class="box games-box" id="box1" >
             <div class="img-container">
-              <img class="img" src="/img/classes-.png" alt="" id="img1">
-
-            </div>
-            <p>Classes</p>
-          </div>
-        </a>
-        <a href="academy-Coaches.php" style="text-decoration: none;">
-          <div class="box" id="box2">
-            <div class="img">
-              <img class="img" src="/img/coach-.png" alt="" id="img2">
-
-            </div>
-            <p>Coaches</p>
-          </div>
-        </a>
-        <a href="academy-Games.php" style="text-decoration: none;">
-          <div class="box" id="box3">
-            <div class="img">
-              <img class="img" src="/img/games-.png" alt="" id="img3">
+              <img class="img" src="/img/games-.png" alt="" id="img1">
 
             </div>
             <p>Games</p>
           </div>
         </a>
-        <a href="academy-Courts.php" style="text-decoration: none;">
-          <div class="box" id="box4">
-            <div class="img">
-              <img class="img" src="/img/court.png" alt="" id="img4">
-
-            </div>
-            <p>Courts</p>
-          </div>
-        </a>
-        <a href="academy-Players.php" style="text-decoration: none;">
-          <div class="box" id="box5">
-            <div class="img">
-              <img class="img" src="/img/player-.png" alt="" id="img5">
-
-            </div>
-            <p>Players</p>
-          </div>
-        </a>
-        <a href="academy-Academies.php" style="text-decoration: none;">
-          <div class="box" id="box6">
-            <div class="img">
-              <img class="img" src="/img/academy-.png" alt="" id="img6">
+        <a href="player-academies.php">
+          <div class="box academies-box" id="box2">
+            <div class="img-container">
+              <img class="img" src="/img//academy-.png" alt="" id="img2">
 
             </div>
             <p>Academies</p>
           </div>
         </a>
+        <!-- <div class="box" id="box3">
+               <div class="img">
+                   <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
 
+               </div>
+               <p></p>
+           </div> -->
+        <a href="player-class.php">
+          <div class="box class-box" id="box3" style="background-color: grey;">
+            <div class="img">
+              <img class="img" src="/img/classes-.png" alt="" id="img3">
+
+            </div>
+            <p>Class</p>
+          </div>
+        </a>
+        <a href="player-players.php">
+          <div class="box players-box" id="box4">
+            <div class="img">
+              <img class="img" src="/img/player-.png" alt="" id="img4">
+            </div>
+            <p>Players</p>
+          </div>
+        </a>
+        <a href="player-coaches.php">
+          <div class="box coaches-box" id="box5">
+            <div class="img">
+              <img class="img" src="/img/coach-.png" alt="" id="img5">
+
+            </div>
+            <p>Coaches</p>
+          </div>
+        </a>
       </div>
 
     </div>
@@ -384,37 +388,6 @@ $r = $result->rowCount();
 
 
   <script>
-    $(document).ready(function() {
-      $('#selectSport').change(function() {
-        var sportId = $('#selectSport').val();
-
-        $.ajax({
-          method: "POST",
-          url: 'fetch.php',
-          data: {
-            'sportID': sportId,
-          },
-          success: function(response) {
-
-            $('#showCoaches').html(response);
-
-          }
-
-        });
-      });
-    });
-  </script>
-
-
-
-
-
-
-
-
-
-
-  <script>
     //BOX1
     var img = document.getElementById('img1');
     var box = document.getElementById('box1');
@@ -422,7 +395,7 @@ $r = $result->rowCount();
 
 
     var originalsrc = img.src;
-    var newSrc = '/img/gifs/classes.gif';
+    var newSrc = '/img/gifs/games-.gif';
 
 
     box.addEventListener('mouseover', function() {
@@ -442,7 +415,7 @@ $r = $result->rowCount();
 
 
     var originalsrc2 = img2.src;
-    var newSrc2 = '/img/gifs/coach-.gif';
+    var newSrc2 = '/img/gifs/academy-.gif';
 
 
     box2.addEventListener('mouseover', function() {
@@ -463,7 +436,7 @@ $r = $result->rowCount();
 
 
     var originalsrc3 = img3.src;
-    var newSrc3 = '/img/gifs/games-.gif';
+    var newSrc3 = '/img/gifs/classes.gif';
 
 
     box3.addEventListener('mouseover', function() {
@@ -481,7 +454,7 @@ $r = $result->rowCount();
 
 
     var originalsrc4 = img4.src;
-    var newSrc4 = '/img/gifs/court-.gif';
+    var newSrc4 = '/img/gifs/player-.gif';
 
 
     box4.addEventListener('mouseover', function() {
@@ -499,7 +472,7 @@ $r = $result->rowCount();
 
 
     var originalsrc5 = img5.src;
-    var newSrc5 = '/img/gifs/player-.gif';
+    var newSrc5 = '/img/gifs/coach-.gif';
 
 
     box5.addEventListener('mouseover', function() {
@@ -512,12 +485,12 @@ $r = $result->rowCount();
 
 
     //BOX6
-    var img6 = document.getElementById('img6');
+    var img6 = document.getElementById('img5');
     var box6 = document.getElementById('box6');
 
 
     var originalsrc6 = img6.src;
-    var newSrc6 = '/img/gifs/academy-.gif';
+    var newSrc6 = '/img/gifs/coaches-.gif';
 
 
     box6.addEventListener('mouseover', function() {
