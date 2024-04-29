@@ -200,62 +200,9 @@ $r = $result->rowCount();
 
 
   <div class="mybackground-img2">
-    <h2 style="text-align: center; color: orange;">Add coach</h2>
-
-    <form class="row g-3" style="padding-left: 300px; padding-right: 300px;" action="CoachPDO.php" method="POST">
-
-      <div class="col-md-4">
-        <label for="validationDefault01" class="form-label" style="color: orange;">Name</label>
-        <input name="name" type="text" class="form-control" id="validationDefault01" placeholder="Mark" required>
-      </div>
-      <div class="col-md-4">
-        <label for="validationDefault02" class="form-label" style="color: orange;">Password</label>
-        <input name="password" type="text" class="form-control" id="validationDefault02" placeholder="Password" required>
-      </div>
-      <div class="col-md-4">
-        <label for="validationDefault02" class="form-label" style="color: orange;">Re-password</label>
-        <input type="text" class="form-control" id="validationDefault02" placeholder="Re-password" required>
-      </div>
-
-      <div class="col-md-5">
-        <label for="validationDefaultUsername" class="form-label" style="color: orange;">Email</label>
-        <div class="input-group">
-          <span style="background-color:orange;  border-color: orange;" class="input-group-text" id="inputGroupPrepend2">@</span>
-          <input name="email" type="text" class="form-control" id="validationDefaultUsername" placeholder="example123@hotmail.com" aria-describedby="inputGroupPrepend2" required>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <label for="validationDefault04" class="form-label" style="color: orange;">Sport Speciality</label>
-        <select name="sport" class="form-select" id="validationDefault04" required>
-          <option selected disabled value="">Choose...</option>
-
-          <?php
-          $query1 = "SELECT sname From sport";
-
-          $result1 = $pdo->query($query1);
-
-          $r1 = $result1->rowCount();
-
-          for ($i = 0; $i < $r1; $i++) {
-            $row1 = $result1->fetch(PDO::FETCH_NUM);
-
-            echo "<option> $row1[0] </option>";
-          }
 
 
 
-          ?>
-        </select>
-      </div>
-      <div class="col-md-4">
-        <label for="validationDefault05" class="form-label">Date of Birth</label>
-        <input type="date" class="form-control date-picker" name="Dob" placeholder="Date of birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of birth'">
-      </div>
-
-      <div class="col-12" style="text-align: center; padding-top: 30px; color: yellow;">
-        <button style="background-color: orange; border-color: orange;" class="btn btn-primary" type="submit">Submit form</button>
-      </div>
-    </form>
   </div>
 
   <div class="mybackground-img">
@@ -273,7 +220,7 @@ $r = $result->rowCount();
                   <td>Name</td>
                   <td>Email</td>
                   <td>Date of birth</td>
-                  <td>Remove</td>
+
 
                 </tr>
                 <?php
@@ -284,7 +231,7 @@ $r = $result->rowCount();
                   echo "<td>   $row[1] </td> ";
                   echo "<td>  $row[2] </td> ";
 
-                  echo "<td> <a href='academy-Coaches.php?email={$row[1]}'  class='btn btn-danger'> Remove </a> </td> ";
+
                   echo "</tr>";
                 }
                 ?>
