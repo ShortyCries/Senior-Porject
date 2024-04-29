@@ -148,7 +148,6 @@ session_start();
                     <div class="box players-box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/volleyball-.jpg" alt="" id="img4">
-
                         </div>
                         <p>Players</p>
                     </div>
