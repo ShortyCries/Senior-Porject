@@ -100,7 +100,7 @@ $r = $result->rowCount();
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Logout.html">Logout</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="">Logout</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="More.html">More</a>
                 </li>
