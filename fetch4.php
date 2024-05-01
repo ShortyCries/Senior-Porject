@@ -14,7 +14,24 @@ if (isset($_POST['courtId'], $_POST['dateSelected'])) {
 
     $dateSelected = $_POST['dateSelected'];
 
-    $testarr = array('9:00-10:30', '10:30-12:00', '12:00-13:30', '13:30-15:00', '15:00-16:30', '16:30-18:00', '18:00-19:30', '19:30-21:00', '21:00-22:30');
+
+    $timestamp = strtotime($dateSelected);
+    $dayOfWeek = date("l", $timestamp);
+
+    $query1 = "SELECT timeSlot FROM Schedule WHERE courtid = '$courtId' AND day = '$dayOfWeek' ";
+
+    $result1 = $pdo->query($query1);
+
+    $r1 = $result1->fetch(PDO::FETCH_COLUMN);
+
+    $times = explode(",", $r1);
+
+    $filtered_time_slots = [];
+
+    $current_time = strtotime(date("H:i", strtotime(date("H:i") . " +1 hour")));
+
+    
+
 
     $non_equal_strings = array();
 
@@ -26,18 +43,49 @@ if (isset($_POST['courtId'], $_POST['dateSelected'])) {
     $r = $result->fetchAll(PDO::FETCH_COLUMN);
 
 
-    foreach ($testarr as $time_slot) {
+
+        
+if((strtotime(date("Y-m-d"))) == (strtotime($dateSelected))){
+    foreach ($times as $time_slot1) {
+
+        list($start_time, $end_time) = explode('-', $time_slot1);
+        $start_time = strtotime($start_time);
+        if ($start_time > $current_time) {
+            $filtered_time_slots[] = $time_slot1;
+        }
+    }
+
+
+
+    foreach ($filtered_time_slots as $time_slot) {
         // Check if the time slot exists in the $result_array
         if (!in_array($time_slot, $r)) {
             // If not found, add it to the $non_equal_strings array
             $non_equal_strings[] = $time_slot;
         }
     }
-    
+
     // Print out the non-equal strings
     foreach ($non_equal_strings as $non_equal_string) {
-        echo "<option> $non_equal_string </option>" ;
+        echo "<option> $non_equal_string </option>";
     }
 
+} else {
 
+
+
+    foreach ($times as $time_slot) {
+        // Check if the time slot exists in the $result_array
+        if (!in_array($time_slot, $r)) {
+            // If not found, add it to the $non_equal_strings array
+            $non_equal_strings[] = $time_slot;
+        }
+    }
+
+    // Print out the non-equal strings
+    foreach ($non_equal_strings as $non_equal_string) {
+        echo "<option> $non_equal_string </option>";
+    }
+
+}
 }
