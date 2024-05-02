@@ -1,3 +1,17 @@
+<?php
+session_start();
+require_once("config.php");
+$pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+$academyEmail = $_SESSION['email'];
+
+$query = "SELECT name, email FROM academy ";
+
+$result = $pdo->query($query);
+
+$r = $result->rowCount();
+
+
+?>
 	<!DOCTYPE html>
 	<html lang="zxx" class="no-js">
 
@@ -33,6 +47,7 @@
 	</head>
 
 	<body>
+
 		<header id="header">
 			<div class="header-top">
 				<div class="container">
@@ -51,13 +66,18 @@
 			<div class="container main-menu">
 				<div class="row align-items-center justify-content-between d-flex">
 					<div id="logo">
-						<a href="index.php"><img style="height: 30px; width: 145px;" src="img/logo.png" alt="" title="" /></a>
+						<a href="index.php"><img style="height: 30px; width: 145px;" src="img/2-1.png" alt="" title="" /></a>
+						
 					</div>
+					<p style="border-left: solid; padding-left: 30px;" class="u-align-center u-text u-text-default u-text-1"><?php echo "" . $_SESSION['name'] . "" ?></p>
+					
 					<nav id="nav-menu-container">
 						<ul class="nav-menu">
 							<li><a href="index.php">Home</a></li>
-							<li><a href="about.php">About</a></li>
-							<li class="menu-has-children"><a href="">Blog</a>
+							
+							<li><a href="#" onclick="logoutAlert()">Logout</a></li>
+							<li><a href="about.php">About us</a></li>
+							<li class="menu-has-children"><a href="">Contact</a>
 								<ul>
 									<li><a href="blog-home.php">Blog Home</a></li>
 
@@ -77,6 +97,7 @@
 							<li><a href="contact.php">Contact</a></li>
 						</ul>
 					</nav><!-- #nav-menu-container -->
+
 				</div>
 			</div>
 		</header><!-- #header -->
@@ -250,7 +271,21 @@
 			</div>
 		</section>
 		<!-- End testimonial Area -->
+		<script>
+			function logoutAlert() {
+				// Show the confirmation dialog and store the result
+				var result = window.confirm("Are you sure you want to Logout?");
 
+				// Check if the user clicked "OK" or "Cancel"
+				if (result) {
+					// If the user clicked "OK", redirect to 'index.php'
+					window.location.href = 'logout.php';
+				} else {
+					// If the user clicked "Cancel", do nothing or perform any other action
+					return;
+				}
+			}
+		</script>
 		<!-- start footer Area -->
 		<footer class="footer-area section-gap">
 			<div class="container">
