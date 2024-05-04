@@ -17,7 +17,7 @@
 
 .container-Listing .box-container-Listing{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(275px, 275px));
   gap:20px;
 }
 
@@ -27,6 +27,9 @@
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,.2);
   display: none;
+  max-width: 275px;
+  max-height: 472px;
+
 }
 
 .container-Listing .box-container-Listing .box-Listing:nth-child(1),

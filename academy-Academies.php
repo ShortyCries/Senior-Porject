@@ -4,12 +4,6 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $academyEmail = $_SESSION['email'];
 
-$query = "SELECT name, email FROM academy ";
-
-$result = $pdo->query($query);
-
-$r = $result->rowCount();
-
 
 ?>
 
@@ -183,39 +177,103 @@ $r = $result->rowCount();
 
             <h1 class="heading-Listing">Academies</h1>
 
+            <form action="" method="GET">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" value="<?php if (isset($_GET['search'])) {
+                                                                        echo $_GET['search'];
+                                                                    } ?>" name="search" placeholder="search here...">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+
+
             <div class="box-container-Listing">
 
+                <?php
+
+                if (isset($_GET['search'])) {
 
 
+                    $filterValue = $_GET['search'];
+                    $filterData = "SELECT email, name, foundedIn, description  FROM academy WHERE CONCAT_WS(' ', email, name, foundedIn, description) LIKE '%$filterValue%';";
+                    $result = $pdo->query($filterData);
 
+                    $r = $result->rowCount();
 
-                <?php for ($i = 0; $i < $r; $i++) {
-                    $row = $result->fetch(PDO::FETCH_NUM);
+                    if ($r > 0) {
+
+                        foreach ($result as $row) {
+
                 ?>
 
-                    <div class="box-Listing">
-                        <div class="image-Listing">
-                            <img src="img/profiletest.jpg" alt="">
-                        </div>
-                        <div class="content-Listing">
+                            <div class="box-Listing">
+                                <div class="image-Listing">
+                                    <img src="img/profiletest.jpg" alt="">
+                                </div>
+                                <div class="content-Listing">
 
-                            <h3><?php echo $row[0] ?></h3>
+                                    <h3><?php echo $row[1] ?></h3>
 
 
-                            <p class="user_email"><?php echo $row[1] ?></p>
+                                    <p class="user_email"><?php echo $row[0] ?></p>
 
-                            <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Read More
-                            </a>
+                                    <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Read More
+                                    </a>
 
-                            <div class="icons-Listing">
+                                    <div class="icons-Listing">
 
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+
+
+                        <?php
+                        }
+                    }
+                } else {
+                    $query1 = "SELECT email, name, foundedIn, description  FROM academy";
+                    $result1 = $pdo->query($query1);
+                    $r1 = $result1->rowCount();
+
+
+                    if ($r1 > 0) {
+
+                        foreach ($result1 as $row1) {
+
+                        ?>
+
+
+
+
+                            <div class="box-Listing">
+                                <div class="image-Listing">
+                                    <img src="img/profiletest.jpg" alt="">
+                                </div>
+                                <div class="content-Listing">
+
+                                    <h3><?php echo $row1[1] ?></h3>
+
+
+                                    <p class="user_email"><?php echo $row1[0] ?></p>
+
+                                    <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Read More
+                                    </a>
+
+                                    <div class="icons-Listing">
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
 
 
                 <?php
+                        }
+                    }
                 }
                 ?>
 

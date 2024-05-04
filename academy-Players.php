@@ -4,11 +4,6 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $academyEmail = $_SESSION['email'];
 
-$query = "SELECT name, email, DOB, description FROM player ";
-
-$result = $pdo->query($query);
-
-$r = $result->rowCount();
 
 
 ?>
@@ -183,124 +178,110 @@ $r = $result->rowCount();
 
             <h1 class="heading-Listing">Players</h1>
 
+            <form action="" method="GET">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" value="<?php if (isset($_GET['search'])) {
+                                                                        echo $_GET['search'];
+                                                                    } ?>" name="search" placeholder="search here...">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+
+
+
             <div class="box-container-Listing">
 
 
 
+                <?php
+
+                if (isset($_GET['search'])) {
 
 
-                <?php for ($i = 0; $i < $r; $i++) {
-                    $row = $result->fetch(PDO::FETCH_NUM);
+                    $filterValue = $_GET['search'];
+                    $filterData = "SELECT email, name, DOB, description  FROM player WHERE CONCAT_WS(' ', email, name, DOB, description) LIKE '%$filterValue%';";
+                    $result = $pdo->query($filterData);
+
+                    $r = $result->rowCount();
+
+                    if ($r > 0) {
+
+                        foreach ($result as $row) {
+
                 ?>
 
-                    <div class="box-Listing">
-                        <div class="image-Listing">
-                            <img src="img/profiletest.jpg" alt="">
-                        </div>
-                        <div class="content-Listing">
+                            <div class="box-Listing"> <!-- single row of data -->
+                                <div class="image-Listing">
+                                    <img src="img/profiletest.jpg" alt=""> <!-- img -->
+                                </div>
+                                <div class="content-Listing">
 
-                            <h3><?php echo $row[0] ?></h3>
+                                    <h3><?php echo $row[1]; ?></h3> <!-- name -->
 
 
-                            <p class="user_email"><?php echo $row[1] ?></p>
+                                    <p class="user_email"><?php echo $row[0]; ?></p> <!-- email -->
 
-                            <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Read More
-                            </a>
-                            <a href="#" type="button" onclick="getdata()" class="btn btn-warning Invite_Player" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                Invite
-                            </a>
+                                    <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Read More
+                                    </a>
+                                    <a href="#" type="button" onclick="getdata()" class="btn btn-warning Invite_Player" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                        Invite
+                                    </a>
 
-                            <div class="icons-Listing">
+                                    <div class="icons-Listing">
 
-                            </div>
-                        </div>
-                    </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end of single row of data -->
+
+                        <?php
+                        }
+                    }
+                } else {
+                    $query1 = "SELECT email, name, DOB, description  FROM player";
+                    $result1 = $pdo->query($query1);
+                    $r1 = $result1->rowCount();
+
+
+                    if ($r1 > 0) {
+
+                        foreach ($result1 as $row1) {
+
+                        ?>
+
+                            <div class="box-Listing"> <!-- single row of data -->
+                                <div class="image-Listing">
+                                    <img src="img/profiletest.jpg" alt=""> <!-- img -->
+                                </div>
+                                <div class="content-Listing">
+
+                                    <h3><?php echo $row1[1]; ?></h3> <!-- name -->
+
+
+                                    <p class="user_email"><?php echo $row1[0]; ?></p> <!-- email -->
+
+                                    <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Read More
+                                    </a>
+                                    <a href="#" type="button" onclick="getdata()" class="btn btn-warning Invite_Player" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                        Invite
+                                    </a>
+
+                                    <div class="icons-Listing">
+
+                                    </div>
+                                </div>
+                            </div> <!-- end of single row of data -->
+
+
 
 
                 <?php
+                        }
+                    }
                 }
+
                 ?>
-
-
-
-
-
-                <!-- READ MORE MODEL -->
-                <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Player Info</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <div class="view_user_data">
-
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- READ MORE MODEL -->
-
-
-
-                <div class="modal fade" id="viewinvitemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                           <form action="player-invite.php" method="POST">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="myheader"></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <label>Choose class</label>
-                                <select name="classname" class="form-select" required>
-                                    <option selected disabled value="">Choose...</option>
-
-                                    <?php
-                                    $query1 = "SELECT id, cname From class where academyemail = '$academyEmail'";
-
-                                    $result1 = $pdo->query($query1);
-
-                                    $r1 = $result1->rowCount();
-
-                                    for ($i = 0; $i < $r1; $i++) {
-                                        $row1 = $result1->fetch(PDO::FETCH_NUM);
-
-                                        echo "<option>$row1[0] | $row1[1]</option>";
-                                    }
-
-
-
-                                    ?>
-
-                                </select>
-
-                                <input type="hidden" id="dataInput" name="playeremail" value="">
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Invite</button>
-                            </div>
-
-
-                                </form>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
 
 
 
@@ -308,32 +289,111 @@ $r = $result->rowCount();
 
             </div>
 
-            <div id="load-more"> load more </div>
+            <div id="load-more"> load more
+
+            </div>
 
         </div>
 
-        <script>
-            let loadMoreBtn = document.querySelector('#load-more');
-            let currentItem = 4;
 
-            loadMoreBtn.onclick = () => {
-                let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
-                for (var i = currentItem; i < currentItem + 4; i++) {
-                    boxes[i].style.display = 'inline-block';
-                }
-                currentItem += 4;
+        <!-- READ MORE MODEL -->
+        <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Player Info</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
 
-                if (currentItem >= boxes.length) {
-                    loadMoreBtn.style.display = 'none';
-                }
-            }
-        </script>
+                        <div class="view_user_data">
 
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- READ MORE MODEL -->
+
+
+        <div class="modal fade" id="viewinvitemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="player-invite.php" method="POST">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myheader"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <label>Choose class</label>
+                            <select name="classname" class="form-select" required>
+                                <option selected disabled value="">Choose...</option>
+
+                                <?php
+                                $query1 = "SELECT id, cname From class where academyemail = '$academyEmail'";
+
+                                $result1 = $pdo->query($query1);
+
+                                $r1 = $result1->rowCount();
+
+                                for ($i = 0; $i < $r1; $i++) {
+                                    $row1 = $result1->fetch(PDO::FETCH_NUM);
+
+                                    echo "<option>$row1[0] | $row1[1]</option>";
+                                }
+
+
+
+                                ?>
+
+                            </select>
+
+                            <input type="hidden" id="dataInput" name="playeremail" value="">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Invite</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </div>
 
 
 
+
+
+    <script>
+        let loadMoreBtn = document.querySelector('#load-more');
+        let currentItem = 4;
+
+        loadMoreBtn.onclick = () => {
+            let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+            for (var i = currentItem; i < currentItem + 4; i++) {
+                boxes[i].style.display = 'inline-block';
+            }
+            currentItem += 4;
+
+            if (currentItem >= boxes.length) {
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+    </script>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
 
@@ -459,7 +519,6 @@ $r = $result->rowCount();
         })
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
     <script>
@@ -532,16 +591,16 @@ $r = $result->rowCount();
             // Get the element by ID
 
             setTimeout(function() {
-                
+
                 var element = document.getElementById('myheader');
 
-                
+
                 var innerHTMLContent = element.innerHTML;
                 console.log("Inner HTML Content:", innerHTMLContent);
 
 
                 document.getElementById('dataInput').value = innerHTMLContent;
-            }, 100); 
+            }, 100);
 
         }
     </script>
