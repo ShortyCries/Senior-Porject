@@ -71,9 +71,11 @@ session_start();
                     <ul class="u-nav u-unstyled u-nav-1">
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
                         </li>
-                        <li class="u-nav-item"><a onclick="bootstrapAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
+                        <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
                         </li>
-                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="More.php" style="padding: 10px 20px;">More</a>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" style="padding: 10px 20px;">About us</a>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contact.php" target="_blank" style="padding: 10px 20px;">Contacts</a>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-coach.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
                         </li>
                     </ul>
                 </div>
@@ -155,7 +157,21 @@ session_start();
         </div>
     </div>
 
+    <script>
+        function logoutAlert() {
+            // Show the confirmation dialog and store the result
+            var result = window.confirm("Are you sure you want to Logout?");
 
+            // Check if the user clicked "OK" or "Cancel"
+            if (result) {
+                // If the user clicked "OK", redirect to 'index.php'
+                window.location.href = 'logout.php';
+            } else {
+                // If the user clicked "Cancel", do nothing or perform any other action
+                return;
+            }
+        }
+    </script>
 
     <script>
         //BOX1
@@ -272,21 +288,7 @@ session_start();
         })
     </script>
 
-    <script>
-        function logoutAlert() {
-            // Show the confirmation dialog and store the result
-            var result = window.confirm("Are you sure you want to Logout?");
 
-            // Check if the user clicked "OK" or "Cancel"
-            if (result) {
-                // If the user clicked "OK", redirect to 'index.php'
-                window.location.href = 'logout.php';
-            } else {
-                // If the user clicked "Cancel", do nothing or perform any other action
-                return;
-            }
-        }
-    </script>
 
 </body>
 

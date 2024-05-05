@@ -81,7 +81,7 @@ $city = $r[3];
             </li>
             <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" style="padding: 10px 20px;">About us</a>
             </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-player.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
           </ul>
         </div>
         <div class="u-custom-menu u-nav-container-collapse">
@@ -227,10 +227,10 @@ $city = $r[3];
       var city = document.getElementById("realcity");
       var locDescription = document.getElementById("reallocdescription");
       if (city.value === "") {
-          locDescription.disabled = true; // Enable textarea
-        } else {
-          locDescription.disabled = false; // Disable textarea
-        }
+        locDescription.disabled = true; // Enable textarea
+      } else {
+        locDescription.disabled = false; // Disable textarea
+      }
 
       city.addEventListener("change", function() {
         if (city.value === "") {
@@ -281,7 +281,21 @@ $city = $r[3];
     });
   </script>
 
+  <script>
+    function logoutAlert() {
+      // Show the confirmation dialog and store the result
+      var result = window.confirm("Are you sure you want to Logout?");
 
+      // Check if the user clicked "OK" or "Cancel"
+      if (result) {
+        // If the user clicked "OK", redirect to 'index.php'
+        window.location.href = 'logout.php';
+      } else {
+        // If the user clicked "Cancel", do nothing or perform any other action
+        return;
+      }
+    }
+  </script>
 </body>
 
 </html>
