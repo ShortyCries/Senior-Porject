@@ -23,7 +23,6 @@ try {
         }
 
 
-        $location = $city . " | " . $description;
 
 
         $query4 = "SELECT CRid FROM courts ORDER BY CRid DESC LIMIT 1";
@@ -35,7 +34,7 @@ try {
 
         $r4++;
 
-        $query = "INSERT INTO courts VALUES('$r4', '$location' , '$courtname', '$size', '$academyEmail', '$sport', '$maxcapacity', '$price')";
+        $query = "INSERT INTO courts VALUES('$r4', '$city' , '$description', '$courtname', '$size', '$academyEmail', '$sport', '$maxcapacity', '$price')";
 
         $result = $pdo->exec($query);
 
