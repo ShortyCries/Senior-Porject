@@ -2,13 +2,13 @@
 session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-$academyEmail = $_SESSION['email'];
+$playerEmail = $_SESSION['email'];
 
-$query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
+// $query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND playeremail = '$playerEmail' ";
 
-$result = $pdo->query($query);
+// $result = $pdo->query($query);
 
-$r = $result->rowCount();
+// $r = $result->rowCount();
 
 
 
@@ -114,7 +114,7 @@ $r = $result->rowCount();
         </div>
       </nav>
       <p style="border-left: solid; padding-left: 30px;" class="u-align-center u-text u-text-default u-text-1"><?php echo "" . $_SESSION['name'] . "" ?></p>
-      <a href="Academypage.php" class="u-image u-logo u-image-1" data-image-width="498" data-image-height="102">
+      <a href="Playerpage.php" class="u-image u-logo u-image-1" data-image-width="498" data-image-height="102">
         <img src="img/2-1.png" class="u-logo-image u-logo-image-1">
       </a>
     </div>
@@ -169,7 +169,7 @@ $r = $result->rowCount();
           </div>
         </a>
         <a href="player-coaches.php">
-          <div class="box coaches-box" id="box5" >
+          <div class="box coaches-box" id="box5">
             <div class="img">
               <img class="img" src="/img/coach-.png" alt="" id="img5">
 
@@ -187,11 +187,10 @@ $r = $result->rowCount();
   <div class="mybackground-img2">
     <div class="container">
       <nav>
+        <div class="nav nav-tabs justify-content-center mb-5" id="nav-tab" role="tablist">
+          <button class="nav-link active text-dark" id="nav-local-tab" data-bs-toggle="tab" data-bs-target="#nav-local" type="button" role="tab" aria-selected="true">Local Matches</button>
 
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <button class="nav-link active" id="nav-local-tab" data-bs-toggle="tab" data-bs-target="#nav-local" type="button" role="tab" aria-selected="true">Local Matches</button>
-
-          <button class="nav-link" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Public Matches</button>
+          <button class="nav-link text-dark" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Public Matches</button>
 
         </div>
       </nav>
@@ -200,16 +199,89 @@ $r = $result->rowCount();
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-local" role="tabpanel" aria-labelledby="nav-local-tab">
 
-          <p>hello</p>
+
+
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <?php
+
+              if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+
+
+              ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+              <?php
+                unset($_SESSION['status']);
+              }
+
+
+
+
+              ?>
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="text-center">Events</h4>
+                  <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
+                    New Event
+                  </button>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+
+                    <table class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">Id</th>
+                          <th scope="col">court</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Time</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <?php
+
+                        $query3 =  "SELECT Eid, Evcourtid, Evdate, Evtime FROM events";
+                        $result3 = $pdo->query($query3);
+
+                        $r3 = $result3->rowCount();
+
+                        for ($i = 0; $i < $r3; $i++) {
+                          $row3 = $result3->fetch(PDO::FETCH_NUM);
+                        ?>
+                          <tr>
+                            <td id="myclassid"><?php echo  $row3[0] ?></td>
+                            <td><?php echo  $row3[1] ?></td>
+                            <td><?php echo  $row3[2] ?></td>
+                            <td><?php echo  $row3[3] ?></td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
+
+
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 
         </div>
 
+
         <div class="tab-pane fade" id="nav-public" role="tabpanel" aria-labelledby="nav-public-tab">
 
-          <p>hello23223</p>
-
+          <!--contect for other tab here...-->
 
 
         </div>
@@ -218,6 +290,224 @@ $r = $result->rowCount();
     </div>
 
   </div>
+
+
+
+  <div class="modal fade" id="insertdata" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="insertdataLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="insertdataLabel">Create New Event</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="EventPDO.php" method="POST">
+          <div class="modal-body">
+
+            <div class="form-group mb-3">
+              <label>Sport</label>
+              <select id="selectedSport" name="sport" class="form-select" required>
+
+                <?php
+                $query1 = "SELECT sname From sport";
+
+                $result1 = $pdo->query($query1);
+
+                $r1 = $result1->rowCount();
+
+                for ($i = 0; $i < $r1; $i++) {
+                  $row1 = $result1->fetch(PDO::FETCH_NUM);
+
+                  echo "<option> $row1[0] </option>";
+                }
+
+
+
+                ?>
+              </select>
+            </div>
+
+
+            <div class="form-group mb-3">
+              <label>City</label>
+              <select id="selectedCity" name="city" class="form-select" required>
+                <option selected disabled value="">Choose...</option>
+                <option> Beirut </option>
+                <option> Sidon </option>
+                <option> Tripoli </option>
+                <option> Barr Elias </option>
+                <option> Nabatiye </option>
+                <option> Baalbak </option>
+
+
+              </select>
+            </div>
+
+
+
+
+
+            <div class="form-group mb-3">
+              <label>Court</label>
+              <select id="selectedCourt" name="court" class="form-select">
+                <option selected disabled value="">Choose...</option>
+              </select>
+            </div>
+
+
+            <div class="form-group mb-3">
+              <label>Date</label>
+              <select id="dateSelect" name="date" class="form-select" required>
+                <option selected disabled value="">Choose...</option>
+
+
+              </select>
+            </div>
+
+
+            <div class="form-group mb-3">
+              <label>Available timings</label>
+              <select id="selectedTime" name="time" class="form-select">
+                <option selected disabled value="">Choose...</option>
+              </select>
+            </div>
+
+
+
+
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+
+  <script>
+    $(document).ready(function() {
+      function handleAjaxRequest() {
+        var city = $('#selectedCity').val();
+        var sport = $('#selectedSport').val();
+
+        if (city && sport) {
+          $.ajax({
+            method: "POST",
+            url: 'event-Fetch.php',
+            data: {
+              'city': city,
+              'sport': sport,
+            },
+            success: function(response) {
+
+              $('#selectedCourt').html(response);
+
+            }
+
+          });
+        }
+
+      }
+
+
+      $('#selectedCity').change(handleAjaxRequest);
+
+      $('#selectedSport').change(handleAjaxRequest);
+    });
+  </script>
+
+
+  <script>
+    $(document).ready(function() {
+      function handleAjaxRequest() {
+        var court = $('#selectedCourt').val();
+        var date = $('#dateSelect').val();
+
+        if (court && date) {
+          $.ajax({
+            method: "POST",
+            url: 'fetch4.php',
+            data: {
+              'courtId': court,
+              'dateSelected': date,
+            },
+            success: function(response) {
+
+              $('#selectedTime').html(response);
+
+            }
+
+          });
+        }
+
+      }
+
+
+      $('#selectedCourt').change(handleAjaxRequest);
+
+      $('#dateSelect').change(handleAjaxRequest);
+    });
+  </script>
+
+
+
+
+
+  <script>
+    // Function to populate select tag with dates within 1 week range
+    function populateDates() {
+      var select = document.getElementById("dateSelect");
+      var today = new Date();
+
+      // Add current date
+      var currentDateOption = document.createElement("option");
+      currentDateOption.text = formatDate(today);
+      currentDateOption.value = formatDate(today);
+      select.appendChild(currentDateOption);
+
+      // Add dates within 1 week range
+      for (var i = 1; i <= 6; i++) {
+        var nextDate = new Date();
+        nextDate.setDate(today.getDate() + i);
+        var option = document.createElement("option");
+        option.text = formatDate(nextDate);
+        option.value = formatDate(nextDate);
+        select.appendChild(option);
+      }
+    }
+
+    // Function to format date as YYYY-MM-DD
+    function formatDate(date) {
+      var month = String(date.getMonth() + 1).padStart(2, '0');
+      var day = String(date.getDate()).padStart(2, '0');
+      var year = date.getFullYear();
+      return year + '-' + month + '-' + day;
+    }
+
+    // Call function to populate select tag with dates
+    populateDates();
+  </script>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -355,6 +645,18 @@ $r = $result->rowCount();
       }
     }
   </script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>

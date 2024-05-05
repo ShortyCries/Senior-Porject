@@ -5,7 +5,7 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $academyEmail = $_SESSION['email'];
 
 
-$query = "";
+
 
 
 
@@ -246,7 +246,7 @@ $query = "";
 
                                                 <?php
 
-                                                $query3 =  "SELECT Mid, team1, team2, courtid, date, time FROM matchs WHERE Mtype = 'local'";
+                                                $query3 =  "SELECT Mid, team1, team2, Mcourtid, Mdate, Mtime FROM matchs WHERE Mtype = 'local'";
                                                 $result3 = $pdo->query($query3);
 
                                                 $r3 = $result3->rowCount();
