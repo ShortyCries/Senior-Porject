@@ -188,9 +188,9 @@ $playerEmail = $_SESSION['email'];
     <div class="container">
       <nav>
         <div class="nav nav-tabs justify-content-center mb-5" id="nav-tab" role="tablist">
-          <button class="nav-link active text-dark" id="nav-local-tab" data-bs-toggle="tab" data-bs-target="#nav-local" type="button" role="tab" aria-selected="true">Local Matches</button>
+          <button class="nav-link active text-dark" id="nav-local-tab" data-bs-toggle="tab" data-bs-target="#nav-local" type="button" role="tab" aria-selected="true">Your Events</button>
 
-          <button class="nav-link text-dark" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Public Matches</button>
+          <button class="nav-link text-dark" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Public Events</button>
 
         </div>
       </nav>
@@ -224,7 +224,7 @@ $playerEmail = $_SESSION['email'];
               ?>
               <div class="card">
                 <div class="card-header">
-                  <h4 class="text-center">Events</h4>
+                  <h4 class="text-center">Your Events</h4>
                   <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
                     New Event
                   </button>
@@ -236,7 +236,7 @@ $playerEmail = $_SESSION['email'];
                       <thead>
                         <tr>
                           <th scope="col">Id</th>
-                          <th scope="col">court</th>
+                          <th scope="col">Court Name</th>
                           <th scope="col">Date</th>
                           <th scope="col">Time</th>
                         </tr>
@@ -245,7 +245,7 @@ $playerEmail = $_SESSION['email'];
 
                         <?php
 
-                        $query3 =  "SELECT Eid, Evcourtid, Evdate, Evtime FROM events";
+                        $query3 =  "SELECT Eid, Evcourtid, Evdate, Evtime FROM events WHERE playerEmail = '$playerEmail'";
                         $result3 = $pdo->query($query3);
 
                         $r3 = $result3->rowCount();
