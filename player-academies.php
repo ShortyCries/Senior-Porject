@@ -2,7 +2,7 @@
 session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-$academyEmail = $_SESSION['email'];
+
 
 $query = "SELECT name, email FROM academy ";
 

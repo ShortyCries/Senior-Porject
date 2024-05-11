@@ -4,11 +4,11 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $playerEmail = $_SESSION['email'];
 
-// $query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND playeremail = '$playerEmail' ";
+$query = "SELECT Eid, Evcourtid, playeremail, Evdate, Evtime, Evstatus FROM events Where playeremail <> '$playerEmail' ";
 
-// $result = $pdo->query($query);
+$result = $pdo->query($query);
 
-// $r = $result->rowCount();
+$r = $result->rowCount();
 
 
 
@@ -58,6 +58,8 @@ $playerEmail = $_SESSION['email'];
   <link rel="stylesheet" href="css/owl.carousel.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="mycss/styles.css">
+  <link rel="stylesheet" href="mycss/Listing-Player.css">
+
 
 
 
@@ -190,7 +192,7 @@ $playerEmail = $_SESSION['email'];
         <div class="nav nav-tabs justify-content-center mb-5" id="nav-tab" role="tablist">
           <button class="nav-link active text-dark" id="nav-local-tab" data-bs-toggle="tab" data-bs-target="#nav-local" type="button" role="tab" aria-selected="true">Your Events</button>
 
-          <button class="nav-link text-dark" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Public Events</button>
+          <button class="nav-link text-dark" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Events</button>
 
         </div>
       </nav>
@@ -239,13 +241,19 @@ $playerEmail = $_SESSION['email'];
                           <th scope="col">Court Name</th>
                           <th scope="col">Date</th>
                           <th scope="col">Time</th>
+                          <th scope="col">Status</th>
                         </tr>
                       </thead>
                       <tbody>
 
                         <?php
 
-                        $query3 =  "SELECT Eid, Evcourtid, Evdate, Evtime FROM events WHERE playerEmail = '$playerEmail'";
+                        $query3 = "SELECT Eid, Evcourtid, Evdate, Evtime, Evstatus FROM events WHERE playerEmail = '$playerEmail' ORDER BY CASE 
+                                        WHEN Evstatus = 'ongoing' THEN 1
+                                        WHEN Evstatus = 'booked' THEN 2 
+                                        WHEN Evstatus = 'finished' THEN 3
+                                        ELSE 4
+                                          END";
                         $result3 = $pdo->query($query3);
 
                         $r3 = $result3->rowCount();
@@ -258,6 +266,16 @@ $playerEmail = $_SESSION['email'];
                             <td><?php echo  $row3[1] ?></td>
                             <td><?php echo  $row3[2] ?></td>
                             <td><?php echo  $row3[3] ?></td>
+                            <td> <?php if ($row3[4] === "booked") : ?>
+                                <span style="background-color: orange; padding: 2px;"><?php echo $row3[4] ?></span>
+                              <?php elseif ($row3[4] === "ongoing") : ?>
+                                <span style="background-color: #6eb5ff; padding: 2px;"><?php echo $row3[4] ?></span>
+                              <?php elseif ($row3[4] === "finished") : ?>
+                                <span style="background-color: red; padding: 2px;"><?php echo $row3[4] ?></span>
+                              <?php else : ?>
+                                <?php echo $row3[4] ?>
+                              <?php endif; ?>
+                            </td>
                           </tr>
                         <?php
                         }
@@ -283,368 +301,592 @@ $playerEmail = $_SESSION['email'];
 
           <!--contect for other tab here...-->
 
+          <div class="container-Listing">
 
+
+
+            <div class="box-container-Listing">
+
+
+
+
+
+              <?php for ($i = 0; $i < $r; $i++) {
+                $row = $result->fetch(PDO::FETCH_NUM);
+              ?>
+
+                <div class="box-Listing">
+                  <div class="image-Listing">
+                    <img src="img/profiletest.jpg" alt="">
+                  </div>
+                  <div class="content-Listing">
+
+                    <h3 class="court_id" style="display: none;"><?php echo $row[1] ?></h3>
+
+
+                    <p class="event_id"><?php echo $row[0] ?></p>
+
+                    <a href="#" type="button" class="btn btn-success view_data">
+                      Read More
+                    </a>
+
+                    <a href="#" type="button" class="btn btn-success join_btn">
+                      Request Join
+                    </a>
+
+                    <div class="icons-Listing">
+
+                    </div>
+                  </div>
+                </div>
+
+
+              <?php
+              }
+              ?>
+
+
+
+
+
+            </div>
+
+            <div id="load-more"> load more </div>
+          </div>
+
+
+
+        </div>
+
+      </div>
+
+
+
+      <div class="modal fade" id="insertdata" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="insertdataLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="insertdataLabel">Create New Event</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="EventPDO.php" method="POST">
+              <div class="modal-body">
+
+                <div class="form-group mb-3">
+                  <label>Sport</label>
+                  <select id="selectedSport" name="sport" class="form-select" required>
+
+                    <?php
+                    $query1 = "SELECT sname From sport";
+
+                    $result1 = $pdo->query($query1);
+
+                    $r1 = $result1->rowCount();
+
+                    for ($i = 0; $i < $r1; $i++) {
+                      $row1 = $result1->fetch(PDO::FETCH_NUM);
+
+                      echo "<option> $row1[0] </option>";
+                    }
+
+
+
+                    ?>
+                  </select>
+                </div>
+
+
+                <div class="form-group mb-3">
+                  <label>City</label>
+                  <select id="selectedCity" name="city" class="form-select" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option> Beirut </option>
+                    <option> Sidon </option>
+                    <option> Tripoli </option>
+                    <option> Barr Elias </option>
+                    <option> Nabatiye </option>
+                    <option> Baalbak </option>
+
+
+                  </select>
+                </div>
+
+
+
+
+
+                <div class="form-group mb-3">
+                  <label>Court</label>
+                  <select id="selectedCourt" name="court" class="form-select">
+                    <option selected disabled value="">Choose...</option>
+                  </select>
+                </div>
+
+
+                <div class="form-group mb-3">
+                  <label>Date</label>
+                  <select id="dateSelect" name="date" class="form-select" required>
+                    <option selected disabled value="">Choose...</option>
+
+
+                  </select>
+                </div>
+
+
+                <div class="form-group mb-3">
+                  <label>Available timings</label>
+                  <select id="selectedTime" name="time" class="form-select">
+                    <option selected disabled value="">Choose...</option>
+                  </select>
+                </div>
+
+
+
+
+
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <!-- READ MORE MODEL -->
+      <div class="modal fade" id="viewusermodal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Event Info</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <div class="view_user_data">
+
+              </div>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
         </div>
       </div>
 
-    </div>
+      <!-- READ MORE MODEL -->
 
-  </div>
+      <div class="modal fade" id="viewinvitemodal" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form action="player-participate.php" method="POST">
+              <div class="modal-header">
+                <h5 class="modal-title" id="myheader"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <label>Choose your role</label>
+                <select id="roleSelect" name="rolename" class="form-select" required>
+                  <option selected disabled value="">Choose...</option>
+
+                </select>
+
+                <input type="hidden" id="dataInput" name="eventID" value="">
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Request to join</button>
+              </div>
 
 
-
-  <div class="modal fade" id="insertdata" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="insertdataLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="insertdataLabel">Create New Event</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </form>
+          </div>
         </div>
-        <form action="EventPDO.php" method="POST">
-          <div class="modal-body">
+      </div>
 
-            <div class="form-group mb-3">
-              <label>Sport</label>
-              <select id="selectedSport" name="sport" class="form-select" required>
 
-                <?php
-                $query1 = "SELECT sname From sport";
 
-                $result1 = $pdo->query($query1);
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-                $r1 = $result1->rowCount();
 
-                for ($i = 0; $i < $r1; $i++) {
-                  $row1 = $result1->fetch(PDO::FETCH_NUM);
 
-                  echo "<option> $row1[0] </option>";
+
+      <script>
+        $(document).ready(function() {
+
+          $('.view_data').click(function(e) {
+            e.preventDefault();
+
+            var courtID = $(this).closest('div').find('.court_id').text();
+            var eventID = $(this).closest('div').find('.event_id').text();
+
+            console.log(courtID);
+            console.log(eventID);
+
+
+
+            $.ajax({
+              method: "POST",
+              url: "event-info.php",
+              data: {
+                'courtID': courtID,
+                'eventID': eventID,
+              },
+              success: function(response) {
+
+                $('.view_user_data').html(response);
+                $('#viewusermodal').modal('show');
+
+              }
+            });
+
+          });
+
+        });
+      </script>
+
+      <script>
+        $(document).ready(function() {
+
+          $('.join_btn').click(function(e) {
+            e.preventDefault();
+
+            var courtID = $(this).closest('div').find('.court_id').text();
+            var eventID = $(this).closest('div').find('.event_id').text();
+
+
+            $('#dataInput').val(eventID);
+
+
+
+            $.ajax({
+              method: "POST",
+              url: "joinng-prompt.php",
+              data: {
+                'courtID': courtID,
+                'eventID': eventID,
+              },
+              success: function(response) {
+
+                $('#roleSelect').html(response);
+                $('#viewinvitemodal').modal('show');
+
+
+
+              }
+
+            });
+
+          });
+
+
+        });
+      </script>
+
+<!-- 
+      <script>
+        function getdata() {
+          // Get the element by ID
+
+          setTimeout(function() {
+
+            var element = document.getElementById('myheader');
+
+
+            var innerHTMLContent = element.innerHTML;
+            console.log("Inner HTML Content:", innerHTMLContent);
+
+
+            document.getElementById('dataInput').value = innerHTMLContent;
+          }, 100);
+
+        }
+      </script>  -->
+
+      <script>
+        let loadMoreBtn = document.querySelector('#load-more');
+        let currentItem = 3;
+
+        loadMoreBtn.onclick = () => {
+          let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+          for (var i = currentItem; i < currentItem + 3; i++) {
+            boxes[i].style.display = 'inline-block';
+          }
+          currentItem += 3;
+
+          if (currentItem >= boxes.length) {
+            loadMoreBtn.style.display = 'none';
+          }
+        }
+      </script>
+
+
+
+
+
+
+
+
+
+
+      <script>
+        $(document).ready(function() {
+          function handleAjaxRequest() {
+            var city = $('#selectedCity').val();
+            var sport = $('#selectedSport').val();
+
+            if (city && sport) {
+              $.ajax({
+                method: "POST",
+                url: 'event-Fetch.php',
+                data: {
+                  'city': city,
+                  'sport': sport,
+                },
+                success: function(response) {
+
+                  $('#selectedCourt').html(response);
+
                 }
 
-
-
-                ?>
-              </select>
-            </div>
-
-
-            <div class="form-group mb-3">
-              <label>City</label>
-              <select id="selectedCity" name="city" class="form-select" required>
-                <option selected disabled value="">Choose...</option>
-                <option> Beirut </option>
-                <option> Sidon </option>
-                <option> Tripoli </option>
-                <option> Barr Elias </option>
-                <option> Nabatiye </option>
-                <option> Baalbak </option>
-
-
-              </select>
-            </div>
-
-
-
-
-
-            <div class="form-group mb-3">
-              <label>Court</label>
-              <select id="selectedCourt" name="court" class="form-select">
-                <option selected disabled value="">Choose...</option>
-              </select>
-            </div>
-
-
-            <div class="form-group mb-3">
-              <label>Date</label>
-              <select id="dateSelect" name="date" class="form-select" required>
-                <option selected disabled value="">Choose...</option>
-
-
-              </select>
-            </div>
-
-
-            <div class="form-group mb-3">
-              <label>Available timings</label>
-              <select id="selectedTime" name="time" class="form-select">
-                <option selected disabled value="">Choose...</option>
-              </select>
-            </div>
-
-
-
-
-
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-
-        </form>
-
-      </div>
-    </div>
-
-  </div>
-
-
-
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-
-
-  <script>
-    $(document).ready(function() {
-      function handleAjaxRequest() {
-        var city = $('#selectedCity').val();
-        var sport = $('#selectedSport').val();
-
-        if (city && sport) {
-          $.ajax({
-            method: "POST",
-            url: 'event-Fetch.php',
-            data: {
-              'city': city,
-              'sport': sport,
-            },
-            success: function(response) {
-
-              $('#selectedCourt').html(response);
-
+              });
             }
 
-          });
-        }
-
-      }
+          }
 
 
-      $('#selectedCity').change(handleAjaxRequest);
+          $('#selectedCity').change(handleAjaxRequest);
 
-      $('#selectedSport').change(handleAjaxRequest);
-    });
-  </script>
+          $('#selectedSport').change(handleAjaxRequest);
+        });
+      </script>
 
 
-  <script>
-    $(document).ready(function() {
-      function handleAjaxRequest() {
-        var court = $('#selectedCourt').val();
-        var date = $('#dateSelect').val();
+      <script>
+        $(document).ready(function() {
+          function handleAjaxRequest() {
+            var court = $('#selectedCourt').val();
+            var date = $('#dateSelect').val();
 
-        if (court && date) {
-          $.ajax({
-            method: "POST",
-            url: 'fetch4.php',
-            data: {
-              'courtId': court,
-              'dateSelected': date,
-            },
-            success: function(response) {
+            if (court && date) {
+              $.ajax({
+                method: "POST",
+                url: 'fetch4.php',
+                data: {
+                  'courtId': court,
+                  'dateSelected': date,
+                },
+                success: function(response) {
 
-              $('#selectedTime').html(response);
+                  $('#selectedTime').html(response);
 
+                }
+
+              });
             }
 
-          });
+          }
+
+
+          $('#selectedCourt').change(handleAjaxRequest);
+
+          $('#dateSelect').change(handleAjaxRequest);
+        });
+      </script>
+
+
+
+
+
+      <script>
+        // Function to populate select tag with dates within 1 week range
+        function populateDates() {
+          var select = document.getElementById("dateSelect");
+          var today = new Date();
+
+          // Add current date
+          var currentDateOption = document.createElement("option");
+          currentDateOption.text = formatDate(today);
+          currentDateOption.value = formatDate(today);
+          select.appendChild(currentDateOption);
+
+          // Add dates within 1 week range
+          for (var i = 1; i <= 6; i++) {
+            var nextDate = new Date();
+            nextDate.setDate(today.getDate() + i);
+            var option = document.createElement("option");
+            option.text = formatDate(nextDate);
+            option.value = formatDate(nextDate);
+            select.appendChild(option);
+          }
         }
 
-      }
+        // Function to format date as YYYY-MM-DD
+        function formatDate(date) {
+          var month = String(date.getMonth() + 1).padStart(2, '0');
+          var day = String(date.getDate()).padStart(2, '0');
+          var year = date.getFullYear();
+          return year + '-' + month + '-' + day;
+        }
 
+        // Call function to populate select tag with dates
+        populateDates();
+      </script>
 
-      $('#selectedCourt').change(handleAjaxRequest);
 
-      $('#dateSelect').change(handleAjaxRequest);
-    });
-  </script>
 
 
 
 
 
-  <script>
-    // Function to populate select tag with dates within 1 week range
-    function populateDates() {
-      var select = document.getElementById("dateSelect");
-      var today = new Date();
 
-      // Add current date
-      var currentDateOption = document.createElement("option");
-      currentDateOption.text = formatDate(today);
-      currentDateOption.value = formatDate(today);
-      select.appendChild(currentDateOption);
 
-      // Add dates within 1 week range
-      for (var i = 1; i <= 6; i++) {
-        var nextDate = new Date();
-        nextDate.setDate(today.getDate() + i);
-        var option = document.createElement("option");
-        option.text = formatDate(nextDate);
-        option.value = formatDate(nextDate);
-        select.appendChild(option);
-      }
-    }
 
-    // Function to format date as YYYY-MM-DD
-    function formatDate(date) {
-      var month = String(date.getMonth() + 1).padStart(2, '0');
-      var day = String(date.getDate()).padStart(2, '0');
-      var year = date.getFullYear();
-      return year + '-' + month + '-' + day;
-    }
 
-    // Call function to populate select tag with dates
-    populateDates();
-  </script>
 
 
+      <script>
+        //BOX1
+        var img = document.getElementById('img1');
+        var box = document.getElementById('box1');
 
 
 
+        var originalsrc = img.src;
+        var newSrc = '/img/gifs/games-.gif';
 
 
+        box.addEventListener('mouseover', function() {
+          img.src = newSrc;
+        })
 
+        box.addEventListener('mouseout', function() {
+          img.src = originalsrc;
+        })
 
 
 
 
+        //BOX2
+        var img2 = document.getElementById('img2');
+        var box2 = document.getElementById('box2');
 
-  <script>
-    //BOX1
-    var img = document.getElementById('img1');
-    var box = document.getElementById('box1');
 
+        var originalsrc2 = img2.src;
+        var newSrc2 = '/img/gifs/academy-.gif';
 
 
-    var originalsrc = img.src;
-    var newSrc = '/img/gifs/games-.gif';
+        box2.addEventListener('mouseover', function() {
+          img2.src = newSrc2;
+        })
 
+        box2.addEventListener('mouseout', function() {
+          img2.src = originalsrc2;
+        })
 
-    box.addEventListener('mouseover', function() {
-      img.src = newSrc;
-    })
 
-    box.addEventListener('mouseout', function() {
-      img.src = originalsrc;
-    })
 
 
 
+        //BOX3
+        var img3 = document.getElementById('img3');
+        var box3 = document.getElementById('box3');
 
-    //BOX2
-    var img2 = document.getElementById('img2');
-    var box2 = document.getElementById('box2');
 
+        var originalsrc3 = img3.src;
+        var newSrc3 = '/img/gifs/classes.gif';
 
-    var originalsrc2 = img2.src;
-    var newSrc2 = '/img/gifs/academy-.gif';
 
+        box3.addEventListener('mouseover', function() {
+          img3.src = newSrc3;
+        })
 
-    box2.addEventListener('mouseover', function() {
-      img2.src = newSrc2;
-    })
+        box3.addEventListener('mouseout', function() {
+          img3.src = originalsrc3;
+        })
 
-    box2.addEventListener('mouseout', function() {
-      img2.src = originalsrc2;
-    })
 
+        //BOX4
+        var img4 = document.getElementById('img4');
+        var box4 = document.getElementById('box4');
 
 
+        var originalsrc4 = img4.src;
+        var newSrc4 = '/img/gifs/player-.gif';
 
 
-    //BOX3
-    var img3 = document.getElementById('img3');
-    var box3 = document.getElementById('box3');
+        box4.addEventListener('mouseover', function() {
+          img4.src = newSrc4;
+        })
 
+        box4.addEventListener('mouseout', function() {
+          img4.src = originalsrc4;
+        })
 
-    var originalsrc3 = img3.src;
-    var newSrc3 = '/img/gifs/classes.gif';
 
+        //BOX5
+        var img5 = document.getElementById('img5');
+        var box5 = document.getElementById('box5');
 
-    box3.addEventListener('mouseover', function() {
-      img3.src = newSrc3;
-    })
 
-    box3.addEventListener('mouseout', function() {
-      img3.src = originalsrc3;
-    })
+        var originalsrc5 = img5.src;
+        var newSrc5 = '/img/gifs/coach-.gif';
 
 
-    //BOX4
-    var img4 = document.getElementById('img4');
-    var box4 = document.getElementById('box4');
+        box5.addEventListener('mouseover', function() {
+          img5.src = newSrc5;
+        })
 
+        box5.addEventListener('mouseout', function() {
+          img5.src = originalsrc5;
+        })
 
-    var originalsrc4 = img4.src;
-    var newSrc4 = '/img/gifs/player-.gif';
 
+        //BOX6
+        var img6 = document.getElementById('img5');
+        var box6 = document.getElementById('box6');
 
-    box4.addEventListener('mouseover', function() {
-      img4.src = newSrc4;
-    })
 
-    box4.addEventListener('mouseout', function() {
-      img4.src = originalsrc4;
-    })
+        var originalsrc6 = img6.src;
+        var newSrc6 = '/img/gifs/coaches-.gif';
 
 
-    //BOX5
-    var img5 = document.getElementById('img5');
-    var box5 = document.getElementById('box5');
+        box6.addEventListener('mouseover', function() {
+          img6.src = newSrc6;
+        })
 
+        box6.addEventListener('mouseout', function() {
+          img6.src = originalsrc6;
+        })
+      </script>
 
-    var originalsrc5 = img5.src;
-    var newSrc5 = '/img/gifs/coach-.gif';
 
 
-    box5.addEventListener('mouseover', function() {
-      img5.src = newSrc5;
-    })
 
-    box5.addEventListener('mouseout', function() {
-      img5.src = originalsrc5;
-    })
 
+      <script>
+        function logoutAlert() {
+          // Show the confirmation dialog and store the result
+          var result = window.confirm("Are you sure you want to Logout?");
 
-    //BOX6
-    var img6 = document.getElementById('img5');
-    var box6 = document.getElementById('box6');
-
-
-    var originalsrc6 = img6.src;
-    var newSrc6 = '/img/gifs/coaches-.gif';
-
-
-    box6.addEventListener('mouseover', function() {
-      img6.src = newSrc6;
-    })
-
-    box6.addEventListener('mouseout', function() {
-      img6.src = originalsrc6;
-    })
-  </script>
-
-
-
-
-
-  <script>
-    function logoutAlert() {
-      // Show the confirmation dialog and store the result
-      var result = window.confirm("Are you sure you want to Logout?");
-
-      // Check if the user clicked "OK" or "Cancel"
-      if (result) {
-        // If the user clicked "OK", redirect to 'index.php'
-        window.location.href = 'logout.php';
-      } else {
-        // If the user clicked "Cancel", do nothing or perform any other action
-        return;
-      }
-    }
-  </script>
+          // Check if the user clicked "OK" or "Cancel"
+          if (result) {
+            // If the user clicked "OK", redirect to 'index.php'
+            window.location.href = 'logout.php';
+          } else {
+            // If the user clicked "Cancel", do nothing or perform any other action
+            return;
+          }
+        }
+      </script>
 
 
 
