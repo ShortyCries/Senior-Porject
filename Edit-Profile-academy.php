@@ -53,7 +53,7 @@ $city = $r[3];
 
 
 
-<body class="u-body u-xl-mode" style="background-image: url('/img/1319754.jpeg');" class="">
+<body class="u-body u-xl-mode" style="background-image: url('/img/'); background-color: rgb(235, 236, 241);" class="">
   <header class="u-clearfix u-custom-color-1 u-header u-sticky u-header" id="sec-1576">
     <div class="u-clearfix u-sheet u-sheet-1">
       <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
@@ -115,7 +115,11 @@ $city = $r[3];
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-10 col-xl-8 mx-auto">
-        <h2 style="color: white;" class="h3 mb-4 page-title">Settings</h2>
+        <div class="row">
+          <div style="background-image: url(/img/settings-icon-.png);"></div>
+
+          <h2 style="color: black;" class="setting h3 mb-4 page-title">Settings</h2>
+        </div>
         <div class="my-4">
           <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
             <li class="nav-item">
@@ -149,20 +153,20 @@ $city = $r[3];
             </div>
             <hr class="my-4" />
             <div class="form-group">
-              <label style="font-weight: bold; color:white" for="inputEmail4">Name</label>
+              <label style="font-weight: bold; color:black" for="inputEmail4">Name</label>
               <input name="name" type="text" class="form-control" id="realname" placeholder="<?php echo $r[1]; ?>" />
             </div>
             <div class="form-group">
-              <label style="font-weight: bold; color:white" for="inputEmail4">Description</label>
+              <label style="font-weight: bold; color:black" for="inputEmail4">Description</label>
               <textarea name="description" style="height:150px;" type="text" class="form-control" id="realdescription" placeholder="<?php echo $r[2]; ?>"></textarea>
             </div>
             <div class="form-group">
-              <label style="font-weight: bold; color:white" for="inputEmail4">Contact Number</label>
+              <label style="font-weight: bold; color:black" for="inputEmail4">Contact Number</label>
               <input name="phone" type="number" class="form-control" id="realphone" placeholder="<?php echo $r[5]; ?>" />
             </div>
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label style="font-weight: bold; color:white" for="inputState5">City</label>
+                <label style="font-weight: bold; color:black" for="inputState5">City</label>
                 <select name="city" id="realcity" class="form-control" placeholder="<?php echo $city ?>">
                   <option <?php echo ($city == "") ? "selected" : ""; ?> value="">Choose...</option>
                   <option <?php echo ($city == "Beirut") ? "selected" : ""; ?>>Beirut</option>
@@ -175,7 +179,7 @@ $city = $r[3];
 
               </div>
               <div class="form-group col-md-8">
-                <label style="font-weight: bold; color:white" for="inputEmail4">Location Description</label>
+                <label style="font-weight: bold; color:black" for="inputEmail4">Location Description</label>
                 <textarea name="locationDescription" style="height: 150px;" type="text" class="form-control" id="reallocdescription" placeholder="<?php echo $r[4]; ?>" disabled></textarea>
               </div>
             </div>
@@ -189,20 +193,20 @@ $city = $r[3];
           <div class="row mb-4">
             <div class="col-md-6">
               <div class="form-group">
-                <label style="font-weight: bold; color:white" for="inputPassword4">Old Password</label>
+                <label style="font-weight: bold; color:black" for="inputPassword4">Old Password</label>
                 <input type="password" class="form-control" id="inputPassword5" placeholder="check old password if tru" />
               </div>
               <div class="form-group">
-                <label style="font-weight: bold; color:white" for="inputPassword5">New Password</label>
+                <label style="font-weight: bold; color:black" for="inputPassword5">New Password</label>
                 <input type="password" class="form-control" id="inputPassword5" />
               </div>
               <div class="form-group">
-                <label style="font-weight: bold; color:white" for="inputPassword6">Confirm Password</label>
+                <label style="font-weight: bold; color:black" for="inputPassword6">Confirm Password</label>
                 <input type="password" class="form-control" id="inputPassword6" />
               </div>
             </div>
             <div class="col-md-6">
-              <p style="font-weight: bold; color:white" class="mb-2">Password requirements</p>
+              <p style="font-weight: bold; color:black" class="mb-2">Password requirements</p>
               <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
               <ul class="small text-muted pl-4 mb-0">
                 <li>Minimum 8 character</li>

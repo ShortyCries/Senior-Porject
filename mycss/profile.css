@@ -30,13 +30,20 @@ img {
   color:rgb(5, 232, 9);
   background-color: #11b34c;
   background-clip: padding-box;
-  border: 1px solid #eef0f3;
+  border: 1px solid #eef0f3;  
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .container{
-  background-color: #11b34c;
+  background-color:white;
   background-image: url('/img/');  
   background-size: cover;
   background-position: center;
+}
+.setting{
+  margin-right: 30px;
+  row-gap: 30px;
+}
+.row{
+  row-gap: 30px;
 }
