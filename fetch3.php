@@ -11,7 +11,7 @@ if (isset($_POST['sportID'])) {
 
     $sportid = $_POST['sportID'];
 
-    $query1 = "SELECT CRid, name, size From courts WHERE Academyemail = '$academyEmail' AND sportname = '$sportid' ";
+    $query1 = "SELECT CRid, CRname, CRsize From courts WHERE CRAcademyemail = '$academyEmail' AND CRsportname = '$sportid' ";
 
     $result1 = $pdo->query($query1);
 

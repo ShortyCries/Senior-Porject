@@ -242,15 +242,18 @@ $r = $result->rowCount();
                           <th scope="col">Date</th>
                           <th scope="col">Time</th>
                           <th scope="col">Status</th>
+                          <th scope="col">View</th>
+                          <th scope="col">Request Role</th>
+                          <th scope="col">Cancel</th>
                         </tr>
                       </thead>
                       <tbody>
 
                         <?php
 
-                        $query3 = "SELECT Eid, Evcourtid, Evdate, Evtime, Evstatus FROM events WHERE playerEmail = '$playerEmail' ORDER BY CASE 
-                                        WHEN Evstatus = 'ongoing' THEN 1
-                                        WHEN Evstatus = 'booked' THEN 2 
+                        $query3 = "SELECT CRid, Eid, CRname, Evdate, Evtime, Evstatus  FROM events NATURAL JOIN courts WHERE playerEmail = '$playerEmail' AND CRid = Evcourtid ORDER BY CASE 
+                                        WHEN Evstatus = 'booked' THEN 1
+                                        WHEN Evstatus = 'ongoing' THEN 2 
                                         WHEN Evstatus = 'finished' THEN 3
                                         ELSE 4
                                           END";
@@ -262,18 +265,34 @@ $r = $result->rowCount();
                           $row3 = $result3->fetch(PDO::FETCH_NUM);
                         ?>
                           <tr>
-                            <td id="myclassid"><?php echo  $row3[0] ?></td>
-                            <td><?php echo  $row3[1] ?></td>
-                            <td><?php echo  $row3[2] ?></td>
+                            
+                            <td id="myeventID"><?php echo  $row3[1] ?></td>
+                            <td id="mycourtID" value="<?php $row3[0]?>"><?php echo  $row3[2] ?></td>
                             <td><?php echo  $row3[3] ?></td>
-                            <td> <?php if ($row3[4] === "booked") : ?>
-                                <span style="background-color: orange; padding: 2px;"><?php echo $row3[4] ?></span>
-                              <?php elseif ($row3[4] === "ongoing") : ?>
-                                <span style="background-color: #6eb5ff; padding: 2px;"><?php echo $row3[4] ?></span>
-                              <?php elseif ($row3[4] === "finished") : ?>
-                                <span style="background-color: red; padding: 2px;"><?php echo $row3[4] ?></span>
+                            <td><?php echo  $row3[4] ?></td>
+                            <td> <?php if ($row3[5] === "booked") : ?>
+                                <span style="background-color: orange; padding: 2px;"><?php echo $row3[5] ?></span>
+                              <?php elseif ($row3[5] === "ongoing") : ?>
+                                <span style="background-color: #6eb5ff; padding: 2px;"><?php echo $row3[5] ?></span>
+                              <?php elseif ($row3[5] === "finished") : ?>
+                                <span style="background-color: red; padding: 2px;"><?php echo $row3[5] ?></span>
                               <?php else : ?>
-                                <?php echo $row3[4] ?>
+                                <?php echo $row3[5] ?>
+                              <?php endif; ?>
+                            </td>
+                            <td><a class='btn btn-primary'>View</a></td>
+                            <td>
+                            <?php if ($row3[5] === "finished" || $row3[5] === "ongoing") : ?>
+                                <a class='btn btn-primary' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Request Role</a>
+                              <?php else : ?>
+                                <a class='btn btn-primary'>Request Role</a>
+                              <?php endif; ?>
+                            </td>
+                            <td>
+                              <?php if ($row3[5] === "finished" || $row3[5] === "ongoing") : ?>
+                                <a class='btn btn-danger' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Cancel</a>
+                              <?php else : ?>
+                                <a class='btn btn-danger'>Cancel</a>
                               <?php endif; ?>
                             </td>
                           </tr>
@@ -483,7 +502,7 @@ $r = $result->rowCount();
 
       <!-- READ MORE MODEL -->
 
-      <div class="modal fade" id="viewinvitemodal" tabindex="-1"  aria-hidden="true">
+      <div class="modal fade" id="viewinvitemodal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <form action="player-participate.php" method="POST">
@@ -591,7 +610,7 @@ $r = $result->rowCount();
         });
       </script>
 
-<!-- 
+      <!-- 
       <script>
         function getdata() {
           // Get the element by ID

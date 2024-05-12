@@ -246,7 +246,7 @@ $academyEmail = $_SESSION['email'];
 
                                                 <?php
 
-                                                $query3 =  "SELECT Mid, team1, team2, Mcourtid, Mdate, Mtime FROM matchs WHERE Mtype = 'local'";
+                                                $query3 =  "SELECT matchs.Mid AS MatchID, c1.Cname AS Team1Name, c2.Cname AS Team2Name, courts.CRname AS CourtName, matchs.Mdate AS MatchDate, matchs.Mtime AS MatchTime FROM matchs JOIN class AS c1 ON matchs.team1 = c1.id JOIN class AS c2 ON matchs.team2 = c2.id JOIN courts ON matchs.McourtId = courts.CRid WHERE courts.CRAcademyemail = '$academyEmail' AND matchs.Mtype = 'local';";
                                                 $result3 = $pdo->query($query3);
 
                                                 $r3 = $result3->rowCount();

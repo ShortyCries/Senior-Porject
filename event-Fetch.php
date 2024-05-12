@@ -13,7 +13,7 @@ if (isset($_POST['sport'], $_POST['city'])) {
 
     $city = $_POST['city'];
 
-    $query = "SELECT CRid, name FROM courts WHERE sportname = '$sport' AND location = '$city' ";
+    $query = "SELECT CRid, CRname FROM courts WHERE CRsportname = '$sport' AND CRlocation = '$city' ";
 
     $result = $pdo->query($query);
 

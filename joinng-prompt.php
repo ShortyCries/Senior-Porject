@@ -21,7 +21,7 @@ if (isset($_POST['courtID'], $_POST['eventID'])) {
 
     $eventID = $_POST['eventID'];
 
-    $query = "SELECT sportname FROM courts NATURAL JOIN events WHERE CRid = Evcourtid AND Eid = '$eventID'";
+    $query = "SELECT CRsportname FROM courts NATURAL JOIN events WHERE CRid = Evcourtid AND Eid = '$eventID'";
 
     $result = $pdo->query($query);
 
