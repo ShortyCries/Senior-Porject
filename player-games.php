@@ -265,9 +265,9 @@ $r = $result->rowCount();
                           $row3 = $result3->fetch(PDO::FETCH_NUM);
                         ?>
                           <tr>
-                            
+
                             <td id="myeventID"><?php echo  $row3[1] ?></td>
-                            <td id="mycourtID" value="<?php $row3[0]?>"><?php echo  $row3[2] ?></td>
+                            <td id="mycourtID" value="<?php echo $row3[0] ?>"><?php echo  $row3[2] ?></td>
                             <td><?php echo  $row3[3] ?></td>
                             <td><?php echo  $row3[4] ?></td>
                             <td> <?php if ($row3[5] === "booked") : ?>
@@ -282,10 +282,10 @@ $r = $result->rowCount();
                             </td>
                             <td><a class='btn btn-primary'>View</a></td>
                             <td>
-                            <?php if ($row3[5] === "finished" || $row3[5] === "ongoing") : ?>
+                              <?php if ($row3[5] === "finished" || $row3[5] === "ongoing") : ?>
                                 <a class='btn btn-primary' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Request Role</a>
                               <?php else : ?>
-                                <a class='btn btn-primary'>Request Role</a>
+                                <a class='btn btn-primary request_Role' >Request Role</a>
                               <?php endif; ?>
                             </td>
                             <td>
@@ -380,6 +380,39 @@ $r = $result->rowCount();
       </div>
 
 
+      <div class="modal fade" id="insertRoles" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="insertRolesLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="insertRolesLabel">Request Roles</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="rolePDO.php" method="POST">
+              <div class="modal-body">
+              
+
+              <div class="showRoleForm text-center">
+
+              
+              </div>
+
+
+
+
+
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
 
       <div class="modal fade" id="insertdata" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="insertdataLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -499,7 +532,6 @@ $r = $result->rowCount();
           </div>
         </div>
       </div>
-
       <!-- READ MORE MODEL -->
 
       <div class="modal fade" id="viewinvitemodal" tabindex="-1" aria-hidden="true">
@@ -536,6 +568,41 @@ $r = $result->rowCount();
       <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
+      <script>
+        $(document).ready(function() {
+
+          $('.request_Role').click(function(e) {
+
+
+            var tableCourtID = $(this).closest('tr').find('#mycourtID').attr('value');
+            var tableEventID = $(this).closest('tr').find('#myeventID').text();
+
+
+            console.log(tableCourtID);
+            console.log(tableEventID);
+
+
+        
+
+            $.ajax({
+              method: "POST",
+              url: "fetch-role-form.php",
+              data: {
+                'courtID': tableCourtID,
+                'eventID': tableEventID,
+              },
+              success: function(response) {
+
+                $('.showRoleForm').html(response);
+                $('#insertRoles').modal('show');
+
+              }
+            });
+
+          });
+
+        });
+      </script>
 
 
       <script>
@@ -610,25 +677,7 @@ $r = $result->rowCount();
         });
       </script>
 
-      <!-- 
-      <script>
-        function getdata() {
-          // Get the element by ID
-
-          setTimeout(function() {
-
-            var element = document.getElementById('myheader');
-
-
-            var innerHTMLContent = element.innerHTML;
-            console.log("Inner HTML Content:", innerHTMLContent);
-
-
-            document.getElementById('dataInput').value = innerHTMLContent;
-          }, 100);
-
-        }
-      </script>  -->
+      
 
       <script>
         let loadMoreBtn = document.querySelector('#load-more');
