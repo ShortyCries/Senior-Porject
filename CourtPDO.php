@@ -34,7 +34,7 @@ try {
 
         $r4++;
 
-        $query = "INSERT INTO courts VALUES('$r4', '$city' , '$description', '$courtname', '$size', '$academyEmail', '$sport', '$maxcapacity', '$price')";
+        $query = "INSERT INTO courts VALUES('$r4', '$city' , '$description', '$courtname', '$size', '$academyEmail', '$sport', '$maxcapacity', '$price', '$CRtype')";
 
         $result = $pdo->exec($query);
 

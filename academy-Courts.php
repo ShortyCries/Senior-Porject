@@ -992,6 +992,14 @@ $r = $result->rowCount();
                         </div>
 
                         <div class="form-group mb-3">
+                            <label>Privacy Preference</label>
+                            <select name="CRtype" class="form-select" required>
+                                <option>private</option>
+                                <option>public </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
                             <label>Max number of players</label>
                             <input id="maxcapacity" name="maxcapacity" type="number" placeholder="(optional)" class="form-control">
                         </div>

@@ -4,7 +4,7 @@ session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
-
+try{
 
 if (isset($_POST['classname']) && ($_POST['playeremail'])) {
 
@@ -19,7 +19,8 @@ if (isset($_POST['classname']) && ($_POST['playeremail'])) {
     $query = "INSERT INTO joins VALUES('$playeremail','$classid', NULL , 'pending')";
 
     $result = $pdo->exec($query);
-
+ 
+    $_SESSION['status'] = "Player Invited!";
 
     header("location:academy-Players.php");
 
@@ -29,6 +30,11 @@ if (isset($_POST['classname']) && ($_POST['playeremail'])) {
 
 }
     
+} catch (PDOException $e) {
+    $_SESSION['status'] = "OOPS! Looks like you already invited this player!";
+     header("location:academy-Players.php");
+}
+
 
 
 
