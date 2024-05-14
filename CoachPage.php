@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once("config.php");
+$pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
 ?>
 
@@ -18,6 +20,7 @@ session_start();
     <link rel="stylesheet" href="css/nav.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <script src="bootstrap5/jsbt5/bootstrap.bundle.min.js"> </script>
     <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
 
@@ -37,16 +40,10 @@ session_start();
     <meta property="og:title" content="Page 2">
     <meta property="og:type" content="website">
     <meta data-intl-tel-input-cdn-path="intlTelInput/">
-    <link rel="stylesheet" href="css/linearicons.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="bootstrap5/cssbt5/bootstrap.css">
     <link rel="stylesheet" href="mycss/styles.css">
+    <link rel="stylesheet" href="mycss/Listing.css">
 </head>
 
 <body class="u-body u-xl-mode" data-lang="en">
@@ -69,7 +66,7 @@ session_start();
                 </div>
                 <div class="u-custom-menu u-nav-container">
                     <ul class="u-nav u-unstyled u-nav-1">
-                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px;">Home</a>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Coachpage.php" style="padding: 10px 20px; color: white !important;">Home</a>
                         </li>
                         <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
                         </li>
@@ -109,7 +106,7 @@ session_start();
         <div class="container">
 
             <div class="box-container">
-                <a href="coach-games.php">
+                <a href="coach-games.php" style="text-decoration: none;">
                     <div class="box games-box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/games-.png" alt="" id="img1">
@@ -118,7 +115,7 @@ session_start();
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="coach-academies.php">
+                <a href="coach-academies.php" style="text-decoration: none;">
                     <div class="box academies-box" id="box2">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img2">
@@ -127,6 +124,8 @@ session_start();
                         <p>Academies</p>
                     </div>
                 </a>
+            </div>
+            <div class="box-container">
                 <!-- <div class="box" id="box3">
                      <div class="img">
                          <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
@@ -134,8 +133,8 @@ session_start();
                      </div>
                      <p>Class</p>
                  </div> -->
-                <a href="coach-class.php">
-                    <div class="box class-box" id="box3">
+                <a href="coach-class.php" style="text-decoration: none;">
+                    <div class="box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/classes-.png" alt="" id="img3">
 
@@ -143,8 +142,8 @@ session_start();
                         <p>Class</p>
                     </div>
                 </a>
-                <a href="coach-players.php">
-                    <div style="width:600px" class="box players-box" id="box4">
+                <a href="coach-players.php" style="text-decoration: none;">
+                    <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img4">
 
@@ -154,8 +153,12 @@ session_start();
                 </a>
             </div>
 
+
         </div>
     </div>
+
+
+
 
     <script>
         function logoutAlert() {

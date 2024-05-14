@@ -2,12 +2,6 @@
 session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-$academyEmail = $_SESSION['email'];
-
-
-$query = "";
-
-
 
 ?>
 
@@ -21,8 +15,9 @@ $query = "";
   <meta charset="utf-8">
   <meta name="keywords" content="">
   <meta name="description" content="">
-  <title>GamesBTN</title>
+  <title>Page 2</title>
   <link rel="stylesheet" href="css/nicepage.css" media="screen">
+  <link rel="stylesheet" href="css/nav.css" media="screen">
   <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
   <script src="bootstrap5/jsbt5/bootstrap.bundle.min.js"> </script>
@@ -45,20 +40,10 @@ $query = "";
   <meta property="og:title" content="Page 2">
   <meta property="og:type" content="website">
   <meta data-intl-tel-input-cdn-path="intlTelInput/">
-  <link rel="stylesheet" href="css/linearicons.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/nice-select.css">
-  <link rel="stylesheet" href="css/animate.min.css">
-  <link rel="stylesheet" href="css/owl.carousel.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="bootstrap5/cssbt5/bootstrap.css">
   <link rel="stylesheet" href="mycss/styles.css">
-
-
-
-
+  <link rel="stylesheet" href="mycss/Listing.css">
 </head>
 
 <body class="u-body u-xl-mode" data-lang="en">
@@ -81,16 +66,14 @@ $query = "";
         </div>
         <div class="u-custom-menu u-nav-container">
           <ul class="u-nav u-unstyled u-nav-1">
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Academypage.php" style="padding: 10px 20px; ">Home</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Coachpage.php" style="padding: 10px 20px; color: white !important;">Home</a>
             </li>
             <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
             </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" target="_blank" style="padding: 10px 20px;">About us</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="about.php" style="padding: 10px 20px;">About us</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contact.php" target="_blank" style="padding: 10px 20px;">Contacts</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-coach.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a>
             </li>
-
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="contact.php" target="_blank" style="padding: 10px 20px;">Contact </a>
-            </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-academy.php" target="_blank" style="padding: 10px 20px;">Edit Profile</a> </li>
           </ul>
         </div>
         <div class="u-custom-menu u-nav-container-collapse">
@@ -111,7 +94,7 @@ $query = "";
         </div>
       </nav>
       <p style="border-left: solid; padding-left: 30px;" class="u-align-center u-text u-text-default u-text-1"><?php echo "" . $_SESSION['name'] . "" ?></p>
-      <a href="Academypage.php" class="u-image u-logo u-image-1" data-image-width="498" data-image-height="102">
+      <a href="CoachPage.php" class="u-image u-logo u-image-1" data-image-width="498" data-image-height="102">
         <img src="img/2-1.png" class="u-logo-image u-logo-image-1">
       </a>
     </div>
@@ -123,8 +106,8 @@ $query = "";
     <div class="container">
 
       <div class="box-container">
-        <a href="coach-games.php">
-          <div style="background-color: grey;" class="box games-box" id="box1">
+        <a href="coach-games.php" style="text-decoration: none;">
+          <div class="box games-box" id="box1" style="background-color: grey;">
             <div class="img-container">
               <img class="img" src="/img/games-.png" alt="" id="img1">
 
@@ -132,7 +115,7 @@ $query = "";
             <p>Games</p>
           </div>
         </a>
-        <a href="coach-academies.php">
+        <a href="coach-academies.php" style="text-decoration: none;">
           <div class="box academies-box" id="box2">
             <div class="img">
               <img class="img" src="/img/academy-.png" alt="" id="img2">
@@ -141,6 +124,8 @@ $query = "";
             <p>Academies</p>
           </div>
         </a>
+      </div>
+      <div class="box-container">
         <!-- <div class="box" id="box3">
                      <div class="img">
                          <img class="img" src="/img/volleyball-.jpg" alt="" id="img3">
@@ -148,8 +133,8 @@ $query = "";
                      </div>
                      <p>Class</p>
                  </div> -->
-        <a href="coach-class.php">
-          <div class="box class-box" id="box3">
+        <a href="coach-class.php" style="text-decoration: none;">
+          <div class="box" id="box3">
             <div class="img">
               <img class="img" src="/img/classes-.png" alt="" id="img3">
 
@@ -157,8 +142,8 @@ $query = "";
             <p>Class</p>
           </div>
         </a>
-        <a href="coach-players.php">
-          <div style="width:600px" class="box players-box" id="box4">
+        <a href="coach-players.php" style="text-decoration: none;">
+          <div class="box" id="box4">
             <div class="img">
               <img class="img" src="/img/player-.png" alt="" id="img4">
 
@@ -168,9 +153,28 @@ $query = "";
         </a>
       </div>
 
+
     </div>
   </div>
 
+
+
+
+  <script>
+    function logoutAlert() {
+      // Show the confirmation dialog and store the result
+      var result = window.confirm("Are you sure you want to Logout?");
+
+      // Check if the user clicked "OK" or "Cancel"
+      if (result) {
+        // If the user clicked "OK", redirect to 'index.php'
+        window.location.href = 'logout.php';
+      } else {
+        // If the user clicked "Cancel", do nothing or perform any other action
+        return;
+      }
+    }
+  </script>
 
   <script>
     //BOX1
@@ -286,188 +290,6 @@ $query = "";
       img6.src = originalsrc6;
     })
   </script>
-
-
-  <script>
-    function logoutAlert() {
-      // Show the confirmation dialog and store the result
-      var result = window.confirm("Are you sure you want to Logout?");
-
-      // Check if the user clicked "OK" or "Cancel"
-      if (result) {
-        // If the user clicked "OK", redirect to 'index.php'
-        window.location.href = 'logout.php';
-      } else {
-        // If the user clicked "Cancel", do nothing or perform any other action
-        return;
-      }
-    }
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="mybackground-img2">
-    <div class="container">
-      <nav>
-        <div class="nav nav-tabs justify-content-center mb-5" id="nav-tab" role="tablist">
-          <button class="nav-link active text-dark" id="nav-local-tab" data-bs-toggle="tab" data-bs-target="#nav-local" type="button" role="tab" aria-selected="true">Local Matches</button>
-
-          <button class="nav-link text-dark" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Public Matches</button>
-
-          <button class="nav-link text-dark" id="" data-bs-toggle="tab" data-bs-target="" type="button" role="tab" aria-selected="true">Local Matches History</button>
-
-          <button class="nav-link text-dark" id="" data-bs-toggle="tab" data-bs-target="" type="button" role="tab" aria-selected="true">Public Matches History</button>
-
-        </div>
-      </nav>
-
-
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-local" role="tabpanel" aria-labelledby="nav-local-tab">
-
-
-
-          <div class="row justify-content-center">
-            <div class="col-md-12">
-              <?php
-
-              if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
-
-
-              ?>
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                  <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-
-              <?php
-                unset($_SESSION['status']);
-              }
-
-
-
-
-              ?>
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="text-center">Matches</h4>
-
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-
-                    <table class="table table-striped table-bordered">
-                      <thead>
-                        <tr>
-                          <th scope="col">Id</th>
-                          <th scope="col">Team1</th>
-                          <th scope="col">Team2</th>
-                          <th scope="col">Court</th>
-                          <th scope="col">Date</th>
-                          <th scope="col">Time</th>
-
-                        </tr>
-                      </thead>
-                      <tbody>
-
-                        <?php
-
-                        $query3 =  "SELECT Mid, team1, team2, courtid, date, time FROM matchs WHERE Mtype = 'local'";
-                        $result3 = $pdo->query($query3);
-
-                        $r3 = $result3->rowCount();
-
-                        for ($i = 0; $i < $r3; $i++) {
-                          $row3 = $result3->fetch(PDO::FETCH_NUM);
-                        ?>
-                          <tr>
-                            <td id="myclassid"><?php echo  $row3[0] ?></td>
-                            <td><?php echo  $row3[1] ?></td>
-                            <td><?php echo  $row3[2] ?></td>
-                            <td><?php echo  $row3[3] ?></td>
-                            <td><?php echo $row3[4] ?></td>
-                            <td><?php echo $row3[5] ?></td>
-
-                          </tr>
-                        <?php
-                        }
-                        ?>
-
-
-
-                      </tbody>
-                    </table>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-        </div>
-
-
-        <div class="tab-pane fade" id="nav-public" role="tabpanel" aria-labelledby="nav-public-tab">
-
-
-
-
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-
-
-
-
-
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -343,10 +343,6 @@ $academyEmail = $_SESSION['email'];
 
 
 
-    <div class="mybackground-img2">
-
-
-    </div>
 
 
 

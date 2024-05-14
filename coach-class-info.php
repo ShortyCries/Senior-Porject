@@ -4,16 +4,39 @@ session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
-if (isset($_GET['testingemail'], $_GET['removeplayer'])) {
-    $testingemail = $_GET['testingemail'];
-    $delete1 = "DELETE FROM joins WHERE playeremail = '$testingemail' ";
-    $delResult1 = $pdo->exec($delete1);
 
-    header("location:academy-Classes.php");
+
+
+
+
+if (isset($_GET['Pemail'])) {
+   
+    $playerEmail = $_GET['Pemail'];
+    $class_id = $_GET['classid'];
+
+    echo "
+    <div class='container'>
+
+   
+    $playerEmail
+    $class_id
+    
+    <form action='submit-report.php' method='post'>
+        <input type='hidden' name='Pemail' value='$playerEmail'>
+        <input type='hidden' name='classID' value='$class_id'>
+        <label for='report'>Report:</label>
+        <div class=\"form-group\">
+        <label style=\"font-weight: bold; color:black\" for=\"inputEmail4\">Description</label>
+        <textarea name=\"description\" style=\"height:150px;\" type=\"text\" class=\"form-control\" id=\"realdescription\" placeholder=\"\" required></textarea>
+        </div>
+        <button type='submit' class='btn btn-primary'>Submit Report</button>
+    </form>
+    </div>
+    ";
+
+
+
 }
-
-
-
 
 
 
@@ -52,7 +75,7 @@ if (isset($_GET['testingemail'], $_GET['removeplayer'])) {
 
     if (isset($_POST['click_view_class_btn'])) {
 
-        echo '<div class="row justify-content-center">
+ echo '<div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
@@ -66,8 +89,7 @@ if (isset($_GET['testingemail'], $_GET['removeplayer'])) {
                                 <th scope="col">Name</th>
                                 <th scope="col">Age</th>
                                 <th scope="col">Phone</th>
-                                <th scope="col">View Report</th>
-                                <th scope="col">Remove</th>
+                                <th scope="col">Add Report</th>
                             </tr>
                         </thead>
 
@@ -104,8 +126,7 @@ if (isset($_GET['testingemail'], $_GET['removeplayer'])) {
             echo '<td>' . $row[0] . '</td>';
             echo '<td>' . $diff->format('%y') . '</td>';
             echo '<td>' . $row[3] . '</td>';
-            echo "<td> <a href='class-info.php?Pemail={$row[1]}&classid={$class_id}&viewreport=true' class='btn btn-success'>View Report</a></td>";
-            echo "<td> <a href='class-info.php?Pemail={$row[1]}&removeplayer='true'  class='btn btn-danger'> Remove </a> </td> ";
+            echo "<td> <a href='coach-class-info.php?Pemail={$row[1]}&classid={$class_id}' class='btn btn-success'>Add Report</a> </td>";
 
             echo "</tr>";
         }
@@ -119,55 +140,10 @@ if (isset($_GET['testingemail'], $_GET['removeplayer'])) {
 
 
 
-<?php
-
-if (isset($_GET['Pemail'], $_GET['viewreport'])) {
-
-    $playerEmail = $_GET['Pemail'];
-    $classID = $_GET['classid'];
-
-
-    $query5 = "SELECT report FROM joins WHERE playeremail = '$playerEmail' AND classId='$classID'";
-
-
-    $result5 = $pdo->query($query5);
-
-    $r5 = $result5->fetch(PDO::FETCH_COLUMN);
-
-
-    // echo $r5;
-
-
-    $separator = "[~|~]";
-
-    $individualReports = explode($separator, $r5);
-
-
-    $reports = array_chunk($individualReports, 3);
-
-    $counter = 0;
-
-
-    // print_r($reports);
-    echo " <div class=\"container\">";
-
-    for ($counter = 0; $counter < count($reports)-1; $counter++) {
-        echo "<div>";
-        echo "Message: " . $reports[$counter][0] . "<br>";
-        echo "Date: " . $reports[$counter][1] . "<br>";
-        echo "Time: " . $reports[$counter][2] . "<br>";
-        echo "</div>";
-    }
-
-     //actual count of the reports
-
-
-    echo "</div>";
-}
 
 
 
-?>
+
 
 
 </body>

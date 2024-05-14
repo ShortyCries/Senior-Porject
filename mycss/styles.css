@@ -61,7 +61,7 @@
     margin: 0;
     padding: 0.1px;
    
-    height: 720px; /* Change this value to your desired height */
+    min-height: 720px; /* Change this value to your desired height */
     
     background-size: cover;
    
