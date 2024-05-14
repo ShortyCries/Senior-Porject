@@ -2,13 +2,13 @@
 session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-$academyEmail = $_SESSION['email'];
+$playerEmail = $_SESSION['email'];
 
-$query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
+// $query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
 
-$result = $pdo->query($query);
+// $result = $pdo->query($query);
 
-$r = $result->rowCount();
+// $r = $result->rowCount();
 
 
 ?>
@@ -127,7 +127,7 @@ $r = $result->rowCount();
 
       <div class="box-container">
         <a href="player-games.php">
-          <div class="box games-box" id="box1" >
+          <div class="box games-box" id="box1">
             <div class="img-container">
               <img class="img" src="/img/games-.png" alt="" id="img1">
 
@@ -212,9 +212,6 @@ $r = $result->rowCount();
           <div class="card">
             <div class="card-header">
               <h4 class="text-center">Classes</h4>
-              <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
-                New Class
-              </button>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -224,19 +221,17 @@ $r = $result->rowCount();
                     <tr>
                       <th scope="col">Id</th>
                       <th scope="col">Name</th>
-                      <th scope="col">Coach</th>
                       <th scope="col">Sport</th>
-                      <th scope="col">Capacity</th>
                       <th scope="col">Time</th>
-                      <th scope="col">View</th>
-                      <th scope="col">Remove</th>
+                      <th scope="col" colspan="2"></th>
+                      
                     </tr>
                   </thead>
                   <tbody>
-
+                    <!-- -->
                     <?php
 
-                    $query3 =  "SELECT id, cname, name, sportname, capacity, schedule FROM coach NATURAL JOIN class WHERE email = coachemail AND academyemail = '$academyEmail'";
+                    $query3 =  "SELECT id, cname, sportname, schedule FROM class NATURAL JOIN joins WHERE id = classId AND playeremail = '$playerEmail' AND status = 'pending'";
                     $result3 = $pdo->query($query3);
 
                     $r3 = $result3->rowCount();
@@ -245,22 +240,46 @@ $r = $result->rowCount();
                       $row3 = $result3->fetch(PDO::FETCH_NUM);
                     ?>
                       <tr>
-                        <td id="myclassid"><?php echo  $row3[0] ?></td>
+                        <td class="myclassid"><?php echo  $row3[0] ?></td>
                         <td><?php echo  $row3[1] ?></td>
                         <td><?php echo  $row3[2] ?></td>
                         <td><?php echo  $row3[3] ?></td>
-                        <td><?php echo $row3[4] ?></td>
-                        <td><?php echo $row3[5] ?></td>
-                        <td> <a href="#" type="button" class="btn btn-primary view_class" data-bs-toggle="modal" data-bs-target="#viewclassmodal">
-                            View Class
+                        <td class="text-center"> <a href="#" type="button" class="btn btn-primary accept_btn">
+                            Accept
                           </a> </td>
-                        <td> <a href="#" class="btn btn-danger">Remove</a> </td>
+                        <td class="text-center"> <a href="#" class="btn btn-danger">Decline</a> </td>
                       </tr>
                     <?php
                     }
                     ?>
+                    <!-- -->
 
+                    <!-- -->
 
+                    <?php
+
+                    $query4 =  "SELECT id, cname, sportname, schedule FROM class NATURAL JOIN joins WHERE id = classId AND playeremail = '$playerEmail' AND status = 'accepted'";
+                    $result4 = $pdo->query($query4);
+
+                    $r4 = $result4->rowCount();
+
+                    for ($i = 0; $i < $r4; $i++) {
+                      $row4 = $result4->fetch(PDO::FETCH_NUM);
+                    ?>
+                      <tr>
+                        <td class="myclassid"><?php echo  $row4[0] ?></td>
+                        <td><?php echo  $row4[1] ?></td>
+                        <td><?php echo  $row4[2] ?></td>
+                        <td><?php echo  $row4[3] ?></td>
+                        <td colspan="2" class="text-center"> <a href="#" type="button" class="btn btn-primary accept_btn">
+                            View Class
+                          </a> </td>
+                        
+                      </tr>
+                    <?php
+                    }
+                    ?>
+                    <!-- -->
 
                   </tbody>
                 </table>
@@ -273,117 +292,39 @@ $r = $result->rowCount();
     </div>
 
 
-    <div class="modal fade" id="viewclassmodal" tabindex="-1" aria-labelledby="viewclassmodalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="viewclassmodalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-
-            <div class="view_class_data">
-
-            </div>
-
-          </div>
-          <div class="modal-footer">
-
-          </div>
-        </div>
-      </div>
-    </div>
 
 
   </div>
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="insertdata" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="insertdataLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="insertdataLabel">Create New Class</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="ClassPDO.php" method="POST">
-          <div class="modal-body">
-
-
-            <div class="form-group mb-3">
-              <label>Class name</label>
-              <input name="className" type="text" class="form-control" placeholder="Enter class name" required>
-            </div>
-            <div class="form-group mb-3">
-              <label>Capacity</label>
-              <input name="capacity" type="number" class="form-control" placeholder="Enter capacity" required>
-            </div>
-
-            <div class="form-group mb-3">
-              <label>Choose sport</label>
-              <select id="selectSport" name="sport" class="form-select" required>
-                <option selected disabled value="">Choose...</option>
-
-                <?php
-                $query1 = "SELECT sname From sport";
-
-                $result1 = $pdo->query($query1);
-
-                $r1 = $result1->rowCount();
-
-                for ($i = 0; $i < $r1; $i++) {
-                  $row1 = $result1->fetch(PDO::FETCH_NUM);
-
-                  echo "<option> $row1[0] </option>";
-                }
-
-
-
-                ?>
-
-              </select>
-            </div>
-            <div class="form-group mb-3">
-              <label>Choose coach</label>
-              <select id="showCoaches" name="coach" class="form-select">
-
-
-              </select>
-            </div>
-            <div class="form-group mb-2">
-              <label class="form-check-label">
-                Schedule:
-              </label>
-            </div>
-
-            <div class="form-group mb-3">
-              <input name="days[]" type="checkbox" class="form-checkbox" value="M"> Monday
-              <input name="days[]" type="checkbox" class="form-checkbox" value="T"> Tuesday
-              <input name="days[]" type="checkbox" class="form-checkbox" value="W"> Wednesday
-              <input name="days[]" type="checkbox" class="form-checkbox" value="Th"> Thursday <br>
-              <input name="days[]" type="checkbox" class="form-checkbox" value="Fr"> Friday
-              <input name="days[]" type="checkbox" class="form-checkbox" value="Sa"> Saturday
-              <input name="days[]" type="checkbox" class="form-checkbox" value="Su"> Sunday
-            </div>
-
-            <div class="form-group mb-3">
-              <input name="timing" type="time">
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-
-        </form>
-
-      </div>
-    </div>
-
-  </div>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+
+  <script>
+    $(document).ready(function() {
+      $('.accept_btn').on('click', function() {
+        var classId = $(this).closest('tr').find('.myclassid').text();
+
+        console.log(classId);
+
+        $.ajax({
+          url: 'update_player_status.php',
+          method: 'POST',
+          data: {
+            'class_id': classId
+          },
+          success: function(response) {
+            location.reload();
+          },
+          error: function() {
+            
+          }
+        });
+      });
+    });
+  </script>
 
 
 
@@ -504,36 +445,6 @@ $r = $result->rowCount();
 
 
 
-  <script>
-    $(document).ready(function() {
-
-      $('.view_class').click(function(e) {
-        e.preventDefault();
-        console.log('hello');
-        var class_id = $(this).closest('tr').find('#myclassid').text();
-
-        console.log(class_id);
-        $.ajax({
-          method: "POST",
-          url: "class-info.php",
-          data: {
-            'click_view_class_btn': true,
-            'class_id': class_id,
-          },
-          success: function(response) {
-
-            $('.view_class_data').html(response);
-            $('#viewclassmodal').modal('show');
-
-          }
-
-        });
-
-      });
-
-
-    });
-  </script>
 
   <script>
     function logoutAlert() {
