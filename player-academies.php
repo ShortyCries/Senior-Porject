@@ -157,8 +157,10 @@ $r = $result->rowCount();
             <p>Class</p>
           </div>
         </a>
+      </div>
+        <div class="box-container">
         <a href="player-players.php">
-          <div class="box players-box" id="box4">
+          <div class="box" id="box4">
             <div class="img">
               <img class="img" src="/img/player-.png" alt="" id="img4">
             </div>
@@ -166,7 +168,7 @@ $r = $result->rowCount();
           </div>
         </a>
         <a href="player-coaches.php">
-          <div class="box coaches-box" id="box5">
+          <div class="box" id="box5">
             <div class="img">
               <img class="img" src="/img/coach-.png" alt="" id="img5">
 

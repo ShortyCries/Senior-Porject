@@ -162,24 +162,26 @@ $r = $result->rowCount();
             <p>Class</p>
           </div>
         </a>
-        <a href="player-players.php">
-          <div class="box players-box" id="box4">
-            <div class="img">
-              <img class="img" src="/img/player-.png" alt="" id="img4">
-            </div>
-            <p>Players</p>
-          </div>
-        </a>
-        <a href="player-coaches.php">
-          <div class="box coaches-box" id="box5">
-            <div class="img">
-              <img class="img" src="/img/coach-.png" alt="" id="img5">
+        </div>
+            <div class="box-container">
+                <a href="player-players.php">
+                    <div class="box" id="box4">
+                        <div class="img">
+                            <img class="img" src="/img/player-.png" alt="" id="img4">
+                        </div>
+                        <p>Players</p>
+                    </div>
+                </a>
+                <a href="player-coaches.php">
+                    <div class="box" id="box5">
+                        <div class="img">
+                            <img class="img" src="/img/coach-.png" alt="" id="img5">
 
+                        </div>
+                        <p>Coaches</p>
+                    </div>
+                </a>
             </div>
-            <p>Coaches</p>
-          </div>
-        </a>
-      </div>
 
     </div>
 

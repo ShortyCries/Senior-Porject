@@ -135,6 +135,7 @@ session_start();
                </div>
                <p></p>
            </div> -->
+
                 <a href="player-class.php">
                     <div class="box class-box" id="box3">
                         <div class="img">
@@ -144,8 +145,10 @@ session_start();
                         <p>Class</p>
                     </div>
                 </a>
+            </div>
+            <div class="box-container">
                 <a href="player-players.php">
-                    <div class="box players-box" id="box4">
+                    <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img4">
                         </div>
@@ -153,7 +156,7 @@ session_start();
                     </div>
                 </a>
                 <a href="player-coaches.php">
-                    <div class="box coaches-box" id="box5">
+                    <div class="box" id="box5">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img5">
 
