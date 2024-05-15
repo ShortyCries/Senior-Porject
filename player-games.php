@@ -25,43 +25,51 @@ $query12 = "SELECT Evdate FROM events WHERE (Evstatus ='booked' OR Evstatus ='on
 
 $result12 = $pdo->query($query12);
 
-$r12 = $result12->fetch(PDO::FETCH_COLUMN);
+$r12 = $result12->fetchAll(PDO::FETCH_COLUMN);
 
-if ($currentDate > $r12) {
-  $query13 = "UPDATE events SET Evstatus = 'finished' WHERE playeremail='$playerEmail' AND (Evstatus = 'booked' OR Evstatus ='ongoing')";
-  $result13 = $pdo->exec($query13);
+$r123 = $result12->rowCount();
+
+
+
+
+for ($i = 0; $i < $r123; $i++) {
+  // echo $r12[$i];
+  if ($currentDate > $r12[$i]) {
+    $query13 = "UPDATE events SET Evstatus = 'finished' WHERE playeremail='$playerEmail' AND (Evstatus = 'booked' OR Evstatus ='ongoing')";
+    $result13 = $pdo->exec($query13);
+  }
 }
 
-$query10 = "SELECT Evtime FROM events WHERE (Evstatus ='booked' OR Evstatus ='ongoing') AND playeremail='$playerEmail'";
+$query10 = "SELECT Eid, Evtime FROM events WHERE (Evstatus ='booked' OR Evstatus ='ongoing') AND playeremail='$playerEmail'";
 
 $result10 = $pdo->query($query10);
 
-$r10 = $result10->fetch(PDO::FETCH_COLUMN);
-
-// echo $r10;
+$r333 = $result10->rowCount();
 
 
-$times = explode('-', $r10);
 
-// echo $times[0];
+for ($i2 = 0; $i2 < $r333; $i2++) {
 
-// echo $times[1];
+  $r10 = $result10->fetch(PDO::FETCH_NUM);
 
-// echo $oneHourLater;
-if (isset($times[1])) {
-  if (($oneHourLater >= $times[0]) && ($oneHourLater < $times[1])) {
-    $query11 = "UPDATE events SET Evstatus = 'ongoing' WHERE Evdate = '$currentDate' AND playeremail='$playerEmail' AND Evstatus = 'booked'";
-    $result11 = $pdo->exec($query11);
+  
+
+  $times = explode('-', $r10[1]);
+
+  if (isset($times[1])) {
+    if (($oneHourLater >= $times[0]) && ($oneHourLater < $times[1])) {
+      $query11 = "UPDATE events SET Evstatus = 'ongoing' WHERE Evdate = '$currentDate' AND playeremail='$playerEmail' AND Evstatus = 'booked' AND Eid = '$r10[0]'";
+      $result11 = $pdo->exec($query11);
+    }
+  }
+
+  if (isset($times[1])) {
+    if ($oneHourLater >= $times[1]) {
+      $query11 = "UPDATE events SET Evstatus = 'finished' WHERE Evdate = '$currentDate' AND playeremail='$playerEmail' AND (Evstatus = 'booked' OR Evstatus ='ongoing') AND Eid ='$r10[0]'";
+      $result11 = $pdo->exec($query11);
+    }
   }
 }
-
-if (isset($times[1])) {
-  if ($oneHourLater >= $times[1]) {
-    $query11 = "UPDATE events SET Evstatus = 'finished' WHERE Evdate = '$currentDate' AND playeremail='$playerEmail' AND (Evstatus = 'booked' OR Evstatus ='ongoing')";
-    $result11 = $pdo->exec($query11);
-  }
-}
-
 
 
 
@@ -101,17 +109,10 @@ if (isset($times[1])) {
   <meta property="og:title" content="Page 2">
   <meta property="og:type" content="website">
   <meta data-intl-tel-input-cdn-path="intlTelInput/">
-  <link rel="stylesheet" href="css/linearicons.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="bootstrap5/cssbt5/bootstrap.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/nice-select.css">
-  <link rel="stylesheet" href="css/animate.min.css">
-  <link rel="stylesheet" href="css/owl.carousel.css">
-  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="mycss/styles.css">
-  <link rel="stylesheet" href="mycss/Listing-Player.css">
+  <link rel="stylesheet" href="mycss/Listing.css">
 
 
 
@@ -181,7 +182,7 @@ if (isset($times[1])) {
     <div class="container">
 
       <div class="box-container">
-        <a href="player-games.php">
+        <a href="player-games.php" style="text-decoration: none;">
           <div class="box games-box" id="box1" style="background-color: grey;">
             <div class="img-container">
               <img class="img" src="/img/games-.png" alt="" id="img1">
@@ -190,7 +191,7 @@ if (isset($times[1])) {
             <p>Games</p>
           </div>
         </a>
-        <a href="player-academies.php">
+        <a href="player-academies.php" style="text-decoration: none;">
           <div class="box academies-box" id="box2">
             <div class="img-container">
               <img class="img" src="/img//academy-.png" alt="" id="img2">
@@ -206,7 +207,7 @@ if (isset($times[1])) {
                </div>
                <p></p>
            </div> -->
-        <a href="player-class.php">
+        <a href="player-class.php" style="text-decoration: none;">
           <div class="box class-box" id="box3">
             <div class="img">
               <img class="img" src="/img/classes-.png" alt="" id="img3">
@@ -217,7 +218,7 @@ if (isset($times[1])) {
         </a>
       </div>
       <div class="box-container">
-        <a href="player-players.php">
+        <a href="player-players.php" style="text-decoration: none;">
           <div class="box" id="box4">
             <div class="img">
               <img class="img" src="/img/player-.png" alt="" id="img4">
@@ -225,7 +226,7 @@ if (isset($times[1])) {
             <p>Players</p>
           </div>
         </a>
-        <a href="player-coaches.php">
+        <a href="player-coaches.php" style="text-decoration: none;">
           <div class="box" id="box5">
             <div class="img">
               <img class="img" src="/img/coach-.png" alt="" id="img5">
@@ -289,7 +290,7 @@ if (isset($times[1])) {
 
                   $r9 = $result9->rowCount();
                   ?>
-                  <?php if ($r9 >= 1) : ?>
+                  <?php if ($r9 >= 2) : ?>
                     <button type="button" style="background-color: #e0e0e0; color: #808080;  pointer-events: none;" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
                       New Event
                     </button>

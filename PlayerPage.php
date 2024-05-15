@@ -37,16 +37,10 @@ session_start();
     <meta property="og:title" content="Page 2">
     <meta property="og:type" content="website">
     <meta data-intl-tel-input-cdn-path="intlTelInput/">
-    <link rel="stylesheet" href="css/linearicons.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="bootstrap5/cssbt5/bootstrap.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="mycss/styles.css">
+    <link rel="stylesheet" href="mycss/Listing.css">
 </head>
 
 <body class="u-body u-xl-mode" data-lang="en">
@@ -110,7 +104,7 @@ session_start();
         <div class="container">
 
             <div class="box-container">
-                <a href="player-games.php">
+                <a href="player-games.php" style="text-decoration: none;">
                     <div class="box games-box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/games-.png" alt="" id="img1">
@@ -119,7 +113,7 @@ session_start();
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="player-academies.php">
+                <a href="player-academies.php" style="text-decoration: none;">
                     <div class="box academies-box" id="box2">
                         <div class="img-container">
                             <img class="img" src="/img//academy-.png" alt="" id="img2">
@@ -136,7 +130,7 @@ session_start();
                <p></p>
            </div> -->
 
-                <a href="player-class.php">
+                <a href="player-class.php" style="text-decoration: none;">
                     <div class="box class-box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/classes-.png" alt="" id="img3">
@@ -147,7 +141,7 @@ session_start();
                 </a>
             </div>
             <div class="box-container">
-                <a href="player-players.php">
+                <a href="player-players.php" style="text-decoration: none;">
                     <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img4">
@@ -155,7 +149,7 @@ session_start();
                         <p>Players</p>
                     </div>
                 </a>
-                <a href="player-coaches.php">
+                <a href="player-coaches.php" style="text-decoration: none;">
                     <div class="box" id="box5">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img5">

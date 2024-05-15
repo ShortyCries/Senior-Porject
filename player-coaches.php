@@ -32,6 +32,43 @@ $r = $result->rowCount();
   <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
 
+  <style>
+  .view_user_data {
+    overflow-wrap: break-word; /* Ensures long words break to the next line */
+    word-wrap: break-word; /* Legacy support */
+    word-break: break-word; /* Ensures long words break to the next line */
+    white-space: pre-wrap; /* Preserves whitespace but wraps text */
+  }
+
+  .modal-body .container {
+    max-width: 100%; /* Ensures container does not exceed modal width */
+  }
+
+  .info-section {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    padding-bottom: 0.5rem; /* Add some padding at the bottom */
+    border-bottom: 1px solid #ccc; /* Add a bottom border */
+  }
+
+  .info-section .label {
+    flex: 0 0 auto; /* Label takes only the necessary space */
+    margin-right: 10px; /* Space between label and content */
+    font-weight: bold; /* Bold font for the label */
+  }
+
+  .info-section .content {
+    flex: 1 1 auto; /* Content takes the remaining space */
+    word-wrap: break-word; /* Ensure text wraps within the container */
+    white-space: pre-wrap; /* Ensures whitespace is preserved and wraps text */
+  }
+
+  .modal-body h6 {
+    margin-bottom: 1rem; /* Add some space between different text elements */
+  }
+</style>
+
 
 
 
@@ -48,17 +85,9 @@ $r = $result->rowCount();
   <meta property="og:title" content="Page 2">
   <meta property="og:type" content="website">
   <meta data-intl-tel-input-cdn-path="intlTelInput/">
-  <link rel="stylesheet" href="css/linearicons.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="bootstrap5/cssbt5/bootstrap.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/nice-select.css">
-  <link rel="stylesheet" href="css/animate.min.css">
-  <link rel="stylesheet" href="css/owl.carousel.css">
-  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="mycss/styles.css">
-
   <link rel="stylesheet" href="mycss/Listing.css">
 
 
@@ -128,7 +157,7 @@ $r = $result->rowCount();
     <div class="container">
 
       <div class="box-container">
-        <a href="player-games.php">
+        <a href="player-games.php" style="text-decoration: none;">
           <div class="box games-box" id="box1">
             <div class="img-container">
               <img class="img" src="/img/games-.png" alt="" id="img1">
@@ -137,7 +166,7 @@ $r = $result->rowCount();
             <p>Games</p>
           </div>
         </a>
-        <a href="player-academies.php">
+        <a href="player-academies.php" style="text-decoration: none;">
           <div class="box academies-box" id="box2">
             <div class="img-container">
               <img class="img" src="/img//academy-.png" alt="" id="img2">
@@ -153,7 +182,7 @@ $r = $result->rowCount();
                </div>
                <p></p>
            </div> -->
-        <a href="player-class.php">
+        <a href="player-class.php" style="text-decoration: none;">
           <div class="box class-box" id="box3">
             <div class="img">
               <img class="img" src="/img/classes-.png" alt="" id="img3">
@@ -164,7 +193,7 @@ $r = $result->rowCount();
         </a>
       </div>
       <div class="box-container">
-        <a href="player-players.php">
+        <a href="player-players.php" style="text-decoration: none;">
           <div class="box" id="box4">
             <div class="img">
               <img class="img" src="/img/player-.png" alt="" id="img4">
@@ -172,7 +201,7 @@ $r = $result->rowCount();
             <p>Players</p>
           </div>
         </a>
-        <a href="player-coaches.php">
+        <a href="player-coaches.php" style="text-decoration: none;">
           <div class="box" id="box5" style="background-color: grey;">
             <div class="img">
               <img class="img" src="/img/coach-.png" alt="" id="img5">
@@ -303,11 +332,6 @@ $r = $result->rowCount();
         e.preventDefault();
 
         var user_email = $(this).closest('div').find('.user_email').text();
-
-
-
-
-
         $.ajax({
           method: "POST",
           url: "coach-info.php",
@@ -323,17 +347,7 @@ $r = $result->rowCount();
           }
         });
 
-
-
-
-
-
-
-
       });
-
-
-
 
 
     });
