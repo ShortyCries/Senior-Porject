@@ -3,30 +3,14 @@ session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
-if (isset($_GET['email'])) {
-  $coachEmail = $_GET['email'];
-  $delete1 = "DELETE FROM coach WHERE email = '$coachEmail' ";
-  $delResult1 = $pdo->exec($delete1);
-  $delete2 = "DELETE FROM login WHERE email = '$coachEmail' ";
-  $delResult2 = $pdo->exec($delete2);
-}
+$playerEmail = $_SESSION['email'];
 
 
-
-
-
-
-$academyEmail = $_SESSION['email'];
-
-$query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
+$query = "SELECT name, email FROM coach";
 
 $result = $pdo->query($query);
 
 $r = $result->rowCount();
-
-
-
-
 
 ?>
 
@@ -44,6 +28,7 @@ $r = $result->rowCount();
   <link rel="stylesheet" href="css/nicepage.css" media="screen">
   <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+  <script src="bootstrap5/jsbt5/bootstrap.bundle.min.js"> </script>
   <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
 
@@ -73,6 +58,8 @@ $r = $result->rowCount();
   <link rel="stylesheet" href="css/owl.carousel.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="mycss/styles.css">
+
+  <link rel="stylesheet" href="mycss/Listing.css">
 
 
 
@@ -202,51 +189,159 @@ $r = $result->rowCount();
 
 
   <div class="mybackground-img2">
+    <div class="container-Listing">
+
+      <h1 class="heading-Listing">Academies</h1>
+
+      <div class="box-container-Listing">
 
 
 
-  </div>
 
-  <div class="mybackground-img">
-    <div class="container">
-      <div class="row mt-5">
-        <div class="col">
-          <div class="card mt-5">
 
-            <div class="card-header">
-              <h4 class="display-6 text-center"> Coach List </h2>
+        <?php for ($i = 0; $i < $r; $i++) {
+          $row = $result->fetch(PDO::FETCH_NUM);
+        ?>
+
+          <div class="box-Listing">
+            <div class="image-Listing">
+              <img src="img/profiletest.jpg" alt="">
             </div>
-            <div class="card-body">
-              <table class="table table-bordered text-center">
-                <tr class="bg-dark text-white">
-                  <td>Name</td>
-                  <td>Email</td>
-                  <td>Date of birth</td>
+            <div class="content-Listing">
+
+              <h3><?php echo $row[0] ?></h3>
 
 
-                </tr>
-                <?php
-                for ($i = 0; $i < $r; $i++) {
-                  $row = $result->fetch(PDO::FETCH_NUM);
-                  echo "<tr>";
-                  echo "<td>   $row[0] </td>";
-                  echo "<td>   $row[1] </td> ";
-                  echo "<td>  $row[2] </td> ";
+              <p class="user_email"><?php echo $row[1] ?></p>
 
+              <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Read More
+              </a>
 
-                  echo "</tr>";
-                }
-                ?>
-              </table>
+              <div class="icons-Listing">
+
+              </div>
             </div>
-
           </div>
 
+
+        <?php
+        }
+        ?>
+
+
+
+
+
+        <!-- READ MORE MODEL -->
+        <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Coach Info</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <div class="view_user_data">
+
+                </div>
+
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- READ MORE MODEL -->
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
 
+      <div id="load-more"> load more </div>
+
     </div>
+
+    <script>
+      let loadMoreBtn = document.querySelector('#load-more');
+      let currentItem = 4;
+
+      loadMoreBtn.onclick = () => {
+        let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+        for (var i = currentItem; i < currentItem + 4; i++) {
+          boxes[i].style.display = 'inline-block';
+        }
+        currentItem += 4;
+
+        if (currentItem >= boxes.length) {
+          loadMoreBtn.style.display = 'none';
+        }
+      }
+    </script>
+
+
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+  <script>
+    $(document).ready(function() {
+
+      $('.view_data').click(function(e) {
+        e.preventDefault();
+
+        var user_email = $(this).closest('div').find('.user_email').text();
+
+
+
+
+
+        $.ajax({
+          method: "POST",
+          url: "coach-info.php",
+          data: {
+            'click_readmore_btn': true,
+            'coach_email': user_email,
+          },
+          success: function(response) {
+
+            $('.view_user_data').html(response);
+            $('#viewusermodal').modal('show');
+
+          }
+        });
+
+
+
+
+
+
+
+
+      });
+
+
+
+
+
+    });
+  </script>
+
+
+
+
 
 
 
