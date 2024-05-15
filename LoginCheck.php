@@ -36,9 +36,13 @@ try {
 
         header("location:AcademyPage.php");
       } else if ($row['Type'] == "admin") {
-        
+
         header("location:adminPage.php");
       }
+    } else {
+      session_start();
+      $_SESSION['logstatus'] = 'Wrong email or password!';
+      header("location:login.php");
     }
   }
 

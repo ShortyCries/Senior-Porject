@@ -36,3 +36,6 @@ for ($i = $MIN; $i <= $MAX; $i++) {
 
     $rolecounter++;
 }
+
+
+header("location:player-games.php");

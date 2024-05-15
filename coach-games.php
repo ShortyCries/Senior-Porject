@@ -3,6 +3,18 @@ session_start();
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
+$coachEmail =  $_SESSION['email'];
+
+$query = "SELECT academyemail FROM trains WHERE coachemail ='$coachEmail'";
+
+$result = $pdo->query($query);
+
+$academyEmail = $result->fetch(PDO::FETCH_COLUMN);
+
+
+
+
+
 ?>
 
 
@@ -156,6 +168,95 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
     </div>
   </div>
+
+
+  <div class="mybackground-img2">
+    <div class="container">
+
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+
+
+
+
+          <div class="card">
+            <div class="card-header">
+              <h4 class="text-center">Matches</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+
+                <table class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Id</th>
+                      <th scope="col">Team1</th>
+                      <th scope="col">Team2</th>
+                      <th scope="col">Court</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Time</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <?php
+
+                    $query3 =  "SELECT matchs.Mid AS MatchID, c1.Cname AS Team1Name, c2.Cname AS Team2Name, courts.CRname AS CourtName, matchs.Mdate AS MatchDate, matchs.Mtime AS MatchTime FROM matchs JOIN class AS c1 ON matchs.team1 = c1.id JOIN class AS c2 ON matchs.team2 = c2.id JOIN courts ON matchs.McourtId = courts.CRid WHERE courts.CRAcademyemail = '$academyEmail' AND matchs.Mtype = 'local';";
+                    $result3 = $pdo->query($query3);
+
+                    $r3 = $result3->rowCount();
+
+                    for ($i = 0; $i < $r3; $i++) {
+                      $row3 = $result3->fetch(PDO::FETCH_NUM);
+                    ?>
+                      <tr>
+                        <td id="myclassid"><?php echo  $row3[0] ?></td>
+                        <td><?php echo  $row3[1] ?></td>
+                        <td><?php echo  $row3[2] ?></td>
+                        <td><?php echo  $row3[3] ?></td>
+                        <td><?php echo $row3[4] ?></td>
+                        <td><?php echo $row3[5] ?></td>
+
+                      </tr>
+                    <?php
+                    }
+                    ?>
+
+
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

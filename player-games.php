@@ -47,9 +47,12 @@ $times = explode('-', $r10);
 
 // echo $times[1];
 
-if ($oneHourLater == $times[0]) {
-  $query11 = "UPDATE events SET Evstatus = 'ongoing' WHERE Evdate = '$currentDate' AND playeremail='$playerEmail' AND Evstatus = 'booked'";
-  $result11 = $pdo->exec($query11);
+// echo $oneHourLater;
+if (isset($times[1])) {
+  if (($oneHourLater >= $times[0]) && ($oneHourLater < $times[1])) {
+    $query11 = "UPDATE events SET Evstatus = 'ongoing' WHERE Evdate = '$currentDate' AND playeremail='$playerEmail' AND Evstatus = 'booked'";
+    $result11 = $pdo->exec($query11);
+  }
 }
 
 if (isset($times[1])) {
