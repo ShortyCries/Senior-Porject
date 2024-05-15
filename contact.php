@@ -54,16 +54,17 @@
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
 				          <li><a href="index.php">Home</a></li>
-				          <li><a href="about.php">About</a></li>
+				          <li><a href="about.php">About us</a></li>
 				          <li></li>
-				          <li class="menu-has-children"><a href="">Blog</a>
-				            <ul>
-				              <li><a href="blog-home.php">Blog Home</a></li>
-				              
-				            </ul>
-				          </li>	
+				          
 				          					          					          		          
 				          <li><a href="contact.php">Contact</a></li>
+						  <li class="menu-has-children"><a href="">More</a>
+								<ul>
+									<li><a href="More-home.php">More</a></li>
+									<li class="menu-has-children"><a href="Settings.php">Settings</li></a>
+								</ul>
+							</li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->					      		  
 					</div>

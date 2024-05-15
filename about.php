@@ -1,17 +1,4 @@
-<?php
-session_start();
-require_once("config.php");
-$pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-$academyEmail = $_SESSION['email'];
 
-$query = "SELECT name, email FROM academy ";
-
-$result = $pdo->query($query);
-
-$r = $result->rowCount();
-
-
-?>
 	<!DOCTYPE html>
 	<html lang="zxx" class="no-js">
 
@@ -69,32 +56,22 @@ $r = $result->rowCount();
 						<a href="index.php"><img style="height: 30px; width: 145px;" src="img/2-1.png" alt="" title="" /></a>
 						
 					</div>
-					<p style="border-left: solid; padding-left: 30px;" class="u-align-center u-text u-text-default u-text-1"><?php echo "" . $_SESSION['name'] . "" ?></p>
+					<p style="border-left: solid; padding-left: 30px;" class="u-align-center u-text u-text-default u-text-1"></p>
 					
 					<nav id="nav-menu-container">
 						<ul class="nav-menu">
 							<li><a href="index.php">Home</a></li>
 							
-							<li><a href="#" onclick="logoutAlert()">Logout</a></li>
 							<li><a href="about.php">About us</a></li>
-							<li class="menu-has-children"><a href="">Contact</a>
-								<ul>
-									<li><a href="blog-home.php">Blog Home</a></li>
+							<li><a href="contact.php">Contact</a></li>
 
+							</li>
+							<li class="menu-has-children"><a href="">More</a>
+								<ul>
+									<li><a href="More-home.php">More</a></li>
+									<li class="menu-has-children"><a href="Settings.php">Settings</li></a>
 								</ul>
 							</li>
-
-							<ul>
-								<li><a href="elements.php">Elements</a></li>
-								<li class="menu-has-children"><a href="">Level 2 </a>
-									<ul>
-										<li><a href="#">Item One</a></li>
-										<li><a href="#">Item Two</a></li>
-									</ul>
-								</li>
-							</ul>
-							</li>
-							<li><a href="contact.php">Contact</a></li>
 						</ul>
 					</nav><!-- #nav-menu-container -->
 
