@@ -29,8 +29,8 @@ if (isset($_POST['courtID'], $_POST['eventID'])) {
     echo "court size: $r[4] <br>";
     echo "sport: $r[6] <br>";
     echo "capacity: $r[7] <br>";
-    echo "game date: $r[12] <br>";
-    echo "game time: $r[13] <br>";
+    echo "game date: $r[13] <br>";
+    echo "game time: $r[14] <br>";
 
 
        

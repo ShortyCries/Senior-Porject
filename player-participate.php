@@ -26,7 +26,8 @@ if (isset($_POST['rolename'], $_POST['eventID'])) {
 
     
 
-
+    $_SESSION['evstatus'] = "Request to join has been sent!";
+    header("location:player-games.php");
 
         
 }
@@ -34,8 +35,8 @@ if (isset($_POST['rolename'], $_POST['eventID'])) {
 
 } catch (PDOException $e) {
 
-
-    echo "You already joined this event!";
+    $_SESSION['evstatus'] = "You already requested to join this event!";
+    header("location:player-games.php");
 
 
 }

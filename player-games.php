@@ -10,6 +10,56 @@ $result = $pdo->query($query);
 
 $r = $result->rowCount();
 
+$currentDate = date('Y-m-d');
+$dateTime = new DateTime();
+$currentTime = $dateTime->format('H:i');
+$dateTime->modify('+1 hour');
+$oneHourLater = $dateTime->format('H:i');
+
+
+// echo $currentDate;
+
+// echo $oneHourLater;
+
+$query12 = "SELECT Evdate FROM events WHERE (Evstatus ='booked' OR Evstatus ='ongoing') AND playeremail='$playerEmail'";
+
+$result12 = $pdo->query($query12);
+
+$r12 = $result12->fetch(PDO::FETCH_COLUMN);
+
+if ($currentDate > $r12) {
+  $query13 = "UPDATE events SET Evstatus = 'finished' WHERE playeremail='$playerEmail' AND (Evstatus = 'booked' OR Evstatus ='ongoing')";
+  $result13 = $pdo->exec($query13);
+}
+
+$query10 = "SELECT Evtime FROM events WHERE (Evstatus ='booked' OR Evstatus ='ongoing') AND playeremail='$playerEmail'";
+
+$result10 = $pdo->query($query10);
+
+$r10 = $result10->fetch(PDO::FETCH_COLUMN);
+
+// echo $r10;
+
+
+$times = explode('-', $r10);
+
+// echo $times[0];
+
+// echo $times[1];
+
+if ($oneHourLater == $times[0]) {
+  $query11 = "UPDATE events SET Evstatus = 'ongoing' WHERE Evdate = '$currentDate' AND playeremail='$playerEmail' AND Evstatus = 'booked'";
+  $result11 = $pdo->exec($query11);
+}
+
+if (isset($times[1])) {
+  if ($oneHourLater >= $times[1]) {
+    $query11 = "UPDATE events SET Evstatus = 'finished' WHERE Evdate = '$currentDate' AND playeremail='$playerEmail' AND (Evstatus = 'booked' OR Evstatus ='ongoing')";
+    $result11 = $pdo->exec($query11);
+  }
+}
+
+
 
 
 ?>
@@ -162,26 +212,26 @@ $r = $result->rowCount();
             <p>Class</p>
           </div>
         </a>
-        </div>
-            <div class="box-container">
-                <a href="player-players.php">
-                    <div class="box" id="box4">
-                        <div class="img">
-                            <img class="img" src="/img/player-.png" alt="" id="img4">
-                        </div>
-                        <p>Players</p>
-                    </div>
-                </a>
-                <a href="player-coaches.php">
-                    <div class="box" id="box5">
-                        <div class="img">
-                            <img class="img" src="/img/coach-.png" alt="" id="img5">
-
-                        </div>
-                        <p>Coaches</p>
-                    </div>
-                </a>
+      </div>
+      <div class="box-container">
+        <a href="player-players.php">
+          <div class="box" id="box4">
+            <div class="img">
+              <img class="img" src="/img/player-.png" alt="" id="img4">
             </div>
+            <p>Players</p>
+          </div>
+        </a>
+        <a href="player-coaches.php">
+          <div class="box" id="box5">
+            <div class="img">
+              <img class="img" src="/img/coach-.png" alt="" id="img5">
+
+            </div>
+            <p>Coaches</p>
+          </div>
+        </a>
+      </div>
 
     </div>
 
@@ -229,9 +279,24 @@ $r = $result->rowCount();
               <div class="card">
                 <div class="card-header">
                   <h4 class="text-center">Your Events</h4>
-                  <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
-                    New Event
-                  </button>
+                  <?php
+                  $query9 = "SELECT * FROM events WHERE playeremail = '$playerEmail' AND Evstatus = 'booked'";
+
+                  $result9 = $pdo->query($query9);
+
+                  $r9 = $result9->rowCount();
+                  ?>
+                  <?php if ($r9 >= 1) : ?>
+                    <button type="button" style="background-color: #e0e0e0; color: #808080;  pointer-events: none;" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
+                      New Event
+                    </button>
+                  <?php else : ?>
+                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
+                      New Event
+                    </button>
+                  <?php endif; ?>
+
+
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -287,7 +352,7 @@ $r = $result->rowCount();
                               <?php if ($row3[5] === "finished" || $row3[5] === "ongoing") : ?>
                                 <a class='btn btn-primary' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Request Role</a>
                               <?php else : ?>
-                                <a class='btn btn-primary request_Role' >Request Role</a>
+                                <a class='btn btn-primary request_Role'>Request Role</a>
                               <?php endif; ?>
                             </td>
                             <td>
@@ -321,6 +386,20 @@ $r = $result->rowCount();
         <div class="tab-pane fade" id="nav-public" role="tabpanel" aria-labelledby="nav-public-tab">
 
           <!--contect for other tab here...-->
+          <?php
+          if (isset($_SESSION['evstatus']) && $_SESSION['evstatus'] != '') {
+
+
+          ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <?php echo $_SESSION['evstatus']; ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+          <?php
+            unset($_SESSION['status']);
+          }
+          ?>
 
           <div class="container-Listing">
 
@@ -391,12 +470,12 @@ $r = $result->rowCount();
             </div>
             <form action="rolePDO.php" method="POST">
               <div class="modal-body">
-              
 
-              <div class="showRoleForm text-center">
 
-              
-              </div>
+                <div class="showRoleForm text-center">
+
+
+                </div>
 
 
 
@@ -584,7 +663,7 @@ $r = $result->rowCount();
             console.log(tableEventID);
 
 
-        
+
 
             $.ajax({
               method: "POST",
@@ -679,7 +758,7 @@ $r = $result->rowCount();
         });
       </script>
 
-      
+
 
       <script>
         let loadMoreBtn = document.querySelector('#load-more');
