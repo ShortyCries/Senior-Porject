@@ -61,7 +61,7 @@ try {
             $_SESSION['status'] = "Court added successfully";
             header("location:academy-Courts.php");
         } else {
-            $_SESSION['status'] = "Class addition was unsuccessful";
+            $_SESSION['status'] = "Court addition was unsuccessful";
             header("location:academy-Courts.php");
         }
     }

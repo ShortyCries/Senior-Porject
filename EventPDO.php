@@ -11,6 +11,42 @@ try {
 
         extract($_POST);
 
+        
+        $query7 = "SELECT Evtime FROM events WHERE playeremail = '$playerEmail' AND Evstatus = 'booked' AND Evdate = '$date'";
+
+        $result7 = $pdo->query($query7);
+
+        $r7 = $result7->fetchAll(PDO::FETCH_COLUMN);
+
+        echo $r7[0];
+
+        echo $time;
+
+
+        function parse_time_range($time_range) {
+            list($start, $end) = explode('-', $time_range);
+            return [strtotime($start), strtotime($end)];
+        }
+        
+        function times_overlap($range1, $range2) {
+            list($start1, $end1) = parse_time_range($range1);
+            list($start2, $end2) = parse_time_range($range2);
+        
+            return $start1 < $end2 && $start2 < $end1;
+        }
+        
+        
+        
+         if (times_overlap($r7[0], $time)) {
+         $_SESSION['status'] = 'OOPS! Looks like you already have an event during that time!';
+         header("location:player-games.php");
+         exit();
+        }
+    
+
+
+
+
         $query4 = "SELECT Eid FROM events ORDER BY Eid DESC LIMIT 1";
 
         $result4 = $pdo->query($query4);
