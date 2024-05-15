@@ -21,11 +21,11 @@ $oneHourLater = $dateTime->format('H:i');
 
 // echo $oneHourLater;
 
-$query12 = "SELECT Evdate FROM events WHERE (Evstatus ='booked' OR Evstatus ='ongoing') AND playeremail='$playerEmail'";
+$query12 = "SELECT Eid, Evdate FROM events WHERE (Evstatus ='booked' OR Evstatus ='ongoing') AND playeremail='$playerEmail'";
 
 $result12 = $pdo->query($query12);
 
-$r12 = $result12->fetchAll(PDO::FETCH_COLUMN);
+
 
 $r123 = $result12->rowCount();
 
@@ -33,9 +33,11 @@ $r123 = $result12->rowCount();
 
 
 for ($i = 0; $i < $r123; $i++) {
-  // echo $r12[$i];
-  if ($currentDate > $r12[$i]) {
-    $query13 = "UPDATE events SET Evstatus = 'finished' WHERE playeremail='$playerEmail' AND (Evstatus = 'booked' OR Evstatus ='ongoing')";
+
+  $r12 = $result12->fetch(PDO::FETCH_NUM);
+  
+  if ($currentDate > $r12[1]) {
+    $query13 = "UPDATE events SET Evstatus = 'finished' WHERE playeremail='$playerEmail' AND (Evstatus = 'booked' OR Evstatus ='ongoing') AND Eid = '$r12[0]'";
     $result13 = $pdo->exec($query13);
   }
 }
