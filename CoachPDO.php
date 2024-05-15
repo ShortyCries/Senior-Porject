@@ -15,12 +15,14 @@ try {
         echo "<h1>  Hello this is checking if i am  actually a coach </h1> <br>";
 
 
+        $hashpw=md5($password);
 
-        $query = "INSERT INTO login VALUES('$email','$name','$password','coach' ,'active')";
+
+        $query = "INSERT INTO login VALUES('$email','$name','$hashpw','coach' ,'active')";
 
         $result = $pdo->exec($query);
 
-        $query1 = "INSERT INTO coach VALUES('$email','$name','$password','$Dob',NULL,NULL) ";
+        $query1 = "INSERT INTO coach VALUES('$email','$name','$hashpw','$Dob',NULL,NULL) ";
 
         $result1 = $pdo->exec($query1);
 

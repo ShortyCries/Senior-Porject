@@ -4,11 +4,7 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $playerEmail = $_SESSION['email'];
 
-$query = "SELECT Eid, Evcourtid, playeremail, Evdate, Evtime, Evstatus FROM events Where playeremail <> '$playerEmail' ";
 
-$result = $pdo->query($query);
-
-$r = $result->rowCount();
 
 $currentDate = date('Y-m-d');
 $dateTime = new DateTime();
@@ -35,7 +31,7 @@ $r123 = $result12->rowCount();
 for ($i = 0; $i < $r123; $i++) {
 
   $r12 = $result12->fetch(PDO::FETCH_NUM);
-  
+
   if ($currentDate > $r12[1]) {
     $query13 = "UPDATE events SET Evstatus = 'finished' WHERE playeremail='$playerEmail' AND (Evstatus = 'booked' OR Evstatus ='ongoing') AND Eid = '$r12[0]'";
     $result13 = $pdo->exec($query13);
@@ -54,7 +50,7 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
 
   $r10 = $result10->fetch(PDO::FETCH_NUM);
 
-  
+
 
   $times = explode('-', $r10[1]);
 
@@ -95,10 +91,43 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
   <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
 
+<style>
 
+  .view_user_data {
+  overflow-wrap: break-word; /* Ensures long words break to the next line */
+  word-wrap: break-word; /* Legacy support */
+  word-break: break-word; /* Ensures long words break to the next line */
+  white-space: pre-wrap; /* Preserves whitespace but wraps text */
+  }
 
+  .modal-body .container {
+  max-width: 100%; /* Ensures container does not exceed modal width */
+  }
 
+  .info-section {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  padding-bottom: 0.5rem; /* Add some padding at the bottom */
+  border-bottom: 1px solid #ccc; /* Add a bottom border */
+  }
 
+  .info-section .label {
+  flex: 0 0 auto; /* Label takes only the necessary space */
+  margin-right: 10px; /* Space between label and content */
+  font-weight: bold; /* Bold font for the label */
+  }
+
+  .info-section .content {
+  flex: 1 1 auto; /* Content takes the remaining space */
+  word-wrap: break-word; /* Ensure text wraps within the container */
+  white-space: pre-wrap; /* Ensures whitespace is preserved and wraps text */
+  }
+
+  .modal-body h6 {
+  margin-bottom: 1rem; /* Add some space between different text elements */
+  }
+</style>
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -114,7 +143,7 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="bootstrap5/cssbt5/bootstrap.css">
   <link rel="stylesheet" href="mycss/styles.css">
-  <link rel="stylesheet" href="mycss/Listing.css">
+  <link rel="stylesheet" href="mycss/Listing-player.css">
 
 
 
@@ -270,7 +299,7 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
 
               ?>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                   <?php echo $_SESSION['status']; ?>
+                  <?php echo $_SESSION['status']; ?>
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
 
@@ -417,7 +446,23 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
 
 
 
-              <?php for ($i = 0; $i < $r; $i++) {
+              <?php
+
+
+              $query = "SELECT Eid, Evcourtid, playeremail, Evdate, Evtime, Evstatus FROM events Where playeremail <> '$playerEmail' ";
+
+              $result = $pdo->query($query);
+
+              $r = $result->rowCount();
+
+
+
+
+
+
+
+
+              for ($i = 0; $i < $r; $i++) {
                 $row = $result->fetch(PDO::FETCH_NUM);
               ?>
 

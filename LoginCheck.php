@@ -7,41 +7,55 @@ try {
 
     extract($_POST);
 
+    $hashpw=md5($password);
 
+    $query = "SELECT * FROM login WHERE email = ? AND password = ?";
 
+    $result = $pdo->prepare($query);
+    $result->bindValue(1, $email);
+    $result->bindValue(2, $hashpw);
 
-    $query = "SELECT * FROM login where email ='$email' AND  password = '$password' AND status ='active'";
-
-
-
-
-    $result = $pdo->query($query);
-
-    $r = $result->rowCount(); // == 1
-
-    if ($r == 1) {
-      session_start();
-      $_SESSION['Logged'] = true;
-      $_SESSION['email'] = $email;
-
+    // Execute the prepared statement
+    if ($result->execute()) {
       $row = $result->fetch();
-      $_SESSION['name'] = $row['name'];
-      if ($row['Type'] == "player") {
 
-        header("location:PlayerPage.php");
-      } else if ($row['Type'] == "coach") {
+      if ($row) {
+        // Successful login
+        session_start();
+        $_SESSION['Logged'] = true;
+        $_SESSION['email'] = $email;
+        $_SESSION['name'] = $row['name'];
 
-        header("location:CoachPage.php");
-      } else if ($row['Type'] == "academy") {
-
-        header("location:AcademyPage.php");
-      } else if ($row['Type'] == "admin") {
-
-        header("location:adminPage.php");
+        // Redirect based on user type
+        switch ($row['Type']) {
+          case 'player':
+            header("location:PlayerPage.php");
+            break;
+          case 'coach':
+            header("location:CoachPage.php");
+            break;
+          case 'academy':
+            header("location:AcademyPage.php");
+            break;
+          case 'admin':
+            header("location:adminPage.php");
+            break;
+          default:
+            // Handle unexpected user type
+            session_destroy();
+            header("location:login.php");
+            break;
+        }
+      } else {
+        // Wrong email or password
+        session_start();
+        $_SESSION['logstatus'] = 'Wrong email or password!';
+        header("location:login.php");
       }
     } else {
+      // Error executing query
       session_start();
-      $_SESSION['logstatus'] = 'Wrong email or password!';
+      $_SESSION['logstatus'] = 'Error executing query!';
       header("location:login.php");
     }
   }
@@ -50,21 +64,3 @@ try {
 } catch (PDOException $e) {
   die($e->getMessage());
 }
-?>
-
-<html>
-
-<head>
-
-
-
-</head>
-
-<body>
-
-
-</body>
-
-
-
-</html>

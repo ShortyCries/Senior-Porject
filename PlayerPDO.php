@@ -13,13 +13,13 @@ try {
         $date = date("Y-m-d", strtotime($Dob));
 
 
+        $hashpw= md5($password);
 
-
-        $query = "INSERT INTO login VALUES('$email','$name','$password','player','active')";
+        $query = "INSERT INTO login VALUES('$email','$name','$hashpw','player','active')";
 
         $result = $pdo->exec($query);
 
-        $query1 = "INSERT INTO player VALUES('$email','$name','$date','$password', NULL, NULL) ";
+        $query1 = "INSERT INTO player VALUES('$email','$name','$date','$hashpw', NULL, NULL) ";
 
         $result1 = $pdo->exec($query1);
 

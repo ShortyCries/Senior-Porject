@@ -61,12 +61,6 @@
 							<li></li>
 
 							<li><a href="contact.php">Contact</a></li>
-							<li class="menu-has-children"><a href="">More</a>
-								<ul>
-									<li><a href="More-home.php">More</a></li>
-									<li class="menu-has-children"><a href="Settings.php">Settings</li></a>
-								</ul>
-							</li>
 						</ul>
 					</nav><!-- #nav-menu-container -->
 				</div>

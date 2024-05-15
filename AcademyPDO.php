@@ -10,13 +10,15 @@ try {
         echo "<h1>  Hello this is checking if i am  actually a Academy </h1> <br>";
 
         $date = date("Y-m-d", strtotime($foundedIn));
-        $status = 'active';
+        $status = 'deactive';
 
-        $query = "INSERT INTO login VALUES('$email','$name','$password','academy','$status')";
+        $hashpw=md5($password);
+
+        $query = "INSERT INTO login VALUES('$email','$name','$hashpw','academy','$status')";
 
         $result = $pdo->exec($query);
 
-        $query1 = "INSERT INTO academy VALUES('$email','$name','$password','$date', NULL) ";
+        $query1 = "INSERT INTO academy VALUES('$email','$name','$hashpw','$date', NULL, NULL, NULL, NULL) ";
 
         $result1 = $pdo->exec($query1);
 

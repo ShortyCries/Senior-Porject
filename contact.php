@@ -49,7 +49,7 @@
 				<div class="container main-menu">
 					<div class="row align-items-center justify-content-between d-flex">
 				      <div id="logo">
-					  <a href="index.php"><img style="height: 30px; width: 145px;" src="img/logo.png" alt="" title="" /></a>
+					  <a href="index.php"><img style="height: 30px; width: 145px;" src="img/2-1.png" alt="" title="" /></a>
 				      </div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
@@ -59,12 +59,6 @@
 				          
 				          					          					          		          
 				          <li><a href="contact.php">Contact</a></li>
-						  <li class="menu-has-children"><a href="">More</a>
-								<ul>
-									<li><a href="More-home.php">More</a></li>
-									<li class="menu-has-children"><a href="Settings.php">Settings</li></a>
-								</ul>
-							</li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->					      		  
 					</div>
