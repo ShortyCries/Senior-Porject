@@ -4,7 +4,7 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $playerEmail = $_SESSION['email'];
 
-$query = "SELECT email, name, description, phone FROM player WHERE email = '$playerEmail'";
+$query = "SELECT email, name, description, phone, PLimg FROM player WHERE email = '$playerEmail'";
 
 $result = $pdo->query($query);
 
@@ -128,7 +128,9 @@ $r = $result->fetch(PDO::FETCH_NUM);
             <div class="row mt-5 align-items-center">
               <div class="col-md-3 text-center mb-5">
                 <div class="avatar avatar-xl">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." class="avatar-img rounded-circle" />
+                <a href="#" type="button" class=" view_data" data-bs-toggle="modal" data-bs-target="#viewusermodal">
+                    <img src="<?php echo $r[4] ?>" alt="..." class="avatar-img rounded-circle" />
+                  </a>
                 </div>
               </div>
               <div class="col">
@@ -196,6 +198,28 @@ $r = $result->fetch(PDO::FETCH_NUM);
           <button type="submit" class="btn btn-primary">Save Password</button>
 
           <!--END OF FORM -->
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Academy Info</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form method="POST" action="update-profile-picture-player.php" enctype="multipart/form-data">
+            <div class="modal-body">
+
+              <input type="file" name="img">
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit">Sumbit</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

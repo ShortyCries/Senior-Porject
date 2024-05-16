@@ -244,7 +244,7 @@ $academyEmail = $_SESSION['email'];
 
                             <div class="box-Listing">
                                 <div class="image-Listing">
-                                    <img src="img/profiletest.jpg" alt="">
+                                    <img src="img/default-user.jpg" alt="">
                                 </div>
                                 <div class="content-Listing">
 
@@ -284,7 +284,7 @@ $academyEmail = $_SESSION['email'];
 
                             <div class="box-Listing">
                                 <div class="image-Listing">
-                                    <img src="img/profiletest.jpg" alt="">
+                                    <img src="img/default-user.jpg" alt="">
                                 </div>
                                 <div class="content-Listing">
 
