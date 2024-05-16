@@ -245,7 +245,7 @@ $r = $result->rowCount();
 
           <div class="box-Listing">
             <div class="image-Listing">
-              <img src="img/profiletest.jpg" alt="">
+              <img src="img/default-user.jpg" alt="">
             </div>
             <div class="content-Listing">
 
