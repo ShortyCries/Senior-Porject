@@ -9,7 +9,7 @@ try {
 
     $hashpw=md5($password);
 
-    $query = "SELECT * FROM login WHERE email = ? AND password = ?";
+    $query = "SELECT * FROM login WHERE email = ? AND password = ? AND status = 'active'";
 
     $result = $pdo->prepare($query);
     $result->bindValue(1, $email);

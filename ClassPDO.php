@@ -19,7 +19,7 @@ try {
             $schedule .= $day . " ";
         }
 
-        $schedule .= $timing;
+        $schedule .= $timing . "-" . $timing1;
 
 
 

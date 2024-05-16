@@ -92,23 +92,23 @@
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="player" role="tabpanel" aria-labelledby="player-tab">
-								<form class="form-wrap" action="PlayerPDO.php" method="post">
-									<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
-									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">
-									<input type="text" class="form-control date-picker" name="Dob" placeholder="Date of birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of birth'">
-									<input type="password" class="form-control" name="password" placeholder="Password " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '">
-									<input type="password" class="form-control" name="re-password" placeholder="Re-password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Re-password'">
-									<button type="submit" href="#" class="primary-btn text-uppercase">Register</a>
+								<form class="form-wrap" action="PlayerPDO.php" method="post" onsubmit="return validateForm()">
+									<input type="text" id="Pemail" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '" required>
+									<input type="text" id="Pname" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '" required>
+									<input type="text" id="Pdob" class="form-control date-picker" name="Dob" placeholder="Date of birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of birth'" required>
+									<input type="password" id="Ppassword" class="form-control" name="password" placeholder="Password " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '" required>
+									<input type="password" id="Prepassword" class="form-control" name="re-password" placeholder="Re-password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Re-password'" required>
+									<button type="submit" href="#" class="primary-btn text-uppercase">Register</button>
 								</form>
 							</div>
 							<div class="tab-pane fade" id="academy" role="tabpanel" aria-labelledby="academy-tab">
-								<form class="form-wrap" action="AcademyPDO.php" method="post">
-									<input type="text" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
-									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">
-									<input type="text" class="form-control date-picker" name="foundedIn" placeholder="Founded In " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Founded In '">
-									<input type="password" class="form-control" name="password" placeholder="Password " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '">
-									<input type="password" class="form-control" name="re-password" placeholder="Re-password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Re-password'">
-									<button type="submit" href="#" class="primary-btn text-uppercase">Register</a>
+								<form class="form-wrap" action="AcademyPDO.php" method="post" onsubmit="return wowowow()">
+									<input type="text" id="Aemail" class="form-control" name="email" placeholder="Email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '" required>
+									<input type="text" id="Aname" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '" required>
+									<input type="text" id="AfoundedIN" class="form-control date-picker" name="foundedIn" placeholder="Founded In " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Founded In '" required>
+									<input type="password" id="Apassword" class="form-control" name="password" placeholder="Password " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '" required>
+									<input type="password" id="Arepassword" class="form-control" name="re-password" placeholder="Re-password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Re-password'" required>
+									<button type="submit" href="#" class="primary-btn text-uppercase">Register</button>
 								</form>
 							</div>
 						</div>
@@ -118,19 +118,83 @@
 				</div>
 			</div>
 		</section>
-		<!-- End banner Area -->
+		<script>
+			function validateForm() {
+				var email = document.getElementById("Pemail").value;
+				var name = document.getElementById("Pname").value;
+				var dob = document.getElementById("Pdob").value;
+				var password = document.getElementById("Ppassword").value;
+				var rePassword = document.getElementById("Prepassword").value;
 
-		<!-- Start popular-destination Area -->
+				// Email format validation
+				var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				if (!emailRegex.test(email)) {
+					alert("Please enter a valid email address");
+					return false;
+				}
 
-		<!-- End popular-destination Area -->
+				// Password complexity validation
+				var passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+				if (!passwordRegex.test(password)) {
+					alert("Password must contain at least one uppercase letter, one number, and be at least 8 characters long");
+					return false;
+				}
+
+				// Password matching validation
+				if (password !== rePassword) {
+					alert("Passwords do not match");
+					return false;
+				}
+
+				return true; // Form submission will proceed if all validations pass
+			}
+		</script>
+
+		<script>
+			function wowowow() {
 
 
-		<!-- Start price Area -->
 
-		<!-- End price Area -->
+				var Aemail = document.getElementById("Aemail").value;
+				var Apassword = document.getElementById("Apassword").value;
+				var ArePassword = document.getElementById("Arepassword").value;
+
+				// Email format validation
+				var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				if (!emailRegex.test(Aemail)) {
+					alert("Please enter a valid email address");
+					return false;
+				}
+
+				// Password complexity validation
+				var passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+				if (!passwordRegex.test(Apassword)) {
+					alert("Password must contain at least one uppercase letter, one number, and be at least 8 characters long");
+					return false;
+				}
+
+				// Password matching validation
+				if (Apassword !== ArePassword) {
+					alert("Passwords do not match");
+					return false;
+				}
+
+				return true; // Form submission will proceed if all validations pass
+			}
+		</script>
 
 
-		<!-- Start other-issue Area -->
+
+
+
+
+
+
+
+
+
+
+
 		<section class="other-issue-area section-gap">
 			<div class="container">
 				<div class="row d-flex justify-content-center">
@@ -296,6 +360,8 @@
 					</div>
 				</div>
 			</div>
+
+
 		</footer>
 		<!-- End footer Area -->
 
@@ -313,6 +379,17 @@
 		<script src="js/owl.carousel.min.js"></script>
 		<script src="js/mail-script.js"></script>
 		<script src="js/main.js"></script>
+
+		<?php
+		if (isset($_GET['error']) && $_GET['error'] === 'email_already_used') {
+			echo "<script>alert('Email already used');</script>";
+			// Unset the $_GET parameter
+			unset($_GET['error']);
+			// Perform a redirect to remove the error parameter from the URL
+			echo "<script>window.location.href = 'index.php';</script>";
+			exit(); // Ensure that no further code is executed after the redirect
+		}
+		?>
 	</body>
 
 	</html>

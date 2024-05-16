@@ -239,7 +239,9 @@ $r = $result->rowCount();
 
                                         for ($i = 0; $i < $r3; $i++) {
                                             $row3 = $result3->fetch(PDO::FETCH_NUM);
+                                            
                                         ?>
+
                                             <tr>
                                                 <td id="myclassid"><?php echo  $row3[0] ?></td>
                                                 <td><?php echo  $row3[1] ?></td>
@@ -247,9 +249,7 @@ $r = $result->rowCount();
                                                 <td><?php echo  $row3[3] ?></td>
                                                 <td><?php echo $row3[4] ?></td>
                                                 <td><?php echo $row3[5] ?></td>
-                                                <td> <a href="#" type="button" class="btn btn-primary view_class" data-bs-toggle="modal" data-bs-target="#viewclassmodal">
-                                                        View Class
-                                                    </a> </td>
+                                                <td><a href="class-info.php?class_id=<?php echo $row3[0]; ?>" class="btn btn-primary view_class">View Class</a></td>
                                                 <td> <a href="#" class="btn btn-danger">Remove</a> </td>
                                             </tr>
                                         <?php
@@ -342,7 +342,7 @@ $r = $result->rowCount();
                         <div class="form-group mb-3">
                             <label>Choose coach</label>
                             <select id="showCoaches" name="coach" class="form-select">
-                                
+
 
                             </select>
                         </div>
@@ -363,7 +363,7 @@ $r = $result->rowCount();
                         </div>
 
                         <div class="form-group mb-3">
-                            <input name="timing" type="time">
+                            <input name="timing" type="time"> - <input name="timing1" type="time">
                         </div>
                     </div>
 
@@ -383,27 +383,26 @@ $r = $result->rowCount();
 
 
 
-    <script>  
-     $(document).ready(function(){
-        $('#selectSport').change(function(){
-            var sportId = $('#selectSport').val();
+    <script>
+        $(document).ready(function() {
+            $('#selectSport').change(function() {
+                var sportId = $('#selectSport').val();
 
-            $.ajax({
-              method: "POST",
-              url: 'fetch.php',
-              data: {
-                'sportID': sportId,
-              },
-              success: function(response) {
+                $.ajax({
+                    method: "POST",
+                    url: 'fetch.php',
+                    data: {
+                        'sportID': sportId,
+                    },
+                    success: function(response) {
 
-                $('#showCoaches').html(response);
-             
-            }
+                        $('#showCoaches').html(response);
 
+                    }
+
+                });
             });
         });
-     });
-    
     </script>
 
 
@@ -532,36 +531,7 @@ $r = $result->rowCount();
 
 
 
-    <script>
-        $(document).ready(function() {
-
-            $('.view_class').click(function(e) {
-                e.preventDefault();
-                console.log('hello');
-                var class_id = $(this).closest('tr').find('#myclassid').text();
-
-                console.log(class_id);
-                $.ajax({
-                    method: "POST",
-                    url: "class-info.php",
-                    data: {
-                        'click_view_class_btn': true,
-                        'class_id': class_id,
-                    },
-                    success: function(response) {
-
-                        $('.view_class_data').html(response);
-                        $('#viewclassmodal').modal('show');
-
-                    }
-
-                });
-
-            });
-
-
-        });
-    </script>
+   
 
     <script>
         function logoutAlert() {
