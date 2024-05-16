@@ -129,7 +129,7 @@ $r = $result->fetch(PDO::FETCH_NUM);
               <div class="col-md-3 text-center mb-5">
                 <div class="avatar avatar-xl">
                 <a href="#" type="button" class=" view_data" data-bs-toggle="modal" data-bs-target="#viewusermodal">
-                    <img src="<?php echo $r[4] ?>" alt="..." class="avatar-img rounded-circle" />
+                <img src="<?php echo !empty($r[4]) ? $r[4] : 'img/default-user.jpg'; ?>" alt="..." class="avatar-img rounded-circle" />
                   </a>
                 </div>
               </div>

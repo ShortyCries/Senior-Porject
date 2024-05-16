@@ -18,7 +18,7 @@ try {
 
         $result = $pdo->exec($query);
 
-        $query1 = "INSERT INTO academy VALUES('$email','$name','$hashpw','$date', NULL, NULL, NULL, NULL) ";
+        $query1 = "INSERT INTO academy VALUES('$email','$name','$hashpw','$date', NULL, NULL, NULL, NULL, NULL) ";
 
         $result1 = $pdo->exec($query1);
 

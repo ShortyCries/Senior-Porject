@@ -133,7 +133,7 @@ $city = $r[3];
               <div class="col-md-3 text-center mb-5">
                 <div class="avatar avatar-xl">
                   <a href="#" type="button" class=" view_data" data-bs-toggle="modal" data-bs-target="#viewusermodal">
-                    <img src="<?php echo $r[6] ?>" alt="..." class="avatar-img rounded-circle" />
+                  <img src="<?php echo !empty($r[6]) ? $r[6] : 'img/default-user.jpg'; ?>" alt="..." class="avatar-img rounded-circle" />
                   </a>
                 </div>
               </div>
