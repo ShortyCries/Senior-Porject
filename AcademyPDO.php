@@ -26,5 +26,12 @@ try {
         header("location:index.php");
     }
 } catch (PDOException $e) {
-    die($e->getMessage());
+    if ($e->errorInfo[1] == 1062) { // Check if the error is due to duplicate entry
+        // Redirect back to index.php with an error message
+        header("Location: index.php?error=email_already_used");
+        exit();
+    } else {
+        // Handle other types of errors if necessary
+        echo "Error: " . $e->getMessage();
+    }
 }

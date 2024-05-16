@@ -186,9 +186,6 @@ $academyEmail = $_SESSION['email'];
 
                     <button class="nav-link text-dark" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Public Matches</button>
 
-                    <button class="nav-link text-dark" id="" data-bs-toggle="tab" data-bs-target="" type="button" role="tab" aria-selected="true">Local Matches History</button>
-
-                    <button class="nav-link text-dark" id="" data-bs-toggle="tab" data-bs-target="" type="button" role="tab" aria-selected="true">Public Matches History</button>
 
                 </div>
             </nav>
@@ -285,8 +282,84 @@ $academyEmail = $_SESSION['email'];
 
                 <div class="tab-pane fade" id="nav-public" role="tabpanel" aria-labelledby="nav-public-tab">
 
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <?php
+
+                            if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
 
 
+                            ?>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+
+                            <?php
+                                unset($_SESSION['status']);
+                            }
+
+
+
+
+                            ?>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="text-center">Matches</h4>
+                                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#PBinsertdata">
+                                        New Match
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Id</th>
+                                                    <th scope="col">Team1</th>
+                                                    <th scope="col">Team2</th>
+                                                    <th scope="col">Court</th>
+                                                    <th scope="col">Date</th>
+                                                    <th scope="col">Time</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <?php
+
+                                                $query3 =  "SELECT matchs.Mid AS MatchID, c1.Cname AS Team1Name, c2.Cname AS Team2Name, courts.CRname AS CourtName, matchs.Mdate AS MatchDate, matchs.Mtime AS MatchTime FROM matchs JOIN class AS c1 ON matchs.team1 = c1.id JOIN class AS c2 ON matchs.team2 = c2.id JOIN courts ON matchs.McourtId = courts.CRid WHERE courts.CRAcademyemail = '$academyEmail' AND matchs.Mtype = 'public';";
+                                                $result3 = $pdo->query($query3);
+
+                                                $r3 = $result3->rowCount();
+
+                                                for ($i = 0; $i < $r3; $i++) {
+                                                    $row3 = $result3->fetch(PDO::FETCH_NUM);
+                                                ?>
+                                                    <tr>
+                                                        <td id="myclassid"><?php echo  $row3[0] ?></td>
+                                                        <td><?php echo  $row3[1] ?></td>
+                                                        <td><?php echo  $row3[2] ?></td>
+                                                        <td><?php echo  $row3[3] ?></td>
+                                                        <td><?php echo $row3[4] ?></td>
+                                                        <td><?php echo $row3[5] ?></td>
+
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -386,9 +459,239 @@ $academyEmail = $_SESSION['email'];
     </div>
 
 
+    <div class="modal fade" id="PBinsertdata" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="PBinsertdataLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="PBinsertdataLabel">Create New Public Match</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="PB-MatchPDO.php" method="POST">
+                    <div class="modal-body">
+
+                        <div class="form-group mb-3">
+                            <label>Select Academy</label>
+                            <select id="PBAcademy" name="PBAcademy" class="form-select" required>
+                                
+                                <?php
+                                $query1 = "SELECT email, name From academy WHERE email <> '$academyEmail'";
+
+                                $result1 = $pdo->query($query1);
+
+                                $r1 = $result1->rowCount();
+
+                                for ($i = 0; $i < $r1; $i++) {
+                                    $row1 = $result1->fetch(PDO::FETCH_NUM);
+
+                                    echo "<option value=\"$row1[0]\"> $row1[1]  </option>";
+                                }
+
+
+
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Sport</label>
+                            <select id="PBselectSport" name="PBsport" class="form-select" required>
+
+                                <?php
+                                $query1 = "SELECT sname From sport";
+
+                                $result1 = $pdo->query($query1);
+
+                                $r1 = $result1->rowCount();
+
+                                for ($i = 0; $i < $r1; $i++) {
+                                    $row1 = $result1->fetch(PDO::FETCH_NUM);
+
+                                    echo "<option> $row1[0] </option>";
+                                }
+
+
+
+                                ?>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <label>Home Team</label>
+                            <select id="PBselectedTeam1" name="PBteam1" class="form-select" required>
+                                <option selected disabled value="">Choose...</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Away Team</label>
+                            <select id="PBselectedTeam2" name="PBteam2" class="form-select" required>
+                                <option selected disabled value="">Choose...</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Choose date</label>
+                            <select id="PBdateSelect" name="PBdate" class="form-select" required>
+                                <option selected disabled value="">Choose...</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <label>Choose Court</label>
+                            <select id="PBselectedCourt" name="PBcourt" class="form-select">
+                                <option selected disabled value="">Choose...</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <label>Available timings</label>
+                            <select id="PBselectedTime" name="PBtime" class="form-select">
+                                <option selected disabled value="">Choose...</option>
+                            </select>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+
 
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#PBselectSport').change(function() {
+                var sportId = $('#PBselectSport').val();
+
+                $.ajax({
+                    method: "POST",
+                    url: 'fetch1.php',
+                    data: {
+                        'sportID': sportId,
+                    },
+                    success: function(response) {
+
+                        $('#PBselectedTeam1').html(response);
+
+                    }
+
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            function handleAjaxRequest() {
+                var PBacademy = $('#PBAcademy').val();
+                var sport = $('#PBselectSport').val();
+
+                if (PBacademy && sport) {
+
+
+                    console.log(PBacademy);
+
+                    console.log(sport);
+                    $.ajax({
+                        method: "POST",
+                        url: 'PB-fetch-Teams.php',
+                        data: {
+                            'PBacademy': PBacademy,
+                            'sportID': sport,
+                        },
+                        success: function(response) {
+
+                            $('#PBselectedTeam2').html(response);
+
+                        }
+
+                    });
+                }
+
+            }
+
+
+            $('#PBAcademy').change(handleAjaxRequest);
+
+            $('#PBselectSport').change(handleAjaxRequest);
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#PBselectSport').change(function() {
+                var sportId = $('#PBselectSport').val();
+
+                $.ajax({
+                    method: "POST",
+                    url: 'fetch3.php',
+                    data: {
+                        'sportID': sportId,
+                    },
+                    success: function(response) {
+
+                        $('#PBselectedCourt').html(response);
+
+                    }
+
+                });
+            });
+        });
+    </script>
+
+<script>
+        $(document).ready(function() {
+            function handleAjaxRequest() {
+                var court = $('#PBselectedCourt').val();
+                var date = $('#PBdateSelect').val();
+
+                if (court && date) {
+                    $.ajax({
+                        method: "POST",
+                        url: 'fetch4.php',
+                        data: {
+                            'courtId': court,
+                            'dateSelected': date,
+                        },
+                        success: function(response) {
+
+                            $('#PBselectedTime').html(response);
+
+                        }
+
+                    });
+                }
+
+            }
+
+
+            $('#PBselectedCourt').change(handleAjaxRequest);
+
+            $('#PBdateSelect').change(handleAjaxRequest);
+        });
+    </script>
 
 
 
@@ -413,6 +716,10 @@ $academyEmail = $_SESSION['email'];
             });
         });
     </script>
+
+
+
+
 
 
 
@@ -509,6 +816,42 @@ $academyEmail = $_SESSION['email'];
         // Function to populate select tag with dates within 1 week range
         function populateDates() {
             var select = document.getElementById("dateSelect");
+            var today = new Date();
+
+            // Add current date
+            var currentDateOption = document.createElement("option");
+            currentDateOption.text = formatDate(today);
+            currentDateOption.value = formatDate(today);
+            select.appendChild(currentDateOption);
+
+            // Add dates within 1 week range
+            for (var i = 1; i <= 6; i++) {
+                var nextDate = new Date();
+                nextDate.setDate(today.getDate() + i);
+                var option = document.createElement("option");
+                option.text = formatDate(nextDate);
+                option.value = formatDate(nextDate);
+                select.appendChild(option);
+            }
+        }
+
+        // Function to format date as YYYY-MM-DD
+        function formatDate(date) {
+            var month = String(date.getMonth() + 1).padStart(2, '0');
+            var day = String(date.getDate()).padStart(2, '0');
+            var year = date.getFullYear();
+            return year + '-' + month + '-' + day;
+        }
+
+        // Call function to populate select tag with dates
+        populateDates();
+    </script>
+
+
+    <script>
+        // Function to populate select tag with dates within 1 week range
+        function populateDates() {
+            var select = document.getElementById("PBdateSelect");
             var today = new Date();
 
             // Add current date
