@@ -10,10 +10,12 @@ $currentDate = date('Y-m-d');
 
 if (isset($_GET['Pemail'], $_GET['removeplayer'])) {
     $Pemail = $_GET['Pemail'];
-    $delete1 = "DELETE FROM joins WHERE playeremail = '$Pemail' ";
+    $theclassID = $_GET['classID'];
+    $delete1 = "DELETE FROM joins WHERE playeremail = '$Pemail' AND classId='$theclassID'";
     $delResult1 = $pdo->exec($delete1);
+     
+    header("location:class-info.php?class_id=$theclassID");
 
-    header("location:academy-Classes.php");
 }
 
 
@@ -21,7 +23,7 @@ if (isset($_GET['class_id'])) {
     $class_id = $_GET['class_id'];
 
 
-    $query = "SELECT name, email, DOB, phone, classId from joins NATURAL JOIN player where classid = '$class_id' AND status = 'accepted' AND email = playeremail";
+    $query = "SELECT name, email, DOB, phone, classId, status from joins NATURAL JOIN player where classid = '$class_id' AND (status = 'accepted' OR status ='pending') AND email = playeremail";
 
     $result = $pdo->query($query);
 
@@ -204,6 +206,7 @@ if (isset($_GET['class_id'])) {
                                     <th scope="col">Phone</th>
                                     <th scope="col">View Report</th>
                                     <th scope="col">Remove</th>
+                                    <th scope="col">status</th>
                                 </tr>
                             </thead>
 
@@ -229,86 +232,120 @@ if (isset($_GET['class_id'])) {
             $dateOfBirth = $row[2];
 
             $diff = date_diff(date_create($dateOfBirth), date_create($currentDate));
+            if ($row[5] == "accepted") {
         ?>
-            <tr>
+                <tr>
 
-                <td value="<?php echo $row[1] ?>"><?php echo $row[0] ?></td>
-                <td value="<?php echo $row[4] ?>"><?php echo $diff->format('%y') ?></td>
-                <td><?php echo $row[3] ?></td>
-                <td> <a href="#" type="button" class="btn btn-success view_data">
-                        View Report
-                    </a></td>
-                <td> <a href="class-info.php?Pemail=<?php echo $row[1] ?>&removeplayer=true" class="btn btn-danger"> Remove </a> </td>
+                    <td value="<?php echo $row[1] ?>"><?php echo $row[0] ?></td>
+                    <td value="<?php echo $row[4] ?>"><?php echo $diff->format('%y') ?></td>
+                    <td><?php echo $row[3] ?></td>
+                    <td> <a href="#" type="button" class="btn btn-success view_data">
+                            View Report
+                        </a></td>
+                    <td> <a href="class-info.php?Pemail=<?php echo $row[1] ?>&removeplayer=true&classID=<?php echo $row[4] ?>" class="btn btn-danger"> Remove </a> </td>
+                    <td> Joined </td>
 
-            </tr>
-    </tbody>
+                </tr>
+            <?php
+            } else if ($row[5] == "pending") {
+            ?>
+                <tr>
+                    <td value="<?php echo $row[1] ?>"><?php echo $row[0] ?></td>
+                    <td value="<?php echo $row[4] ?>"><?php echo $diff->format('%y') ?></td>
+                    <td><?php echo $row[3] ?></td>
+                    <td> <a href="#" type="button" class="btn btn-success view_data"  style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">
+                            View Report
+                        </a></td>
+                    <td> <a href="class-info.php?Pemail=<?php echo $row[1] ?>&removeplayer=true&classID=<?php echo $row[4] ?>" class="btn btn-danger" > Remove </a> </td>
+                    <td> Invited </td>
 
-<?php
+                <tr>
+
+            <?php
+            }
         }
 
-?>
+            ?>
+    </tbody>
 
 
-<div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Academy Info</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
 
-                <div class="view_user_data">
+    <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Academy Info</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="view_user_data">
+
+                    </div>
 
                 </div>
-
-            </div>
-            <div class="modal-footer">
+                <div class="modal-footer">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
-<script>
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
-        $('.view_data').click(function(e) {
-            e.preventDefault();
+            $('.view_data').click(function(e) {
+                e.preventDefault();
 
-            var tr = $(this).closest('tr');
+                var tr = $(this).closest('tr');
 
-            var playerEmail = tr.find('td:eq(0)').attr('value');
-            console.log('First TD value: ' + playerEmail);
+                var playerEmail = tr.find('td:eq(0)').attr('value');
+                console.log('First TD value: ' + playerEmail);
 
-            // Find the second td within that tr and get its value attribute
-            var classID = tr.find('td:eq(1)').attr('value');
-            console.log('Second TD value: ' + classID);
+                // Find the second td within that tr and get its value attribute
+                var classID = tr.find('td:eq(1)').attr('value');
+                console.log('Second TD value: ' + classID);
 
-            $.ajax({
-                method: "POST",
-                url: "report-info.php",
-                data: {
-                    'playerEmail': playerEmail,
-                    'classID': classID,
-                },
-                success: function(response) {
+                $.ajax({
+                    method: "POST",
+                    url: "report-info.php",
+                    data: {
+                        'playerEmail': playerEmail,
+                        'classID': classID,
+                    },
+                    success: function(response) {
 
-                    $('.view_user_data').html(response);
-                    $('#viewusermodal').modal('show');
+                        $('.view_user_data').html(response);
+                        $('#viewusermodal').modal('show');
 
-                }
+                    }
+                });
+
             });
 
         });
+    </script>
 
-    });
-</script>
 
+    <script>
+        function logoutAlert() {
+            // Show the confirmation dialog and store the result
+            var result = window.confirm("Are you sure you want to Logout?");
+
+            // Check if the user clicked "OK" or "Cancel"
+            if (result) {
+                // If the user clicked "OK", redirect to 'index.php'
+                window.location.href = 'logout.php';
+            } else {
+                // If the user clicked "Cancel", do nothing or perform any other action
+                return;
+            }
+        }
+    </script>
 
 </body>
 

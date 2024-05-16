@@ -230,10 +230,7 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
                                                 <td><?php echo  $row3[1] ?></td>
                                                 <td><?php echo  $row3[2] ?></td>
                                                 <td><?php echo  $row3[3] ?></td>
-                                                <td> <a href="#" type="button" class="btn btn-primary view_class" data-bs-toggle="modal" data-bs-target="#viewclassmodal">
-                                                        View Class
-                                                    </a> </td>
-                                              
+                                                <td> <a href="coach-class-info.php?class_id=<?php echo $row3[0]; ?>" class="btn btn-primary view_class">View Class</a> </td>
                                             </tr>
                                         <?php
                                         }
@@ -252,26 +249,6 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
         </div>
 
     </div>
-    <div class="modal fade" id="viewclassmodal" tabindex="-1" aria-labelledby="viewclassmodalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="viewclassmodalLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="view_class_data">
-
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -290,34 +267,34 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
 
 
     <script>
-        $(document).ready(function() {
+        // $(document).ready(function() {
 
-            $('.view_class').click(function(e) {
-                e.preventDefault();
-                console.log('hello');
-                var class_id = $(this).closest('tr').find('#myclassid').text();
+        //     $('.view_class').click(function(e) {
+        //         e.preventDefault();
+        //         console.log('hello');
+        //         var class_id = $(this).closest('tr').find('#myclassid').text();
 
-                console.log(class_id);
-                $.ajax({
-                    method: "POST",
-                    url: "coach-class-info.php",
-                    data: {
-                        'click_view_class_btn': true,
-                        'class_id': class_id,
-                    },
-                    success: function(response) {
+        //         console.log(class_id);
+        //         $.ajax({
+        //             method: "POST",
+        //             url: "coach-class-info.php",
+        //             data: {
+        //                 'click_view_class_btn': true,
+        //                 'class_id': class_id,
+        //             },
+        //             success: function(response) {
 
-                        $('.view_class_data').html(response);
-                        $('#viewclassmodal').modal('show');
+        //                 $('.view_class_data').html(response);
+        //                 $('#viewclassmodal').modal('show');
 
-                    }
+        //             }
 
-                });
+        //         });
 
-            });
+        //     });
 
 
-        });
+        // });
     </script>
 
 
