@@ -192,7 +192,7 @@ $r = $result->rowCount();
 
           <div class="box-Listing">
             <div class="image-Listing">
-              <img src="img/profiletest.jpg" alt="">
+              <img src="img/default-user.jpg" alt="">
             </div>
             <div class="content-Listing">
 
@@ -203,10 +203,7 @@ $r = $result->rowCount();
 
               <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Read More
-              </a>
-              <a href="#" type="button" onclick="getdata()" class="btn btn-warning Invite_Player" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                Invite
-              </a>
+        </a>
 
               <div class="icons-Listing">
 

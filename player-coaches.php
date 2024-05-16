@@ -220,7 +220,7 @@ $r = $result->rowCount();
   <div class="mybackground-img2">
     <div class="container-Listing">
 
-      <h1 class="heading-Listing">Academies</h1>
+      <h1 class="heading-Listing">Coaches</h1>
 
       <div class="box-container-Listing">
 
@@ -234,7 +234,7 @@ $r = $result->rowCount();
 
           <div class="box-Listing">
             <div class="image-Listing">
-              <img src="img/profiletest.jpg" alt="">
+              <img src="img/default-user.jpg" alt="">
             </div>
             <div class="content-Listing">
 
