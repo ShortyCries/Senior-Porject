@@ -1,4 +1,3 @@
-
 <?php
 
 session_start();
@@ -32,15 +31,15 @@ session_start();
 
       <!-- Login Form -->
       <form action="LoginCheck.php" style="margin-top: 35px;" method="post">
-        <input 10px; type="text" id="login" class="fadeIn second" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
-        <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '">
+        <input 10px; type="text" id="login" class="fadeIn second hi" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email '">
+        <input type="password" id="password" class="fadeIn third hi" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password '">
         <?php
 
         if (isset($_SESSION['logstatus']) && $_SESSION['logstatus'] != '') {
         ?>
-        <div style="color: red;">
-       <?php echo $_SESSION['logstatus']; ?>
-        </div>
+          <div style="color: red;">
+            <?php echo $_SESSION['logstatus']; ?>
+          </div>
         <?php
           unset($_SESSION['logstatus']);
         }
