@@ -91,43 +91,56 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
   <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
 
-<style>
+  <style>
+    .view_user_data {
+      overflow-wrap: break-word;
+      /* Ensures long words break to the next line */
+      word-wrap: break-word;
+      /* Legacy support */
+      word-break: break-word;
+      /* Ensures long words break to the next line */
+      white-space: pre-wrap;
+      /* Preserves whitespace but wraps text */
+    }
 
-  .view_user_data {
-  overflow-wrap: break-word; /* Ensures long words break to the next line */
-  word-wrap: break-word; /* Legacy support */
-  word-break: break-word; /* Ensures long words break to the next line */
-  white-space: pre-wrap; /* Preserves whitespace but wraps text */
-  }
+    .modal-body .container {
+      max-width: 100%;
+      /* Ensures container does not exceed modal width */
+    }
 
-  .modal-body .container {
-  max-width: 100%; /* Ensures container does not exceed modal width */
-  }
+    .info-section {
+      display: flex;
+      flex-direction: row;
+      margin-top: 1rem;
+      padding-bottom: 0.5rem;
+      /* Add some padding at the bottom */
+      border-bottom: 1px solid #ccc;
+      /* Add a bottom border */
+    }
 
-  .info-section {
-  display: flex;
-  flex-direction: row;
-  margin-top: 1rem;
-  padding-bottom: 0.5rem; /* Add some padding at the bottom */
-  border-bottom: 1px solid #ccc; /* Add a bottom border */
-  }
+    .info-section .label {
+      flex: 0 0 auto;
+      /* Label takes only the necessary space */
+      margin-right: 10px;
+      /* Space between label and content */
+      font-weight: bold;
+      /* Bold font for the label */
+    }
 
-  .info-section .label {
-  flex: 0 0 auto; /* Label takes only the necessary space */
-  margin-right: 10px; /* Space between label and content */
-  font-weight: bold; /* Bold font for the label */
-  }
+    .info-section .content {
+      flex: 1 1 auto;
+      /* Content takes the remaining space */
+      word-wrap: break-word;
+      /* Ensure text wraps within the container */
+      white-space: pre-wrap;
+      /* Ensures whitespace is preserved and wraps text */
+    }
 
-  .info-section .content {
-  flex: 1 1 auto; /* Content takes the remaining space */
-  word-wrap: break-word; /* Ensure text wraps within the container */
-  white-space: pre-wrap; /* Ensures whitespace is preserved and wraps text */
-  }
-
-  .modal-body h6 {
-  margin-bottom: 1rem; /* Add some space between different text elements */
-  }
-</style>
+    .modal-body h6 {
+      margin-bottom: 1rem;
+      /* Add some space between different text elements */
+    }
+  </style>
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -468,7 +481,7 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
 
                 <div class="box-Listing">
                   <div class="image-Listing">
-                    <img src="img/profiletest.jpg" alt="">
+                    <img src="img/football.jpg" alt="">
                   </div>
                   <div class="content-Listing">
 
