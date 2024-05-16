@@ -22,7 +22,7 @@ try {
 
         $result = $pdo->exec($query);
 
-        $query1 = "INSERT INTO coach VALUES('$email','$name','$hashpw','$Dob',NULL,NULL, NULL) ";
+        $query1 = "INSERT INTO coach VALUES('$email','$name','$hashpw','$Dob',NULL,NULL,NULL) ";
 
         $result1 = $pdo->exec($query1);
 
