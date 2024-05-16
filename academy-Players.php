@@ -255,7 +255,7 @@ $academyEmail = $_SESSION['email'];
 
 
                     $filterValue = $_GET['search'];
-                    $filterData = "SELECT email, name, DOB, description  FROM player WHERE CONCAT_WS(' ', email, name, DOB, description) LIKE '%$filterValue%';";
+                    $filterData = "SELECT email, name, DOB, description, PLimg  FROM player WHERE CONCAT_WS(' ', email, name, DOB, description) LIKE '%$filterValue%';";
                     $result = $pdo->query($filterData);
 
                     $r = $result->rowCount();
@@ -268,7 +268,7 @@ $academyEmail = $_SESSION['email'];
 
                             <div class="box-Listing"> <!-- single row of data -->
                                 <div class="image-Listing">
-                                    <img src="img/profiletest.jpg" alt=""> <!-- img -->
+                                    <img src="<?php echo !empty($row[4]) ? $row[4] : 'img/default-user.jpg'; ?>" alt=""> <!-- img -->
                                 </div>
                                 <div class="content-Listing">
 
@@ -294,7 +294,7 @@ $academyEmail = $_SESSION['email'];
                         }
                     }
                 } else {
-                    $query1 = "SELECT email, name, DOB, description  FROM player";
+                    $query1 = "SELECT email, name, DOB, description, PLimg  FROM player";
                     $result1 = $pdo->query($query1);
                     $r1 = $result1->rowCount();
 
@@ -307,7 +307,7 @@ $academyEmail = $_SESSION['email'];
 
                             <div class="box-Listing"> <!-- single row of data -->
                                 <div class="image-Listing">
-                                    <img src="img/profiletest.jpg" alt=""> <!-- img -->
+                                    <img src="<?php echo !empty($row1[4]) ? $row1[4] : 'img/default-user.jpg'; ?>" alt=""> <!-- img -->
                                 </div>
                                 <div class="content-Listing">
 
