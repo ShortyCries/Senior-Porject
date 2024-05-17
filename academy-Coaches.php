@@ -13,12 +13,9 @@ if (isset($_GET['email'])) {
 
 
 
-
-
-
 $academyEmail = $_SESSION['email'];
 
-$query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
+$query = "SELECT name, email, DOB, sportname FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail'";
 
 $result = $pdo->query($query);
 
@@ -225,7 +222,7 @@ $r = $result->rowCount();
                 <label for="validationDefault04" class="form-label" style="color: orange;">Sport Speciality</label>
                 <select name="sport" class="form-select" id="validationDefault04" required>
                     <option selected disabled value="">Choose...</option>
-              
+
                     <?php
                     $query1 = "SELECT sname From sport";
 
@@ -263,24 +260,39 @@ $r = $result->rowCount();
 
                         <div class="card-header">
                             <h4 class="display-6 text-center"> Coach List </h2>
-                            <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
+                                <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
                         </div>
                         <div class="card-body">
                             <table id="table2" class="table table-bordered text-center">
                                 <tr class="bg-dark text-white">
                                     <td>Name</td>
                                     <td>Email</td>
-                                    <td>Date of birth</td>
+                                    <td>age</td>
+                                    <td>sport</td>
                                     <td>Remove</td>
 
                                 </tr>
                                 <?php
                                 for ($i = 0; $i < $r; $i++) {
                                     $row = $result->fetch(PDO::FETCH_NUM);
+                                    $dateOfBirth = $row[2];
+
+                                    // Create a DateTime object for the date of birth
+                                    $dob = new DateTime($dateOfBirth);
+
+                                    // Create a DateTime object for the current date
+                                    $today = new DateTime();
+
+                                    // Calculate the difference between today and the date of birth
+                                    $age = $today->diff($dob);
+
+                                   
+
                                     echo "<tr class=\"myRows\">";
                                     echo "<td>   $row[0] </td>";
                                     echo "<td>   $row[1] </td> ";
-                                    echo "<td>  $row[2] </td> ";
+                                    echo "<td>  $age->y </td> ";
+                                    echo "<td>  $row[3] </td> ";
 
                                     echo "<td> <a href='academy-Coaches.php?email={$row[1]}'  class='btn btn-danger'> Remove </a> </td> ";
                                     echo "</tr>";
@@ -438,36 +450,33 @@ $r = $result->rowCount();
         }
     </script>
 
-<script>
-    
-    document.addEventListener("DOMContentLoaded", function() {
-           var search_input = document.getElementById("searchInput");
-           var table2 = document.getElementById("table2");
-           var num_of_rows = table2.getElementsByClassName("myRows");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var search_input = document.getElementById("searchInput");
+            var table2 = document.getElementById("table2");
+            var num_of_rows = table2.getElementsByClassName("myRows");
 
-           search_input.addEventListener('keyup', function(){
-            var search_value = search_input.value.toLowerCase();
-            for(let i = 0; i < num_of_rows.length; i++){
-                var data_cells = num_of_rows[i].getElementsByTagName('td');
-                let found = false;
+            search_input.addEventListener('keyup', function() {
+                var search_value = search_input.value.toLowerCase();
+                for (let i = 0; i < num_of_rows.length; i++) {
+                    var data_cells = num_of_rows[i].getElementsByTagName('td');
+                    let found = false;
 
-                for(let j = 0; j < data_cells.length; j++){
-                    var cellText = data_cells[j].textContent.toLowerCase();
-                    if(cellText.includes(search_value)){
-                        found = true;
-                        break;
+                    for (let j = 0; j < data_cells.length; j++) {
+                        var cellText = data_cells[j].textContent.toLowerCase();
+                        if (cellText.includes(search_value)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        num_of_rows[i].style.display = "";
+                    } else {
+                        num_of_rows[i].style.display = "none";
                     }
                 }
-                if(found){
-                    num_of_rows[i].style.display = "";
-                } else {
-                    num_of_rows[i].style.display = "none";
-                }
-            }
-           })
+            })
         });
-
-    
     </script>
 
 
