@@ -133,7 +133,7 @@ $city = $r[3];
               <div class="col-md-3 text-center mb-5">
                 <div class="avatar avatar-xl">
                   <a href="#" type="button" class=" view_data" data-bs-toggle="modal" data-bs-target="#viewusermodal">
-                  <img src="<?php echo !empty($r[6]) ? $r[6] : 'img/default-user.jpg'; ?>" alt="..." class="avatar-img rounded-circle" />
+                    <img src="<?php echo !empty($r[6]) ? $r[6] : 'img/default-user.jpg'; ?>" alt="..." class="avatar-img rounded-circle" />
                   </a>
                 </div>
               </div>
@@ -192,34 +192,35 @@ $city = $r[3];
             </div>
           </form>
           <hr class="my-4" />
-          <div class="row mb-4">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label style="font-weight: bold; color:black" for="inputPassword4">Old Password</label>
-                <input type="password" class="form-control" id="inputPassword5" placeholder="check old password if tru" />
+          <form id="passwordForm">
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label style="font-weight: bold; color:black" for="inputOldPassword">Old Password</label>
+                  <input type="password" class="form-control" id="inputOldPassword" placeholder="Enter old password" />
+                </div>
+                <div class="form-group">
+                  <label style="font-weight: bold; color:black" for="inputNewPassword">New Password</label>
+                  <input type="password" class="form-control" id="inputNewPassword" placeholder="Enter new password" />
+                </div>
+                <div class="form-group">
+                  <label style="font-weight: bold; color:black" for="inputConfirmPassword">Confirm Password</label>
+                  <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm new password" />
+                </div>
               </div>
-              <div class="form-group">
-                <label style="font-weight: bold; color:black" for="inputPassword5">New Password</label>
-                <input type="password" class="form-control" id="inputPassword5" />
-              </div>
-              <div class="form-group">
-                <label style="font-weight: bold; color:black" for="inputPassword6">Confirm Password</label>
-                <input type="password" class="form-control" id="inputPassword6" />
+              <div class="col-md-6">
+                <p style="font-weight: bold; color:black" class="mb-2">Password requirements</p>
+                <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
+                <ul class="small text-muted pl-4 mb-0">
+                  <li>Minimum 8 characters</li>
+                  <li>At least one special character</li>
+                  <li>At least one number</li>
+                  <li>Cannot be the same as a previous password</li>
+                </ul>
               </div>
             </div>
-            <div class="col-md-6">
-              <p style="font-weight: bold; color:black" class="mb-2">Password requirements</p>
-              <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
-              <ul class="small text-muted pl-4 mb-0">
-                <li>Minimum 8 character</li>
-                <li>At least one special character</li>
-                <li>At least one number</li>
-                <li>Can’t be the same as a previous password</li>
-              </ul>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Save Password</button>
-
+            <button type="submit" class="btn btn-primary">Save Password</button>
+          </form>
           <!--END OF FORM -->
         </div>
       </div>
@@ -239,7 +240,7 @@ $city = $r[3];
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" type="submit">Sumbit</button>
+              <button class="btn btn-primary" type="submit">Sumbit</button>
             </div>
           </form>
         </div>
@@ -247,6 +248,59 @@ $city = $r[3];
     </div>
 
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+  <script>
+    $(document).ready(function() {
+      $('#passwordForm').submit(function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Retrieve input values
+        var oldPassword = $('#inputOldPassword').val();
+        var newPassword = $('#inputNewPassword').val();
+        var confirmPassword = $('#inputConfirmPassword').val();
+
+        if(newPassword.length < 8){
+          alert("New password must be more than 8 characters");
+          return;
+        }
+
+        // Perform client-side validation
+        if (newPassword !== confirmPassword) {
+          alert("New password and confirm password do not match.");
+          return;
+        }
+
+        // Make AJAX request to update password
+        $.ajax({
+          method: "POST",
+          url: 'update-academy-password.php', // Update the URL to your server-side script
+          data: {
+            'oldPassword': oldPassword,
+            'newPassword': newPassword,
+          },
+          success: function(response) {
+            // Handle the server response
+            if (response === "success") {
+              alert("Password updated successfully.");
+              // Optionally, redirect to another page or perform other actions
+            } else {
+              alert("Your old password doesnt match");
+            }
+          },
+          error: function(xhr, status, error) {
+            alert("An error occurred while updating password. Please try again later.");
+            console.error(error);
+          }
+        });
+      });
+    });
+  </script>
+
+
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {

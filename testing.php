@@ -1,27 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prevent Tilde Character</title>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const textarea = document.getElementById("myTextarea");
+<?php
 
-            textarea.addEventListener("input", function(event) {
-                // Get the current value of the textarea
-                const currentValue = textarea.value;
-                
-                // Check if the value contains the tilde character
-                if (currentValue.includes("~")) {
-                    // Remove all tilde characters
-                    textarea.value = currentValue.replace(/~/g, "");
-                }
-            });
-        });
-    </script>
-</head>
-<body>
-    <textarea id="myTextarea" rows="10" cols="30"></textarea>
-</body>
-</html>
+
+session_start();
+require_once("config.php");
+
+$pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+
+
+
+$oldPassword = $_POST['oldPassword'];
+$newPassword = $_POST['newPassword'];
+
+// Hash the new password using MD5
+$hashedPassword = md5($newPassword);
+
+// Prepare SQL statement to update the password
+$sql = "UPDATE player SET password = :password WHERE email = :email AND password = :oldPassword";
+
+try {
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(
+        'password' => $hashedPassword,
+        'email' => 'ahmad@hotmail.com', // Assuming you have a session variable for the current user
+        'oldPassword' => md5($oldPassword) // MD5 hash of the old password
+    ));
+
+    // Check if any rows were affected
+    if ($stmt->rowCount() > 0) {
+        // Password updated successfully
+        echo "success";
+    } else {
+        // No rows were affected, meaning old password might be incorrect
+        echo "incorrect";
+    }
+} catch (PDOException $e) {
+    // Handle database errors
+    echo "error";
+    // You might want to log the error for debugging purposes
+    // error_log("Database error: " . $e-&gt;getMessage());
+}
+?>
+
+
+
+
