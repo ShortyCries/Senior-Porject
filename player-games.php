@@ -71,6 +71,42 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
 
 
 
+
+
+
+
+
+
+
+if(isset($_GET['EVENTID'], $_GET['cancelEvent'])){
+
+  $EVENTID = $_GET['EVENTID'];
+
+
+  $delete = "DELETE FROM events WHERE Eid = '$EVENTID'";
+
+  $result77 = $pdo->exec($delete);
+
+
+}
+
+
+
+
+if(isset($_GET['EVENTID'], $_GET['leaveEvent'])){
+
+  $EVENTID = $_GET['EVENTID'];
+
+
+  $delete2 = "DELETE FROM participate WHERE PReventid = '$EVENTID' AND PRplayeremail = '$playerEmail'";
+
+  $result75 = $pdo->exec($delete2);
+
+
+}
+
+
+
 ?>
 
 
@@ -399,7 +435,7 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
                                 <?php echo $row3[5] ?>
                               <?php endif; ?>
                             </td>
-                            <td><a class='btn btn-primary'>View</a></td>
+                            <td><a href="event-players.php?EVENTID=<?php echo $row3[1] ?> " class='btn btn-primary'>View</a></td>
                             <td>
                               <?php if ($row3[5] === "finished" || $row3[5] === "ongoing") : ?>
                                 <a class='btn btn-primary' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Request Role</a>
@@ -411,7 +447,7 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
                               <?php if ($row3[5] === "finished" || $row3[5] === "ongoing") : ?>
                                 <a class='btn btn-danger' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Cancel</a>
                               <?php else : ?>
-                                <a class='btn btn-danger'>Cancel</a>
+                                <a href="player-games.php?EVENTID=<?php echo $row3[1] ?>&cancelEvent=true" class='btn btn-danger' >Cancel</a>
                               <?php endif; ?>
                             </td>
                           </tr>
@@ -454,7 +490,7 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
                               <?php if (($row68[7] === "ongoing" || $row68[7] == "finished") && ($row68[4] == "accepted")) : ?>
                                 <a class='btn btn-danger' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Leave</a>
                               <?php else : ?>
-                                <a class='btn btn-danger'>Leave  </a>
+                                <a href="player-games.php?EVENTID=<?php echo $row68[0] ?>&leaveEvent=true" class='btn btn-danger' >Leave  </a>
                               <?php endif; ?>
                             </td>
                           </tr>
