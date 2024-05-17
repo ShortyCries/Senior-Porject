@@ -217,6 +217,7 @@ $playerEmail = $_SESSION['email'];
                   <thead>
                     <tr>
                       <th scope="col">Id</th>
+                      <th scope="col">Academy</th>
                       <th scope="col">Name</th>
                       <th scope="col">Sport</th>
                       <th scope="col">Time</th>
@@ -228,7 +229,7 @@ $playerEmail = $_SESSION['email'];
                     <!-- -->
                     <?php
 
-                    $query3 =  "SELECT id, cname, sportname, schedule FROM class NATURAL JOIN joins WHERE id = classId AND playeremail = '$playerEmail' AND status = 'pending'";
+                    $query3 =  "SELECT id, cname, sportname, schedule, name FROM class NATURAL JOIN joins NATURAL JOIN academy WHERE academyemail = email AND id = classId AND playeremail = '$playerEmail' AND status = 'pending'";
                     $result3 = $pdo->query($query3);
 
                     $r3 = $result3->rowCount();
@@ -238,6 +239,7 @@ $playerEmail = $_SESSION['email'];
                     ?>
                       <tr class="myRows">
                         <td class="myclassid"><?php echo  $row3[0] ?></td>
+                        <td><?php echo  $row3[4] ?></td>
                         <td><?php echo  $row3[1] ?></td>
                         <td><?php echo  $row3[2] ?></td>
                         <td><?php echo  $row3[3] ?></td>
@@ -255,7 +257,7 @@ $playerEmail = $_SESSION['email'];
 
                     <?php
 
-                    $query4 =  "SELECT id, cname, sportname, schedule FROM class NATURAL JOIN joins WHERE id = classId AND playeremail = '$playerEmail' AND status = 'accepted'";
+                    $query4 =  "SELECT id, cname, sportname, schedule, name FROM class NATURAL JOIN joins NATURAL JOIN academy WHERE academyemail = email AND id = classId AND playeremail = '$playerEmail' AND status = 'accepted'";
                     $result4 = $pdo->query($query4);
 
                     $r4 = $result4->rowCount();
@@ -265,11 +267,12 @@ $playerEmail = $_SESSION['email'];
                     ?>
                       <tr class="myRows">
                         <td class="myclassid"><?php echo  $row4[0] ?></td>
+                        <td><?php echo  $row3[4] ?></td>
                         <td><?php echo  $row4[1] ?></td>
                         <td><?php echo  $row4[2] ?></td>
                         <td><?php echo  $row4[3] ?></td>
-                        <td colspan="2" class="text-center"> <a href="#" type="button" class="btn btn-primary accept_btn">
-                            View Class
+                        <td colspan="2" class="text-center"> <a href="#" type="button" class="btn btn-primary view_games">
+                            View Games
                           </a> </td>
 
                       </tr>
@@ -289,6 +292,26 @@ $playerEmail = $_SESSION['email'];
     </div>
 
 
+
+    <div class="modal fade" id="viewgamesmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Matches Info</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <div class="view_games_data">
+
+            </div>
+
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
 
 
   </div>
@@ -495,6 +518,30 @@ $playerEmail = $_SESSION['email'];
     }
   </script>
 
+  <script>
+    $(document).ready(function() {
+      $('.view_games').on('click', function() {
+        var classId = $(this).closest('tr').find('.myclassid').text();
+
+        console.log(classId);
+
+        $.ajax({
+          url: 'view_games.php',
+          method: 'POST',
+          data: {
+            'class_id': classId
+          },
+          success: function(response) {
+            $('.view_games_data').html(response);
+            $('#viewgamesmodal').modal('show');
+          },
+          error: function() {
+
+          }
+        });
+      });
+    });
+  </script>
 
 
 </body>
