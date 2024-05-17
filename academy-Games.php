@@ -267,7 +267,13 @@ $academyEmail = $_SESSION['email'];
                                                 courts ON matchs.McourtId = courts.CRid 
                                             WHERE 
                                                 courts.CRAcademyemail = '$academyEmail' 
-                                                AND matchs.Mtype = 'local';";
+                                                AND matchs.Mtype = 'local'
+                                            ORDER BY 
+                                                CASE 
+                                                    WHEN matchs.Mstatus = 'booked' THEN 1
+                                                    WHEN matchs.Mstatus = 'finished' THEN 2
+                                                    ELSE 3
+                                                END;";
                                                 $result3 = $pdo->query($query3);
 
                                                 $r3 = $result3->rowCount();
@@ -283,7 +289,26 @@ $academyEmail = $_SESSION['email'];
                                                         <td><?php echo $row3[4] ?></td>
                                                         <td><?php echo $row3[5] ?></td>
                                                         <?php
-                                                        if ($row3[8] == 'booked') {
+
+                                                        $mytime = explode("-", $row3[5]);
+
+
+
+                                                        $string = date("Y-m-d");
+
+
+                                                        $current_time = time();
+
+                                                        // Add an hour (3600 seconds) to the current time
+                                                        $new_time = $current_time + 3600;
+
+                                                        // Format the new time
+                                                        $formatted_time = date('H:i', $new_time);
+
+                                                        // Output the new time
+
+
+                                                        if ($row3[8] == 'booked' && ($row3[4] <= $string && $formatted_time >= $mytime[0])) {
                                                         ?>
                                                             <form method="POST" action="update-match-score.php">
                                                                 <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
@@ -298,15 +323,21 @@ $academyEmail = $_SESSION['email'];
 
                                                             </form>
                                                         <?php
-                                                        } else {
+                                                        } else if ($row3[8] == 'finished') {
                                                         ?>
                                                             <td><?php echo $row3[6] ?></td>
                                                             <td><?php echo $row3[7] ?></td>
-                                                            <td><button href="#" class='btn btn-primary' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Update</button></td>
-                                                            <td><a href="#" class='btn btn-success' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Finish</a></td>
+                                                            <td colspan="2" style="background-color: #ff6666;" class="text-center">Finished</td>
+                                                        <?php
+                                                        } else {
+
+                                                        ?>
+                                                            <td><?php echo $row3[6] ?></td>
+                                                            <td><?php echo $row3[7] ?></td>
+                                                            <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-primary'>Update</button></td>
+                                                            <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-success'>Finish</button></td>
                                                         <?php
                                                         }
-
                                                         ?>
 
                                                         <!-- <td><a href="#" class='btn btn-success'>Finish</a></td> -->
@@ -375,6 +406,11 @@ $academyEmail = $_SESSION['email'];
                                                     <th scope="col">Court</th>
                                                     <th scope="col">Date</th>
                                                     <th scope="col">Time</th>
+                                                    <th scope="col">T1 Score</th>
+                                                    <th scope="col">T2 Score</th>
+                                                    <th scope="col">Update</th>
+                                                    <th scope="col">Finish</th>
+
 
                                                 </tr>
                                             </thead>
@@ -382,7 +418,7 @@ $academyEmail = $_SESSION['email'];
 
                                                 <?php
 
-                                                $query3 =  "SELECT matchs.Mid AS MatchID, c1.Cname AS Team1Name, c2.Cname AS Team2Name, courts.CRname AS CourtName, matchs.Mdate AS MatchDate, matchs.Mtime AS MatchTime FROM matchs JOIN class AS c1 ON matchs.team1 = c1.id JOIN class AS c2 ON matchs.team2 = c2.id JOIN courts ON matchs.McourtId = courts.CRid WHERE courts.CRAcademyemail = '$academyEmail' AND matchs.Mtype = 'public';";
+                                                $query3 =  "SELECT matchs.Mid AS MatchID, c1.Cname AS Team1Name, c2.Cname AS Team2Name, courts.CRname AS CourtName, matchs.Mdate AS MatchDate, matchs.Mtime AS MatchTime, matchs.team1Score, matchs.team2Score, matchs.Mstatus FROM matchs JOIN class AS c1 ON matchs.team1 = c1.id JOIN class AS c2 ON matchs.team2 = c2.id JOIN courts ON matchs.McourtId = courts.CRid WHERE courts.CRAcademyemail = '$academyEmail' AND matchs.Mtype = 'public'";
                                                 $result3 = $pdo->query($query3);
 
                                                 $r3 = $result3->rowCount();
@@ -397,10 +433,95 @@ $academyEmail = $_SESSION['email'];
                                                         <td><?php echo  $row3[3] ?></td>
                                                         <td><?php echo $row3[4] ?></td>
                                                         <td><?php echo $row3[5] ?></td>
+                                                        <?php
+                                                        $mytime = explode("-", $row3[5]);
+
+
+
+                                                        $string = date("Y-m-d");
+
+
+                                                        $current_time = time();
+
+                                                        // Add an hour (3600 seconds) to the current time
+                                                        $new_time = $current_time + 3600;
+
+                                                        // Format the new time
+                                                        $formatted_time = date('H:i', $new_time);
+
+                                                        // Output the new time
+
+
+                                                        if ($row3[8] == 'booked' && ($row3[4] <= $string && $formatted_time >= $mytime[0])) {
+                                                        ?>
+
+                                                            <form method="POST" action="update-match-score.php">
+                                                                <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
+                                                                <td><input name="team1Score" type="number" value="<?php echo $row3[6] ?>" style="width: 50px;" required> </td>
+                                                                <td><input name="team2Score" type="number" value="<?php echo $row3[7] ?>" style="width: 50px;" required></td>
+                                                                <td><button type="submit" href="#" class='btn btn-primary'>Update</button></td>
+                                                            </form>
+                                                            <form action="finish-match.php" method="post">
+                                                                <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
+                                                                <td><button type="submit" href="#" class='btn btn-primary'>Finish</button></td>
+                                                            </form>
+                                                        <?php
+                                                        } else if ($row3[8] == 'finished') {
+
+                                                        ?>
+                                                            <td><?php echo $row3[6] ?></td>
+                                                            <td><?php echo $row3[7] ?></td>
+                                                            <td colspan="2" style="background-color: #ff6666;" class="text-center">Finished</td>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <td><?php echo $row3[6] ?></td>
+                                                            <td><?php echo $row3[7] ?></td>
+                                                            <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-primary'>Update</button></td>
+                                                            <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-success'>Finish</button></td>
+
+                                                        <?php
+
+                                                        }
+                                                        ?>
 
                                                     </tr>
                                                 <?php
                                                 }
+                                                ?>
+
+                                                <?php
+
+                                                $query44 = "SELECT m.Mid, c1.cname AS Team1Cname, c2.cname AS Team2Cname, cr.CRname, m.Mdate, m.Mtime, m.team1Score, m.team2Score, m.Mstatus FROM matchs m JOIN class c1 ON m.team1 = c1.id JOIN class c2 ON m.team2 = c2.id JOIN courts cr ON m.Mcourtid = cr.CRid WHERE c1.academyEmail = cr.CRAcademyemail AND c2.academyEmail <> cr.CRAcademyemail AND c2.academyEmail = '$academyEmail'";
+
+                                                $result44 = $pdo->query($query44);
+
+                                                $r44 = $result44->rowCount();
+
+                                                for ($i = 0; $i < $r44; $i++) {
+                                                    $row44 = $result44->fetch(PDO::FETCH_NUM);
+
+                                                ?>
+
+                                                    <tr class="myRows2">
+                                                        <td id="myclassid"><?php echo  $row44[0] ?></td>
+                                                        <td><?php echo  $row44[1] ?></td>
+                                                        <td><?php echo  $row44[2] ?></td>
+                                                        <td><?php echo  $row44[3] ?></td>
+                                                        <td><?php echo $row44[4] ?></td>
+                                                        <td><?php echo $row44[5] ?></td>
+                                                        <td><?php echo $row44[6] ?></td>
+                                                        <td><?php echo $row44[7] ?></td>
+                                                        <?php if ($row44[8] == "finished") { ?>
+                                                            <td colspan="2" class="text-center" style="background-color: #ff6666;">Finished</td>
+                                                        <?php } else {   ?>
+                                                            <td colspan="2" class="text-center" style="background-color: #e6f7ff;">Joined</td>
+                                                        <?php } ?>
+                                                    </tr>
+
+                                                <?php
+                                                }
+
                                                 ?>
 
 

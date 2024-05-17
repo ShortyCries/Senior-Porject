@@ -33,8 +33,8 @@ if (isset($_POST['courtID'], $_POST['eventID'])) {
     $r2 = $result2->rowCount();
         
     echo "<div class=\"container\">";
-
-
+    echo "<div class=\"info-section\"><span class=\"label\">Title:</span><span class=\"content\">" . htmlspecialchars($row[16], ENT_QUOTES, 'UTF-8') . "</span></div>";
+    echo "<div class=\"info-section\"><span class=\"label\">Description:</span><span class=\"content\">" . htmlspecialchars($row[17], ENT_QUOTES, 'UTF-8') . "</span></div>";
     echo "<div class=\"info-section\"><span class=\"label\">City:</span><span class=\"content\">" . htmlspecialchars($row[1], ENT_QUOTES, 'UTF-8') . "</span></div>";
     echo "<div class=\"info-section\"><span class=\"label\">Location:</span><span class=\"content\">" . htmlspecialchars($row[2], ENT_QUOTES, 'UTF-8') . "</span></div>";
     echo "<div class=\"info-section\"><span class=\"label\">Court name:</span><span class=\"content\">" . htmlspecialchars($row[3], ENT_QUOTES, 'UTF-8') . "</span></div>";

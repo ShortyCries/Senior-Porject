@@ -11,7 +11,7 @@ try {
 
         extract($_POST);
 
-        $query = "INSERT INTO matchs VALUES( '' ,'$team1', '$team2', '$court','$date', '$time', 'local', 'booked', NULL, NULL)";
+        $query = "INSERT INTO matchs VALUES( '' ,'$team1', '$team2', '$court','$date', '$time', 'local', 'booked', '0', '0')";
 
         $result = $pdo->exec($query);
 

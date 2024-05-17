@@ -542,7 +542,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
               <?php
 
 
-              $query = "SELECT Eid, Evcourtid, playeremail, Evdate, Evtime, Evstatus FROM events Where playeremail <> '$playerEmail' ";
+              $query = "SELECT Eid, Evcourtid, Evname, CRsportname FROM events NATURAL JOIN courts Where Evcourtid = CRid AND playeremail <> 'ahmad@hotmail.com' AND Evstatus = 'booked'";
 
               $result = $pdo->query($query);
 
@@ -561,14 +561,17 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
 
                 <div class="box-Listing">
                   <div class="image-Listing">
-                    <img src="img/football.jpg" alt="">
+                   
+                    <img src="img/<?php echo $row[3]?>.jpg" alt="">
+
+                    
                   </div>
                   <div class="content-Listing">
 
                     <h3 class="court_id" style="display: none;"><?php echo $row[1] ?></h3>
 
 
-                    <p class="event_id"><?php echo $row[0] ?></p>
+                    <p class="event_id" value="<?php echo $row[0]?>"> <?php echo $row[2] ?> </p> 
 
                     <a href="#" type="button" class="btn btn-success view_data">
                       Read More
@@ -648,6 +651,16 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
             </div>
             <form action="EventPDO.php" method="POST">
               <div class="modal-body">
+
+                <div class="form-group mb-3">
+                <label>Event Title</label>
+                <input type="text" name="eventTitle" class="form-control" maxlength="20">
+                </div>
+
+                <div class="form-group mb-3">
+                <label>Event Description</label>
+                <textarea type="text" name="eventDescription" class="form-control"></textarea>
+                </div>
 
                 <div class="form-group mb-3">
                   <label>Sport</label>
@@ -867,7 +880,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
             e.preventDefault();
 
             var courtID = $(this).closest('div').find('.court_id').text();
-            var eventID = $(this).closest('div').find('.event_id').text();
+            var eventID = $(this).closest('div').find('.event_id').attr('value');
 
             console.log(courtID);
             console.log(eventID);
@@ -900,8 +913,9 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
           $('.join_btn').click(function(e) {
             e.preventDefault();
 
+
+            var eventID = $(this).closest('div').find('.event_id').attr('value');
             var courtID = $(this).closest('div').find('.court_id').text();
-            var eventID = $(this).closest('div').find('.event_id').text();
 
 
             $('#dataInput').val(eventID);

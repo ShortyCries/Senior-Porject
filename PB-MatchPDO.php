@@ -12,7 +12,7 @@ try {
 
         extract($_POST);
 
-        $query = "INSERT INTO matchs VALUES('' ,'$PBteam1', '$PBteam2', '$PBcourt','$PBdate', '$PBtime', 'public', 'booked', NULL, NULL)";
+        $query = "INSERT INTO matchs VALUES('' ,'$PBteam1', '$PBteam2', '$PBcourt','$PBdate', '$PBtime', 'public', 'booked', '0', '0')";
 
         $result = $pdo->exec($query);
 

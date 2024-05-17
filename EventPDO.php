@@ -104,7 +104,7 @@ try {
 
         $r4++;
 
-        $query = "INSERT INTO events VALUES('$r4','$court', '$playerEmail', '$date', '$time', 'booked')";
+        $query = "INSERT INTO events VALUES('$r4','$court', '$playerEmail', '$date', '$time', 'booked', '$eventTitle', '$eventDescription')";
 
         $result = $pdo->exec($query);
 
