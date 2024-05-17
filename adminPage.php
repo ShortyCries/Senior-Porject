@@ -100,14 +100,7 @@ $r2 = $result2->rowCount();
                     </a>
                 </li>
 
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </span>
-                        <span class="title">Feedback</span>
-                    </a>
-                </li>
+              
 
                 <li>
                     <a href="Logout.php">
@@ -180,19 +173,7 @@ $r2 = $result2->rowCount();
                         </div>
                     </div>
                 </a>
-                <a href="#" style="text-decoration: none;">
-                    <div class="card">
-                        <div>
-                            <div class="numbers">$7,842</div>
-                            <div class="cardName">Feedback</div>
-                        </div>
-
-                        <div class="iconBx">
-                            <ion-icon name="cash-outline"></ion-icon>
-                        </div>
-
-                    </div>
-                </a>
+               
             </div>
 
             <!-- ================ Order Details List ================= -->

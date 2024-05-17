@@ -106,15 +106,6 @@ $r = $result->rowCount();
                 </li>
 
                 <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </span>
-                        <span class="title">Feedback</span>
-                    </a>
-                </li>
-
-                <li>
                     <a href="Logout.php">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
@@ -175,10 +166,10 @@ $r = $result->rowCount();
                                     echo "<td>  $row[2] </td> ";
                                     
                                     if($row[3] == 'active'){
-                                    echo "<td> <a href='admin-Acadmies.php?email={$row[1]}&status=deactive'  > Deactivate </a> </td> ";
+                                    echo "<td> <span class=\"status return\"> <a style=\"text-decoration: none; color: white;\"  href='admin-Acadmies.php?email={$row[1]}&status=deactive'  > Deactivate </a> </span> </td> ";
 
                                     } else {
-                                        echo "<td> <a href='admin-Acadmies.php?email={$row[1]}&status=active'  > Activate </a> </td> ";
+                                        echo "<td> <span class=\"status delivered\"> <a style=\"text-decoration: none; color: white;\" href='admin-Acadmies.php?email={$row[1]}&status=active'  > Activate </a> </span> </td> ";
                                     }
 
 
@@ -187,78 +178,51 @@ $r = $result->rowCount();
                                 ?>                      
 
 
+                            
                             <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
 
                             <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
 
                             <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
 
                             <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
 
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
 
                             <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
 
+
                             <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
+                            
 
                         </tbody>
                     </table>
