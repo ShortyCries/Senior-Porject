@@ -128,8 +128,8 @@ $r = $result->fetch(PDO::FETCH_NUM);
             <div class="row mt-5 align-items-center">
               <div class="col-md-3 text-center mb-5">
                 <div class="avatar avatar-xl">
-                <a href="#" type="button" class=" view_data" data-bs-toggle="modal" data-bs-target="#viewusermodal">
-                <img src="<?php echo !empty($r[4]) ? $r[4] : 'img/default-user.jpg'; ?>" alt="..." class="avatar-img rounded-circle" />
+                  <a href="#" type="button" class=" view_data" data-bs-toggle="modal" data-bs-target="#viewusermodal">
+                    <img src="<?php echo !empty($r[4]) ? $r[4] : 'img/default-user.jpg'; ?>" alt="..." class="avatar-img rounded-circle" />
                   </a>
                 </div>
               </div>
@@ -149,7 +149,7 @@ $r = $result->fetch(PDO::FETCH_NUM);
                 </div>
               </div>
             </div>
-            <hr class="my-4" />
+            <hr style="height: 5px; border: none; background-color: black;" class="my-4" />
             <div class="form-group">
               <label style="font-weight: bold; color:black" for="inputEmail4">Name</label>
               <input name="name" type="text" class="form-control" id="realname" placeholder="<?php echo $r[1]; ?>" />
@@ -168,7 +168,46 @@ $r = $result->fetch(PDO::FETCH_NUM);
               </div>
             </div>
           </form>
-          <hr class="my-4" />
+          <hr style="height: 5px; border: none; background-color: black;" class="my-4" />
+          <form action="playsPDO.php" method="post">
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label style="font-weight: bold; color:black" for="inputEmail4">Sport Speciality</label>
+                  <select id="sportSelect" name="sport" type="number" class="form-select">
+                  <option selected disabled value="">Choose...</option>
+                    <?php
+                    $query2 = "SELECT sname FROM sport";
+
+                    $result2 = $pdo->query($query2);
+
+                    $r2 = $result2->rowCount();
+
+                    for ($i = 0; $i < $r2; $i++) {
+                      $row2 = $result2->fetch(PDO::FETCH_NUM);
+
+                      echo "<option>" . $row2[0] . "</option>";
+                    }
+
+                    ?>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label style="font-weight: bold; color:black" for="inputEmail4">Role</label>
+                  <select id="roleSelect" name="role" type="number" class="form-select">
+                  <option selected disabled value="">Choose...</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+          <hr style="height: 5px; border: none; background-color: black;" class="my-4" />
           <div class="row mb-4">
             <div class="col-md-6">
               <div class="form-group">
@@ -202,7 +241,7 @@ $r = $result->fetch(PDO::FETCH_NUM);
       </div>
     </div>
 
-    
+
     <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -217,7 +256,7 @@ $r = $result->fetch(PDO::FETCH_NUM);
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" type="submit">Sumbit</button>
+              <button class="btn btn-primary" type="submit">Sumbit</button>
             </div>
           </form>
         </div>
@@ -225,6 +264,41 @@ $r = $result->fetch(PDO::FETCH_NUM);
     </div>
 
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  <script>
+    $(document).ready(function() {
+      $('#sportSelect').change(function() {
+        var sportId = $('#sportSelect').val();
+
+        $.ajax({
+          method: "POST",
+          url: 'role-fetch.php',
+          data: {
+            'sportID': sportId,
+          },
+          success: function(response) {
+
+            $('#roleSelect').html(response);
+
+          }
+
+        });
+      });
+    });
+  </script>
+
+
+
+
+
+
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {

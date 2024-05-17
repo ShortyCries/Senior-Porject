@@ -5,8 +5,17 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
 
 
+
+
 if (isset($_POST['click_readmore_btn'])) {
     $email = $_POST['player_email'];
+
+    $query2 = "SELECT Rname, sport FROM role NATURAL JOIN plays WHERE Rid = PLAroleid AND PLAplayeremail ='$email'";
+
+    $result2 = $pdo->query($query2);
+
+    $row2 = $result2->fetch(PDO::FETCH_NUM);
+
 
 
     $query = "SELECT name, email, DOB, description, phone description FROM player where email = '$email' ";
@@ -36,6 +45,8 @@ if (isset($_POST['click_readmore_btn'])) {
         echo "<div class=\"info-section\"><span class=\"label\">Email:</span><span class=\"content\">" . htmlspecialchars($row[1], ENT_QUOTES, 'UTF-8') . "</span></div>";
         echo "<div class=\"info-section\"><span class=\"label\">Phone:</span><span class=\"content\">" . htmlspecialchars($row[4], ENT_QUOTES, 'UTF-8') . "</span></div>";
     }
+
+    echo "<div class=\"info-section\"><span class=\"label\">Sport Speciality:</span><span class=\"content\">" . htmlspecialchars($row2[1], ENT_QUOTES, 'UTF-8') . "(" . htmlspecialchars($row2[0], ENT_QUOTES, 'UTF-8') . ")" . "</span></div>";
     echo "</div>";
 }
 

@@ -1,49 +1,27 @@
-<?php 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevent Tilde Character</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const textarea = document.getElementById("myTextarea");
 
-
-session_start();
-require_once("config.php");
-
-$playerEmail = $_SESSION['email'];
-
-
-
-   
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-
-        extract($_POST);
-
-        
-        $query7 = "SELECT Evtime FROM events WHERE playeremail = 'afnan@hotmail' AND Evstatus = 'booked' AND Evdate = '2024-05-16'";
-
-        $result7 = $pdo->query($query7);
-
-        $r7 = $result7->fetchAll(PDO::FETCH_COLUMN);
-
-        echo $r7[0];
-        
-        function parse_time_range($time_range) {
-            list($start, $end) = explode('-', $time_range);
-            return [strtotime($start), strtotime($end)];
-        }
-        
-        function times_overlap($range1, $range2) {
-            list($start1, $end1) = parse_time_range($range1);
-            list($start2, $end2) = parse_time_range($range2);
-        
-            return $start1 < $end2 && $start2 < $end1;
-        }
-        
-        // $r0 = "15:00-16:00";
-        $time = "14:30-15:30";
-        
-        if (times_overlap($r7[0], $time)) {
-            echo "The time ranges overlap.";
-        } else {
-            echo "The time ranges do not overlap.";
-        }
-        ?>
-        //15:00-16:00
-                    //14:30-15:00
-
-        
+            textarea.addEventListener("input", function(event) {
+                // Get the current value of the textarea
+                const currentValue = textarea.value;
+                
+                // Check if the value contains the tilde character
+                if (currentValue.includes("~")) {
+                    // Remove all tilde characters
+                    textarea.value = currentValue.replace(/~/g, "");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <textarea id="myTextarea" rows="10" cols="30"></textarea>
+</body>
+</html>
