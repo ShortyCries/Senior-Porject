@@ -13,9 +13,8 @@ if (isset($_GET['Pemail'], $_GET['removeplayer'])) {
     $theclassID = $_GET['classID'];
     $delete1 = "DELETE FROM joins WHERE playeremail = '$Pemail' AND classId='$theclassID'";
     $delResult1 = $pdo->exec($delete1);
-     
-    header("location:class-info.php?class_id=$theclassID");
 
+    header("location:class-info.php?class_id=$theclassID");
 }
 
 
@@ -218,55 +217,40 @@ if (isset($_GET['class_id'])) {
     </div>
 
     <tbody>
+    <?php
+    for ($i = 0; $i < $r; $i++) {
+        $row = $result->fetch(PDO::FETCH_NUM);
 
+        $dateOfBirth = $row[2];
+        $diff = date_diff(date_create($dateOfBirth), date_create($currentDate));
 
-        <?php
-
-
-
-
-        for ($i = 0; $i < $r; $i++) {
-            $row = $result->fetch(PDO::FETCH_NUM);
-
-
-            $dateOfBirth = $row[2];
-
-            $diff = date_diff(date_create($dateOfBirth), date_create($currentDate));
-            if ($row[5] == "accepted") {
-        ?>
-                <tr>
-
-                    <td value="<?php echo $row[1] ?>"><?php echo $row[0] ?></td>
-                    <td value="<?php echo $row[4] ?>"><?php echo $diff->format('%y') ?></td>
-                    <td><?php echo $row[3] ?></td>
-                    <td> <a href="#" type="button" class="btn btn-success view_data">
-                            View Report
-                        </a></td>
-                    <td> <a href="class-info.php?Pemail=<?php echo $row[1] ?>&removeplayer=true&classID=<?php echo $row[4] ?>" class="btn btn-danger"> Remove </a> </td>
-                    <td> Joined </td>
-
-                </tr>
-            <?php
-            } else if ($row[5] == "pending") {
-            ?>
-                <tr>
-                    <td value="<?php echo $row[1] ?>"><?php echo $row[0] ?></td>
-                    <td value="<?php echo $row[4] ?>"><?php echo $diff->format('%y') ?></td>
-                    <td><?php echo $row[3] ?></td>
-                    <td> <a href="#" type="button" class="btn btn-success view_data"  style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">
-                            View Report
-                        </a></td>
-                    <td> <a href="class-info.php?Pemail=<?php echo $row[1] ?>&removeplayer=true&classID=<?php echo $row[4] ?>" class="btn btn-danger" > Remove </a> </td>
-                    <td> Invited </td>
-
-                <tr>
-
-            <?php
-            }
+        if ($row[5] == "accepted") {
+    ?>
+            <tr>
+                <td value="<?php echo $row[1] ?>"><?php echo $row[0] ?></td>
+                <td value="<?php echo $row[4] ?>"><?php echo $diff->format('%y') ?></td>
+                <td><?php echo $row[3] ?></td>
+                <td><a href="#" type="button" class="btn btn-success view_data">View Report</a></td>
+                <td><a href="class-info.php?Pemail=<?php echo $row[1] ?>&removeplayer=true&classID=<?php echo $row[4] ?>" class="btn btn-danger">Remove</a></td>
+                <td>Joined</td>
+            </tr>
+    <?php
+        } else if ($row[5] == "pending") {
+    ?>
+            <tr>
+                <td value="<?php echo $row[1] ?>" style="background-color: #a9a9a9 !important;"><?php echo $row[0] ?></td>
+                <td value="<?php echo $row[4] ?>" style="background-color: #a9a9a9 !important;"><?php echo $diff->format('%y') ?></td>
+                <td style="background-color: #a9a9a9 !important;"><?php echo $row[3] ?></td>
+                <td style="background-color: #a9a9a9 !important;"><a href="#" type="button" class="btn btn-success view_data" style="background-color: #a9a9a9; color: #808080; pointer-events: none;">View Report</a></td>
+                <td style="background-color: #a9a9a9 !important;"><a href="class-info.php?Pemail=<?php echo $row[1] ?>&removeplayer=true&classID=<?php echo $row[4] ?>" class="btn btn-danger">Remove</a></td>
+                <td style="background-color: #a9a9a9 !important;">Invited</td>
+            </tr>
+    <?php
         }
+    }
+    ?>
+</tbody>
 
-            ?>
-    </tbody>
 
 
 

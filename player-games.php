@@ -354,6 +354,8 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
                         <tr>
                           <th scope="col">Id</th>
                           <th scope="col">Court Name</th>
+                          <th scope="col">City</th>
+                          <th scope="col">Sport</th>
                           <th scope="col">Date</th>
                           <th scope="col">Time</th>
                           <th scope="col">Status</th>
@@ -366,7 +368,7 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
 
                         <?php
 
-                        $query3 = "SELECT CRid, Eid, CRname, Evdate, Evtime, Evstatus  FROM events NATURAL JOIN courts WHERE playerEmail = '$playerEmail' AND CRid = Evcourtid ORDER BY CASE 
+                        $query3 = "SELECT CRid, Eid, CRname, Evdate, Evtime, Evstatus, CRlocation, CRsportname  FROM events NATURAL JOIN courts WHERE playerEmail = '$playerEmail' AND CRid = Evcourtid ORDER BY CASE 
                                         WHEN Evstatus = 'booked' THEN 1
                                         WHEN Evstatus = 'ongoing' THEN 2 
                                         WHEN Evstatus = 'finished' THEN 3
@@ -383,6 +385,8 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
 
                             <td id="myeventID"><?php echo  $row3[1] ?></td>
                             <td id="mycourtID" value="<?php echo $row3[0] ?>"><?php echo  $row3[2] ?></td>
+                            <td><?php echo  $row3[6] ?></td>
+                            <td><?php echo  $row3[7] ?></td>
                             <td><?php echo  $row3[3] ?></td>
                             <td><?php echo  $row3[4] ?></td>
                             <td> <?php if ($row3[5] === "booked") : ?>
@@ -408,6 +412,49 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
                                 <a class='btn btn-danger' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Cancel</a>
                               <?php else : ?>
                                 <a class='btn btn-danger'>Cancel</a>
+                              <?php endif; ?>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        $query68 = "SELECT Eid, CRname, Evdate, Evtime, PRstatus, CRlocation, CRsportname , Evstatus FROM participate NATURAL JOIN events NATURAL JOIN courts WHERE PRplayeremail = '$playerEmail' AND PReventid = Eid AND Evcourtid = CRid";
+                        $result68 = $pdo->query($query68);
+
+                        $r68 = $result68->rowCount();
+                        for ($i = 0; $i < $r68; $i++) {
+                          $row68 = $result68->fetch(PDO::FETCH_NUM);
+
+                        ?>
+                          <tr>
+
+                            <td id="TheEventID"><?php echo  $row68[0] ?></td>
+                            <td><?php echo  $row68[1] ?></td>
+                            <td><?php echo  $row68[5] ?></td>
+                            <td><?php echo  $row68[6] ?></td>
+                            <td><?php echo  $row68[2] ?></td>
+                            <td><?php echo  $row68[3] ?></td>
+                            <td> <?php if ($row68[4] === "requested") : ?>
+                                <span style="background-color: #6eb5ff; padding: 2px;"><?php echo $row68[4] ?></span>
+                              <?php elseif ($row68[4] === "accepted") : ?>
+                                <span style="background-color: orange; padding: 2px;"><?php echo $row68[4] ?></span>
+                              <?php else : ?>
+                                <?php echo $row68[4] ?>
+                              <?php endif; ?>
+                            </td>
+                            <td><a class='btn btn-primary' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">View</a></td>
+                            <td>
+
+                              <a class='btn btn-primary' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Request Role</a>
+
+                            </td>
+                            <td>
+                              <?php if (($row68[7] === "ongoing" || $row68[7] == "finished") && ($row68[4] == "accepted")) : ?>
+                                <a class='btn btn-danger' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Leave</a>
+                              <?php else : ?>
+                                <a class='btn btn-danger'>Leave  </a>
                               <?php endif; ?>
                             </td>
                           </tr>
