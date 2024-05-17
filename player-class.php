@@ -208,11 +208,12 @@ $playerEmail = $_SESSION['email'];
           <div class="card">
             <div class="card-header">
               <h4 class="text-center">Classes</h4>
+              <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
             </div>
             <div class="card-body">
               <div class="table-responsive">
 
-                <table class="table table-striped table-bordered">
+                <table id="table2" class="table table-striped table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">Id</th>
@@ -220,7 +221,7 @@ $playerEmail = $_SESSION['email'];
                       <th scope="col">Sport</th>
                       <th scope="col">Time</th>
                       <th scope="col" colspan="2"></th>
-                      
+
                     </tr>
                   </thead>
                   <tbody>
@@ -235,7 +236,7 @@ $playerEmail = $_SESSION['email'];
                     for ($i = 0; $i < $r3; $i++) {
                       $row3 = $result3->fetch(PDO::FETCH_NUM);
                     ?>
-                      <tr>
+                      <tr class="myRows">
                         <td class="myclassid"><?php echo  $row3[0] ?></td>
                         <td><?php echo  $row3[1] ?></td>
                         <td><?php echo  $row3[2] ?></td>
@@ -262,7 +263,7 @@ $playerEmail = $_SESSION['email'];
                     for ($i = 0; $i < $r4; $i++) {
                       $row4 = $result4->fetch(PDO::FETCH_NUM);
                     ?>
-                      <tr>
+                      <tr class="myRows">
                         <td class="myclassid"><?php echo  $row4[0] ?></td>
                         <td><?php echo  $row4[1] ?></td>
                         <td><?php echo  $row4[2] ?></td>
@@ -270,7 +271,7 @@ $playerEmail = $_SESSION['email'];
                         <td colspan="2" class="text-center"> <a href="#" type="button" class="btn btn-primary accept_btn">
                             View Class
                           </a> </td>
-                        
+
                       </tr>
                     <?php
                     }
@@ -297,6 +298,42 @@ $playerEmail = $_SESSION['email'];
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var search_input = document.getElementById("searchInput");
+      var table2 = document.getElementById("table2");
+      var num_of_rows = table2.getElementsByClassName("myRows");
+
+      search_input.addEventListener('keyup', function() {
+        var search_value = search_input.value.toLowerCase();
+        for (let i = 0; i < num_of_rows.length; i++) {
+          var data_cells = num_of_rows[i].getElementsByTagName('td');
+          let found = false;
+
+          for (let j = 0; j < data_cells.length; j++) {
+            var cellText = data_cells[j].textContent.toLowerCase();
+            if (cellText.includes(search_value)) {
+              found = true;
+              break;
+            }
+          }
+          if (found) {
+            num_of_rows[i].style.display = "";
+          } else {
+            num_of_rows[i].style.display = "none";
+          }
+        }
+      })
+    });
+  </script>
+
+
+
+
+
+
+
+
 
   <script>
     $(document).ready(function() {
@@ -315,7 +352,7 @@ $playerEmail = $_SESSION['email'];
             location.reload();
           },
           error: function() {
-            
+
           }
         });
       });

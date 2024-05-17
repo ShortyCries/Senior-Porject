@@ -208,6 +208,7 @@ $r = $result->rowCount();
                     <div class="card">
                         <div class="card-header">
                             <h4 class="text-center">Classes</h4>
+                            <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
                             <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
                                 New Class
                             </button>
@@ -215,7 +216,7 @@ $r = $result->rowCount();
                         <div class="card-body">
                             <div class="table-responsive">
 
-                                <table class="table table-striped table-bordered">
+                                <table id="table2" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th scope="col">Id</th>
@@ -242,7 +243,7 @@ $r = $result->rowCount();
                                             
                                         ?>
 
-                                            <tr>
+                                            <tr class="myRows">
                                                 <td id="myclassid"><?php echo  $row3[0] ?></td>
                                                 <td><?php echo  $row3[1] ?></td>
                                                 <td><?php echo  $row3[2] ?></td>
@@ -379,9 +380,41 @@ $r = $result->rowCount();
 
     </div>
 
+   
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
+    <script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+           var search_input = document.getElementById("searchInput");
+           var table2 = document.getElementById("table2");
+           var num_of_rows = table2.getElementsByClassName("myRows");
 
+           search_input.addEventListener('keyup', function(){
+            var search_value = search_input.value.toLowerCase();
+            for(let i = 0; i < num_of_rows.length; i++){
+                var data_cells = num_of_rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for(let j = 0; j < data_cells.length; j++){
+                    var cellText = data_cells[j].textContent.toLowerCase();
+                    if(cellText.includes(search_value)){
+                        found = true;
+                        break;
+                    }
+                }
+                if(found){
+                    num_of_rows[i].style.display = "";
+                } else {
+                    num_of_rows[i].style.display = "none";
+                }
+            }
+           })
+        });
+
+    
+    </script>
 
     <script>
         $(document).ready(function() {

@@ -78,7 +78,7 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
 
 
 
-if(isset($_GET['EVENTID'], $_GET['cancelEvent'])){
+if (isset($_GET['EVENTID'], $_GET['cancelEvent'])) {
 
   $EVENTID = $_GET['EVENTID'];
 
@@ -86,14 +86,12 @@ if(isset($_GET['EVENTID'], $_GET['cancelEvent'])){
   $delete = "DELETE FROM events WHERE Eid = '$EVENTID'";
 
   $result77 = $pdo->exec($delete);
-
-
 }
 
 
 
 
-if(isset($_GET['EVENTID'], $_GET['leaveEvent'])){
+if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
 
   $EVENTID = $_GET['EVENTID'];
 
@@ -101,8 +99,6 @@ if(isset($_GET['EVENTID'], $_GET['leaveEvent'])){
   $delete2 = "DELETE FROM participate WHERE PReventid = '$EVENTID' AND PRplayeremail = '$playerEmail'";
 
   $result75 = $pdo->exec($delete2);
-
-
 }
 
 
@@ -363,6 +359,7 @@ if(isset($_GET['EVENTID'], $_GET['leaveEvent'])){
               <div class="card">
                 <div class="card-header">
                   <h4 class="text-center">Your Events</h4>
+                  <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
                   <?php
                   $query9 = "SELECT * FROM events WHERE playeremail = '$playerEmail' AND Evstatus = 'booked'";
 
@@ -385,7 +382,7 @@ if(isset($_GET['EVENTID'], $_GET['leaveEvent'])){
                 <div class="card-body">
                   <div class="table-responsive">
 
-                    <table class="table table-striped table-bordered">
+                    <table id="table2" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th scope="col">Id</th>
@@ -417,7 +414,7 @@ if(isset($_GET['EVENTID'], $_GET['leaveEvent'])){
                         for ($i = 0; $i < $r3; $i++) {
                           $row3 = $result3->fetch(PDO::FETCH_NUM);
                         ?>
-                          <tr>
+                          <tr class="myRows">
 
                             <td id="myeventID"><?php echo  $row3[1] ?></td>
                             <td id="mycourtID" value="<?php echo $row3[0] ?>"><?php echo  $row3[2] ?></td>
@@ -447,7 +444,7 @@ if(isset($_GET['EVENTID'], $_GET['leaveEvent'])){
                               <?php if ($row3[5] === "finished" || $row3[5] === "ongoing") : ?>
                                 <a class='btn btn-danger' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Cancel</a>
                               <?php else : ?>
-                                <a href="player-games.php?EVENTID=<?php echo $row3[1] ?>&cancelEvent=true" class='btn btn-danger' >Cancel</a>
+                                <a href="player-games.php?EVENTID=<?php echo $row3[1] ?>&cancelEvent=true" class='btn btn-danger'>Cancel</a>
                               <?php endif; ?>
                             </td>
                           </tr>
@@ -464,7 +461,7 @@ if(isset($_GET['EVENTID'], $_GET['leaveEvent'])){
                           $row68 = $result68->fetch(PDO::FETCH_NUM);
 
                         ?>
-                          <tr>
+                          <tr class="myRows">
 
                             <td id="TheEventID"><?php echo  $row68[0] ?></td>
                             <td><?php echo  $row68[1] ?></td>
@@ -490,7 +487,7 @@ if(isset($_GET['EVENTID'], $_GET['leaveEvent'])){
                               <?php if (($row68[7] === "ongoing" || $row68[7] == "finished") && ($row68[4] == "accepted")) : ?>
                                 <a class='btn btn-danger' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Leave</a>
                               <?php else : ?>
-                                <a href="player-games.php?EVENTID=<?php echo $row68[0] ?>&leaveEvent=true" class='btn btn-danger' >Leave  </a>
+                                <a href="player-games.php?EVENTID=<?php echo $row68[0] ?>&leaveEvent=true" class='btn btn-danger'>Leave </a>
                               <?php endif; ?>
                             </td>
                           </tr>
@@ -794,6 +791,36 @@ if(isset($_GET['EVENTID'], $_GET['leaveEvent'])){
 
 
       <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var search_input = document.getElementById("searchInput");
+          var table2 = document.getElementById("table2");
+          var num_of_rows = table2.getElementsByClassName("myRows");
+
+          search_input.addEventListener('keyup', function() {
+            var search_value = search_input.value.toLowerCase();
+            for (let i = 0; i < num_of_rows.length; i++) {
+              var data_cells = num_of_rows[i].getElementsByTagName('td');
+              let found = false;
+
+              for (let j = 0; j < data_cells.length; j++) {
+                var cellText = data_cells[j].textContent.toLowerCase();
+                if (cellText.includes(search_value)) {
+                  found = true;
+                  break;
+                }
+              }
+              if (found) {
+                num_of_rows[i].style.display = "";
+              } else {
+                num_of_rows[i].style.display = "none";
+              }
+            }
+          })
+        });
+      </script>
+
 
 
       <script>

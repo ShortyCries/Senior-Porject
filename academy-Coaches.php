@@ -263,9 +263,10 @@ $r = $result->rowCount();
 
                         <div class="card-header">
                             <h4 class="display-6 text-center"> Coach List </h2>
+                            <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered text-center">
+                            <table id="table2" class="table table-bordered text-center">
                                 <tr class="bg-dark text-white">
                                     <td>Name</td>
                                     <td>Email</td>
@@ -276,7 +277,7 @@ $r = $result->rowCount();
                                 <?php
                                 for ($i = 0; $i < $r; $i++) {
                                     $row = $result->fetch(PDO::FETCH_NUM);
-                                    echo "<tr>";
+                                    echo "<tr class=\"myRows\">";
                                     echo "<td>   $row[0] </td>";
                                     echo "<td>   $row[1] </td> ";
                                     echo "<td>  $row[2] </td> ";
@@ -435,6 +436,38 @@ $r = $result->rowCount();
                 return;
             }
         }
+    </script>
+
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+           var search_input = document.getElementById("searchInput");
+           var table2 = document.getElementById("table2");
+           var num_of_rows = table2.getElementsByClassName("myRows");
+
+           search_input.addEventListener('keyup', function(){
+            var search_value = search_input.value.toLowerCase();
+            for(let i = 0; i < num_of_rows.length; i++){
+                var data_cells = num_of_rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for(let j = 0; j < data_cells.length; j++){
+                    var cellText = data_cells[j].textContent.toLowerCase();
+                    if(cellText.includes(search_value)){
+                        found = true;
+                        break;
+                    }
+                }
+                if(found){
+                    num_of_rows[i].style.display = "";
+                } else {
+                    num_of_rows[i].style.display = "none";
+                }
+            }
+           })
+        });
+
+    
     </script>
 
 

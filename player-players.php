@@ -33,6 +33,56 @@ $r = $result->rowCount();
     <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
 
+    <style>
+      .view_user_data {
+        overflow-wrap: break-word;
+        /* Ensures long words break to the next line */
+        word-wrap: break-word;
+        /* Legacy support */
+        word-break: break-word;
+        /* Ensures long words break to the next line */
+        white-space: pre-wrap;
+        /* Preserves whitespace but wraps text */
+      }
+
+      .modal-body .container {
+        max-width: 100%;
+        /* Ensures container does not exceed modal width */
+      }
+
+      .info-section {
+        display: flex;
+        flex-direction: row;
+        margin-top: 1rem;
+        padding-bottom: 0.5rem;
+        /* Add some padding at the bottom */
+        border-bottom: 1px solid #ccc;
+        /* Add a bottom border */
+      }
+
+      .info-section .label {
+        flex: 0 0 auto;
+        /* Label takes only the necessary space */
+        margin-right: 10px;
+        /* Space between label and content */
+        font-weight: bold;
+        /* Bold font for the label */
+      }
+
+      .info-section .content {
+        flex: 1 1 auto;
+        /* Content takes the remaining space */
+        word-wrap: break-word;
+        /* Ensure text wraps within the container */
+        white-space: pre-wrap;
+        /* Ensures whitespace is preserved and wraps text */
+      }
+
+      .modal-body h6 {
+        margin-bottom: 1rem;
+        /* Add some space between different text elements */
+      }
+    </style>
 
     <script type="application/ld+json">
       {
@@ -180,7 +230,9 @@ $r = $result->rowCount();
 
       <h1 class="heading-Listing">Players</h1>
 
-      <div class="box-container-Listing">
+      <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
+
+      <div id="table2" class="box-container-Listing">
 
 
 
@@ -190,7 +242,7 @@ $r = $result->rowCount();
           $row = $result->fetch(PDO::FETCH_NUM);
         ?>
 
-          <div class="box-Listing">
+          <div class="box-Listing myRows">
             <div class="image-Listing">
               <img src="img/default-user.jpg" alt="">
             </div>
@@ -203,7 +255,7 @@ $r = $result->rowCount();
 
               <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Read More
-        </a>
+              </a>
 
               <div class="icons-Listing">
 
@@ -216,21 +268,7 @@ $r = $result->rowCount();
         }
         ?>
 
-        <script>
-          function logoutAlert() {
-            // Show the confirmation dialog and store the result
-            var result = window.confirm("Are you sure you want to Logout?");
 
-            // Check if the user clicked "OK" or "Cancel"
-            if (result) {
-              // If the user clicked "OK", redirect to 'index.php'
-              window.location.href = 'Logout.php';
-            } else {
-              // If the user clicked "Cancel", do nothing or perform any other action
-              return;
-            }
-          }
-        </script>
 
 
 
@@ -259,51 +297,7 @@ $r = $result->rowCount();
 
 
 
-        <div class="modal fade" id="viewinvitemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <form action="player-invite.php" method="POST">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="myheader"></h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <label>Choose class</label>
-                  <select name="classname" class="form-select" required>
-                    <option selected disabled value="">Choose...</option>
 
-                    <?php
-                    $query1 = "SELECT id, cname From class where playeremail = '$playerEmail'";
-
-                    $result1 = $pdo->query($query1);
-
-                    $r1 = $result1->rowCount();
-
-                    for ($i = 0; $i < $r1; $i++) {
-                      $row1 = $result1->fetch(PDO::FETCH_NUM);
-
-                      echo "<option>$row1[0] | $row1[1]</option>";
-                    }
-
-
-
-                    ?>
-
-                  </select>
-
-                  <input type="hidden" id="dataInput" name="playeremail" value="">
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Invite</button>
-                </div>
-
-
-              </form>
-            </div>
-          </div>
-        </div>
 
 
 
@@ -471,6 +465,37 @@ $r = $result->rowCount();
 
 
   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var search_input = document.getElementById("searchInput");
+      var table2 = document.getElementById("table2");
+      var num_of_rows = table2.getElementsByClassName("myRows");
+
+      search_input.addEventListener('keyup', function() {
+        var search_value = search_input.value.toLowerCase();
+        for (let i = 0; i < num_of_rows.length; i++) {
+          var data_cells = num_of_rows[i].getElementsByTagName('h3');
+          let found = false;
+
+          for (let j = 0; j < data_cells.length; j++) {
+            var cellText = data_cells[j].textContent.toLowerCase();
+            if (cellText.includes(search_value)) {
+              found = true;
+              break;
+            }
+          }
+          if (found) {
+            num_of_rows[i].style.display = "";
+          } else {
+            num_of_rows[i].style.display = "none";
+          }
+        }
+     
+      })
+    });
+  </script>
+
+
+  <script>
     $(document).ready(function() {
 
       $('.view_data').click(function(e) {
@@ -558,7 +583,21 @@ $r = $result->rowCount();
 
 
 
+  <script>
+    function logoutAlert() {
+      // Show the confirmation dialog and store the result
+      var result = window.confirm("Are you sure you want to Logout?");
 
+      // Check if the user clicked "OK" or "Cancel"
+      if (result) {
+        // If the user clicked "OK", redirect to 'index.php'
+        window.location.href = 'Logout.php';
+      } else {
+        // If the user clicked "Cancel", do nothing or perform any other action
+        return;
+      }
+    }
+  </script>
 
 
 

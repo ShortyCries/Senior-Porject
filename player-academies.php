@@ -233,7 +233,9 @@ $r = $result->rowCount();
 
       <h1 class="heading-Listing">Academies</h1>
 
-      <div class="box-container-Listing">
+      <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search..." >
+
+      <div id="table2" class="box-container-Listing">
 
 
 
@@ -243,7 +245,7 @@ $r = $result->rowCount();
           $row = $result->fetch(PDO::FETCH_NUM);
         ?>
 
-          <div class="box-Listing">
+          <div class="box-Listing myRows">
             <div class="image-Listing">
               <img src="img/default-user.jpg" alt="">
             </div>
@@ -335,10 +337,7 @@ $r = $result->rowCount();
 
 
 
-  <div class="mybackground-img2">
 
-
-  </div>
 
 
 
@@ -465,6 +464,38 @@ $r = $result->rowCount();
 
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+  <script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+           var search_input = document.getElementById("searchInput");
+           var table2 = document.getElementById("table2");
+           var num_of_rows = table2.getElementsByClassName("myRows");
+
+           search_input.addEventListener('keyup', function(){
+            var search_value = search_input.value.toLowerCase();
+            for(let i = 0; i < num_of_rows.length; i++){
+                var data_cells = num_of_rows[i].getElementsByTagName('h3');
+                let found = false;
+
+                for(let j = 0; j < data_cells.length; j++){
+                    var cellText = data_cells[j].textContent.toLowerCase();
+                    if(cellText.includes(search_value)){
+                        found = true;
+                        break;
+                    }
+                }
+                if(found){
+                    num_of_rows[i].style.display = "";
+                } else {
+                    num_of_rows[i].style.display = "none";
+                }
+            }
+           })
+        });
+
+    
+    </script>
 
 
   <script>

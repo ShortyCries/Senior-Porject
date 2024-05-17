@@ -28,41 +28,55 @@ $academyEmail = $_SESSION['email'];
 
 
         <style>
-  .view_user_data {
-    overflow-wrap: break-word; /* Ensures long words break to the next line */
-    word-wrap: break-word; /* Legacy support */
-    word-break: break-word; /* Ensures long words break to the next line */
-    white-space: pre-wrap; /* Preserves whitespace but wraps text */
-  }
+            .view_user_data {
+                overflow-wrap: break-word;
+                /* Ensures long words break to the next line */
+                word-wrap: break-word;
+                /* Legacy support */
+                word-break: break-word;
+                /* Ensures long words break to the next line */
+                white-space: pre-wrap;
+                /* Preserves whitespace but wraps text */
+            }
 
-  .modal-body .container {
-    max-width: 100%; /* Ensures container does not exceed modal width */
-  }
+            .modal-body .container {
+                max-width: 100%;
+                /* Ensures container does not exceed modal width */
+            }
 
-  .info-section {
-    display: flex;
-    flex-direction: row;
-    margin-top: 1rem;
-    padding-bottom: 0.5rem; /* Add some padding at the bottom */
-    border-bottom: 1px solid #ccc; /* Add a bottom border */
-  }
+            .info-section {
+                display: flex;
+                flex-direction: row;
+                margin-top: 1rem;
+                padding-bottom: 0.5rem;
+                /* Add some padding at the bottom */
+                border-bottom: 1px solid #ccc;
+                /* Add a bottom border */
+            }
 
-  .info-section .label {
-    flex: 0 0 auto; /* Label takes only the necessary space */
-    margin-right: 10px; /* Space between label and content */
-    font-weight: bold; /* Bold font for the label */
-  }
+            .info-section .label {
+                flex: 0 0 auto;
+                /* Label takes only the necessary space */
+                margin-right: 10px;
+                /* Space between label and content */
+                font-weight: bold;
+                /* Bold font for the label */
+            }
 
-  .info-section .content {
-    flex: 1 1 auto; /* Content takes the remaining space */
-    word-wrap: break-word; /* Ensure text wraps within the container */
-    white-space: pre-wrap; /* Ensures whitespace is preserved and wraps text */
-  }
+            .info-section .content {
+                flex: 1 1 auto;
+                /* Content takes the remaining space */
+                word-wrap: break-word;
+                /* Ensure text wraps within the container */
+                white-space: pre-wrap;
+                /* Ensures whitespace is preserved and wraps text */
+            }
 
-  .modal-body h6 {
-    margin-bottom: 1rem; /* Add some space between different text elements */
-  }
-</style>
+            .modal-body h6 {
+                margin-bottom: 1rem;
+                /* Add some space between different text elements */
+            }
+        </style>
 
         <script type="application/ld+json">
             {
@@ -213,104 +227,56 @@ $academyEmail = $_SESSION['email'];
 
             <h1 class="heading-Listing">Academies</h1>
 
-            <form action="" method="GET">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" value="<?php if (isset($_GET['search'])) {
-                                                                        echo $_GET['search'];
-                                                                    } ?>" name="search" placeholder="search here...">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-            </form>
 
+            <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
 
-            <div class="box-container-Listing">
+            <div id="table2" class="box-container-Listing">
 
                 <?php
 
-                if (isset($_GET['search'])) {
+                $query1 = "SELECT email, name, foundedIn, description, img  FROM academy";
+                $result1 = $pdo->query($query1);
+                $r1 = $result1->rowCount();
 
 
-                    $filterValue = $_GET['search'];
-                    $filterData = "SELECT email, name, foundedIn, description, img  FROM academy WHERE CONCAT_WS(' ', email, name, foundedIn, description) LIKE '%$filterValue%';";
-                    $result = $pdo->query($filterData);
+                if ($r1 > 0) {
 
-                    $r = $result->rowCount();
-
-                    if ($r > 0) {
-
-                        foreach ($result as $row) {
+                    foreach ($result1 as $row1) {
 
                 ?>
 
-                            <div class="box-Listing">
-                                <div class="image-Listing">
-                                    <img src="<?php echo !empty($row[4]) ? $row[4] : 'img/default-user.jpg'; ?>" alt="">
-                                </div>
-                                <div class="content-Listing">
-
-                                    <h3><?php echo $row[1] ?></h3>
 
 
-                                    <p class="user_email"><?php echo $row[0] ?></p>
 
-                                    <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Read More
-                                    </a>
+                        <div class="box-Listing myRows">
+                            <div class="image-Listing">
+                                <img src="<?php echo !empty($row1[4]) ? $row1[4] : 'img/default-user.jpg'; ?>" alt="">
+                            </div>
+                            <div class="content-Listing">
 
-                                    <div class="icons-Listing">
+                                <h3><?php echo $row1[1] ?></h3>
 
-                                    </div>
+
+                                <p class="user_email"><?php echo $row1[0] ?></p>
+
+                                <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Read More
+                                </a>
+
+                                <div class="icons-Listing">
+
                                 </div>
                             </div>
-
-
-                        <?php
-                        }
-                    }
-                } else {
-                    $query1 = "SELECT email, name, foundedIn, description, img  FROM academy";
-                    $result1 = $pdo->query($query1);
-                    $r1 = $result1->rowCount();
-
-
-                    if ($r1 > 0) {
-
-                        foreach ($result1 as $row1) {
-
-                        ?>
-
-
-
-
-                            <div class="box-Listing">
-                                <div class="image-Listing">
-                                    <img src="<?php echo !empty($row1[4]) ? $row1[4] : 'img/default-user.jpg'; ?>" alt="">
-                                </div>
-                                <div class="content-Listing">
-
-                                    <h3><?php echo $row1[1] ?></h3>
-
-
-                                    <p class="user_email"><?php echo $row1[0] ?></p>
-
-                                    <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Read More
-                                    </a>
-
-                                    <div class="icons-Listing">
-
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
 
 
 
 
 
                 <?php
-                        }
                     }
                 }
+
                 ?>
 
 
@@ -506,6 +472,34 @@ $academyEmail = $_SESSION['email'];
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var search_input = document.getElementById("searchInput");
+            var table2 = document.getElementById("table2");
+            var num_of_rows = table2.getElementsByClassName("myRows");
+
+            search_input.addEventListener('keyup', function() {
+                var search_value = search_input.value.toLowerCase();
+                for (let i = 0; i < num_of_rows.length; i++) {
+                    var data_cells = num_of_rows[i].getElementsByTagName('h3');
+                    let found = false;
+
+                    for (let j = 0; j < data_cells.length; j++) {
+                        var cellText = data_cells[j].textContent.toLowerCase();
+                        if (cellText.includes(search_value)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        num_of_rows[i].style.display = "";
+                    } else {
+                        num_of_rows[i].style.display = "none";
+                    }
+                }
+            })
+        });
+    </script>
 
     <script>
         $(document).ready(function() {
