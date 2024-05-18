@@ -715,6 +715,9 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                       </select>
                     </div>
 
+                    <span style="background-color: #f8f8f8; display: inline-block;" id="showCourtLocation"></span>
+
+
 
                     <div class="form-group mb-3">
                       <label>Date</label>
@@ -1041,6 +1044,28 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
               $('#dateSelect').change(handleAjaxRequest);
             });
           </script>
+
+<script>
+        $(document).ready(function() {
+            $('#selectedCourt').change(function() {
+                var courtId = $('#selectedCourt').val();
+
+                $.ajax({
+                    method: "POST",
+                    url: 'court-lcation.php',
+                    data: {
+                        'courtID': courtId,
+                    },
+                    success: function(response) {
+
+                        $('#showCourtLocation').html(response);
+
+                    }
+
+                });
+            });
+        });
+    </script>
 
 
 

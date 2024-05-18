@@ -6,6 +6,17 @@ $academyEmail = $_SESSION['email'];
 
 
 
+if(isset($_GET['EVENTID'])){
+
+    $EVENTID = $_GET['EVENTID'];
+    $delete = "DELETE FROM events WHERE Eid = '$EVENTID'";
+    $result = $pdo->exec($delete);
+
+
+}
+
+
+
 
 
 
@@ -189,7 +200,7 @@ $academyEmail = $_SESSION['email'];
 
                             <button class="nav-link text-dark" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Public Matches</button>
 
-
+                            <button class="nav-link text-dark" id="nav-event-tab" data-bs-toggle="tab" data-bs-target="#nav-event" type="button" role="tab" aria-selected="true">Player Events</button>
                         </div>
                     </nav>
 
@@ -539,6 +550,104 @@ $academyEmail = $_SESSION['email'];
                             </div>
 
                         </div>
+
+
+                        <div class="tab-pane fade" id="nav-event" role="tabpanel" aria-labelledby="nav-event-tab">
+
+
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="text-center">Events</h4>
+                                            <input id="searchInput3" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+
+                                                <table id="table3" class="table table-striped table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Id</th>
+                                                            <th scope="col">Creator</th>
+                                                            <th scope="col">Court</th>
+                                                            <th scope="col">City</th>
+                                                            <th scope="col">Sport</th>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col">Time</th>
+                                                            <th scope="col">Status</th>
+                                                            <th scope="col">Cancel</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <?php
+
+                                                        $query3 =  "SELECT Eid, name, CRname, CRlocation, CRsportname, Evdate, Evtime, Evstatus FROM events NATURAL JOIN courts NATURAL JOIN player WHERE CRid = Evcourtid and playeremail = email AND CRAcademyemail = '$academyEmail' ORDER BY FIELD(Evstatus, 'booked', 'ongoing', 'finished')";
+                                                        $result3 = $pdo->query($query3);
+
+                                                        $r3 = $result3->rowCount();
+
+                                                        for ($i = 0; $i < $r3; $i++) {
+                                                            $row3 = $result3->fetch(PDO::FETCH_NUM);
+                                                        ?>
+                                                            <tr class="myRows3">
+                                                                <td id="myclassid"><?php echo  $row3[0] ?></td>
+                                                                <td><?php echo  $row3[1] ?></td>
+                                                                <td><?php echo  $row3[2] ?></td>
+                                                                <td><?php echo  $row3[3] ?></td>
+                                                                <td><?php echo $row3[4] ?></td>
+                                                                <td><?php echo $row3[5] ?></td>
+                                                                <td><?php echo $row3[6] ?></td>
+                                                                <td><?php echo $row3[7] ?></td>
+                                                                <?php
+
+
+                                                                if ($row3[7] == 'booked') {
+                                                                ?>
+
+
+                                                                    <td><a type="submit" href="academy-Games.php?EVENTID=<?php echo $row3[0] ?>&cancelEvent=true" class='btn btn-danger'>Cancel</a></td>
+
+                                                                <?php
+                                                                } else if ($row3[7] == 'finished' || $row3[7] == 'ongoing') {
+                                                                ?>
+                                                                    <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-danger'>Cancel</button></td>
+                                                                <?php
+                                                                }
+
+                                                                ?>
+
+                                                                <!-- <td><a href="#" class='btn btn-success'>Finish</a></td> -->
+
+                                                            </tr>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
                     </div>
 
                 </div>
@@ -788,28 +897,42 @@ $academyEmail = $_SESSION['email'];
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var search_input = document.getElementById("searchInput2");
             var table2 = document.getElementById("table2");
             var num_of_rows = table2.getElementsByClassName("myRows2");
+
+            search_input.addEventListener('keyup', function() {
+                var search_value = search_input.value.toLowerCase();
+                for (let i = 0; i < num_of_rows.length; i++) {
+                    var data_cells = num_of_rows[i].getElementsByTagName('td');
+                    let found = false;
+
+                    for (let j = 0; j < data_cells.length; j++) {
+                        var cellText = data_cells[j].textContent.toLowerCase();
+                        if (cellText.includes(search_value)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        num_of_rows[i].style.display = "";
+                    } else {
+                        num_of_rows[i].style.display = "none";
+                    }
+                }
+            })
+        });
+    </script>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var search_input = document.getElementById("searchInput3");
+            var table2 = document.getElementById("table3");
+            var num_of_rows = table2.getElementsByClassName("myRows3");
 
             search_input.addEventListener('keyup', function() {
                 var search_value = search_input.value.toLowerCase();

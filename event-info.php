@@ -28,11 +28,21 @@ if (isset($_POST['courtID'], $_POST['eventID'])) {
 
     $result2 = $pdo->query($query2);
 
-    
 
     $r2 = $result2->rowCount();
+
+    $query5 = "SELECT name FROM player NATURAL JOIN events WHERE playeremail = email AND Eid = '$eventID'";
+
+    $result5 = $pdo->query($query5);
+
+    $row5 = $result5->fetch(PDO::FETCH_NUM);
+
+
+
+
         
     echo "<div class=\"container\">";
+    echo "<div class=\"info-section\"><span class=\"label\">Creator:</span><span class=\"content\">" . htmlspecialchars($row5[0], ENT_QUOTES, 'UTF-8') . "</span></div>";
     echo "<div class=\"info-section\"><span class=\"label\">Title:</span><span class=\"content\">" . htmlspecialchars($row[16], ENT_QUOTES, 'UTF-8') . "</span></div>";
     echo "<div class=\"info-section\"><span class=\"label\">Description:</span><span class=\"content\">" . htmlspecialchars($row[17], ENT_QUOTES, 'UTF-8') . "</span></div>";
     echo "<div class=\"info-section\"><span class=\"label\">City:</span><span class=\"content\">" . htmlspecialchars($row[1], ENT_QUOTES, 'UTF-8') . "</span></div>";
