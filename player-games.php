@@ -70,6 +70,19 @@ for ($i2 = 0; $i2 < $r333; $i2++) {
 }
 
 
+if (isset($_GET['decEventID'], $_GET['decEvent'])) {
+
+  $decEventID = $_GET['decEventID'];
+
+ 
+
+  $delete777 = "DELETE FROM participate WHERE PReventid = '$decEventID' AND PRplayeremail = '$playerEmail'";
+
+  $result777 = $pdo->exec($delete777);
+}
+
+
+
 
 
 
@@ -456,7 +469,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                             ?>
 
                             <?php
-                            $query68 = "SELECT Eid, CRname, Evdate, Evtime, PRstatus, CRlocation, CRsportname , Evstatus FROM participate NATURAL JOIN events NATURAL JOIN courts WHERE PRplayeremail = '$playerEmail' AND PReventid = Eid AND Evcourtid = CRid";
+                            $query68 = "SELECT Eid, CRname, Evdate, Evtime, PRstatus, CRlocation, CRsportname , Evstatus FROM participate NATURAL JOIN events NATURAL JOIN courts WHERE PRplayeremail = '$playerEmail' AND PReventid = Eid AND Evcourtid = CRid AND (PRstatus = 'requested' OR PRstatus = 'accepted')";
                             $result68 = $pdo->query($query68);
 
                             $r68 = $result68->rowCount();
@@ -497,6 +510,41 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                             <?php
                             }
                             ?>
+
+
+                            <?php
+                              $query777 = "SELECT Eid, CRname, CRlocation, CRsportname, Evdate, Evtime, Rname FROM participate NATURAL JOIN events NATURAL JOIN courts NATURAL JOIN role WHERE Rid = PRroleid AND CRid = Evcourtid AND Eid = PReventid AND PRstatus = 'invited' AND PRplayeremail = '$playerEmail' AND Evstatus = 'booked'";
+                              $result777 = $pdo->query($query777);
+                              $r777 = $result777->rowCount();
+
+                              for($i =0; $i < $r777; $i++){
+                                $row777 = $result777->fetch(PDO::FETCH_NUM);
+
+                              
+                            ?>
+                            <tr>
+                                <td><?php echo $row777[0] ?></td>
+                                <td><?php echo $row777[1] ?></td>
+                                <td><?php echo $row777[2] ?></td>
+                                <td><?php echo $row777[3] ?> (<?php echo $row777[6] ?>)</td>
+                                <td><?php echo $row777[4] ?></td>
+                                <td><?php echo $row777[5] ?></td>
+                                <td><span style="background-color: #6eb5ff; padding: 2px;"> Invited </span></td>
+                                <form action="accept-event-invite.php" method="post">
+                                  <input type="hidden" name="eventID" value="<?php echo $row777[0] ?>">
+                                <td class="text-center" colspan=2><button type="submit" class='btn btn-primary'>Accept</button></td>
+                                </form>
+                                <td class="text-center"><a href="player-games.php?decEventID=<?php echo $row777[0] ?>&decEvent=true" class='btn btn-danger'>Decline</a></td>
+                              
+                                
+
+                            </tr>
+                            <?php
+                              }
+                            ?>
+
+
+
 
 
 
@@ -1045,27 +1093,27 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
             });
           </script>
 
-<script>
-        $(document).ready(function() {
-            $('#selectedCourt').change(function() {
+          <script>
+            $(document).ready(function() {
+              $('#selectedCourt').change(function() {
                 var courtId = $('#selectedCourt').val();
 
                 $.ajax({
-                    method: "POST",
-                    url: 'court-lcation.php',
-                    data: {
-                        'courtID': courtId,
-                    },
-                    success: function(response) {
+                  method: "POST",
+                  url: 'court-lcation.php',
+                  data: {
+                    'courtID': courtId,
+                  },
+                  success: function(response) {
 
-                        $('#showCourtLocation').html(response);
+                    $('#showCourtLocation').html(response);
 
-                    }
+                  }
 
                 });
+              });
             });
-        });
-    </script>
+          </script>
 
 
 
