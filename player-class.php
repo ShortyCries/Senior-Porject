@@ -120,7 +120,7 @@ $playerEmail = $_SESSION['email'];
     <div class="container">
 
       <div class="box-container">
-        <a href="player-games.php" style="text-decoration: none;">
+        <a href="player-games.php#player-games" style="text-decoration: none;">
           <div class="box games-box" id="box1">
             <div class="img-container">
               <img class="img" src="/img/games-.png" alt="" id="img1">
@@ -129,7 +129,7 @@ $playerEmail = $_SESSION['email'];
             <p>Games</p>
           </div>
         </a>
-        <a href="player-academies.php" style="text-decoration: none;">
+        <a href="player-academies.php#player-academies" style="text-decoration: none;">
           <div class="box academies-box" id="box2">
             <div class="img-container">
               <img class="img" src="/img//academy-.png" alt="" id="img2">
@@ -145,7 +145,7 @@ $playerEmail = $_SESSION['email'];
                </div>
                <p></p>
            </div> -->
-        <a href="player-class.php" style="text-decoration: none;">
+        <a href="player-class.php#player-class" style="text-decoration: none;">
           <div class="box class-box" id="box3" style="background-color: grey;">
             <div class="img">
               <img class="img" src="/img/classes-.png" alt="" id="img3">
@@ -156,7 +156,7 @@ $playerEmail = $_SESSION['email'];
         </a>
       </div>
       <div class="box-container">
-        <a href="player-players.php" style="text-decoration: none;">
+        <a href="player-players.php#player-players" style="text-decoration: none;">
           <div class="box" id="box4">
             <div class="img">
               <img class="img" src="/img/player-.png" alt="" id="img4">
@@ -164,7 +164,7 @@ $playerEmail = $_SESSION['email'];
             <p>Players</p>
           </div>
         </a>
-        <a href="player-coaches.php" style="text-decoration: none;">
+        <a href="player-coaches.php#player-coaches" style="text-decoration: none;">
           <div class="box" id="box5">
             <div class="img">
               <img class="img" src="/img/coach-.png" alt="" id="img5">
@@ -183,6 +183,9 @@ $playerEmail = $_SESSION['email'];
 
 
   <div class="mybackground-img2">
+  <span id="player-class">
+      <!-- Content of the target section -->
+      <span>
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-12">

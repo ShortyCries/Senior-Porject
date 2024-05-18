@@ -118,7 +118,7 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
     <div class="container">
 
       <div class="box-container">
-        <a href="coach-games.php" style="text-decoration: none;">
+        <a href="coach-games.php#coach-games" style="text-decoration: none;">
           <div class="box games-box" id="box1" style="background-color: grey;">
             <div class="img-container">
               <img class="img" src="/img/games-.png" alt="" id="img1">
@@ -127,7 +127,7 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
             <p>Games</p>
           </div>
         </a>
-        <a href="coach-academies.php" style="text-decoration: none;">
+        <a href="coach-academies.php#coach-academies" style="text-decoration: none;">
           <div class="box academies-box" id="box2">
             <div class="img">
               <img class="img" src="/img/academy-.png" alt="" id="img2">
@@ -145,7 +145,7 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
                      </div>
                      <p>Class</p>
                  </div> -->
-        <a href="coach-class.php" style="text-decoration: none;">
+        <a href="coach-class.php#coach-class" style="text-decoration: none;">
           <div class="box" id="box3">
             <div class="img">
               <img class="img" src="/img/classes-.png" alt="" id="img3">
@@ -154,7 +154,7 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
             <p>Class</p>
           </div>
         </a>
-        <a href="coach-players.php" style="text-decoration: none;">
+        <a href="coach-players.php#coach-players" style="text-decoration: none;">
           <div class="box" id="box4">
             <div class="img">
               <img class="img" src="/img/player-.png" alt="" id="img4">
@@ -171,6 +171,9 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
 
 
   <div class="mybackground-img2">
+  <span id="coach-games">
+            <!-- Content of the target section -->
+            <span>
     <div class="container">
 
       <div class="row justify-content-center">

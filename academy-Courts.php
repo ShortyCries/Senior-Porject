@@ -129,7 +129,7 @@ $r = $result->rowCount();
         <div class="container">
 
             <div class="box-container">
-                <a href="academy-Classes.php" style="text-decoration: none;">
+                <a href="academy-Classes.php#academy-classes" style="text-decoration: none;">
                     <div class="box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/classes-.png" alt="" id="img1">
@@ -138,7 +138,7 @@ $r = $result->rowCount();
                         <p>Classes</p>
                     </div>
                 </a>
-                <a href="academy-Coaches.php" style="text-decoration: none;">
+                <a href="academy-Coaches.php#academy-coaches" style="text-decoration: none;">
                     <div class="box" id="box2">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img2">
@@ -147,8 +147,8 @@ $r = $result->rowCount();
                         <p>Coaches</p>
                     </div>
                 </a>
-                <a href="academy-Games.php" style="text-decoration: none;">
-                    <div class="box" id="box3"">
+                <a href="academy-Games.php#academy-games" style="text-decoration: none;">
+                    <div class="box" id="box3">
                         <div class=" img">
                         <img class="img" src="/img/games-.png" alt="" id="img3">
 
@@ -156,7 +156,7 @@ $r = $result->rowCount();
                     <p>Games</p>
             </div>
             </a>
-            <a href="academy-Courts.php" style="text-decoration: none;">
+            <a href="academy-Courts.php#academy-courts" style="text-decoration: none;">
                 <div class="box" id="box4" style="background-color: grey;">
                     <div class="img">
                         <img class="img" src="/img/court.png" alt="" id="img4">
@@ -165,7 +165,7 @@ $r = $result->rowCount();
                     <p>Courts</p>
                 </div>
             </a>
-            <a href="academy-Players.php" style="text-decoration: none;">
+            <a href="academy-Players.php#academy-players" style="text-decoration: none;">
                 <div class="box" id="box5">
                     <div class="img">
                         <img class="img" src="/img/player-.png" alt="" id="img5">
@@ -174,7 +174,7 @@ $r = $result->rowCount();
                     <p>Players</p>
                 </div>
             </a>
-            <a href="academy-Academies.php" style="text-decoration: none;">
+            <a href="academy-Academies.php#academy-academies" style="text-decoration: none;">
                 <div class="box" id="box6">
                     <div class="img">
                         <img class="img" src="/img/academy-.png" alt="" id="img6">
@@ -193,515 +193,518 @@ $r = $result->rowCount();
 
 
     <div class="mybackground-img2">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <?php
+        <span id="academy-courts">
+            <!-- Content of the target section -->
+            <span>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <?php
 
-                    if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
-
-
-                    ?>
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                    <?php
-                        unset($_SESSION['status']);
-                    }
+                            if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
 
 
-
-
-                    ?>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="text-center">Courts</h4>
-                            <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
-                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
-                                New Court
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-
-                                <table id="table2" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Id</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Sport</th>
-                                            <th scope="col">Capacity</th>
-                                            <th scope="col">View</th>
-                                            <th scope="col">Remove</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <?php
-
-                                        $query3 =  "SELECT CRid, CRname, CRsportname, CRmaxcapacity FROM courts WHERE CRacademyemail = '$academyEmail'";
-                                        $result3 = $pdo->query($query3);
-
-                                        $r3 = $result3->rowCount();
-
-                                        for ($i = 0; $i < $r3; $i++) {
-                                            $row3 = $result3->fetch(PDO::FETCH_NUM);
-                                        ?>
-                                            <tr class="myRows">
-                                                <td id="mycourtid"><?php echo  $row3[0] ?></td>
-                                                <td><?php echo  $row3[1] ?></td>
-                                                <td><?php echo  $row3[2] ?></td>
-                                                <td><?php echo  $row3[3] ?></td>
-                                                <td> <a href="#" type="button" class="btn btn-primary set_schedule" data-bs-toggle="modal" data-bs-target="#setSchedulemodal">
-                                                        Set Schedule
-                                                    </a> </td>
-                                                <td> <a href="#" class="btn btn-danger">Remove</a> </td>
-                                            </tr>
-                                        <?php
-                                        }
-                                        ?>
-
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="modal fade" id="setSchedulemodal" tabindex="-1" aria-labelledby="setSchedulemodalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="setSchedulemodalLabel">Set Schedule</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="row">
-                            <div class="col-md-9">
-                                <div class="form-group mb-3">
-                                    <select id="theDay" name="day" class="form-select" required>
-                                        <option value="Monday"> Monday </option>
-                                        <option value="Tuesday"> Tuesday </option>
-                                        <option value="Wednesday"> Wednesday </option>
-                                        <option value="Thursday"> Thursday </option>
-                                        <option value="Friday"> Friday </option>
-                                        <option value="Saturday"> Saturday </option>
-                                        <option value="Sunday"> Sunday </option>
-                                    </select>
+                            ?>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
-                            </div>
 
-                            <div class="col-md-3">
-                                <div class="form-group mb-3">
-                                    <button type="button" id="slot" class="btn btn-success">+Slot</button>
+                            <?php
+                                unset($_SESSION['status']);
+                            }
+
+
+
+
+                            ?>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="text-center">Courts</h4>
+                                    <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
+                                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
+                                        New Court
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+
+                                        <table id="table2" class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Id</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Sport</th>
+                                                    <th scope="col">Capacity</th>
+                                                    <th scope="col">View</th>
+                                                    <th scope="col">Remove</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <?php
+
+                                                $query3 =  "SELECT CRid, CRname, CRsportname, CRmaxcapacity FROM courts WHERE CRacademyemail = '$academyEmail'";
+                                                $result3 = $pdo->query($query3);
+
+                                                $r3 = $result3->rowCount();
+
+                                                for ($i = 0; $i < $r3; $i++) {
+                                                    $row3 = $result3->fetch(PDO::FETCH_NUM);
+                                                ?>
+                                                    <tr class="myRows">
+                                                        <td id="mycourtid"><?php echo  $row3[0] ?></td>
+                                                        <td><?php echo  $row3[1] ?></td>
+                                                        <td><?php echo  $row3[2] ?></td>
+                                                        <td><?php echo  $row3[3] ?></td>
+                                                        <td> <a href="#" type="button" class="btn btn-primary set_schedule" data-bs-toggle="modal" data-bs-target="#setSchedulemodal">
+                                                                Set Schedule
+                                                            </a> </td>
+                                                        <td> <a href="#" class="btn btn-danger">Remove</a> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-
-                        <div class="text-center">
-                            <div id="monday">
-                                <form action="#" method="POST" id="mondaySchedule">
-
-                                    <input type="hidden" name="courtIdSch" id="mon_court_hidden">
-                                    <input type="hidden" name="DaySch" id="mon_day_hidden">
-
-                                    <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    -
-                                    <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    <div id="mondaySlot">
-
-                                    </div>
-                                    <span id="saveResultMon"> </span>
-                                    <div class="text-center mt-2">
-                                        <button type="submit" class="btn btn-success" id="mon_save_btn">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div id="tuesday">
-                                <form action="#" method="POST" id="tuesdaySchedule">
-                                    <input type="hidden" name="courtIdSch" id="tues_court_hidden">
-                                    <input type="hidden" name="DaySch" id="tues_day_hidden">
-
-                                    <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    -
-                                    <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    <div id="tuesdaySlot">
-
-                                    </div>
-                                    <span id="saveResultTues"> </span>
-                                    <div class="text-center mt-2">
-                                        <button type="submit" class="btn btn-success">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div id="wednesday">
-                                <form action="#" method="POST" id="wednesdaySchedule">
-                                    <input type="hidden" name="courtIdSch" id="wed_court_hidden">
-                                    <input type="hidden" name="DaySch" id="wed_day_hidden">
-
-                                    <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    -
-                                    <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    <div id="wednesdaySlot">
-
-                                    </div>
-                                    <span id="saveResultWed"> </span>
-                                    <div class="text-center mt-2">
-                                        <button type="submit" class="btn btn-success">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div id="thursday">
-                                <form action="#" method="POST" id="thursdaySchedule">
-                                    <input type="hidden" name="courtIdSch" id="thur_court_hidden">
-                                    <input type="hidden" name="DaySch" id="thur_day_hidden">
-                                    <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    -
-                                    <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    <div id="thursdaySlot">
-
-                                    </div>
-                                    <span id="saveResultThur"> </span>
-                                    <div class="text-center mt-2">
-                                        <button type="submit" class="btn btn-success">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div id="friday">
-                                <form action="#" method="POST" id="fridaySchedule">
-                                    <input type="hidden" name="courtIdSch" id="fri_court_hidden">
-                                    <input type="hidden" name="DaySch" id="fri_day_hidden">
-                                    <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    -
-                                    <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    <div id="fridaySlot">
-
-                                    </div>
-                                    <span id="saveResultFri"> </span>
-                                    <div class="text-center mt-2">
-                                        <button type="submit" class="btn btn-success">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div id="saturday">
-                                <form action="#" method="POST" id="saturdaySchedule">
-                                    <input type="hidden" name="courtIdSch" id="sat_court_hidden">
-                                    <input type="hidden" name="DaySch" id="sat_day_hidden">
-                                    <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    -
-                                    <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    <div id="saturdaySlot">
-
-                                    </div>
-                                    <span id="saveResultSat"> </span>
-                                    <div class="text-center mt-2">
-                                        <button type="submit" class="btn btn-success">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div id="sunday">
-                                <form action="#" method="POST" id="sundaySchedule">
-                                    <input type="hidden" name="courtIdSch" id="sun_court_hidden">
-                                    <input type="hidden" name="DaySch" id="sun_day_hidden">
-
-
-                                    <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    -
-                                    <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">HH</option>
-
-                                        <?php
-                                        for ($i = 0; $i <= 23; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    :
-                                    <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
-                                        <option selected disabled value="">MM</option>
-                                        <?php
-                                        for ($i = 0; $i <= 59; $i++) {
-                                            $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
-                                            echo "<option value=\"$hour\">$hour</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    <div id="sundaySlot">
-
-                                    </div>
-                                    <span id="saveResultSun"> </span>
-                                    <div class="text-center mt-2">
-                                        <button type="submit" class="btn btn-success">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-
-
-
-
-                    </div>
-                    <div class="modal-footer">
                     </div>
                 </div>
-            </div>
-        </div>
+
+
+                <div class="modal fade" id="setSchedulemodal" tabindex="-1" aria-labelledby="setSchedulemodalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="setSchedulemodalLabel">Set Schedule</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group mb-3">
+                                            <select id="theDay" name="day" class="form-select" required>
+                                                <option value="Monday"> Monday </option>
+                                                <option value="Tuesday"> Tuesday </option>
+                                                <option value="Wednesday"> Wednesday </option>
+                                                <option value="Thursday"> Thursday </option>
+                                                <option value="Friday"> Friday </option>
+                                                <option value="Saturday"> Saturday </option>
+                                                <option value="Sunday"> Sunday </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group mb-3">
+                                            <button type="button" id="slot" class="btn btn-success">+Slot</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <div id="monday">
+                                        <form action="#" method="POST" id="mondaySchedule">
+
+                                            <input type="hidden" name="courtIdSch" id="mon_court_hidden">
+                                            <input type="hidden" name="DaySch" id="mon_day_hidden">
+
+                                            <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            -
+                                            <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <div id="mondaySlot">
+
+                                            </div>
+                                            <span id="saveResultMon"> </span>
+                                            <div class="text-center mt-2">
+                                                <button type="submit" class="btn btn-success" id="mon_save_btn">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div id="tuesday">
+                                        <form action="#" method="POST" id="tuesdaySchedule">
+                                            <input type="hidden" name="courtIdSch" id="tues_court_hidden">
+                                            <input type="hidden" name="DaySch" id="tues_day_hidden">
+
+                                            <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            -
+                                            <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <div id="tuesdaySlot">
+
+                                            </div>
+                                            <span id="saveResultTues"> </span>
+                                            <div class="text-center mt-2">
+                                                <button type="submit" class="btn btn-success">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div id="wednesday">
+                                        <form action="#" method="POST" id="wednesdaySchedule">
+                                            <input type="hidden" name="courtIdSch" id="wed_court_hidden">
+                                            <input type="hidden" name="DaySch" id="wed_day_hidden">
+
+                                            <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            -
+                                            <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <div id="wednesdaySlot">
+
+                                            </div>
+                                            <span id="saveResultWed"> </span>
+                                            <div class="text-center mt-2">
+                                                <button type="submit" class="btn btn-success">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div id="thursday">
+                                        <form action="#" method="POST" id="thursdaySchedule">
+                                            <input type="hidden" name="courtIdSch" id="thur_court_hidden">
+                                            <input type="hidden" name="DaySch" id="thur_day_hidden">
+                                            <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            -
+                                            <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <div id="thursdaySlot">
+
+                                            </div>
+                                            <span id="saveResultThur"> </span>
+                                            <div class="text-center mt-2">
+                                                <button type="submit" class="btn btn-success">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div id="friday">
+                                        <form action="#" method="POST" id="fridaySchedule">
+                                            <input type="hidden" name="courtIdSch" id="fri_court_hidden">
+                                            <input type="hidden" name="DaySch" id="fri_day_hidden">
+                                            <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            -
+                                            <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <div id="fridaySlot">
+
+                                            </div>
+                                            <span id="saveResultFri"> </span>
+                                            <div class="text-center mt-2">
+                                                <button type="submit" class="btn btn-success">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div id="saturday">
+                                        <form action="#" method="POST" id="saturdaySchedule">
+                                            <input type="hidden" name="courtIdSch" id="sat_court_hidden">
+                                            <input type="hidden" name="DaySch" id="sat_day_hidden">
+                                            <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            -
+                                            <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <div id="saturdaySlot">
+
+                                            </div>
+                                            <span id="saveResultSat"> </span>
+                                            <div class="text-center mt-2">
+                                                <button type="submit" class="btn btn-success">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div id="sunday">
+                                        <form action="#" method="POST" id="sundaySchedule">
+                                            <input type="hidden" name="courtIdSch" id="sun_court_hidden">
+                                            <input type="hidden" name="DaySch" id="sun_day_hidden">
+
+
+                                            <select name="startHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="startMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            -
+                                            <select name="endHH[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">HH</option>
+
+                                                <?php
+                                                for ($i = 0; $i <= 23; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            :
+                                            <select name="endMM[]" id="" style="appearance: none;  border: 1px solid #ced4da; border-radius: 4px; padding: 6px 12px; font-size: 14px;" required>
+                                                <option selected disabled value="">MM</option>
+                                                <?php
+                                                for ($i = 0; $i <= 59; $i++) {
+                                                    $hour = sprintf("%02d", $i); // Format the number with leading zero if needed
+                                                    echo "<option value=\"$hour\">$hour</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <div id="sundaySlot">
+
+                                            </div>
+                                            <span id="saveResultSun"> </span>
+                                            <div class="text-center mt-2">
+                                                <button type="submit" class="btn btn-success">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
     </div>
@@ -710,35 +713,32 @@ $r = $result->rowCount();
 
 
     <script>
-    
-    document.addEventListener("DOMContentLoaded", function() {
-           var search_input = document.getElementById("searchInput");
-           var table2 = document.getElementById("table2");
-           var num_of_rows = table2.getElementsByClassName("myRows");
+        document.addEventListener("DOMContentLoaded", function() {
+            var search_input = document.getElementById("searchInput");
+            var table2 = document.getElementById("table2");
+            var num_of_rows = table2.getElementsByClassName("myRows");
 
-           search_input.addEventListener('keyup', function(){
-            var search_value = search_input.value.toLowerCase();
-            for(let i = 0; i < num_of_rows.length; i++){
-                var data_cells = num_of_rows[i].getElementsByTagName('td');
-                let found = false;
+            search_input.addEventListener('keyup', function() {
+                var search_value = search_input.value.toLowerCase();
+                for (let i = 0; i < num_of_rows.length; i++) {
+                    var data_cells = num_of_rows[i].getElementsByTagName('td');
+                    let found = false;
 
-                for(let j = 0; j < data_cells.length; j++){
-                    var cellText = data_cells[j].textContent.toLowerCase();
-                    if(cellText.includes(search_value)){
-                        found = true;
-                        break;
+                    for (let j = 0; j < data_cells.length; j++) {
+                        var cellText = data_cells[j].textContent.toLowerCase();
+                        if (cellText.includes(search_value)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        num_of_rows[i].style.display = "";
+                    } else {
+                        num_of_rows[i].style.display = "none";
                     }
                 }
-                if(found){
-                    num_of_rows[i].style.display = "";
-                } else {
-                    num_of_rows[i].style.display = "none";
-                }
-            }
-           })
+            })
         });
-
-    
     </script>
 
 

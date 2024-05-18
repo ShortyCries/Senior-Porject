@@ -160,7 +160,7 @@ $academyEmail = $_SESSION['email'];
         <div class="container">
 
             <div class="box-container">
-                <a href="academy-Classes.php" style="text-decoration: none;">
+                <a href="academy-Classes.php#academy-classes" style="text-decoration: none;">
                     <div class="box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/classes-.png" alt="" id="img1">
@@ -169,7 +169,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Classes</p>
                     </div>
                 </a>
-                <a href="academy-Coaches.php" style="text-decoration: none;">
+                <a href="academy-Coaches.php#academy-coaches" style="text-decoration: none;">
                     <div class="box" id="box2">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img2">
@@ -178,7 +178,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Coaches</p>
                     </div>
                 </a>
-                <a href="academy-Games.php" style="text-decoration: none;">
+                <a href="academy-Games.php#academy-games" style="text-decoration: none;">
                     <div class="box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/games-.png" alt="" id="img3">
@@ -187,7 +187,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="academy-Courts.php" style="text-decoration: none;">
+                <a href="academy-Courts.php#academy-courts" style="text-decoration: none;">
                     <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/court.png" alt="" id="img4">
@@ -196,7 +196,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Courts</p>
                     </div>
                 </a>
-                <a href="academy-Players.php" style="text-decoration: none;">
+                <a href="academy-Players.php#academy-players" style="text-decoration: none;">
                     <div class="box" id="box5">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img5">
@@ -205,7 +205,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Players</p>
                     </div>
                 </a>
-                <a href="academy-Academies.php" style="text-decoration: none;">
+                <a href="academy-Academies.php#academy-academies" style="text-decoration: none;">
                     <div class="box" id="box6" style="background-color: grey;">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img6">
@@ -223,122 +223,126 @@ $academyEmail = $_SESSION['email'];
 
 
     <div class="mybackground-img2">
-        <div class="container-Listing">
 
-            <h1 class="heading-Listing">Academies</h1>
+        <span id="academy-academies">
+            <!-- Content of the target section -->
+            <span>
+                <div class="container-Listing">
 
-
-            <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
-
-            <div id="table2" class="box-container-Listing">
-
-                <?php
-
-                $query1 = "SELECT email, name, foundedIn, description, img  FROM academy";
-                $result1 = $pdo->query($query1);
-                $r1 = $result1->rowCount();
+                    <h1 class="heading-Listing">Academies</h1>
 
 
-                if ($r1 > 0) {
+                    <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
 
-                    foreach ($result1 as $row1) {
+                    <div id="table2" class="box-container-Listing">
 
-                ?>
+                        <?php
 
-
-
-
-                        <div class="box-Listing myRows">
-                            <div class="image-Listing">
-                                <img src="<?php echo !empty($row1[4]) ? $row1[4] : 'img/default-user.jpg'; ?>" alt="">
-                            </div>
-                            <div class="content-Listing">
-
-                                <h3><?php echo $row1[1] ?></h3>
+                        $query1 = "SELECT email, name, foundedIn, description, img  FROM academy";
+                        $result1 = $pdo->query($query1);
+                        $r1 = $result1->rowCount();
 
 
-                                <p class="user_email"><?php echo $row1[0] ?></p>
+                        if ($r1 > 0) {
 
-                                <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Read More
-                                </a>
+                            foreach ($result1 as $row1) {
 
-                                <div class="icons-Listing">
+                        ?>
 
+
+
+
+                                <div class="box-Listing myRows">
+                                    <div class="image-Listing">
+                                        <img src="<?php echo !empty($row1[4]) ? $row1[4] : 'img/default-user.jpg'; ?>" alt="">
+                                    </div>
+                                    <div class="content-Listing">
+
+                                        <h3><?php echo $row1[1] ?></h3>
+
+
+                                        <p class="user_email"><?php echo $row1[0] ?></p>
+
+                                        <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Read More
+                                        </a>
+
+                                        <div class="icons-Listing">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                        <?php
+                            }
+                        }
+
+                        ?>
+
+
+
+
+
+                        <!-- READ MORE MODEL -->
+                        <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Academy Info</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="view_user_data">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-
-
-
-
-                <?php
-                    }
-                }
-
-                ?>
+                        <!-- READ MORE MODEL -->
 
 
 
 
 
-                <!-- READ MORE MODEL -->
-                <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Academy Info</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
 
-                                <div class="view_user_data">
 
-                                </div>
 
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
+
+
+
+
                     </div>
+
+                    <div id="load-more"> load more </div>
+
                 </div>
 
-                <!-- READ MORE MODEL -->
+                <script>
+                    let loadMoreBtn = document.querySelector('#load-more');
+                    let currentItem = 4;
 
+                    loadMoreBtn.onclick = () => {
+                        let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+                        for (var i = currentItem; i < currentItem + 4; i++) {
+                            boxes[i].style.display = 'inline-block';
+                        }
+                        currentItem += 4;
 
-
-
-
-
-
-
-
-
-
-
-            </div>
-
-            <div id="load-more"> load more </div>
-
-        </div>
-
-        <script>
-            let loadMoreBtn = document.querySelector('#load-more');
-            let currentItem = 4;
-
-            loadMoreBtn.onclick = () => {
-                let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
-                for (var i = currentItem; i < currentItem + 4; i++) {
-                    boxes[i].style.display = 'inline-block';
-                }
-                currentItem += 4;
-
-                if (currentItem >= boxes.length) {
-                    loadMoreBtn.style.display = 'none';
-                }
-            }
-        </script>
+                        if (currentItem >= boxes.length) {
+                            loadMoreBtn.style.display = 'none';
+                        }
+                    }
+                </script>
 
 
     </div>

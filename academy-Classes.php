@@ -118,7 +118,7 @@ $r = $result->rowCount();
 
         <div class="container">
             <div class="box-container">
-                <a href="academy-Classes.php" style="text-decoration: none;">
+                <a href="academy-Classes.php#academy-classes" style="text-decoration: none;">
                     <div class="box" id="box1" style="background-color: grey;">
                         <div class="img-container">
                             <img class="img" src="/img/classes-.png" alt="" id="img1">
@@ -127,7 +127,7 @@ $r = $result->rowCount();
                         <p>Classes</p>
                     </div>
                 </a>
-                <a href="academy-Coaches.php" style="text-decoration: none;">
+                <a href="academy-Coaches.php#academy-coaches" style="text-decoration: none;">
                     <div class="box" id="box2">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img2">
@@ -136,7 +136,7 @@ $r = $result->rowCount();
                         <p>Coaches</p>
                     </div>
                 </a>
-                <a href="academy-Games.php" style="text-decoration: none;">
+                <a href="academy-Games.php#academy-games" style="text-decoration: none;">
                     <div class="box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/games-.png" alt="" id="img3">
@@ -145,7 +145,7 @@ $r = $result->rowCount();
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="academy-Courts.php" style="text-decoration: none;">
+                <a href="academy-Courts.php#academy-courts" style="text-decoration: none;">
                     <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/court.png" alt="" id="img4">
@@ -154,7 +154,7 @@ $r = $result->rowCount();
                         <p>Courts</p>
                     </div>
                 </a>
-                <a href="academy-Players.php" style="text-decoration: none;">
+                <a href="academy-Players.php#academy-players" style="text-decoration: none;">
                     <div class="box" id="box5">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img5">
@@ -163,7 +163,7 @@ $r = $result->rowCount();
                         <p>Players</p>
                     </div>
                 </a>
-                <a href="academy-Academies.php" style="text-decoration: none;">
+                <a href="academy-Academies.php#academy-academies" style="text-decoration: none;">
                     <div class="box" id="box6">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img6">
@@ -183,113 +183,116 @@ $r = $result->rowCount();
 
 
     <div class="mybackground-img2">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <?php
+        <span id="academy-classes">
+            <!-- Content of the target section -->
+            <span>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <?php
 
-                    if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
-
-
-                    ?>
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                    <?php
-                        unset($_SESSION['status']);
-                    }
+                            if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
 
 
+                            ?>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
 
-
-                    ?>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="text-center">Classes</h4>
-                            <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
-                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
-                                New Class
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-
-                                <table id="table2" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Id</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Coach</th>
-                                            <th scope="col">Sport</th>
-                                            <th scope="col">Capacity</th>
-                                            <th scope="col">Time</th>
-                                            <th scope="col">View</th>
-                                            <th scope="col">Remove</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <?php
-
-                                        $query3 =  "SELECT id, cname, name, sportname, capacity, schedule FROM coach NATURAL JOIN class WHERE email = coachemail AND academyemail = '$academyEmail'";
-                                        $result3 = $pdo->query($query3);
-
-                                        $r3 = $result3->rowCount();
-
-                                        for ($i = 0; $i < $r3; $i++) {
-                                            $row3 = $result3->fetch(PDO::FETCH_NUM);
-                                            
-                                        ?>
-
-                                            <tr class="myRows">
-                                                <td id="myclassid"><?php echo  $row3[0] ?></td>
-                                                <td><?php echo  $row3[1] ?></td>
-                                                <td><?php echo  $row3[2] ?></td>
-                                                <td><?php echo  $row3[3] ?></td>
-                                                <td><?php echo $row3[4] ?></td>
-                                                <td><?php echo $row3[5] ?></td>
-                                                <td><a href="class-info.php?class_id=<?php echo $row3[0]; ?>" class="btn btn-primary view_class">View Class</a></td>
-                                                <td> <a href="#" class="btn btn-danger">Remove</a> </td>
-                                            </tr>
-                                        <?php
-                                        }
-                                        ?>
+                            <?php
+                                unset($_SESSION['status']);
+                            }
 
 
 
-                                    </tbody>
-                                </table>
+
+                            ?>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="text-center">Classes</h4>
+                                    <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
+                                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
+                                        New Class
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+
+                                        <table id="table2" class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Id</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Coach</th>
+                                                    <th scope="col">Sport</th>
+                                                    <th scope="col">Capacity</th>
+                                                    <th scope="col">Time</th>
+                                                    <th scope="col">View</th>
+                                                    <th scope="col">Remove</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <?php
+
+                                                $query3 =  "SELECT id, cname, name, sportname, capacity, schedule FROM coach NATURAL JOIN class WHERE email = coachemail AND academyemail = '$academyEmail'";
+                                                $result3 = $pdo->query($query3);
+
+                                                $r3 = $result3->rowCount();
+
+                                                for ($i = 0; $i < $r3; $i++) {
+                                                    $row3 = $result3->fetch(PDO::FETCH_NUM);
+
+                                                ?>
+
+                                                    <tr class="myRows">
+                                                        <td id="myclassid"><?php echo  $row3[0] ?></td>
+                                                        <td><?php echo  $row3[1] ?></td>
+                                                        <td><?php echo  $row3[2] ?></td>
+                                                        <td><?php echo  $row3[3] ?></td>
+                                                        <td><?php echo $row3[4] ?></td>
+                                                        <td><?php echo $row3[5] ?></td>
+                                                        <td><a href="class-info.php?class_id=<?php echo $row3[0]; ?>" class="btn btn-primary view_class">View Class</a></td>
+                                                        <td> <a href="#" class="btn btn-danger">Remove</a> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
 
-        <div class="modal fade" id="viewclassmodal" tabindex="-1" aria-labelledby="viewclassmodalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="viewclassmodalLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
+                <div class="modal fade" id="viewclassmodal" tabindex="-1" aria-labelledby="viewclassmodalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewclassmodalLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
 
-                        <div class="view_class_data">
+                                <div class="view_class_data">
 
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-
                     </div>
                 </div>
-            </div>
-        </div>
 
 
     </div>
@@ -380,40 +383,37 @@ $r = $result->rowCount();
 
     </div>
 
-   
+
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script>
-    
-    document.addEventListener("DOMContentLoaded", function() {
-           var search_input = document.getElementById("searchInput");
-           var table2 = document.getElementById("table2");
-           var num_of_rows = table2.getElementsByClassName("myRows");
+        document.addEventListener("DOMContentLoaded", function() {
+            var search_input = document.getElementById("searchInput");
+            var table2 = document.getElementById("table2");
+            var num_of_rows = table2.getElementsByClassName("myRows");
 
-           search_input.addEventListener('keyup', function(){
-            var search_value = search_input.value.toLowerCase();
-            for(let i = 0; i < num_of_rows.length; i++){
-                var data_cells = num_of_rows[i].getElementsByTagName('td');
-                let found = false;
+            search_input.addEventListener('keyup', function() {
+                var search_value = search_input.value.toLowerCase();
+                for (let i = 0; i < num_of_rows.length; i++) {
+                    var data_cells = num_of_rows[i].getElementsByTagName('td');
+                    let found = false;
 
-                for(let j = 0; j < data_cells.length; j++){
-                    var cellText = data_cells[j].textContent.toLowerCase();
-                    if(cellText.includes(search_value)){
-                        found = true;
-                        break;
+                    for (let j = 0; j < data_cells.length; j++) {
+                        var cellText = data_cells[j].textContent.toLowerCase();
+                        if (cellText.includes(search_value)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        num_of_rows[i].style.display = "";
+                    } else {
+                        num_of_rows[i].style.display = "none";
                     }
                 }
-                if(found){
-                    num_of_rows[i].style.display = "";
-                } else {
-                    num_of_rows[i].style.display = "none";
-                }
-            }
-           })
+            })
         });
-
-    
     </script>
 
     <script>
@@ -564,7 +564,7 @@ $r = $result->rowCount();
 
 
 
-   
+
 
     <script>
         function logoutAlert() {

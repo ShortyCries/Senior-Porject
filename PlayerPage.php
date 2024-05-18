@@ -104,7 +104,7 @@ session_start();
         <div class="container">
 
             <div class="box-container">
-                <a href="player-games.php" style="text-decoration: none;">
+                <a href="player-games.php#player-games" style="text-decoration: none;">
                     <div class="box games-box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/games-.png" alt="" id="img1">
@@ -113,7 +113,7 @@ session_start();
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="player-academies.php" style="text-decoration: none;">
+                <a href="player-academies.php#player-academies" style="text-decoration: none;">
                     <div class="box academies-box" id="box2">
                         <div class="img-container">
                             <img class="img" src="/img//academy-.png" alt="" id="img2">
@@ -130,7 +130,7 @@ session_start();
                <p></p>
            </div> -->
 
-                <a href="player-class.php" style="text-decoration: none;">
+                <a href="player-class.php#player-class" style="text-decoration: none;">
                     <div class="box class-box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/classes-.png" alt="" id="img3">
@@ -141,7 +141,7 @@ session_start();
                 </a>
             </div>
             <div class="box-container">
-                <a href="player-players.php" style="text-decoration: none;">
+                <a href="player-players.php#player-players" style="text-decoration: none;">
                     <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img4">
@@ -149,7 +149,7 @@ session_start();
                         <p>Players</p>
                     </div>
                 </a>
-                <a href="player-coaches.php" style="text-decoration: none;">
+                <a href="player-coaches.php#player-coaches" style="text-decoration: none;">
                     <div class="box" id="box5">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img5">

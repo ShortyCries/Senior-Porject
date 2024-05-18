@@ -131,7 +131,7 @@ $r = $result->rowCount();
         <div class="container">
 
             <div class="box-container">
-                <a href="academy-Classes.php" style="text-decoration: none;">
+                <a href="academy-Classes.php#academy-classes" style="text-decoration: none;">
                     <div class="box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/classes-.png" alt="" id="img1">
@@ -140,7 +140,7 @@ $r = $result->rowCount();
                         <p>Classes</p>
                     </div>
                 </a>
-                <a href="academy-Coaches.php" style="text-decoration: none;">
+                <a href="academy-Coaches.php#academy-coaches" style="text-decoration: none;">
                     <div class="box" id="box2" style="background-color: grey;">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img2">
@@ -149,7 +149,7 @@ $r = $result->rowCount();
                         <p>Coaches</p>
                     </div>
                 </a>
-                <a href="academy-Games.php" style="text-decoration: none;">
+                <a href="academy-Games.php#academy-games" style="text-decoration: none;">
                     <div class="box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/games-.png" alt="" id="img3">
@@ -158,7 +158,7 @@ $r = $result->rowCount();
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="academy-Courts.php" style="text-decoration: none;">
+                <a href="academy-Courts.php#academy-courts" style="text-decoration: none;">
                     <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/court.png" alt="" id="img4">
@@ -167,7 +167,7 @@ $r = $result->rowCount();
                         <p>Courts</p>
                     </div>
                 </a>
-                <a href="academy-Players.php" style="text-decoration: none;">
+                <a href="academy-Players.php#academy-players" style="text-decoration: none;">
                     <div class="box" id="box5">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img5">
@@ -176,7 +176,7 @@ $r = $result->rowCount();
                         <p>Players</p>
                     </div>
                 </a>
-                <a href="academy-Academies.php" style="text-decoration: none;">
+                <a href="academy-Academies.php#academy-academies" style="text-decoration: none;">
                     <div class="box" id="box6">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img6">
@@ -253,60 +253,63 @@ $r = $result->rowCount();
     </div>
 
     <div class="mybackground-img">
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col">
-                    <div class="card mt-5">
+        <span id="academy-coaches">
+            <!-- Content of the target section -->
+            <span>
+                <div class="container">
+                    <div class="row mt-5">
+                        <div class="col">
+                            <div class="card mt-5">
 
-                        <div class="card-header">
-                            <h4 class="display-6 text-center"> Coach List </h2>
-                                <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
+                                <div class="card-header">
+                                    <h4 class="display-6 text-center"> Coach List </h2>
+                                        <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
+                                </div>
+                                <div class="card-body">
+                                    <table id="table2" class="table table-bordered text-center">
+                                        <tr class="bg-dark text-white">
+                                            <td>Name</td>
+                                            <td>Email</td>
+                                            <td>age</td>
+                                            <td>sport</td>
+                                            <td>Remove</td>
+
+                                        </tr>
+                                        <?php
+                                        for ($i = 0; $i < $r; $i++) {
+                                            $row = $result->fetch(PDO::FETCH_NUM);
+                                            $dateOfBirth = $row[2];
+
+                                            // Create a DateTime object for the date of birth
+                                            $dob = new DateTime($dateOfBirth);
+
+                                            // Create a DateTime object for the current date
+                                            $today = new DateTime();
+
+                                            // Calculate the difference between today and the date of birth
+                                            $age = $today->diff($dob);
+
+
+
+                                            echo "<tr class=\"myRows\">";
+                                            echo "<td>   $row[0] </td>";
+                                            echo "<td>   $row[1] </td> ";
+                                            echo "<td>  $age->y </td> ";
+                                            echo "<td>  $row[3] </td> ";
+
+                                            echo "<td> <a href='academy-Coaches.php?email={$row[1]}'  class='btn btn-danger'> Remove </a> </td> ";
+                                            echo "</tr>";
+                                        }
+                                        ?>
+                                    </table>
+                                </div>
+
+                            </div>
+
                         </div>
-                        <div class="card-body">
-                            <table id="table2" class="table table-bordered text-center">
-                                <tr class="bg-dark text-white">
-                                    <td>Name</td>
-                                    <td>Email</td>
-                                    <td>age</td>
-                                    <td>sport</td>
-                                    <td>Remove</td>
-
-                                </tr>
-                                <?php
-                                for ($i = 0; $i < $r; $i++) {
-                                    $row = $result->fetch(PDO::FETCH_NUM);
-                                    $dateOfBirth = $row[2];
-
-                                    // Create a DateTime object for the date of birth
-                                    $dob = new DateTime($dateOfBirth);
-
-                                    // Create a DateTime object for the current date
-                                    $today = new DateTime();
-
-                                    // Calculate the difference between today and the date of birth
-                                    $age = $today->diff($dob);
-
-                                   
-
-                                    echo "<tr class=\"myRows\">";
-                                    echo "<td>   $row[0] </td>";
-                                    echo "<td>   $row[1] </td> ";
-                                    echo "<td>  $age->y </td> ";
-                                    echo "<td>  $row[3] </td> ";
-
-                                    echo "<td> <a href='academy-Coaches.php?email={$row[1]}'  class='btn btn-danger'> Remove </a> </td> ";
-                                    echo "</tr>";
-                                }
-                                ?>
-                            </table>
-                        </div>
-
                     </div>
 
                 </div>
-            </div>
-
-        </div>
     </div>
 
 

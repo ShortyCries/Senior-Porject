@@ -161,7 +161,7 @@ $academyEmail = $_SESSION['email'];
         <div class="container">
 
             <div class="box-container">
-                <a href="academy-Classes.php" style="text-decoration: none;">
+                <a href="academy-Classes.php#academy-classes" style="text-decoration: none;">
                     <div class="box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/classes-.png" alt="" id="img1">
@@ -170,7 +170,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Classes</p>
                     </div>
                 </a>
-                <a href="academy-Coaches.php" style="text-decoration: none;">
+                <a href="academy-Coaches.php#academy-coaches" style="text-decoration: none;">
                     <div class="box" id="box2">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img2">
@@ -179,7 +179,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Coaches</p>
                     </div>
                 </a>
-                <a href="academy-Games.php" style="text-decoration: none;">
+                <a href="academy-Games.php#academy-games" style="text-decoration: none;">
                     <div class="box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/games-.png" alt="" id="img3">
@@ -188,7 +188,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="academy-Courts.php" style="text-decoration: none;">
+                <a href="academy-Courts.php#academy-courts" style="text-decoration: none;">
                     <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/court.png" alt="" id="img4">
@@ -197,7 +197,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Courts</p>
                     </div>
                 </a>
-                <a href="academy-Players.php" style="text-decoration: none;">
+                <a href="academy-Players.php#academy-players" style="text-decoration: none;">
                     <div class="box" id="box5" style="background-color: grey;">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img5">
@@ -206,7 +206,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Players</p>
                     </div>
                 </a>
-                <a href="academy-Academies.php" style="text-decoration: none;">
+                <a href="academy-Academies.php#academy-academies" style="text-decoration: none;">
                     <div class="box" id="box6">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img6">
@@ -224,167 +224,170 @@ $academyEmail = $_SESSION['email'];
 
 
     <div class="mybackground-img2">
-        <div class="container-Listing">
+        <span id="academy-players">
+            <!-- Content of the target section -->
+            <span>
+                <div class="container-Listing">
 
-            <h1 class="heading-Listing">Players</h1>
-
-
-
-
-
-
-            <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
-
-            <?php
-
-            if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+                    <h1 class="heading-Listing">Players</h1>
 
 
-            ?>
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <?php echo $_SESSION['status']; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+
+
+
+                    <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
+
+                    <?php
+
+                    if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+
+
+                    ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <?php echo $_SESSION['status']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                    <?php
+                        unset($_SESSION['status']);
+                    }
+
+                    ?>
+
+
+                    <div id="table2" class="box-container-Listing">
+
+
+
+                        <?php
+
+                        $query1 = "SELECT email, name, DOB, description, PLimg  FROM player";
+                        $result1 = $pdo->query($query1);
+                        $r1 = $result1->rowCount();
+
+
+                        if ($r1 > 0) {
+
+                            foreach ($result1 as $row1) {
+
+                        ?>
+
+                                <div class="box-Listing myRows"> <!-- single row of data -->
+                                    <div class="image-Listing">
+                                        <img src="<?php echo !empty($row1[4]) ? $row1[4] : 'img/default-user.jpg'; ?>" alt=""> <!-- img -->
+                                    </div>
+                                    <div class="content-Listing">
+
+                                        <h3><?php echo $row1[1]; ?></h3> <!-- name -->
+
+
+                                        <p class="user_email"><?php echo $row1[0]; ?></p> <!-- email -->
+
+                                        <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Read More
+                                        </a>
+                                        <a href="#" type="button" onclick="getdata()" class="btn btn-warning Invite_Player" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                            Invite
+                                        </a>
+
+                                        <div class="icons-Listing">
+
+                                        </div>
+                                    </div>
+                                </div> <!-- end of single row of data -->
+
+
+
+
+                        <?php
+                            }
+                        }
+
+
+                        ?>
+
+
+
+
+
+                    </div>
+
+                    <div id="load-more"> load more
+
+                    </div>
+
                 </div>
 
-            <?php
-                unset($_SESSION['status']);
-            }
 
-            ?>
-
-
-            <div id="table2" class="box-container-Listing">
-
-
-
-                <?php
-
-                $query1 = "SELECT email, name, DOB, description, PLimg  FROM player";
-                $result1 = $pdo->query($query1);
-                $r1 = $result1->rowCount();
-
-
-                if ($r1 > 0) {
-
-                    foreach ($result1 as $row1) {
-
-                ?>
-
-                        <div class="box-Listing myRows"> <!-- single row of data -->
-                            <div class="image-Listing">
-                                <img src="<?php echo !empty($row1[4]) ? $row1[4] : 'img/default-user.jpg'; ?>" alt=""> <!-- img -->
+                <!-- READ MORE MODEL -->
+                <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Player Info</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="content-Listing">
+                            <div class="modal-body">
 
-                                <h3><?php echo $row1[1]; ?></h3> <!-- name -->
-
-
-                                <p class="user_email"><?php echo $row1[0]; ?></p> <!-- email -->
-
-                                <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Read More
-                                </a>
-                                <a href="#" type="button" onclick="getdata()" class="btn btn-warning Invite_Player" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                    Invite
-                                </a>
-
-                                <div class="icons-Listing">
+                                <div class="view_user_data">
 
                                 </div>
+
                             </div>
-                        </div> <!-- end of single row of data -->
-
-
-
-
-                <?php
-                    }
-                }
-
-
-                ?>
-
-
-
-
-
-            </div>
-
-            <div id="load-more"> load more
-
-            </div>
-
-        </div>
-
-
-        <!-- READ MORE MODEL -->
-        <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Player Info</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="view_user_data">
-
+                            <div class="modal-footer">
+                            </div>
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- READ MORE MODEL -->
+                <!-- READ MORE MODEL -->
 
 
-        <div class="modal fade" id="viewinvitemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="player-invite.php" method="POST">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="myheader"></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal fade" id="viewinvitemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action="player-invite.php" method="POST">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="myheader"></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <label>Choose class</label>
+                                    <select name="classname" class="form-select" required>
+                                        <option selected disabled value="">Choose...</option>
+
+                                        <?php
+                                        $query1 = "SELECT id, cname From class where academyemail = '$academyEmail'";
+
+                                        $result1 = $pdo->query($query1);
+
+                                        $r1 = $result1->rowCount();
+
+                                        for ($i = 0; $i < $r1; $i++) {
+                                            $row1 = $result1->fetch(PDO::FETCH_NUM);
+
+                                            echo "<option>$row1[0] | $row1[1]</option>";
+                                        }
+
+
+
+                                        ?>
+
+                                    </select>
+
+                                    <input type="hidden" id="dataInput" name="playeremail" value="">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Invite</button>
+                                </div>
+
+
+                            </form>
                         </div>
-                        <div class="modal-body">
-                            <label>Choose class</label>
-                            <select name="classname" class="form-select" required>
-                                <option selected disabled value="">Choose...</option>
-
-                                <?php
-                                $query1 = "SELECT id, cname From class where academyemail = '$academyEmail'";
-
-                                $result1 = $pdo->query($query1);
-
-                                $r1 = $result1->rowCount();
-
-                                for ($i = 0; $i < $r1; $i++) {
-                                    $row1 = $result1->fetch(PDO::FETCH_NUM);
-
-                                    echo "<option>$row1[0] | $row1[1]</option>";
-                                }
-
-
-
-                                ?>
-
-                            </select>
-
-                            <input type="hidden" id="dataInput" name="playeremail" value="">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Invite</button>
-                        </div>
-
-
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
 
     </div>
 

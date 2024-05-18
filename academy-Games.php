@@ -116,7 +116,7 @@ $academyEmail = $_SESSION['email'];
         <div class="container">
 
             <div class="box-container">
-                <a href="academy-Classes.php" style="text-decoration: none;">
+                <a href="academy-Classes.php#academy-classes" style="text-decoration: none;">
                     <div class="box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/classes-.png" alt="" id="img1">
@@ -125,7 +125,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Classes</p>
                     </div>
                 </a>
-                <a href="academy-Coaches.php" style="text-decoration: none;">
+                <a href="academy-Coaches.php#academy-coaches" style="text-decoration: none;">
                     <div class="box" id="box2">
                         <div class="img">
                             <img class="img" src="/img/coach-.png" alt="" id="img2">
@@ -134,7 +134,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Coaches</p>
                     </div>
                 </a>
-                <a href="academy-Games.php" style="text-decoration: none;">
+                <a href="academy-Games.php#academy-games" style="text-decoration: none;">
                     <div class="box" id="box3" style="background-color: grey;">
                         <div class="img">
                             <img class="img" src="/img/games-.png" alt="" id="img3">
@@ -143,7 +143,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="academy-Courts.php" style="text-decoration: none;">
+                <a href="academy-Courts.php#academy-courts" style="text-decoration: none;">
                     <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/court.png" alt="" id="img4">
@@ -152,7 +152,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Courts</p>
                     </div>
                 </a>
-                <a href="academy-Players.php" style="text-decoration: none;">
+                <a href="academy-Players.php#academy-players" style="text-decoration: none;">
                     <div class="box" id="box5">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img5">
@@ -161,7 +161,7 @@ $academyEmail = $_SESSION['email'];
                         <p>Players</p>
                     </div>
                 </a>
-                <a href="academy-Academies.php" style="text-decoration: none;">
+                <a href="academy-Academies.php#academy-academies" style="text-decoration: none;">
                     <div class="box" id="box6">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img6">
@@ -179,75 +179,78 @@ $academyEmail = $_SESSION['email'];
 
 
     <div class="mybackground-img2">
-        <div class="container">
-            <nav>
-                <div class="nav nav-tabs justify-content-center mb-5" id="nav-tab" role="tablist">
-                    <button class="nav-link active text-dark" id="nav-local-tab" data-bs-toggle="tab" data-bs-target="#nav-local" type="button" role="tab" aria-selected="true">Local Matches</button>
+        <span id="academy-games">
+            <!-- Content of the target section -->
+            <span>
+                <div class="container">
+                    <nav>
+                        <div class="nav nav-tabs justify-content-center mb-5" id="nav-tab" role="tablist">
+                            <button class="nav-link active text-dark" id="nav-local-tab" data-bs-toggle="tab" data-bs-target="#nav-local" type="button" role="tab" aria-selected="true">Local Matches</button>
 
-                    <button class="nav-link text-dark" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Public Matches</button>
-
-
-                </div>
-            </nav>
-
-
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-local" role="tabpanel" aria-labelledby="nav-local-tab">
+                            <button class="nav-link text-dark" id="nav-public-tab" data-bs-toggle="tab" data-bs-target="#nav-public" type="button" role="tab" aria-selected="true">Public Matches</button>
 
 
-
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <?php
-
-                            if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+                        </div>
+                    </nav>
 
 
-                            ?>
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-
-                            <?php
-                                unset($_SESSION['status']);
-                            }
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-local" role="tabpanel" aria-labelledby="nav-local-tab">
 
 
 
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <?php
 
-                            ?>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="text-center">Matches</h4>
-                                    <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
-                                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
-                                        New Match
-                                    </button>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
+                                    if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
 
-                                        <table id="table1" class="table table-striped table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Id</th>
-                                                    <th scope="col">Team1</th>
-                                                    <th scope="col">Team2</th>
-                                                    <th scope="col">Court</th>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col">Time</th>
-                                                    <th scope="col">T1 score</th>
-                                                    <th scope="col">T2 score</th>
-                                                    <th scope="col">Update</th>
-                                                    <th scope="col">Finish</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
 
-                                                <?php
+                                    ?>
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
 
-                                                $query3 =  "SELECT 
+                                    <?php
+                                        unset($_SESSION['status']);
+                                    }
+
+
+
+
+                                    ?>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="text-center">Matches</h4>
+                                            <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
+                                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#insertdata">
+                                                New Match
+                                            </button>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+
+                                                <table id="table1" class="table table-striped table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Id</th>
+                                                            <th scope="col">Team1</th>
+                                                            <th scope="col">Team2</th>
+                                                            <th scope="col">Court</th>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col">Time</th>
+                                                            <th scope="col">T1 score</th>
+                                                            <th scope="col">T2 score</th>
+                                                            <th scope="col">Update</th>
+                                                            <th scope="col">Finish</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <?php
+
+                                                        $query3 =  "SELECT 
                                                 matchs.Mid AS MatchID, 
                                                 c1.Cname AS Team1Name, 
                                                 c2.Cname AS Team2Name, 
@@ -274,271 +277,271 @@ $academyEmail = $_SESSION['email'];
                                                     WHEN matchs.Mstatus = 'finished' THEN 2
                                                     ELSE 3
                                                 END;";
-                                                $result3 = $pdo->query($query3);
+                                                        $result3 = $pdo->query($query3);
 
-                                                $r3 = $result3->rowCount();
+                                                        $r3 = $result3->rowCount();
 
-                                                for ($i = 0; $i < $r3; $i++) {
-                                                    $row3 = $result3->fetch(PDO::FETCH_NUM);
-                                                ?>
-                                                    <tr class="myRows">
-                                                        <td id="myclassid"><?php echo  $row3[0] ?></td>
-                                                        <td><?php echo  $row3[1] ?></td>
-                                                        <td><?php echo  $row3[2] ?></td>
-                                                        <td><?php echo  $row3[3] ?></td>
-                                                        <td><?php echo $row3[4] ?></td>
-                                                        <td><?php echo $row3[5] ?></td>
-                                                        <?php
-
-                                                        $mytime = explode("-", $row3[5]);
-
-
-
-                                                        $string = date("Y-m-d");
-
-
-                                                        $current_time = time();
-
-                                                        // Add an hour (3600 seconds) to the current time
-                                                        $new_time = $current_time + 3600;
-
-                                                        // Format the new time
-                                                        $formatted_time = date('H:i', $new_time);
-
-                                                        // Output the new time
-
-
-                                                        if ($row3[8] == 'booked' && ($row3[4] <= $string && $formatted_time >= $mytime[0])) {
+                                                        for ($i = 0; $i < $r3; $i++) {
+                                                            $row3 = $result3->fetch(PDO::FETCH_NUM);
                                                         ?>
-                                                            <form method="POST" action="update-match-score.php">
-                                                                <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
-                                                                <td><input name="team1Score" type="number" value="<?php echo $row3[6] ?>" style="width: 50px;" required> </td>
-                                                                <td><input name="team2Score" type="number" value="<?php echo $row3[7] ?>" style="width: 50px;" required></td>
-                                                                <td><button type="submit" href="#" class='btn btn-primary'>Update</button></td>
-                                                            </form>
-                                                            <form method="POST" action="finish-match.php">
+                                                            <tr class="myRows">
+                                                                <td id="myclassid"><?php echo  $row3[0] ?></td>
+                                                                <td><?php echo  $row3[1] ?></td>
+                                                                <td><?php echo  $row3[2] ?></td>
+                                                                <td><?php echo  $row3[3] ?></td>
+                                                                <td><?php echo $row3[4] ?></td>
+                                                                <td><?php echo $row3[5] ?></td>
+                                                                <?php
 
-                                                                <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
-                                                                <td><button type="submit" href="#" class='btn btn-success'>Finish</button></td>
+                                                                $mytime = explode("-", $row3[5]);
 
-                                                            </form>
-                                                        <?php
-                                                        } else if ($row3[8] == 'finished') {
-                                                        ?>
-                                                            <td><?php echo $row3[6] ?></td>
-                                                            <td><?php echo $row3[7] ?></td>
-                                                            <td colspan="2" style="background-color: #ff6666;" class="text-center">Finished</td>
-                                                        <?php
-                                                        } else {
 
-                                                        ?>
-                                                            <td><?php echo $row3[6] ?></td>
-                                                            <td><?php echo $row3[7] ?></td>
-                                                            <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-primary'>Update</button></td>
-                                                            <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-success'>Finish</button></td>
+
+                                                                $string = date("Y-m-d");
+
+
+                                                                $current_time = time();
+
+                                                                // Add an hour (3600 seconds) to the current time
+                                                                $new_time = $current_time + 3600;
+
+                                                                // Format the new time
+                                                                $formatted_time = date('H:i', $new_time);
+
+                                                                // Output the new time
+
+
+                                                                if ($row3[8] == 'booked' && ($row3[4] <= $string && $formatted_time >= $mytime[0])) {
+                                                                ?>
+                                                                    <form method="POST" action="update-match-score.php">
+                                                                        <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
+                                                                        <td><input name="team1Score" type="number" value="<?php echo $row3[6] ?>" style="width: 50px;" required> </td>
+                                                                        <td><input name="team2Score" type="number" value="<?php echo $row3[7] ?>" style="width: 50px;" required></td>
+                                                                        <td><button type="submit" href="#" class='btn btn-primary'>Update</button></td>
+                                                                    </form>
+                                                                    <form method="POST" action="finish-match.php">
+
+                                                                        <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
+                                                                        <td><button type="submit" href="#" class='btn btn-success'>Finish</button></td>
+
+                                                                    </form>
+                                                                <?php
+                                                                } else if ($row3[8] == 'finished') {
+                                                                ?>
+                                                                    <td><?php echo $row3[6] ?></td>
+                                                                    <td><?php echo $row3[7] ?></td>
+                                                                    <td colspan="2" style="background-color: #ff6666;" class="text-center">Finished</td>
+                                                                <?php
+                                                                } else {
+
+                                                                ?>
+                                                                    <td><?php echo $row3[6] ?></td>
+                                                                    <td><?php echo $row3[7] ?></td>
+                                                                    <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-primary'>Update</button></td>
+                                                                    <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-success'>Finish</button></td>
+                                                                <?php
+                                                                }
+                                                                ?>
+
+                                                                <!-- <td><a href="#" class='btn btn-success'>Finish</a></td> -->
+
+                                                            </tr>
                                                         <?php
                                                         }
                                                         ?>
 
-                                                        <!-- <td><a href="#" class='btn btn-success'>Finish</a></td> -->
-
-                                                    </tr>
-                                                <?php
-                                                }
-                                                ?>
 
 
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
-                                            </tbody>
-                                        </table>
+                                        </div>
                                     </div>
-
                                 </div>
                             </div>
+
+
+
                         </div>
-                    </div>
 
 
+                        <div class="tab-pane fade" id="nav-public" role="tabpanel" aria-labelledby="nav-public-tab">
 
-                </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <?php
 
-
-                <div class="tab-pane fade" id="nav-public" role="tabpanel" aria-labelledby="nav-public-tab">
-
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <?php
-
-                            if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+                                    if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
 
 
-                            ?>
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
+                                    ?>
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
 
-                            <?php
-                                unset($_SESSION['status']);
-                            }
+                                    <?php
+                                        unset($_SESSION['status']);
+                                    }
 
 
 
 
-                            ?>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="text-center">Matches</h4>
-                                    <input id="searchInput2" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
-                                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#PBinsertdata">
-                                        New Match
-                                    </button>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
+                                    ?>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="text-center">Matches</h4>
+                                            <input id="searchInput2" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
+                                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#PBinsertdata">
+                                                New Match
+                                            </button>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
 
-                                        <table id="table2" class="table table-striped table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Id</th>
-                                                    <th scope="col">Team1</th>
-                                                    <th scope="col">Team2</th>
-                                                    <th scope="col">Court</th>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col">Time</th>
-                                                    <th scope="col">T1 Score</th>
-                                                    <th scope="col">T2 Score</th>
-                                                    <th scope="col">Update</th>
-                                                    <th scope="col">Finish</th>
+                                                <table id="table2" class="table table-striped table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Id</th>
+                                                            <th scope="col">Team1</th>
+                                                            <th scope="col">Team2</th>
+                                                            <th scope="col">Court</th>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col">Time</th>
+                                                            <th scope="col">T1 Score</th>
+                                                            <th scope="col">T2 Score</th>
+                                                            <th scope="col">Update</th>
+                                                            <th scope="col">Finish</th>
 
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
 
-                                                <?php
-
-                                                $query3 =  "SELECT matchs.Mid AS MatchID, c1.Cname AS Team1Name, c2.Cname AS Team2Name, courts.CRname AS CourtName, matchs.Mdate AS MatchDate, matchs.Mtime AS MatchTime, matchs.team1Score, matchs.team2Score, matchs.Mstatus FROM matchs JOIN class AS c1 ON matchs.team1 = c1.id JOIN class AS c2 ON matchs.team2 = c2.id JOIN courts ON matchs.McourtId = courts.CRid WHERE courts.CRAcademyemail = '$academyEmail' AND matchs.Mtype = 'public'";
-                                                $result3 = $pdo->query($query3);
-
-                                                $r3 = $result3->rowCount();
-
-                                                for ($i = 0; $i < $r3; $i++) {
-                                                    $row3 = $result3->fetch(PDO::FETCH_NUM);
-                                                ?>
-                                                    <tr class="myRows2">
-                                                        <td id="myclassid"><?php echo  $row3[0] ?></td>
-                                                        <td><?php echo  $row3[1] ?></td>
-                                                        <td><?php echo  $row3[2] ?></td>
-                                                        <td><?php echo  $row3[3] ?></td>
-                                                        <td><?php echo $row3[4] ?></td>
-                                                        <td><?php echo $row3[5] ?></td>
                                                         <?php
-                                                        $mytime = explode("-", $row3[5]);
 
+                                                        $query3 =  "SELECT matchs.Mid AS MatchID, c1.Cname AS Team1Name, c2.Cname AS Team2Name, courts.CRname AS CourtName, matchs.Mdate AS MatchDate, matchs.Mtime AS MatchTime, matchs.team1Score, matchs.team2Score, matchs.Mstatus FROM matchs JOIN class AS c1 ON matchs.team1 = c1.id JOIN class AS c2 ON matchs.team2 = c2.id JOIN courts ON matchs.McourtId = courts.CRid WHERE courts.CRAcademyemail = '$academyEmail' AND matchs.Mtype = 'public'";
+                                                        $result3 = $pdo->query($query3);
 
+                                                        $r3 = $result3->rowCount();
 
-                                                        $string = date("Y-m-d");
-
-
-                                                        $current_time = time();
-
-                                                        // Add an hour (3600 seconds) to the current time
-                                                        $new_time = $current_time + 3600;
-
-                                                        // Format the new time
-                                                        $formatted_time = date('H:i', $new_time);
-
-                                                        // Output the new time
-
-
-                                                        if ($row3[8] == 'booked' && ($row3[4] <= $string && $formatted_time >= $mytime[0])) {
+                                                        for ($i = 0; $i < $r3; $i++) {
+                                                            $row3 = $result3->fetch(PDO::FETCH_NUM);
                                                         ?>
+                                                            <tr class="myRows2">
+                                                                <td id="myclassid"><?php echo  $row3[0] ?></td>
+                                                                <td><?php echo  $row3[1] ?></td>
+                                                                <td><?php echo  $row3[2] ?></td>
+                                                                <td><?php echo  $row3[3] ?></td>
+                                                                <td><?php echo $row3[4] ?></td>
+                                                                <td><?php echo $row3[5] ?></td>
+                                                                <?php
+                                                                $mytime = explode("-", $row3[5]);
 
-                                                            <form method="POST" action="update-match-score.php">
-                                                                <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
-                                                                <td><input name="team1Score" type="number" value="<?php echo $row3[6] ?>" style="width: 50px;" required> </td>
-                                                                <td><input name="team2Score" type="number" value="<?php echo $row3[7] ?>" style="width: 50px;" required></td>
-                                                                <td><button type="submit" href="#" class='btn btn-primary'>Update</button></td>
-                                                            </form>
-                                                            <form action="finish-match.php" method="post">
-                                                                <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
-                                                                <td><button type="submit" href="#" class='btn btn-primary'>Finish</button></td>
-                                                            </form>
+
+
+                                                                $string = date("Y-m-d");
+
+
+                                                                $current_time = time();
+
+                                                                // Add an hour (3600 seconds) to the current time
+                                                                $new_time = $current_time + 3600;
+
+                                                                // Format the new time
+                                                                $formatted_time = date('H:i', $new_time);
+
+                                                                // Output the new time
+
+
+                                                                if ($row3[8] == 'booked' && ($row3[4] <= $string && $formatted_time >= $mytime[0])) {
+                                                                ?>
+
+                                                                    <form method="POST" action="update-match-score.php">
+                                                                        <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
+                                                                        <td><input name="team1Score" type="number" value="<?php echo $row3[6] ?>" style="width: 50px;" required> </td>
+                                                                        <td><input name="team2Score" type="number" value="<?php echo $row3[7] ?>" style="width: 50px;" required></td>
+                                                                        <td><button type="submit" href="#" class='btn btn-primary'>Update</button></td>
+                                                                    </form>
+                                                                    <form action="finish-match.php" method="post">
+                                                                        <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
+                                                                        <td><button type="submit" href="#" class='btn btn-primary'>Finish</button></td>
+                                                                    </form>
+                                                                <?php
+                                                                } else if ($row3[8] == 'finished') {
+
+                                                                ?>
+                                                                    <td><?php echo $row3[6] ?></td>
+                                                                    <td><?php echo $row3[7] ?></td>
+                                                                    <td colspan="2" style="background-color: #ff6666;" class="text-center">Finished</td>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <td><?php echo $row3[6] ?></td>
+                                                                    <td><?php echo $row3[7] ?></td>
+                                                                    <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-primary'>Update</button></td>
+                                                                    <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-success'>Finish</button></td>
+
+                                                                <?php
+
+                                                                }
+                                                                ?>
+
+                                                            </tr>
                                                         <?php
-                                                        } else if ($row3[8] == 'finished') {
-
-                                                        ?>
-                                                            <td><?php echo $row3[6] ?></td>
-                                                            <td><?php echo $row3[7] ?></td>
-                                                            <td colspan="2" style="background-color: #ff6666;" class="text-center">Finished</td>
-                                                        <?php
-                                                        } else {
-                                                        ?>
-                                                            <td><?php echo $row3[6] ?></td>
-                                                            <td><?php echo $row3[7] ?></td>
-                                                            <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-primary'>Update</button></td>
-                                                            <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-success'>Finish</button></td>
-
-                                                        <?php
-
                                                         }
                                                         ?>
 
-                                                    </tr>
-                                                <?php
-                                                }
-                                                ?>
+                                                        <?php
 
-                                                <?php
+                                                        $query44 = "SELECT m.Mid, c1.cname AS Team1Cname, c2.cname AS Team2Cname, cr.CRname, m.Mdate, m.Mtime, m.team1Score, m.team2Score, m.Mstatus FROM matchs m JOIN class c1 ON m.team1 = c1.id JOIN class c2 ON m.team2 = c2.id JOIN courts cr ON m.Mcourtid = cr.CRid WHERE c1.academyEmail = cr.CRAcademyemail AND c2.academyEmail <> cr.CRAcademyemail AND c2.academyEmail = '$academyEmail'";
 
-                                                $query44 = "SELECT m.Mid, c1.cname AS Team1Cname, c2.cname AS Team2Cname, cr.CRname, m.Mdate, m.Mtime, m.team1Score, m.team2Score, m.Mstatus FROM matchs m JOIN class c1 ON m.team1 = c1.id JOIN class c2 ON m.team2 = c2.id JOIN courts cr ON m.Mcourtid = cr.CRid WHERE c1.academyEmail = cr.CRAcademyemail AND c2.academyEmail <> cr.CRAcademyemail AND c2.academyEmail = '$academyEmail'";
+                                                        $result44 = $pdo->query($query44);
 
-                                                $result44 = $pdo->query($query44);
+                                                        $r44 = $result44->rowCount();
 
-                                                $r44 = $result44->rowCount();
+                                                        for ($i = 0; $i < $r44; $i++) {
+                                                            $row44 = $result44->fetch(PDO::FETCH_NUM);
 
-                                                for ($i = 0; $i < $r44; $i++) {
-                                                    $row44 = $result44->fetch(PDO::FETCH_NUM);
+                                                        ?>
 
-                                                ?>
+                                                            <tr class="myRows2">
+                                                                <td id="myclassid"><?php echo  $row44[0] ?></td>
+                                                                <td><?php echo  $row44[1] ?></td>
+                                                                <td><?php echo  $row44[2] ?></td>
+                                                                <td><?php echo  $row44[3] ?></td>
+                                                                <td><?php echo $row44[4] ?></td>
+                                                                <td><?php echo $row44[5] ?></td>
+                                                                <td><?php echo $row44[6] ?></td>
+                                                                <td><?php echo $row44[7] ?></td>
+                                                                <?php if ($row44[8] == "finished") { ?>
+                                                                    <td colspan="2" class="text-center" style="background-color: #ff6666;">Finished</td>
+                                                                <?php } else {   ?>
+                                                                    <td colspan="2" class="text-center" style="background-color: #e6f7ff;">Joined</td>
+                                                                <?php } ?>
+                                                            </tr>
 
-                                                    <tr class="myRows2">
-                                                        <td id="myclassid"><?php echo  $row44[0] ?></td>
-                                                        <td><?php echo  $row44[1] ?></td>
-                                                        <td><?php echo  $row44[2] ?></td>
-                                                        <td><?php echo  $row44[3] ?></td>
-                                                        <td><?php echo $row44[4] ?></td>
-                                                        <td><?php echo $row44[5] ?></td>
-                                                        <td><?php echo $row44[6] ?></td>
-                                                        <td><?php echo $row44[7] ?></td>
-                                                        <?php if ($row44[8] == "finished") { ?>
-                                                            <td colspan="2" class="text-center" style="background-color: #ff6666;">Finished</td>
-                                                        <?php } else {   ?>
-                                                            <td colspan="2" class="text-center" style="background-color: #e6f7ff;">Joined</td>
-                                                        <?php } ?>
-                                                    </tr>
+                                                        <?php
+                                                        }
 
-                                                <?php
-                                                }
-
-                                                ?>
+                                                        ?>
 
 
 
-                                            </tbody>
-                                        </table>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
                                     </div>
-
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
                 </div>
-            </div>
-
-        </div>
 
     </div>
 

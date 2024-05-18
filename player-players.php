@@ -166,7 +166,7 @@ $r = $result->rowCount();
     <div class="container">
 
       <div class="box-container">
-        <a href="player-games.php" style="text-decoration: none;">
+        <a href="player-games.php#player-games" style="text-decoration: none;">
           <div class="box games-box" id="box1">
             <div class="img-container">
               <img class="img" src="/img/games-.png" alt="" id="img1">
@@ -175,7 +175,7 @@ $r = $result->rowCount();
             <p>Games</p>
           </div>
         </a>
-        <a href="player-academies.php" style="text-decoration: none;">
+        <a href="player-academies.php#player-academies" style="text-decoration: none;">
           <div class="box academies-box" id="box2">
             <div class="img-container">
               <img class="img" src="/img//academy-.png" alt="" id="img2">
@@ -191,7 +191,7 @@ $r = $result->rowCount();
                      </div>
                      <p></p>
                  </div> -->
-        <a href="player-class.php" style="text-decoration: none;">
+        <a href="player-class.php#player-class" style="text-decoration: none;">
           <div class="box class-box" id="box3">
             <div class="img">
               <img class="img" src="/img/classes-.png" alt="" id="img3">
@@ -202,7 +202,7 @@ $r = $result->rowCount();
         </a>
       </div>
       <div class="box-container">
-        <a href="player-players.php" style="text-decoration: none;">
+        <a href="player-players.php#player-players" style="text-decoration: none;">
           <div class="box" id="box4" style="background-color: grey;">
             <div class="img">
               <img class="img" src="/img/player-.png" alt="" id="img4">
@@ -210,7 +210,7 @@ $r = $result->rowCount();
             <p>Players</p>
           </div>
         </a>
-        <a href="player-coaches.php" style="text-decoration: none;">
+        <a href="player-coaches.php#player-coaches" style="text-decoration: none;">
           <div class="box" id="box5">
             <div class="img">
               <img class="img" src="/img/coach-.png" alt="" id="img5">
@@ -226,110 +226,113 @@ $r = $result->rowCount();
 
 
   <div class="mybackground-img2">
-    <div class="container-Listing">
+    <span id="player-players">
+      <!-- Content of the target section -->
+      <span>
+        <div class="container-Listing">
 
-      <h1 class="heading-Listing">Players</h1>
+          <h1 class="heading-Listing">Players</h1>
 
-      <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
+          <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
 
-      <div id="table2" class="box-container-Listing">
-
-
-
-
-
-        <?php for ($i = 0; $i < $r; $i++) {
-          $row = $result->fetch(PDO::FETCH_NUM);
-        ?>
-
-          <div class="box-Listing myRows">
-            <div class="image-Listing">
-              <img src="<?php echo !empty($row[3]) ? $row[3] : 'img/default-user.jpg'; ?>" alt="">
-            </div>
-            <div class="content-Listing">
-
-              <h3><?php echo $row[0] ?></h3>
-
-
-              <p class="user_email"><?php echo $row[1] ?></p>
-
-              <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Read More
-              </a>
-
-              <div class="icons-Listing">
-
-              </div>
-            </div>
-          </div>
-
-
-        <?php
-        }
-        ?>
+          <div id="table2" class="box-container-Listing">
 
 
 
 
 
-        <!-- READ MORE MODEL -->
-        <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Player Info</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
+            <?php for ($i = 0; $i < $r; $i++) {
+              $row = $result->fetch(PDO::FETCH_NUM);
+            ?>
 
-                <div class="view_user_data">
-
+              <div class="box-Listing myRows">
+                <div class="image-Listing">
+                  <img src="<?php echo !empty($row[3]) ? $row[3] : 'img/default-user.jpg'; ?>" alt="">
                 </div>
+                <div class="content-Listing">
 
+                  <h3><?php echo $row[0] ?></h3>
+
+
+                  <p class="user_email"><?php echo $row[1] ?></p>
+
+                  <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Read More
+                  </a>
+
+                  <div class="icons-Listing">
+
+                  </div>
+                </div>
               </div>
-              <div class="modal-footer">
+
+
+            <?php
+            }
+            ?>
+
+
+
+
+
+            <!-- READ MORE MODEL -->
+            <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Player Info</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+
+                    <div class="view_user_data">
+
+                    </div>
+
+                  </div>
+                  <div class="modal-footer">
+                  </div>
+                </div>
               </div>
             </div>
+
+            <!-- READ MORE MODEL -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
+
+          <div id="load-more"> load more </div>
+
         </div>
 
-        <!-- READ MORE MODEL -->
+        <script>
+          let loadMoreBtn = document.querySelector('#load-more');
+          let currentItem = 4;
 
+          loadMoreBtn.onclick = () => {
+            let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+            for (var i = currentItem; i < currentItem + 4; i++) {
+              boxes[i].style.display = 'inline-block';
+            }
+            currentItem += 4;
 
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-
-      <div id="load-more"> load more </div>
-
-    </div>
-
-    <script>
-      let loadMoreBtn = document.querySelector('#load-more');
-      let currentItem = 4;
-
-      loadMoreBtn.onclick = () => {
-        let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
-        for (var i = currentItem; i < currentItem + 4; i++) {
-          boxes[i].style.display = 'inline-block';
-        }
-        currentItem += 4;
-
-        if (currentItem >= boxes.length) {
-          loadMoreBtn.style.display = 'none';
-        }
-      }
-    </script>
+            if (currentItem >= boxes.length) {
+              loadMoreBtn.style.display = 'none';
+            }
+          }
+        </script>
 
 
   </div>
@@ -489,7 +492,7 @@ $r = $result->rowCount();
             num_of_rows[i].style.display = "none";
           }
         }
-     
+
       })
     });
   </script>

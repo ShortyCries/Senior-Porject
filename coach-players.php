@@ -26,41 +26,55 @@ $coachEmail =  $_SESSION['email'];
     <meta name="generator" content="Nicepage 6.7.6, nicepage.com">
 
     <style>
-  .view_user_data {
-    overflow-wrap: break-word; /* Ensures long words break to the next line */
-    word-wrap: break-word; /* Legacy support */
-    word-break: break-word; /* Ensures long words break to the next line */
-    white-space: pre-wrap; /* Preserves whitespace but wraps text */
-  }
+        .view_user_data {
+            overflow-wrap: break-word;
+            /* Ensures long words break to the next line */
+            word-wrap: break-word;
+            /* Legacy support */
+            word-break: break-word;
+            /* Ensures long words break to the next line */
+            white-space: pre-wrap;
+            /* Preserves whitespace but wraps text */
+        }
 
-  .modal-body .container {
-    max-width: 100%; /* Ensures container does not exceed modal width */
-  }
+        .modal-body .container {
+            max-width: 100%;
+            /* Ensures container does not exceed modal width */
+        }
 
-  .info-section {
-    display: flex;
-    flex-direction: row;
-    margin-top: 1rem;
-    padding-bottom: 0.5rem; /* Add some padding at the bottom */
-    border-bottom: 1px solid #ccc; /* Add a bottom border */
-  }
+        .info-section {
+            display: flex;
+            flex-direction: row;
+            margin-top: 1rem;
+            padding-bottom: 0.5rem;
+            /* Add some padding at the bottom */
+            border-bottom: 1px solid #ccc;
+            /* Add a bottom border */
+        }
 
-  .info-section .label {
-    flex: 0 0 auto; /* Label takes only the necessary space */
-    margin-right: 10px; /* Space between label and content */
-    font-weight: bold; /* Bold font for the label */
-  }
+        .info-section .label {
+            flex: 0 0 auto;
+            /* Label takes only the necessary space */
+            margin-right: 10px;
+            /* Space between label and content */
+            font-weight: bold;
+            /* Bold font for the label */
+        }
 
-  .info-section .content {
-    flex: 1 1 auto; /* Content takes the remaining space */
-    word-wrap: break-word; /* Ensure text wraps within the container */
-    white-space: pre-wrap; /* Ensures whitespace is preserved and wraps text */
-  }
+        .info-section .content {
+            flex: 1 1 auto;
+            /* Content takes the remaining space */
+            word-wrap: break-word;
+            /* Ensure text wraps within the container */
+            white-space: pre-wrap;
+            /* Ensures whitespace is preserved and wraps text */
+        }
 
-  .modal-body h6 {
-    margin-bottom: 1rem; /* Add some space between different text elements */
-  }
-</style>
+        .modal-body h6 {
+            margin-bottom: 1rem;
+            /* Add some space between different text elements */
+        }
+    </style>
 
 
 
@@ -143,7 +157,7 @@ $coachEmail =  $_SESSION['email'];
         <div class="container">
 
             <div class="box-container">
-                <a href="coach-games.php" style="text-decoration: none;">
+                <a href="coach-games.php#coach-games" style="text-decoration: none;">
                     <div class="box games-box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/games-.png" alt="" id="img1">
@@ -152,7 +166,7 @@ $coachEmail =  $_SESSION['email'];
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="coach-academies.php" style="text-decoration: none;">
+                <a href="coach-academies.php#coach-academies" style="text-decoration: none;">
                     <div class="box academies-box" id="box2">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img2">
@@ -170,7 +184,7 @@ $coachEmail =  $_SESSION['email'];
                      </div>
                      <p>Class</p>
                  </div> -->
-                <a href="coach-class.php" style="text-decoration: none;">
+                <a href="coach-class.php#coach-class" style="text-decoration: none;">
                     <div class="box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/classes-.png" alt="" id="img3">
@@ -179,7 +193,7 @@ $coachEmail =  $_SESSION['email'];
                         <p>Class</p>
                     </div>
                 </a>
-                <a href="coach-players.php" style="text-decoration: none;">
+                <a href="coach-players.php#coach-players" style="text-decoration: none;">
                     <div class="box" id="box4" style="background-color: grey;">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img4">
@@ -195,118 +209,121 @@ $coachEmail =  $_SESSION['email'];
     </div>
 
     <div class="mybackground-img2">
-        <div class="container-Listing">
+        <span id="coach-players">
+            <!-- Content of the target section -->
+            <span>
+                <div class="container-Listing">
 
-            <h1 class="heading-Listing">Players</h1>
-
-         
-
-
-            <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
-
-
-            <div id="table2" class="box-container-Listing">
+                    <h1 class="heading-Listing">Players</h1>
 
 
 
-                <?php
 
-              
-                    $query1 = "SELECT email, name, DOB, description  FROM player";
-                    $result1 = $pdo->query($query1);
-                    $r1 = $result1->rowCount();
+                    <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
 
 
-                    if ($r1 > 0) {
+                    <div id="table2" class="box-container-Listing">
 
-                        foreach ($result1 as $row1) {
+
+
+                        <?php
+
+
+                        $query1 = "SELECT email, name, DOB, description, PLimg  FROM player";
+                        $result1 = $pdo->query($query1);
+                        $r1 = $result1->rowCount();
+
+
+                        if ($r1 > 0) {
+
+                            foreach ($result1 as $row1) {
 
                         ?>
 
-                            <div class="box-Listing myRows"> <!-- single row of data -->
-                                <div class="image-Listing">
-                                <img src="<?php echo !empty($row[4]) ? $row[4] : 'img/default-user.jpg'; ?>" alt=""><!-- img -->
-                                </div>
-                                <div class="content-Listing">
-
-                                    <h3><?php echo $row1[1]; ?></h3> <!-- name -->
-
-
-                                    <p class="user_email"><?php echo $row1[0]; ?></p> <!-- email -->
-
-                                    <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Read More
-                                    </a>
-
-                                    <div class="icons-Listing">
-
+                                <div class="box-Listing myRows"> <!-- single row of data -->
+                                    <div class="image-Listing">
+                                        <img src="<?php echo !empty($row1[4]) ? $row1[4] : 'img/default-user.jpg'; ?>" alt=""><!-- img -->
                                     </div>
-                                </div>
-                            </div> <!-- end of single row of data -->
+                                    <div class="content-Listing">
+
+                                        <h3><?php echo $row1[1]; ?></h3> <!-- name -->
+
+
+                                        <p class="user_email"><?php echo $row1[0]; ?></p> <!-- email -->
+
+                                        <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Read More
+                                        </a>
+
+                                        <div class="icons-Listing">
+
+                                        </div>
+                                    </div>
+                                </div> <!-- end of single row of data -->
 
 
 
 
-                <?php
+                        <?php
+                            }
                         }
-                    }
-                
 
-                ?>
 
+                        ?>
 
 
 
 
-            </div>
 
-            <div id="load-more"> load more
-
-            </div>
-
-        </div>
-
-
-        <!-- READ MORE MODEL -->
-        <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Player Info</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
 
-                        <div class="view_user_data">
+                    <div id="load-more"> load more
 
+                    </div>
+
+                </div>
+
+
+                <!-- READ MORE MODEL -->
+                <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Player Info</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="view_user_data">
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                            </div>
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- READ MORE MODEL -->
+                <!-- READ MORE MODEL -->
 
 
 
-        <script>
-            let loadMoreBtn = document.querySelector('#load-more');
-            let currentItem = 4;
+                <script>
+                    let loadMoreBtn = document.querySelector('#load-more');
+                    let currentItem = 4;
 
-            loadMoreBtn.onclick = () => {
-                let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
-                for (var i = currentItem; i < currentItem + 4; i++) {
-                    boxes[i].style.display = 'inline-block';
-                }
-                currentItem += 4;
+                    loadMoreBtn.onclick = () => {
+                        let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+                        for (var i = currentItem; i < currentItem + 4; i++) {
+                            boxes[i].style.display = 'inline-block';
+                        }
+                        currentItem += 4;
 
-                if (currentItem >= boxes.length) {
-                    loadMoreBtn.style.display = 'none';
-                }
-            }
-        </script>
+                        if (currentItem >= boxes.length) {
+                            loadMoreBtn.style.display = 'none';
+                        }
+                    }
+                </script>
 
 
     </div>
@@ -319,38 +336,38 @@ $coachEmail =  $_SESSION['email'];
 
 
 
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
-        <script>
-            $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
-                $('.view_data').click(function(e) {
-                    e.preventDefault();
+            $('.view_data').click(function(e) {
+                e.preventDefault();
 
-                    var user_email = $(this).closest('div').find('.user_email').text();
+                var user_email = $(this).closest('div').find('.user_email').text();
 
-                    $.ajax({
-                        method: "POST",
-                        url: "player-info.php",
-                        data: {
-                            'click_readmore_btn': true,
-                            'player_email': user_email,
-                        },
-                        success: function(response) {
+                $.ajax({
+                    method: "POST",
+                    url: "player-info.php",
+                    data: {
+                        'click_readmore_btn': true,
+                        'player_email': user_email,
+                    },
+                    success: function(response) {
 
-                            $('.view_user_data').html(response);
-                            $('#viewusermodal').modal('show');
+                        $('.view_user_data').html(response);
+                        $('#viewusermodal').modal('show');
 
-                        }
-
-                    });
+                    }
 
                 });
 
-
             });
-        </script>
+
+
+        });
+    </script>
 
 
 
@@ -367,170 +384,167 @@ $coachEmail =  $_SESSION['email'];
 
 
 
-        <script>
-            function logoutAlert() {
-                // Show the confirmation dialog and store the result
-                var result = window.confirm("Are you sure you want to Logout?");
+    <script>
+        function logoutAlert() {
+            // Show the confirmation dialog and store the result
+            var result = window.confirm("Are you sure you want to Logout?");
 
-                // Check if the user clicked "OK" or "Cancel"
-                if (result) {
-                    // If the user clicked "OK", redirect to 'index.php'
-                    window.location.href = 'logout.php';
-                } else {
-                    // If the user clicked "Cancel", do nothing or perform any other action
-                    return;
-                }
+            // Check if the user clicked "OK" or "Cancel"
+            if (result) {
+                // If the user clicked "OK", redirect to 'index.php'
+                window.location.href = 'logout.php';
+            } else {
+                // If the user clicked "Cancel", do nothing or perform any other action
+                return;
             }
-        </script>
+        }
+    </script>
 
-        <script>
-            //BOX1
-            var img = document.getElementById('img1');
-            var box = document.getElementById('box1');
-
-
-
-            var originalsrc = img.src;
-            var newSrc = '/img/gifs/games-.gif';
-
-
-            box.addEventListener('mouseover', function() {
-                img.src = newSrc;
-            })
-
-            box.addEventListener('mouseout', function() {
-                img.src = originalsrc;
-            })
+    <script>
+        //BOX1
+        var img = document.getElementById('img1');
+        var box = document.getElementById('box1');
 
 
 
-
-            //BOX2
-            var img2 = document.getElementById('img2');
-            var box2 = document.getElementById('box2');
+        var originalsrc = img.src;
+        var newSrc = '/img/gifs/games-.gif';
 
 
-            var originalsrc2 = img2.src;
-            var newSrc2 = '/img/gifs/academy-.gif';
+        box.addEventListener('mouseover', function() {
+            img.src = newSrc;
+        })
 
-
-            box2.addEventListener('mouseover', function() {
-                img2.src = newSrc2;
-            })
-
-            box2.addEventListener('mouseout', function() {
-                img2.src = originalsrc2;
-            })
+        box.addEventListener('mouseout', function() {
+            img.src = originalsrc;
+        })
 
 
 
 
-
-            //BOX3
-            var img3 = document.getElementById('img3');
-            var box3 = document.getElementById('box3');
-
-
-            var originalsrc3 = img3.src;
-            var newSrc3 = '/img/gifs/classes.gif';
+        //BOX2
+        var img2 = document.getElementById('img2');
+        var box2 = document.getElementById('box2');
 
 
-            box3.addEventListener('mouseover', function() {
-                img3.src = newSrc3;
-            })
-
-            box3.addEventListener('mouseout', function() {
-                img3.src = originalsrc3;
-            })
+        var originalsrc2 = img2.src;
+        var newSrc2 = '/img/gifs/academy-.gif';
 
 
-            //BOX4
-            var img4 = document.getElementById('img4');
-            var box4 = document.getElementById('box4');
+        box2.addEventListener('mouseover', function() {
+            img2.src = newSrc2;
+        })
 
-
-            var originalsrc4 = img4.src;
-            var newSrc4 = '/img/gifs/player-.gif';
-
-
-            box4.addEventListener('mouseover', function() {
-                img4.src = newSrc4;
-            })
-
-            box4.addEventListener('mouseout', function() {
-                img4.src = originalsrc4;
-            })
-
-
-            //BOX5
-            var img5 = document.getElementById('img5');
-            var box5 = document.getElementById('box5');
-
-
-            var originalsrc5 = img5.src;
-            var newSrc5 = '/img/gifs/volleyball-.gif';
-
-
-            box5.addEventListener('mouseover', function() {
-                img5.src = newSrc5;
-            })
-
-            box5.addEventListener('mouseout', function() {
-                img5.src = originalsrc5;
-            })
-
-
-            //BOX3
-            var img6 = document.getElementById('img6');
-            var box6 = document.getElementById('box6');
-
-
-            var originalsrc6 = img6.src;
-            var newSrc6 = '/img/gifs/volleyball-.gif';
-
-
-            box6.addEventListener('mouseover', function() {
-                img6.src = newSrc6;
-            })
-
-            box6.addEventListener('mouseout', function() {
-                img6.src = originalsrc6;
-            })
-        </script>
+        box2.addEventListener('mouseout', function() {
+            img2.src = originalsrc2;
+        })
 
 
 
 
-<script>
-    
-    document.addEventListener("DOMContentLoaded", function() {
-           var search_input = document.getElementById("searchInput");
-           var table2 = document.getElementById("table2");
-           var num_of_rows = table2.getElementsByClassName("myRows");
 
-           search_input.addEventListener('keyup', function(){
-            var search_value = search_input.value.toLowerCase();
-            for(let i = 0; i < num_of_rows.length; i++){
-                var data_cells = num_of_rows[i].getElementsByTagName('h3');
-                let found = false;
+        //BOX3
+        var img3 = document.getElementById('img3');
+        var box3 = document.getElementById('box3');
 
-                for(let j = 0; j < data_cells.length; j++){
-                    var cellText = data_cells[j].textContent.toLowerCase();
-                    if(cellText.includes(search_value)){
-                        found = true;
-                        break;
+
+        var originalsrc3 = img3.src;
+        var newSrc3 = '/img/gifs/classes.gif';
+
+
+        box3.addEventListener('mouseover', function() {
+            img3.src = newSrc3;
+        })
+
+        box3.addEventListener('mouseout', function() {
+            img3.src = originalsrc3;
+        })
+
+
+        //BOX4
+        var img4 = document.getElementById('img4');
+        var box4 = document.getElementById('box4');
+
+
+        var originalsrc4 = img4.src;
+        var newSrc4 = '/img/gifs/player-.gif';
+
+
+        box4.addEventListener('mouseover', function() {
+            img4.src = newSrc4;
+        })
+
+        box4.addEventListener('mouseout', function() {
+            img4.src = originalsrc4;
+        })
+
+
+        //BOX5
+        var img5 = document.getElementById('img5');
+        var box5 = document.getElementById('box5');
+
+
+        var originalsrc5 = img5.src;
+        var newSrc5 = '/img/gifs/volleyball-.gif';
+
+
+        box5.addEventListener('mouseover', function() {
+            img5.src = newSrc5;
+        })
+
+        box5.addEventListener('mouseout', function() {
+            img5.src = originalsrc5;
+        })
+
+
+        //BOX3
+        var img6 = document.getElementById('img6');
+        var box6 = document.getElementById('box6');
+
+
+        var originalsrc6 = img6.src;
+        var newSrc6 = '/img/gifs/volleyball-.gif';
+
+
+        box6.addEventListener('mouseover', function() {
+            img6.src = newSrc6;
+        })
+
+        box6.addEventListener('mouseout', function() {
+            img6.src = originalsrc6;
+        })
+    </script>
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var search_input = document.getElementById("searchInput");
+            var table2 = document.getElementById("table2");
+            var num_of_rows = table2.getElementsByClassName("myRows");
+
+            search_input.addEventListener('keyup', function() {
+                var search_value = search_input.value.toLowerCase();
+                for (let i = 0; i < num_of_rows.length; i++) {
+                    var data_cells = num_of_rows[i].getElementsByTagName('h3');
+                    let found = false;
+
+                    for (let j = 0; j < data_cells.length; j++) {
+                        var cellText = data_cells[j].textContent.toLowerCase();
+                        if (cellText.includes(search_value)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        num_of_rows[i].style.display = "";
+                    } else {
+                        num_of_rows[i].style.display = "none";
                     }
                 }
-                if(found){
-                    num_of_rows[i].style.display = "";
-                } else {
-                    num_of_rows[i].style.display = "none";
-                }
-            }
-           })
+            })
         });
-
-    
     </script>
 
 

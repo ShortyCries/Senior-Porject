@@ -25,41 +25,55 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
 
     <style>
-  .view_user_data {
-    overflow-wrap: break-word; /* Ensures long words break to the next line */
-    word-wrap: break-word; /* Legacy support */
-    word-break: break-word; /* Ensures long words break to the next line */
-    white-space: pre-wrap; /* Preserves whitespace but wraps text */
-  }
+        .view_user_data {
+            overflow-wrap: break-word;
+            /* Ensures long words break to the next line */
+            word-wrap: break-word;
+            /* Legacy support */
+            word-break: break-word;
+            /* Ensures long words break to the next line */
+            white-space: pre-wrap;
+            /* Preserves whitespace but wraps text */
+        }
 
-  .modal-body .container {
-    max-width: 100%; /* Ensures container does not exceed modal width */
-  }
+        .modal-body .container {
+            max-width: 100%;
+            /* Ensures container does not exceed modal width */
+        }
 
-  .info-section {
-    display: flex;
-    flex-direction: row;
-    margin-top: 1rem;
-    padding-bottom: 0.5rem; /* Add some padding at the bottom */
-    border-bottom: 1px solid #ccc; /* Add a bottom border */
-  }
+        .info-section {
+            display: flex;
+            flex-direction: row;
+            margin-top: 1rem;
+            padding-bottom: 0.5rem;
+            /* Add some padding at the bottom */
+            border-bottom: 1px solid #ccc;
+            /* Add a bottom border */
+        }
 
-  .info-section .label {
-    flex: 0 0 auto; /* Label takes only the necessary space */
-    margin-right: 10px; /* Space between label and content */
-    font-weight: bold; /* Bold font for the label */
-  }
+        .info-section .label {
+            flex: 0 0 auto;
+            /* Label takes only the necessary space */
+            margin-right: 10px;
+            /* Space between label and content */
+            font-weight: bold;
+            /* Bold font for the label */
+        }
 
-  .info-section .content {
-    flex: 1 1 auto; /* Content takes the remaining space */
-    word-wrap: break-word; /* Ensure text wraps within the container */
-    white-space: pre-wrap; /* Ensures whitespace is preserved and wraps text */
-  }
+        .info-section .content {
+            flex: 1 1 auto;
+            /* Content takes the remaining space */
+            word-wrap: break-word;
+            /* Ensure text wraps within the container */
+            white-space: pre-wrap;
+            /* Ensures whitespace is preserved and wraps text */
+        }
 
-  .modal-body h6 {
-    margin-bottom: 1rem; /* Add some space between different text elements */
-  }
-</style>
+        .modal-body h6 {
+            margin-bottom: 1rem;
+            /* Add some space between different text elements */
+        }
+    </style>
 
 
 
@@ -142,7 +156,7 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         <div class="container">
 
             <div class="box-container">
-                <a href="coach-games.php" style="text-decoration: none;">
+                <a href="coach-games.php#coach-games" style="text-decoration: none;">
                     <div class="box games-box" id="box1">
                         <div class="img-container">
                             <img class="img" src="/img/games-.png" alt="" id="img1">
@@ -151,7 +165,7 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
                         <p>Games</p>
                     </div>
                 </a>
-                <a href="coach-academies.php" style="text-decoration: none;">
+                <a href="coach-academies.php#coach-academies" style="text-decoration: none;">
                     <div class="box academies-box" id="box2" style="background-color: grey;">
                         <div class="img">
                             <img class="img" src="/img/academy-.png" alt="" id="img2">
@@ -169,7 +183,7 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
                      </div>
                      <p>Class</p>
                  </div> -->
-                <a href="coach-class.php" style="text-decoration: none;">
+                <a href="coach-class.php#coach-class" style="text-decoration: none;">
                     <div class="box" id="box3">
                         <div class="img">
                             <img class="img" src="/img/classes-.png" alt="" id="img3">
@@ -178,7 +192,7 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
                         <p>Class</p>
                     </div>
                 </a>
-                <a href="coach-players.php" style="text-decoration: none;">
+                <a href="coach-players.php#coach-players" style="text-decoration: none;">
                     <div class="box" id="box4">
                         <div class="img">
                             <img class="img" src="/img/player-.png" alt="" id="img4">
@@ -199,122 +213,125 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
 
     <div class="mybackground-img2">
-        <div class="container-Listing">
+        <span id="coach-academies">
+            <!-- Content of the target section -->
+            <span>
+                <div class="container-Listing">
 
-            <h1 class="heading-Listing">Academies</h1>
+                    <h1 class="heading-Listing">Academies</h1>
 
-            <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
-
-
-            <div id="table2" class="box-container-Listing">
-
-                <?php
-
-                    $query1 = "SELECT email, name, foundedIn, description, img  FROM academy";
-                    $result1 = $pdo->query($query1);
-                    $r1 = $result1->rowCount();
+                    <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
 
 
-                    if ($r1 > 0) {
+                    <div id="table2" class="box-container-Listing">
 
-                        foreach ($result1 as $row1) {
+                        <?php
+
+                        $query1 = "SELECT email, name, foundedIn, description, img  FROM academy";
+                        $result1 = $pdo->query($query1);
+                        $r1 = $result1->rowCount();
+
+
+                        if ($r1 > 0) {
+
+                            foreach ($result1 as $row1) {
 
                         ?>
 
 
 
 
-                            <div class="box-Listing myRows">
-                                <div class="image-Listing">
-                                <img src="<?php echo !empty($row[4]) ? $row[4] : 'img/default-user.jpg'; ?>" alt="">
+                                <div class="box-Listing myRows">
+                                    <div class="image-Listing">
+                                        <img src="<?php echo !empty($row1[4]) ? $row1[4] : 'img/default-user.jpg'; ?>" alt="">
+                                    </div>
+                                    <div class="content-Listing">
+
+                                        <h3><?php echo $row1[1] ?></h3>
+
+
+                                        <p class="user_email"><?php echo $row1[0] ?></p>
+
+                                        <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Read More
+                                        </a>
+
+                                        <div class="icons-Listing">
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="content-Listing">
-
-                                    <h3><?php echo $row1[1] ?></h3>
 
 
-                                    <p class="user_email"><?php echo $row1[0] ?></p>
 
-                                    <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Read More
-                                    </a>
 
-                                    <div class="icons-Listing">
 
+                        <?php
+                            }
+                        }
+
+                        ?>
+
+
+
+
+
+                        <!-- READ MORE MODEL -->
+                        <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Academy Info</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="view_user_data">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-                <?php
-                        }
-                    }
-                
-                ?>
-
-
-
-
-
-                <!-- READ MORE MODEL -->
-                <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Academy Info</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <div class="view_user_data">
-
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                            </div>
                         </div>
+
+                        <!-- READ MORE MODEL -->
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
+
+                    <div id="load-more"> load more </div>
+
                 </div>
 
-                <!-- READ MORE MODEL -->
+                <script>
+                    let loadMoreBtn = document.querySelector('#load-more');
+                    let currentItem = 4;
 
+                    loadMoreBtn.onclick = () => {
+                        let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+                        for (var i = currentItem; i < currentItem + 4; i++) {
+                            boxes[i].style.display = 'inline-block';
+                        }
+                        currentItem += 4;
 
-
-
-
-
-
-
-
-
-
-
-            </div>
-
-            <div id="load-more"> load more </div>
-
-        </div>
-
-        <script>
-            let loadMoreBtn = document.querySelector('#load-more');
-            let currentItem = 4;
-
-            loadMoreBtn.onclick = () => {
-                let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
-                for (var i = currentItem; i < currentItem + 4; i++) {
-                    boxes[i].style.display = 'inline-block';
-                }
-                currentItem += 4;
-
-                if (currentItem >= boxes.length) {
-                    loadMoreBtn.style.display = 'none';
-                }
-            }
-        </script>
+                        if (currentItem >= boxes.length) {
+                            loadMoreBtn.style.display = 'none';
+                        }
+                    }
+                </script>
 
 
     </div>
@@ -486,36 +503,33 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         })
     </script>
 
-<script>
-    
-    document.addEventListener("DOMContentLoaded", function() {
-           var search_input = document.getElementById("searchInput");
-           var table2 = document.getElementById("table2");
-           var num_of_rows = table2.getElementsByClassName("myRows");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var search_input = document.getElementById("searchInput");
+            var table2 = document.getElementById("table2");
+            var num_of_rows = table2.getElementsByClassName("myRows");
 
-           search_input.addEventListener('keyup', function(){
-            var search_value = search_input.value.toLowerCase();
-            for(let i = 0; i < num_of_rows.length; i++){
-                var data_cells = num_of_rows[i].getElementsByTagName('h3');
-                let found = false;
+            search_input.addEventListener('keyup', function() {
+                var search_value = search_input.value.toLowerCase();
+                for (let i = 0; i < num_of_rows.length; i++) {
+                    var data_cells = num_of_rows[i].getElementsByTagName('h3');
+                    let found = false;
 
-                for(let j = 0; j < data_cells.length; j++){
-                    var cellText = data_cells[j].textContent.toLowerCase();
-                    if(cellText.includes(search_value)){
-                        found = true;
-                        break;
+                    for (let j = 0; j < data_cells.length; j++) {
+                        var cellText = data_cells[j].textContent.toLowerCase();
+                        if (cellText.includes(search_value)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        num_of_rows[i].style.display = "";
+                    } else {
+                        num_of_rows[i].style.display = "none";
                     }
                 }
-                if(found){
-                    num_of_rows[i].style.display = "";
-                } else {
-                    num_of_rows[i].style.display = "none";
-                }
-            }
-           })
+            })
         });
-
-    
     </script>
 
 
