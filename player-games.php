@@ -545,7 +545,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                   <?php
 
 
-                  $query = "SELECT Eid, Evcourtid, Evname, CRsportname FROM events NATURAL JOIN courts Where Evcourtid = CRid AND playeremail <> 'ahmad@hotmail.com' AND Evstatus = 'booked'";
+                  $query = "SELECT Eid, Evcourtid, Evname, CRsportname FROM events NATURAL JOIN courts Where Evcourtid = CRid AND playeremail <> '$playerEmail' AND Evstatus = 'booked'";
 
                   $result = $pdo->query($query);
 

@@ -13,11 +13,17 @@ if (isset($_GET['EVENTID'])) {
 
     $EVENTID = $_GET['EVENTID'];
 
-    $query = "SELECT name, DOB, Rname, PRstatus, email, PReventid, Evstatus FROM participate NATURAL JOIN role NATURAL JOIN player NATURAL JOIN events WHERE PRplayeremail = email AND PRroleid = Rid AND PReventid = '41' AND PReventid = Eid ";
+    $query = "SELECT name, DOB, Rname, PRstatus, email, PReventid, Evstatus FROM participate NATURAL JOIN role NATURAL JOIN player NATURAL JOIN events WHERE PRplayeremail = email AND PRroleid = Rid AND PReventid = '$EVENTID' AND PReventID = Eid ";
 
     $result = $pdo->query($query);
 
     $r = $result->rowCount();
+
+    $query57 = "SELECT name, DOB, Rname, PRstatus, email, PReventid, PRstatus FROM participate NATURAL JOIN role NATURAL JOIN player NATURAL JOIN events WHERE PRplayeremail = email AND PRroleid = Rid AND PReventid = '$EVENTID' AND PReventID = Eid AND PRstatus = 'invited'";
+
+    $result57 = $pdo->query($query57);
+
+    $r57 = $result57->rowCount();
 }
 
 
@@ -309,6 +315,42 @@ if (isset($_GET['EVENTID3'], $_GET['PEMAIL'], $_GET['removePlayer'])) {
             }
         }
         ?>
+
+
+        <?php
+        for ($i = 0; $i < $r57; $i++) {
+            $row57 = $result57->fetch(PDO::FETCH_NUM);
+
+            $dateOfBirth = $row57[1];
+            $diff = date_diff(date_create($dateOfBirth), date_create($currentDate));
+
+
+        ?>
+            <tr>
+                <td style="background-color: #a9a9a9 !important;"><?php echo $row57[0] ?></td>
+                <td style="background-color: #a9a9a9 !important;"><?php echo $diff->format('%y') ?></td>
+                <td style="background-color: #a9a9a9 !important;"><?php echo $row57[2] ?></td>
+                <td style="background-color: #a9a9a9 !important;"><a href="#" class="btn btn-success" style="background-color: #a9a9a9; color: #808080; pointer-events: none;">Accept</a></td>
+                <td style="background-color: #a9a9a9 !important;"> <a href="event-players.php?EVENTID3=<?php echo $row57[5] ?>&PEMAIL=<?php echo $row57[4] ?>&removePlayer=true" class="btn btn-danger">Remove</a></td>
+                <td style="background-color: #a9a9a9 !important;"><?php echo $row57[6] ?></td>
+               
+            </tr>
+
+        <?php
+        }
+        ?>
+
+
+
+
+
+
+
+
+
+
+
+
     </tbody>
 
 

@@ -4,7 +4,7 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $playerEmail = $_SESSION['email'];
 
-$query = "SELECT name, email, DOB, PLimg description FROM player ";
+$query = "SELECT name, email, DOB, PLimg description FROM player WHERE email <> '$playerEmail' ";
 
 $result = $pdo->query($query);
 
@@ -229,13 +229,38 @@ $r = $result->rowCount();
     <span id="player-players">
       <!-- Content of the target section -->
       <span>
+
         <div class="container-Listing">
+
+
 
           <h1 class="heading-Listing">Players</h1>
 
           <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
 
+          <?php
+
+          if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+
+
+          ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <?php echo $_SESSION['status']; ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+          <?php
+            unset($_SESSION['status']);
+          }
+
+
+
+
+          ?>
+
           <div id="table2" class="box-container-Listing">
+
+
 
 
 
@@ -258,6 +283,10 @@ $r = $result->rowCount();
 
                   <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Read More
+                  </a>
+
+                  <a href="#" type="button" class="btn btn-warning Invite_Player">
+                    Invite
                   </a>
 
                   <div class="icons-Listing">
@@ -300,7 +329,50 @@ $r = $result->rowCount();
 
 
 
+            <div class="modal fade" id="viewinvitemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <form action="event-invite.php" method="POST">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="myheader"></h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <label>Choose Event</label>
+                      <select id="eventSelect" name="eventID" class="form-select" required>
+                        <option selected disabled value="">Choose...</option>
+                        <?php
+                        $query1 = "SELECT Eid, Evname From events where playeremail = '$playerEmail'";
 
+                        $result1 = $pdo->query($query1);
+
+                        $r1 = $result1->rowCount();
+
+                        for ($i = 0; $i < $r1; $i++) {
+                          $row1 = $result1->fetch(PDO::FETCH_NUM);
+
+                          echo "<option value=\"$row1[0]\"> $row1[1]</option>";
+                        }
+                        ?>
+                      </select>
+
+                      <select id="roleSelect" name="roleID" class="form-select" required>
+                        <option selected disabled value="">Choose...</option>
+                      </select>
+
+                      <input type="hidden" id="dataInput" name="playeremail" value="">
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Invite</button>
+                    </div>
+
+
+                  </form>
+                </div>
+              </div>
+            </div>
 
 
 
@@ -538,18 +610,42 @@ $r = $result->rowCount();
 
         console.log(user_email);
 
+
+        $('#dataInput').val(user_email);
+
+
+        $('#viewinvitemodal').modal('show');
+
+
+
+
+
+      });
+
+
+    });
+  </script>
+
+
+  <script>
+    $(document).ready(function() {
+
+      $('#eventSelect').change(function(e) {
+        e.preventDefault();
+
+        var eventID = $('#eventSelect').val();
+
+        console.log(eventID);
+
         $.ajax({
           method: "POST",
-          url: "player-info.php",
+          url: "invite-role-info.php",
           data: {
-            'click_invite_btn': true,
-            'player_email': user_email,
+            'eventID': eventID,
           },
           success: function(response) {
 
-            $('#myheader').html(response);
-            $('#viewinvitemodal').modal('show');
-
+            $('#roleSelect').html(response);
 
 
           }
@@ -563,24 +659,6 @@ $r = $result->rowCount();
   </script>
 
 
-  <script>
-    function getdata() {
-      // Get the element by ID
-
-      setTimeout(function() {
-
-        var element = document.getElementById('myheader');
-
-
-        var innerHTMLContent = element.innerHTML;
-        console.log("Inner HTML Content:", innerHTMLContent);
-
-
-        document.getElementById('dataInput').value = innerHTMLContent;
-      }, 100);
-
-    }
-  </script>
 
 
 
