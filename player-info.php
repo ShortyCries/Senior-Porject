@@ -45,8 +45,9 @@ if (isset($_POST['click_readmore_btn'])) {
         echo "<div class=\"info-section\"><span class=\"label\">Email:</span><span class=\"content\">" . htmlspecialchars($row[1], ENT_QUOTES, 'UTF-8') . "</span></div>";
         echo "<div class=\"info-section\"><span class=\"label\">Phone:</span><span class=\"content\">" . htmlspecialchars($row[4], ENT_QUOTES, 'UTF-8') . "</span></div>";
     }
-
+    if(isset($row2[0])){
     echo "<div class=\"info-section\"><span class=\"label\">Sport Speciality:</span><span class=\"content\">" . htmlspecialchars($row2[1], ENT_QUOTES, 'UTF-8') . "(" . htmlspecialchars($row2[0], ENT_QUOTES, 'UTF-8') . ")" . "</span></div>";
+}
     echo "</div>";
 }
 
