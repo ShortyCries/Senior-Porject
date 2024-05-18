@@ -4,7 +4,7 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $playerEmail = $_SESSION['email'];
 
-$query = "SELECT name, email, DOB, description FROM player ";
+$query = "SELECT name, email, DOB, PLimg description FROM player ";
 
 $result = $pdo->query($query);
 
@@ -244,7 +244,7 @@ $r = $result->rowCount();
 
           <div class="box-Listing myRows">
             <div class="image-Listing">
-              <img src="img/default-user.jpg" alt="">
+              <img src="<?php echo !empty($row[3]) ? $row[3] : 'img/default-user.jpg'; ?>" alt="">
             </div>
             <div class="content-Listing">
 

@@ -4,7 +4,7 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
 
-$query = "SELECT name, email FROM academy ";
+$query = "SELECT name, email, img FROM academy ";
 
 $result = $pdo->query($query);
 
@@ -247,7 +247,7 @@ $r = $result->rowCount();
 
           <div class="box-Listing myRows">
             <div class="image-Listing">
-              <img src="img/default-user.jpg" alt="">
+              <img src="<?php echo !empty($row[2]) ? $row[2] : 'img/default-user.jpg'; ?>" alt="">
             </div>
             <div class="content-Listing">
 

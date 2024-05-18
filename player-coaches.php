@@ -6,7 +6,7 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $playerEmail = $_SESSION['email'];
 
 
-$query = "SELECT name, email FROM coach";
+$query = "SELECT name, email, COimg FROM coach";
 
 $result = $pdo->query($query);
 
@@ -250,7 +250,7 @@ $r = $result->rowCount();
 
           <div class="box-Listing myRows">
             <div class="image-Listing">
-              <img src="img/default-user.jpg" alt="">
+              <img src="<?php echo !empty($row[2]) ? $row[2] : 'img/default-user.jpg'; ?>" alt="">
             </div>
             <div class="content-Listing">
 
