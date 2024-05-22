@@ -35,6 +35,57 @@ $r = $result->rowCount();
 
 
 
+    <style>
+        .view_schedule_data {
+            overflow-wrap: break-word;
+            /* Ensures long words break to the next line */
+            word-wrap: break-word;
+            /* Legacy support */
+            word-break: break-word;
+            /* Ensures long words break to the next line */
+            white-space: pre-wrap;
+            /* Preserves whitespace but wraps text */
+        }
+
+        .modal-body .container {
+            max-width: 100%;
+            /* Ensures container does not exceed modal width */
+        }
+
+        .info-section {
+            display: flex;
+            flex-direction: row;
+            margin-top: 1rem;
+            padding-bottom: 0.5rem;
+            /* Add some padding at the bottom */
+            border-bottom: 1px solid #ccc;
+            /* Add a bottom border */
+        }
+
+        .info-section .label {
+            flex: 0 0 auto;
+            /* Label takes only the necessary space */
+            margin-right: 10px;
+            /* Space between label and content */
+            font-weight: bold;
+            /* Bold font for the label */
+        }
+
+        .info-section .content {
+            flex: 1 1 auto;
+            /* Content takes the remaining space */
+            word-wrap: break-word;
+            /* Ensure text wraps within the container */
+            white-space: pre-wrap;
+            /* Ensures whitespace is preserved and wraps text */
+        }
+
+        .modal-body h6 {
+            margin-bottom: 1rem;
+            /* Add some space between different text elements */
+        }
+    </style>
+
 
     <script type="application/ld+json">
         {
@@ -150,43 +201,43 @@ $r = $result->rowCount();
                 <a href="academy-Games.php#academy-games" style="text-decoration: none;">
                     <div class="box" id="box3">
                         <div class=" img">
-                        <img class="img" src="/img/games-.png" alt="" id="img3">
+                            <img class="img" src="/img/games-.png" alt="" id="img3">
 
+                        </div>
+                        <p>Games</p>
                     </div>
-                    <p>Games</p>
+                </a>
+                <a href="academy-Courts.php#academy-courts" style="text-decoration: none;">
+                    <div class="box" id="box4" style="background-color: grey;">
+                        <div class="img">
+                            <img class="img" src="/img/court.png" alt="" id="img4">
+
+                        </div>
+                        <p>Courts</p>
+                    </div>
+                </a>
+                <a href="academy-Players.php#academy-players" style="text-decoration: none;">
+                    <div class="box" id="box5">
+                        <div class="img">
+                            <img class="img" src="/img/player-.png" alt="" id="img5">
+
+                        </div>
+                        <p>Players</p>
+                    </div>
+                </a>
+                <a href="academy-Academies.php#academy-academies" style="text-decoration: none;">
+                    <div class="box" id="box6">
+                        <div class="img">
+                            <img class="img" src="/img/academy-.png" alt="" id="img6">
+
+                        </div>
+                        <p>Academies</p>
+                    </div>
+                </a>
+
             </div>
-            </a>
-            <a href="academy-Courts.php#academy-courts" style="text-decoration: none;">
-                <div class="box" id="box4" style="background-color: grey;">
-                    <div class="img">
-                        <img class="img" src="/img/court.png" alt="" id="img4">
-
-                    </div>
-                    <p>Courts</p>
-                </div>
-            </a>
-            <a href="academy-Players.php#academy-players" style="text-decoration: none;">
-                <div class="box" id="box5">
-                    <div class="img">
-                        <img class="img" src="/img/player-.png" alt="" id="img5">
-
-                    </div>
-                    <p>Players</p>
-                </div>
-            </a>
-            <a href="academy-Academies.php#academy-academies" style="text-decoration: none;">
-                <div class="box" id="box6">
-                    <div class="img">
-                        <img class="img" src="/img/academy-.png" alt="" id="img6">
-
-                    </div>
-                    <p>Academies</p>
-                </div>
-            </a>
 
         </div>
-
-    </div>
 
     </div>
 
@@ -236,7 +287,8 @@ $r = $result->rowCount();
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Sport</th>
                                                     <th scope="col">Capacity</th>
-                                                    <th scope="col">View</th>
+                                                    <th scope="col">Set</th>
+                                                    <th scope="col">Schedule</th>
                                                     <th scope="col">Remove</th>
                                                 </tr>
                                             </thead>
@@ -259,6 +311,9 @@ $r = $result->rowCount();
                                                         <td><?php echo  $row3[3] ?></td>
                                                         <td> <a href="#" type="button" class="btn btn-primary set_schedule" data-bs-toggle="modal" data-bs-target="#setSchedulemodal">
                                                                 Set Schedule
+                                                            </a> </td>
+                                                        <td> <a href="#" type="button" class="btn btn-primary check_schedule">
+                                                                Schedule
                                                             </a> </td>
                                                         <td> <a href="#" class="btn btn-danger">Remove</a> </td>
                                                     </tr>
@@ -1057,10 +1112,60 @@ $r = $result->rowCount();
     </div>
 
 
+    <div class="modal fade" id="viewschedulemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Schedule</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="view_schedule_data">
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
 
+
+    <script>
+        $(document).ready(function() {
+
+
+            $('.check_schedule').click(function(e) {
+                e.preventDefault();
+                console.log('hello');
+                var court_id = $(this).closest('tr').find('#mycourtid').text();
+                console.log(court_id);
+
+
+                $.ajax({
+                    method: "POST",
+                    url: "check-schedule.php",
+                    data: {
+                        'courtID': court_id,
+                    },
+                    success: function(response) {
+
+                        $('.view_schedule_data').html(response);
+                        $('#viewschedulemodal').modal('show');
+
+                    }
+                });
+
+
+            });
+
+        });
+    </script>
 
 
 
