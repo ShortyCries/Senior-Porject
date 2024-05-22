@@ -270,7 +270,7 @@ $playerEmail = $_SESSION['email'];
                     ?>
                       <tr class="myRows">
                         <td class="myclassid"><?php echo  $row4[0] ?></td>
-                        <td><?php echo  $row3[4] ?></td>
+                        <td><?php echo  $row4[4] ?></td>
                         <td><?php echo  $row4[1] ?></td>
                         <td><?php echo  $row4[2] ?></td>
                         <td><?php echo  $row4[3] ?></td>
