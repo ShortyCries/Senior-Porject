@@ -4,6 +4,27 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $academyEmail = $_SESSION['email'];
 
+
+
+if(isset($_GET['cancelClassId'], $_GET['removeClass'])){
+
+
+
+    $classID = $_GET['cancelClassId'];
+
+    $deleteClass = "DELETE FROM class WHERE id = '$classID'";
+
+    $result = $pdo->exec($deleteClass);
+
+}
+
+
+
+
+
+
+
+
 $query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
 
 $result = $pdo->query($query);
@@ -254,7 +275,7 @@ $r = $result->rowCount();
                                                         <td><?php echo $row3[4] ?></td>
                                                         <td><?php echo $row3[5] ?></td>
                                                         <td><a href="class-info.php?class_id=<?php echo $row3[0]; ?>" class="btn btn-primary view_class">View Class</a></td>
-                                                        <td> <a href="#" class="btn btn-danger">Remove</a> </td>
+                                                        <td> <a href="academy-Classes.php?cancelClassId=<?php echo $row3[0] ?>&removeClass=true" class="btn btn-danger">Remove</a> </td>
                                                     </tr>
                                                 <?php
                                                 }

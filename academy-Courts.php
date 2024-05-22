@@ -4,6 +4,21 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $academyEmail = $_SESSION['email'];
 
+
+if(isset($_GET['courtid'], $_GET['removeCourt'])){
+
+   
+
+    $courtID = $_GET['courtid'];
+
+    $deleteCourt = "DELETE FROM courts WHERE CRid = '$courtID'";
+
+    $result = $pdo->exec($deleteCourt);
+
+}
+
+
+
 $query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
 
 $result = $pdo->query($query);
@@ -315,7 +330,7 @@ $r = $result->rowCount();
                                                         <td> <a href="#" type="button" class="btn btn-primary check_schedule">
                                                                 Schedule
                                                             </a> </td>
-                                                        <td> <a href="#" class="btn btn-danger">Remove</a> </td>
+                                                        <td> <a href="academy-Courts.php?courtid=<?php echo $row3[0] ?>&removeCourt=true" class="btn btn-danger">Remove</a> </td>
                                                     </tr>
                                                 <?php
                                                 }
