@@ -355,7 +355,7 @@ $r = $result->rowCount();
                         }
                         ?>
                       </select>
-
+                      <label>Choose role</label>
                       <select id="roleSelect" name="roleID" class="form-select" required>
                         <option selected disabled value="">Choose...</option>
                       </select>
