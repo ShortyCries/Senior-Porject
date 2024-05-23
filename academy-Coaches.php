@@ -259,6 +259,29 @@ $r = $result->rowCount();
                 <div class="container">
                     <div class="row mt-5">
                         <div class="col">
+
+                            <?php
+
+                            if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+
+
+                            ?>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <?php echo $_SESSION['status']; ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+
+                            <?php
+                                unset($_SESSION['status']);
+                            }
+
+
+
+
+                            ?>
+
+
+
                             <div class="card mt-5">
 
                                 <div class="card-header">
@@ -297,7 +320,7 @@ $r = $result->rowCount();
                                             echo "<td>  $age->y </td> ";
                                             echo "<td>  $row[3] </td> ";
 
-                                            echo "<td> <a href='academy-Coaches.php?email={$row[1]}'  class='btn btn-danger'> Remove </a> </td> ";
+                                            echo "<td> <a href='academy-Coaches.php?email={$row[1]}' onclick=\"return confirm('Are you sure you want to remove this coach?');\"  class='btn btn-danger'> Remove </a> </td> ";
                                             echo "</tr>";
                                         }
                                         ?>

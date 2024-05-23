@@ -275,7 +275,7 @@ $r = $result->rowCount();
                                                         <td><?php echo $row3[4] ?></td>
                                                         <td><?php echo $row3[5] ?></td>
                                                         <td><a href="class-info.php?class_id=<?php echo $row3[0]; ?>" class="btn btn-primary view_class">View Class</a></td>
-                                                        <td> <a href="academy-Classes.php?cancelClassId=<?php echo $row3[0] ?>&removeClass=true" class="btn btn-danger">Remove</a> </td>
+                                                        <td> <a href="academy-Classes.php?cancelClassId=<?php echo $row3[0] ?>&removeClass=true" onclick="return confirm('Are you sure you want to remove this class?');" class="btn btn-danger">Remove</a> </td>
                                                     </tr>
                                                 <?php
                                                 }

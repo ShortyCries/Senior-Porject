@@ -6,13 +6,30 @@ $academyEmail = $_SESSION['email'];
 
 
 
-if(isset($_GET['EVENTID'])){
+
+
+
+if (isset($_GET['MatchID'], $_GET['cancelMatch'])) {
+
+    $MATCHID = $_GET['MatchID'];
+    $delete1 = "DELETE FROM matchs WHERE Mid = '$MATCHID'";
+    $result1 = $pdo->exec($delete1);
+
+
+    header("location:academy-Games.php");
+}
+
+
+
+
+
+if (isset($_GET['EVENTID'])) {
 
     $EVENTID = $_GET['EVENTID'];
     $delete = "DELETE FROM events WHERE Eid = '$EVENTID'";
     $result = $pdo->exec($delete);
 
-
+    header("location:academy-Games.php");
 }
 
 
@@ -255,6 +272,7 @@ if(isset($_GET['EVENTID'])){
                                                             <th scope="col">T2 score</th>
                                                             <th scope="col">Update</th>
                                                             <th scope="col">Finish</th>
+                                                            <th scope="col">Cancel</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -324,10 +342,11 @@ if(isset($_GET['EVENTID'])){
 
                                                                 if ($row3[8] == 'booked' && ($row3[4] <= $string && $formatted_time >= $mytime[0])) {
                                                                 ?>
+
                                                                     <form method="POST" action="update-match-score.php">
                                                                         <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
-                                                                        <td><input name="team1Score" type="number" value="<?php echo $row3[6] ?>" style="width: 50px;" required> </td>
-                                                                        <td><input name="team2Score" type="number" value="<?php echo $row3[7] ?>" style="width: 50px;" required></td>
+                                                                        <td><input name="team1Score" style="border: solid; width: 50px;" type="number" value="<?php echo $row3[6] ?>" style="width: 50px;" required> </td>
+                                                                        <td><input name="team2Score" style="border: solid; width: 50px;" type="number" value="<?php echo $row3[7] ?>" style="width: 50px;" required></td>
                                                                         <td><button type="submit" href="#" class='btn btn-primary'>Update</button></td>
                                                                     </form>
                                                                     <form method="POST" action="finish-match.php">
@@ -336,12 +355,15 @@ if(isset($_GET['EVENTID'])){
                                                                         <td><button type="submit" href="#" class='btn btn-success'>Finish</button></td>
 
                                                                     </form>
+
+                                                                    <td><a type="submit" href="#" style="background-color: #a9a9a9; color: #808080; pointer-events: none;" class='btn btn-danger'>Cancel</a></td>
+
                                                                 <?php
                                                                 } else if ($row3[8] == 'finished') {
                                                                 ?>
                                                                     <td><?php echo $row3[6] ?></td>
                                                                     <td><?php echo $row3[7] ?></td>
-                                                                    <td colspan="2" style="background-color: #ff6666;" class="text-center">Finished</td>
+                                                                    <td colspan="3" style="background-color: #ff6666;" class="text-center">Finished</td>
                                                                 <?php
                                                                 } else {
 
@@ -350,6 +372,7 @@ if(isset($_GET['EVENTID'])){
                                                                     <td><?php echo $row3[7] ?></td>
                                                                     <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-primary'>Update</button></td>
                                                                     <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-success'>Finish</button></td>
+                                                                    <td><a type="submit" href="academy-Games.php?MatchID=<?php echo $row3[0] ?>&cancelMatch=true" onclick="return confirm('Are you sure you want to cancel this match?');" class='btn btn-danger'>Cancel</a></td>
                                                                 <?php
                                                                 }
                                                                 ?>
@@ -424,7 +447,7 @@ if(isset($_GET['EVENTID'])){
                                                             <th scope="col">T2 Score</th>
                                                             <th scope="col">Update</th>
                                                             <th scope="col">Finish</th>
-
+                                                            <th scope="col">Cancel</th>
 
                                                         </tr>
                                                     </thead>
@@ -479,13 +502,14 @@ if(isset($_GET['EVENTID'])){
                                                                         <input type="hidden" name="MATCHID" value=<?php echo $row3[0] ?>>
                                                                         <td><button type="submit" href="#" class='btn btn-primary'>Finish</button></td>
                                                                     </form>
+                                                                    <td><a type="submit" href="#" style="background-color: #a9a9a9; color: #808080; pointer-events: none;" class='btn btn-danger'>Cancel</a></td>
                                                                 <?php
                                                                 } else if ($row3[8] == 'finished') {
 
                                                                 ?>
                                                                     <td><?php echo $row3[6] ?></td>
                                                                     <td><?php echo $row3[7] ?></td>
-                                                                    <td colspan="2" style="background-color: #ff6666;" class="text-center">Finished</td>
+                                                                    <td colspan="3" style="background-color: #ff6666;" class="text-center">Finished</td>
                                                                 <?php
                                                                 } else {
                                                                 ?>
@@ -493,6 +517,7 @@ if(isset($_GET['EVENTID'])){
                                                                     <td><?php echo $row3[7] ?></td>
                                                                     <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-primary'>Update</button></td>
                                                                     <td><button style="background-color: #a9a9a9; color: #808080; pointer-events: none;" type="submit" href="#" class='btn btn-success'>Finish</button></td>
+                                                                    <td><a type="submit" href="academy-Games.php?MatchID=<?php echo $row3[0] ?>&cancelMatch=true" onclick="return confirm('Are you sure you want to cancel this match?');" class='btn btn-danger'>Cancel</a></td>
 
                                                                 <?php
 
@@ -527,9 +552,9 @@ if(isset($_GET['EVENTID'])){
                                                                 <td><?php echo $row44[6] ?></td>
                                                                 <td><?php echo $row44[7] ?></td>
                                                                 <?php if ($row44[8] == "finished") { ?>
-                                                                    <td colspan="2" class="text-center" style="background-color: #ff6666;">Finished</td>
+                                                                    <td colspan="3" class="text-center" style="background-color: #ff6666;">Finished</td>
                                                                 <?php } else {   ?>
-                                                                    <td colspan="2" class="text-center" style="background-color: #e6f7ff;">Joined</td>
+                                                                    <td colspan="3" class="text-center" style="background-color: #e6f7ff;">Joined</td>
                                                                 <?php } ?>
                                                             </tr>
 
@@ -608,7 +633,7 @@ if(isset($_GET['EVENTID'])){
                                                                 ?>
 
 
-                                                                    <td><a type="submit" href="academy-Games.php?EVENTID=<?php echo $row3[0] ?>&cancelEvent=true" class='btn btn-danger'>Cancel</a></td>
+                                                                    <td><a type="submit" href="academy-Games.php?EVENTID=<?php echo $row3[0] ?>&cancelEvent=true" onclick="return confirm('Are you sure you want to cancel this event?');" class='btn btn-danger'>Cancel</a></td>
 
                                                                 <?php
                                                                 } else if ($row3[7] == 'finished' || $row3[7] == 'ongoing') {

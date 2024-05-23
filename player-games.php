@@ -74,11 +74,12 @@ if (isset($_GET['decEventID'], $_GET['decEvent'])) {
 
   $decEventID = $_GET['decEventID'];
 
- 
-
   $delete777 = "DELETE FROM participate WHERE PReventid = '$decEventID' AND PRplayeremail = '$playerEmail'";
 
   $result777 = $pdo->exec($delete777);
+  
+
+
 }
 
 
@@ -460,7 +461,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                                   <?php if ($row3[5] === "finished" || $row3[5] === "ongoing") : ?>
                                     <a class='btn btn-danger' style="background-color: #e0e0e0; color: #808080;  pointer-events: none;">Cancel</a>
                                   <?php else : ?>
-                                    <a href="player-games.php?EVENTID=<?php echo $row3[1] ?>&cancelEvent=true" class='btn btn-danger'>Cancel</a>
+                                    <a href="player-games.php?EVENTID=<?php echo $row3[1] ?>&cancelEvent=true" onclick="return confirm('Are you sure you want to cancel this event?');" class='btn btn-danger'>Cancel</a>
                                   <?php endif; ?>
                                 </td>
                               </tr>

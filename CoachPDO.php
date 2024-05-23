@@ -15,7 +15,7 @@ try {
         echo "<h1>  Hello this is checking if i am  actually a coach </h1> <br>";
 
 
-        $hashpw=md5($password);
+        $hashpw = md5($password);
 
 
         $query = "INSERT INTO login VALUES('$email','$name','$hashpw','coach' ,'active')";
@@ -29,8 +29,24 @@ try {
         $query2 = "INSERT INTO trains VALUES('$email','$academyEmail', '$sport'  )";
 
         $result2 = $pdo->exec($query2);
-        header("location:academy-Coaches.php");
+
+
+
+
+
+
+
+
+        if ($result) {
+            $_SESSION['status'] = "Coach added successfully";
+            header("location:academy-Coaches.php");
+        } else {
+            $_SESSION['status'] = "Coach creation was unsuccessful";
+            header("location:academy-Coaches.php");
+        }
     }
 } catch (PDOException $e) {
-    die($e->getMessage());
+
+    $_SESSION['status'] = "Coach email used already!";
+    header("location:academy-Coaches.php");
 }

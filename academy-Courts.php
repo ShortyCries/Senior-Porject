@@ -19,14 +19,6 @@ if(isset($_GET['courtid'], $_GET['removeCourt'])){
 
 
 
-$query = "SELECT name, email, DOB FROM coach NATURAL JOIN trains WHERE email = coachemail AND academyemail = '$academyEmail' ";
-
-$result = $pdo->query($query);
-
-$r = $result->rowCount();
-
-
-
 ?>
 
 
@@ -300,6 +292,7 @@ $r = $result->rowCount();
                                                 <tr>
                                                     <th scope="col">Id</th>
                                                     <th scope="col">Name</th>
+                                                    <th scope="col">City</th>
                                                     <th scope="col">Sport</th>
                                                     <th scope="col">Capacity</th>
                                                     <th scope="col">Set</th>
@@ -311,7 +304,7 @@ $r = $result->rowCount();
 
                                                 <?php
 
-                                                $query3 =  "SELECT CRid, CRname, CRsportname, CRmaxcapacity FROM courts WHERE CRacademyemail = '$academyEmail'";
+                                                $query3 =  "SELECT CRid, CRname, CRsportname, CRmaxcapacity, CRlocation FROM courts WHERE CRacademyemail = '$academyEmail'";
                                                 $result3 = $pdo->query($query3);
 
                                                 $r3 = $result3->rowCount();
@@ -322,6 +315,7 @@ $r = $result->rowCount();
                                                     <tr class="myRows">
                                                         <td id="mycourtid"><?php echo  $row3[0] ?></td>
                                                         <td><?php echo  $row3[1] ?></td>
+                                                        <td><?php echo  $row3[4] ?></td>
                                                         <td><?php echo  $row3[2] ?></td>
                                                         <td><?php echo  $row3[3] ?></td>
                                                         <td> <a href="#" type="button" class="btn btn-primary set_schedule" data-bs-toggle="modal" data-bs-target="#setSchedulemodal">
@@ -330,7 +324,7 @@ $r = $result->rowCount();
                                                         <td> <a href="#" type="button" class="btn btn-primary check_schedule">
                                                                 Schedule
                                                             </a> </td>
-                                                        <td> <a href="academy-Courts.php?courtid=<?php echo $row3[0] ?>&removeCourt=true" class="btn btn-danger">Remove</a> </td>
+                                                        <td> <a href="academy-Courts.php?courtid=<?php echo $row3[0] ?>&removeCourt=true" onclick="return confirm('Are you sure you want to remove this court?');" class="btn btn-danger">Remove</a> </td>
                                                     </tr>
                                                 <?php
                                                 }
