@@ -35,7 +35,7 @@ if (isset($_POST['courtId'], $_POST['dateSelected'])) {
 
     $non_equal_strings = array();
 
-    $query = "SELECT Mtime AS Timing FROM Matchs WHERE Mcourtid = '$courtId' AND Mdate = '$dateSelected' UNION SELECT Evtime AS Timing FROM Events WHERE Evcourtid = '$courtId' AND Evdate = '$dateSelected'";
+    $query = "SELECT Mtime AS Timing FROM Matchs WHERE Mcourtid = '$courtId' AND Mdate = '$dateSelected' AND Mstatus = 'booked'  UNION SELECT Evtime AS Timing FROM Events WHERE Evcourtid = '$courtId' AND Evdate = '$dateSelected' AND Evstatus = 'booked'";
 
     $result = $pdo->query($query);
 
