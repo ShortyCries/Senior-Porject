@@ -34,7 +34,8 @@ try {
        
     }
 } catch (PDOException $e) {
-    die($e->getMessage());
+    $_SESSION['status'] = "Match creation was unsuccessful";
+    header("location:academy-Games.php");
 }
 
 

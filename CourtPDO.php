@@ -47,15 +47,15 @@ try {
         $result2 = $pdo->query($query2);
         $r2 = $result2->fetch(PDO::FETCH_COLUMN);
         $r2;
-        
-        
-        
+
+
+
         for ($i = 0; $i < count($weekDays); $i++) {
             $query3 = "INSERT INTO Schedule VALUES('', '$r2', '$weekDays[$i]', NULL)";
             $result3 = $pdo->exec($query3);
         }
-        
-        
+
+
 
         if ($result) {
             $_SESSION['status'] = "Court added successfully";
@@ -66,5 +66,9 @@ try {
         }
     }
 } catch (PDOException $e) {
-    die($e->getMessage());
+    $_SESSION['status'] = "Court addition was unsuccessful";
+    header("location:academy-Courts.php");
+
+    
+    
 }

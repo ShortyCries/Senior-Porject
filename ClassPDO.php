@@ -145,5 +145,7 @@ try {
         }
     }
 } catch (PDOException $e) {
-    die($e->getMessage());
+    $_SESSION['status'] = "Class creation was unsuccessful";
+    header("location:academy-Classes.php");
+    
 }

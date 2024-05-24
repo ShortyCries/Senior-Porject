@@ -47,6 +47,6 @@ try {
     }
 } catch (PDOException $e) {
 
-    $_SESSION['status'] = "Coach email used already!";
+    $_SESSION['status'] = "Coach email used already or Invalid credentials";
     header("location:academy-Coaches.php");
 }

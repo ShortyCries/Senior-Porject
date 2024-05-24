@@ -164,5 +164,7 @@ try {
         }
     }
 } catch (PDOException $e) {
-    die($e->getMessage());
+    $_SESSION['status'] = "Event creation was unsuccessful";
+    header("location:player-games.php");
+    
 }
