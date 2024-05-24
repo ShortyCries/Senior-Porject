@@ -233,7 +233,7 @@ $academyEmail = $_SESSION['email'];
             <span>
                 <div class="container-Listing">
 
-                    <h1 class="heading-Listing">Players</h1>
+                    <h1 class="heading-Listing" style="color: green;">Players</h1>
 
 
 
@@ -395,6 +395,11 @@ $academyEmail = $_SESSION['email'];
                 </div>
 
     </div>
+
+    <footer class="green-footer">
+    
+    </footer>
+
 
 
 

@@ -86,8 +86,12 @@
     
     background-repeat: no-repeat;
    
-    
-    background-image: url('/img/test1.jpg');
+    background: linear-gradient(145deg, #f3e6e6, #ffffff); /* Subtle gradient */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+                0 2px 4px rgba(0, 0, 0, 0.1);
+    /* background-image: url('/img/test1.jpg'); */
 }
 
 
@@ -129,3 +133,12 @@
 
 
 
+.green-footer {
+    background-color: #08790c; /* Green background */
+    color: white; /* White text */
+    text-align: center; /* Centered text */
+    padding: 20px; /* Padding around the content */
+    height: 50px;
+    width: 100%; /* Full width */
+    bottom: 0; /* Positions it at the bottom */
+  }

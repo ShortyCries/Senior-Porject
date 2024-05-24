@@ -320,6 +320,10 @@ $r = $result->rowCount();
 
 
     </div>
+    <footer class="green-footer">
+    
+    </footer>
+
 
 
     <!-- Modal -->

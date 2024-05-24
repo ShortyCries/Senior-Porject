@@ -678,7 +678,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
 
                     <div class="showRoleForm text-center">
 
-                  
+
                     </div>
 
 
@@ -823,10 +823,10 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                   <div class="view_user_data">
 
 
-              
+
                   </div>
 
-                  
+
 
                 </div>
                 <div class="modal-footer">
@@ -865,200 +865,205 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
             </div>
           </div>
 
+        </div>
+  </div>
+  <footer class="green-footer">
+    
+  </footer>
 
 
-          <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-          <script>
-            document.addEventListener("DOMContentLoaded", function() {
-              var search_input = document.getElementById("searchInput");
-              var table2 = document.getElementById("table2");
-              var num_of_rows = table2.getElementsByClassName("myRows");
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var search_input = document.getElementById("searchInput");
+      var table2 = document.getElementById("table2");
+      var num_of_rows = table2.getElementsByClassName("myRows");
 
-              search_input.addEventListener('keyup', function() {
-                var search_value = search_input.value.toLowerCase();
-                for (let i = 0; i < num_of_rows.length; i++) {
-                  var data_cells = num_of_rows[i].getElementsByTagName('td');
-                  let found = false;
+      search_input.addEventListener('keyup', function() {
+        var search_value = search_input.value.toLowerCase();
+        for (let i = 0; i < num_of_rows.length; i++) {
+          var data_cells = num_of_rows[i].getElementsByTagName('td');
+          let found = false;
 
-                  for (let j = 0; j < data_cells.length; j++) {
-                    var cellText = data_cells[j].textContent.toLowerCase();
-                    if (cellText.includes(search_value)) {
-                      found = true;
-                      break;
-                    }
-                  }
-                  if (found) {
-                    num_of_rows[i].style.display = "";
-                  } else {
-                    num_of_rows[i].style.display = "none";
-                  }
-                }
-              })
-            });
-          </script>
-
-
-          <script>
-            document.addEventListener("DOMContentLoaded", function() {
-              var search_input = document.getElementById("searchInput1");
-              var table2 = document.getElementById("table1");
-              var num_of_rows = table2.getElementsByClassName("myRows1");
-
-              search_input.addEventListener('keyup', function() {
-                var search_value = search_input.value.toLowerCase();
-                for (let i = 0; i < num_of_rows.length; i++) {
-                  var data_cells = num_of_rows[i].getElementsByTagName('h3');
-                  let found = false;
-
-                  for (let j = 0; j < data_cells.length; j++) {
-                    var cellText = data_cells[j].textContent.toLowerCase();
-                    if (cellText.includes(search_value)) {
-                      found = true;
-                      break;
-                    }
-                  }
-                  if (found) {
-                    num_of_rows[i].style.display = "";
-                  } else {
-                    num_of_rows[i].style.display = "none";
-                  }
-                }
-              })
-            });
-          </script>
-
-
-
-
-          <script>
-            $(document).ready(function() {
-
-              $('.request_Role').click(function(e) {
-
-
-                var tableCourtID = $(this).closest('tr').find('#mycourtID').attr('value');
-                var tableEventID = $(this).closest('tr').find('#myeventID').text();
-
-
-                console.log(tableCourtID);
-                console.log(tableEventID);
-
-
-
-
-                $.ajax({
-                  method: "POST",
-                  url: "fetch-role-form.php",
-                  data: {
-                    'courtID': tableCourtID,
-                    'eventID': tableEventID,
-                  },
-                  success: function(response) {
-
-                    $('.showRoleForm').html(response);
-                    $('#insertRoles').modal('show');
-
-                  }
-                });
-
-              });
-
-            });
-          </script>
-
-
-          <script>
-            $(document).ready(function() {
-
-              $('.view_data').click(function(e) {
-                e.preventDefault();
-
-                var courtID = $(this).closest('div').find('.court_id').text();
-                var eventID = $(this).closest('div').find('.event_id').attr('value');
-
-                console.log(courtID);
-                console.log(eventID);
-
-
-
-                $.ajax({
-                  method: "POST",
-                  url: "event-info.php",
-                  data: {
-                    'courtID': courtID,
-                    'eventID': eventID,
-                  },
-                  success: function(response) {
-
-                    $('.view_user_data').html(response);
-                    $('#viewusermodal').modal('show');
-
-                  }
-                });
-
-              });
-
-            });
-          </script>
-
-          <script>
-            $(document).ready(function() {
-
-              $('.join_btn').click(function(e) {
-                e.preventDefault();
-
-
-                var eventID = $(this).closest('div').find('.event_id').attr('value');
-                var courtID = $(this).closest('div').find('.court_id').text();
-
-
-                $('#dataInput').val(eventID);
-
-
-
-                $.ajax({
-                  method: "POST",
-                  url: "joinng-prompt.php",
-                  data: {
-                    'courtID': courtID,
-                    'eventID': eventID,
-                  },
-                  success: function(response) {
-
-                    $('#roleSelect').html(response);
-                    $('#viewinvitemodal').modal('show');
-
-
-
-                  }
-
-                });
-
-              });
-
-
-            });
-          </script>
-
-
-
-          <script>
-            let loadMoreBtn = document.querySelector('#load-more');
-            let currentItem = 3;
-
-            loadMoreBtn.onclick = () => {
-              let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
-              for (var i = currentItem; i < currentItem + 3; i++) {
-                boxes[i].style.display = 'inline-block';
-              }
-              currentItem += 3;
-
-              if (currentItem >= boxes.length) {
-                loadMoreBtn.style.display = 'none';
-              }
+          for (let j = 0; j < data_cells.length; j++) {
+            var cellText = data_cells[j].textContent.toLowerCase();
+            if (cellText.includes(search_value)) {
+              found = true;
+              break;
             }
-          </script>
+          }
+          if (found) {
+            num_of_rows[i].style.display = "";
+          } else {
+            num_of_rows[i].style.display = "none";
+          }
+        }
+      })
+    });
+  </script>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var search_input = document.getElementById("searchInput1");
+      var table2 = document.getElementById("table1");
+      var num_of_rows = table2.getElementsByClassName("myRows1");
+
+      search_input.addEventListener('keyup', function() {
+        var search_value = search_input.value.toLowerCase();
+        for (let i = 0; i < num_of_rows.length; i++) {
+          var data_cells = num_of_rows[i].getElementsByTagName('h3');
+          let found = false;
+
+          for (let j = 0; j < data_cells.length; j++) {
+            var cellText = data_cells[j].textContent.toLowerCase();
+            if (cellText.includes(search_value)) {
+              found = true;
+              break;
+            }
+          }
+          if (found) {
+            num_of_rows[i].style.display = "";
+          } else {
+            num_of_rows[i].style.display = "none";
+          }
+        }
+      })
+    });
+  </script>
+
+
+
+
+  <script>
+    $(document).ready(function() {
+
+      $('.request_Role').click(function(e) {
+
+
+        var tableCourtID = $(this).closest('tr').find('#mycourtID').attr('value');
+        var tableEventID = $(this).closest('tr').find('#myeventID').text();
+
+
+        console.log(tableCourtID);
+        console.log(tableEventID);
+
+
+
+
+        $.ajax({
+          method: "POST",
+          url: "fetch-role-form.php",
+          data: {
+            'courtID': tableCourtID,
+            'eventID': tableEventID,
+          },
+          success: function(response) {
+
+            $('.showRoleForm').html(response);
+            $('#insertRoles').modal('show');
+
+          }
+        });
+
+      });
+
+    });
+  </script>
+
+
+  <script>
+    $(document).ready(function() {
+
+      $('.view_data').click(function(e) {
+        e.preventDefault();
+
+        var courtID = $(this).closest('div').find('.court_id').text();
+        var eventID = $(this).closest('div').find('.event_id').attr('value');
+
+        console.log(courtID);
+        console.log(eventID);
+
+
+
+        $.ajax({
+          method: "POST",
+          url: "event-info.php",
+          data: {
+            'courtID': courtID,
+            'eventID': eventID,
+          },
+          success: function(response) {
+
+            $('.view_user_data').html(response);
+            $('#viewusermodal').modal('show');
+
+          }
+        });
+
+      });
+
+    });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+
+      $('.join_btn').click(function(e) {
+        e.preventDefault();
+
+
+        var eventID = $(this).closest('div').find('.event_id').attr('value');
+        var courtID = $(this).closest('div').find('.court_id').text();
+
+
+        $('#dataInput').val(eventID);
+
+
+
+        $.ajax({
+          method: "POST",
+          url: "joinng-prompt.php",
+          data: {
+            'courtID': courtID,
+            'eventID': eventID,
+          },
+          success: function(response) {
+
+            $('#roleSelect').html(response);
+            $('#viewinvitemodal').modal('show');
+
+
+
+          }
+
+        });
+
+      });
+
+
+    });
+  </script>
+
+
+
+  <script>
+    let loadMoreBtn = document.querySelector('#load-more');
+    let currentItem = 3;
+
+    loadMoreBtn.onclick = () => {
+      let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+      for (var i = currentItem; i < currentItem + 3; i++) {
+        boxes[i].style.display = 'inline-block';
+      }
+      currentItem += 3;
+
+      if (currentItem >= boxes.length) {
+        loadMoreBtn.style.display = 'none';
+      }
+    }
+  </script>
 
 
 
@@ -1069,278 +1074,278 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
 
 
 
-          <script>
-            $(document).ready(function() {
-              function handleAjaxRequest() {
-                var city = $('#selectedCity').val();
-                var sport = $('#selectedSport').val();
+  <script>
+    $(document).ready(function() {
+      function handleAjaxRequest() {
+        var city = $('#selectedCity').val();
+        var sport = $('#selectedSport').val();
 
-                if (city && sport) {
-                  $.ajax({
-                    method: "POST",
-                    url: 'event-Fetch.php',
-                    data: {
-                      'city': city,
-                      'sport': sport,
-                    },
-                    success: function(response) {
+        if (city && sport) {
+          $.ajax({
+            method: "POST",
+            url: 'event-Fetch.php',
+            data: {
+              'city': city,
+              'sport': sport,
+            },
+            success: function(response) {
 
-                      $('#selectedCourt').html(response);
+              $('#selectedCourt').html(response);
 
-                    }
-
-                  });
-                }
-
-              }
-
-
-              $('#selectedCity').change(handleAjaxRequest);
-
-              $('#selectedSport').change(handleAjaxRequest);
-            });
-          </script>
-
-
-          <script>
-            $(document).ready(function() {
-              function handleAjaxRequest() {
-                var court = $('#selectedCourt').val();
-                var date = $('#dateSelect').val();
-
-                if (court && date) {
-                  $.ajax({
-                    method: "POST",
-                    url: 'fetch4.php',
-                    data: {
-                      'courtId': court,
-                      'dateSelected': date,
-                    },
-                    success: function(response) {
-
-                      $('#selectedTime').html(response);
-
-                    }
-
-                  });
-                }
-
-              }
-
-
-              $('#selectedCourt').change(handleAjaxRequest);
-
-              $('#dateSelect').change(handleAjaxRequest);
-            });
-          </script>
-
-          <script>
-            $(document).ready(function() {
-              $('#selectedCourt').change(function() {
-                var courtId = $('#selectedCourt').val();
-
-                $.ajax({
-                  method: "POST",
-                  url: 'court-lcation.php',
-                  data: {
-                    'courtID': courtId,
-                  },
-                  success: function(response) {
-
-                    $('#showCourtLocation').html(response);
-
-                  }
-
-                });
-              });
-            });
-          </script>
-
-
-
-
-
-          <script>
-            // Function to populate select tag with dates within 1 week range
-            function populateDates() {
-              var select = document.getElementById("dateSelect");
-              var today = new Date();
-
-              // Add current date
-              var currentDateOption = document.createElement("option");
-              currentDateOption.text = formatDate(today);
-              currentDateOption.value = formatDate(today);
-              select.appendChild(currentDateOption);
-
-              // Add dates within 1 week range
-              for (var i = 1; i <= 6; i++) {
-                var nextDate = new Date();
-                nextDate.setDate(today.getDate() + i);
-                var option = document.createElement("option");
-                option.text = formatDate(nextDate);
-                option.value = formatDate(nextDate);
-                select.appendChild(option);
-              }
             }
 
-            // Function to format date as YYYY-MM-DD
-            function formatDate(date) {
-              var month = String(date.getMonth() + 1).padStart(2, '0');
-              var day = String(date.getDate()).padStart(2, '0');
-              var year = date.getFullYear();
-              return year + '-' + month + '-' + day;
+          });
+        }
+
+      }
+
+
+      $('#selectedCity').change(handleAjaxRequest);
+
+      $('#selectedSport').change(handleAjaxRequest);
+    });
+  </script>
+
+
+  <script>
+    $(document).ready(function() {
+      function handleAjaxRequest() {
+        var court = $('#selectedCourt').val();
+        var date = $('#dateSelect').val();
+
+        if (court && date) {
+          $.ajax({
+            method: "POST",
+            url: 'fetch4.php',
+            data: {
+              'courtId': court,
+              'dateSelected': date,
+            },
+            success: function(response) {
+
+              $('#selectedTime').html(response);
+
             }
 
-            // Call function to populate select tag with dates
-            populateDates();
-          </script>
+          });
+        }
 
+      }
 
 
+      $('#selectedCourt').change(handleAjaxRequest);
 
+      $('#dateSelect').change(handleAjaxRequest);
+    });
+  </script>
 
+  <script>
+    $(document).ready(function() {
+      $('#selectedCourt').change(function() {
+        var courtId = $('#selectedCourt').val();
 
+        $.ajax({
+          method: "POST",
+          url: 'court-lcation.php',
+          data: {
+            'courtID': courtId,
+          },
+          success: function(response) {
 
+            $('#showCourtLocation').html(response);
 
+          }
 
+        });
+      });
+    });
+  </script>
 
 
 
 
-          <script>
-            //BOX1
-            var img = document.getElementById('img1');
-            var box = document.getElementById('box1');
 
+  <script>
+    // Function to populate select tag with dates within 1 week range
+    function populateDates() {
+      var select = document.getElementById("dateSelect");
+      var today = new Date();
 
+      // Add current date
+      var currentDateOption = document.createElement("option");
+      currentDateOption.text = formatDate(today);
+      currentDateOption.value = formatDate(today);
+      select.appendChild(currentDateOption);
 
-            var originalsrc = img.src;
-            var newSrc = '/img/gifs/games-.gif';
+      // Add dates within 1 week range
+      for (var i = 1; i <= 6; i++) {
+        var nextDate = new Date();
+        nextDate.setDate(today.getDate() + i);
+        var option = document.createElement("option");
+        option.text = formatDate(nextDate);
+        option.value = formatDate(nextDate);
+        select.appendChild(option);
+      }
+    }
 
+    // Function to format date as YYYY-MM-DD
+    function formatDate(date) {
+      var month = String(date.getMonth() + 1).padStart(2, '0');
+      var day = String(date.getDate()).padStart(2, '0');
+      var year = date.getFullYear();
+      return year + '-' + month + '-' + day;
+    }
 
-            box.addEventListener('mouseover', function() {
-              img.src = newSrc;
-            })
+    // Call function to populate select tag with dates
+    populateDates();
+  </script>
 
-            box.addEventListener('mouseout', function() {
-              img.src = originalsrc;
-            })
 
 
 
 
-            //BOX2
-            var img2 = document.getElementById('img2');
-            var box2 = document.getElementById('box2');
 
 
-            var originalsrc2 = img2.src;
-            var newSrc2 = '/img/gifs/academy-.gif';
 
 
-            box2.addEventListener('mouseover', function() {
-              img2.src = newSrc2;
-            })
 
-            box2.addEventListener('mouseout', function() {
-              img2.src = originalsrc2;
-            })
 
 
 
+  <script>
+    //BOX1
+    var img = document.getElementById('img1');
+    var box = document.getElementById('box1');
 
 
-            //BOX3
-            var img3 = document.getElementById('img3');
-            var box3 = document.getElementById('box3');
 
+    var originalsrc = img.src;
+    var newSrc = '/img/gifs/games-.gif';
 
-            var originalsrc3 = img3.src;
-            var newSrc3 = '/img/gifs/classes.gif';
 
+    box.addEventListener('mouseover', function() {
+      img.src = newSrc;
+    })
 
-            box3.addEventListener('mouseover', function() {
-              img3.src = newSrc3;
-            })
+    box.addEventListener('mouseout', function() {
+      img.src = originalsrc;
+    })
 
-            box3.addEventListener('mouseout', function() {
-              img3.src = originalsrc3;
-            })
 
 
-            //BOX4
-            var img4 = document.getElementById('img4');
-            var box4 = document.getElementById('box4');
 
+    //BOX2
+    var img2 = document.getElementById('img2');
+    var box2 = document.getElementById('box2');
 
-            var originalsrc4 = img4.src;
-            var newSrc4 = '/img/gifs/player-.gif';
 
+    var originalsrc2 = img2.src;
+    var newSrc2 = '/img/gifs/academy-.gif';
 
-            box4.addEventListener('mouseover', function() {
-              img4.src = newSrc4;
-            })
 
-            box4.addEventListener('mouseout', function() {
-              img4.src = originalsrc4;
-            })
+    box2.addEventListener('mouseover', function() {
+      img2.src = newSrc2;
+    })
 
+    box2.addEventListener('mouseout', function() {
+      img2.src = originalsrc2;
+    })
 
-            //BOX5
-            var img5 = document.getElementById('img5');
-            var box5 = document.getElementById('box5');
 
 
-            var originalsrc5 = img5.src;
-            var newSrc5 = '/img/gifs/coach-.gif';
 
 
-            box5.addEventListener('mouseover', function() {
-              img5.src = newSrc5;
-            })
+    //BOX3
+    var img3 = document.getElementById('img3');
+    var box3 = document.getElementById('box3');
 
-            box5.addEventListener('mouseout', function() {
-              img5.src = originalsrc5;
-            })
 
+    var originalsrc3 = img3.src;
+    var newSrc3 = '/img/gifs/classes.gif';
 
-            //BOX6
-            var img6 = document.getElementById('img5');
-            var box6 = document.getElementById('box6');
 
+    box3.addEventListener('mouseover', function() {
+      img3.src = newSrc3;
+    })
 
-            var originalsrc6 = img6.src;
-            var newSrc6 = '/img/gifs/coaches-.gif';
+    box3.addEventListener('mouseout', function() {
+      img3.src = originalsrc3;
+    })
 
 
-            box6.addEventListener('mouseover', function() {
-              img6.src = newSrc6;
-            })
+    //BOX4
+    var img4 = document.getElementById('img4');
+    var box4 = document.getElementById('box4');
 
-            box6.addEventListener('mouseout', function() {
-              img6.src = originalsrc6;
-            })
-          </script>
 
+    var originalsrc4 = img4.src;
+    var newSrc4 = '/img/gifs/player-.gif';
 
 
+    box4.addEventListener('mouseover', function() {
+      img4.src = newSrc4;
+    })
 
+    box4.addEventListener('mouseout', function() {
+      img4.src = originalsrc4;
+    })
 
-          <script>
-            function logoutAlert() {
-              // Show the confirmation dialog and store the result
-              var result = window.confirm("Are you sure you want to Logout?");
 
-              // Check if the user clicked "OK" or "Cancel"
-              if (result) {
-                // If the user clicked "OK", redirect to 'index.php'
-                window.location.href = 'logout.php';
-              } else {
-                // If the user clicked "Cancel", do nothing or perform any other action
-                return;
-              }
-            }
-          </script>
+    //BOX5
+    var img5 = document.getElementById('img5');
+    var box5 = document.getElementById('box5');
+
+
+    var originalsrc5 = img5.src;
+    var newSrc5 = '/img/gifs/coach-.gif';
+
+
+    box5.addEventListener('mouseover', function() {
+      img5.src = newSrc5;
+    })
+
+    box5.addEventListener('mouseout', function() {
+      img5.src = originalsrc5;
+    })
+
+
+    //BOX6
+    var img6 = document.getElementById('img5');
+    var box6 = document.getElementById('box6');
+
+
+    var originalsrc6 = img6.src;
+    var newSrc6 = '/img/gifs/coaches-.gif';
+
+
+    box6.addEventListener('mouseover', function() {
+      img6.src = newSrc6;
+    })
+
+    box6.addEventListener('mouseout', function() {
+      img6.src = originalsrc6;
+    })
+  </script>
+
+
+
+
+
+  <script>
+    function logoutAlert() {
+      // Show the confirmation dialog and store the result
+      var result = window.confirm("Are you sure you want to Logout?");
+
+      // Check if the user clicked "OK" or "Cancel"
+      if (result) {
+        // If the user clicked "OK", redirect to 'index.php'
+        window.location.href = 'logout.php';
+      } else {
+        // If the user clicked "Cancel", do nothing or perform any other action
+        return;
+      }
+    }
+  </script>
 
 
 

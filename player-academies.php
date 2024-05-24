@@ -238,7 +238,7 @@ $r = $result->rowCount();
       <span>
         <div class="container-Listing">
 
-          <h1 class="heading-Listing">Academies</h1>
+          <h1 class="heading-Listing" style="color: green;">Academies</h1>
 
           <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
 
@@ -342,6 +342,10 @@ $r = $result->rowCount();
 
 
   </div>
+
+  <footer class="green-footer">
+    
+    </footer>
 
 
 

@@ -238,7 +238,7 @@ $r = $result->rowCount();
 
 
 
-          <h1 class="heading-Listing">Players</h1>
+          <h1 class="heading-Listing" style="color: green;">Players</h1>
 
           <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
 
@@ -413,6 +413,9 @@ $r = $result->rowCount();
 
   </div>
 
+  <footer class="green-footer">
+    
+    </footer>
 
 
 

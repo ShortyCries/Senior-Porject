@@ -203,6 +203,9 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
                           <th scope="col">Court</th>
                           <th scope="col">Date</th>
                           <th scope="col">Time</th>
+                          <th scope="col">T1 score</th>
+                          <th scope="col">T2 score</th>
+                          <th scope="col">Status</th>
 
                         </tr>
                       </thead>
@@ -210,7 +213,32 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
 
                         <?php
 
-                        $query3 =  "SELECT matchs.Mid AS MatchID, c1.Cname AS Team1Name, c2.Cname AS Team2Name, courts.CRname AS CourtName, matchs.Mdate AS MatchDate, matchs.Mtime AS MatchTime FROM matchs JOIN class AS c1 ON matchs.team1 = c1.id JOIN class AS c2 ON matchs.team2 = c2.id JOIN courts ON matchs.McourtId = courts.CRid WHERE courts.CRAcademyemail = '$academyEmail' AND matchs.Mtype = 'local';";
+                        $query3 =  "SELECT 
+                        matchs.Mid AS MatchID, 
+                        c1.Cname AS Team1Name, 
+                        c2.Cname AS Team2Name, 
+                        courts.CRname AS CourtName, 
+                        matchs.Mdate AS MatchDate, 
+                        matchs.Mtime AS MatchTime, 
+                        matchs.team1Score, 
+                        matchs.team2Score, 
+                        matchs.Mstatus 
+                    FROM 
+                        matchs 
+                    JOIN 
+                        class AS c1 ON matchs.team1 = c1.id 
+                    JOIN 
+                        class AS c2 ON matchs.team2 = c2.id 
+                    JOIN 
+                        courts ON matchs.McourtId = courts.CRid 
+                    WHERE 
+                        courts.CRAcademyemail = '$academyEmail'
+                    ORDER BY 
+                        CASE 
+                            WHEN matchs.Mstatus = 'booked' THEN 1 
+                            WHEN matchs.Mstatus = 'finished' THEN 2 
+                            ELSE 3 
+                        END";
                         $result3 = $pdo->query($query3);
 
                         $r3 = $result3->rowCount();
@@ -225,6 +253,11 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
                             <td><?php echo  $row3[3] ?></td>
                             <td><?php echo $row3[4] ?></td>
                             <td><?php echo $row3[5] ?></td>
+                            <td><?php echo $row3[6] ?></td>
+                            <td><?php echo $row3[7] ?></td>
+                            <td style="background-color: <?php echo ($row3[8] == 'finished') ? 'red' : 'orange'; ?>">
+                              <?php echo htmlspecialchars($row3[8], ENT_QUOTES, 'UTF-8'); ?>
+                            </td>
 
                           </tr>
                         <?php
@@ -245,6 +278,10 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
 
         </div>
   </div>
+
+  <footer class="green-footer">
+
+  </footer>
 
 
 

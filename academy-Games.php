@@ -683,6 +683,11 @@ if (isset($_GET['EVENTID'])) {
 
     </div>
 
+    <footer class="green-footer">
+    
+    </footer>
+
+
 
     <div class="modal fade" id="insertdata" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="insertdataLabel" aria-hidden="true">
         <div class="modal-dialog">

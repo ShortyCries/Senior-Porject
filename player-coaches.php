@@ -241,7 +241,7 @@ $r = $result->rowCount();
       <span>
         <div class="container-Listing">
 
-          <h1 class="heading-Listing">Coaches</h1>
+          <h1 class="heading-Listing" style="color: green;">Coaches</h1>
 
           <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
 
@@ -326,25 +326,34 @@ $r = $result->rowCount();
 
         </div>
 
-        <script>
-          let loadMoreBtn = document.querySelector('#load-more');
-          let currentItem = 4;
 
-          loadMoreBtn.onclick = () => {
-            let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
-            for (var i = currentItem; i < currentItem + 4; i++) {
-              boxes[i].style.display = 'inline-block';
-            }
-            currentItem += 4;
-
-            if (currentItem >= boxes.length) {
-              loadMoreBtn.style.display = 'none';
-            }
-          }
-        </script>
 
 
   </div>
+
+  <footer class="green-footer">
+    
+    </footer>
+
+
+
+  <script>
+    let loadMoreBtn = document.querySelector('#load-more');
+    let currentItem = 4;
+
+    loadMoreBtn.onclick = () => {
+      let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+      for (var i = currentItem; i < currentItem + 4; i++) {
+        boxes[i].style.display = 'inline-block';
+      }
+      currentItem += 4;
+
+      if (currentItem >= boxes.length) {
+        loadMoreBtn.style.display = 'none';
+      }
+    }
+  </script>
+
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
