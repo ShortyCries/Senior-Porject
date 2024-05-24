@@ -584,9 +584,11 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
 
               <div class="container-Listing">
 
+                <input id="searchInput1" type="text" class="form-control mb-3" placeholder="Search...">
 
 
-                <div class="box-container-Listing">
+
+                <div id="table1" class="box-container-Listing">
 
 
 
@@ -612,7 +614,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                     $row = $result->fetch(PDO::FETCH_NUM);
                   ?>
 
-                    <div class="box-Listing">
+                    <div class="box-Listing myRows1">
                       <div class="image-Listing">
 
                         <img src="img/<?php echo $row[3] ?>.jpg" alt="">
@@ -622,6 +624,8 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                       <div class="content-Listing">
 
                         <h3 class="court_id" style="display: none;"><?php echo $row[1] ?></h3>
+                        <h3 class="court_id" style="display: none;"><?php echo $row[2] ?></h3>
+                        <h3 class="court_id" style="display: none;"><?php echo $row[3] ?></h3>
 
 
                         <p class="event_id" value="<?php echo $row[0] ?>"> <?php echo $row[2] ?> </p>
@@ -889,6 +893,37 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
               })
             });
           </script>
+
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              var search_input = document.getElementById("searchInput1");
+              var table2 = document.getElementById("table1");
+              var num_of_rows = table2.getElementsByClassName("myRows1");
+
+              search_input.addEventListener('keyup', function() {
+                var search_value = search_input.value.toLowerCase();
+                for (let i = 0; i < num_of_rows.length; i++) {
+                  var data_cells = num_of_rows[i].getElementsByTagName('h3');
+                  let found = false;
+
+                  for (let j = 0; j < data_cells.length; j++) {
+                    var cellText = data_cells[j].textContent.toLowerCase();
+                    if (cellText.includes(search_value)) {
+                      found = true;
+                      break;
+                    }
+                  }
+                  if (found) {
+                    num_of_rows[i].style.display = "";
+                  } else {
+                    num_of_rows[i].style.display = "none";
+                  }
+                }
+              })
+            });
+          </script>
+
 
 
 
