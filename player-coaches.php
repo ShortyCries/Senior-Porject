@@ -146,11 +146,15 @@ $r = $result->rowCount();
             <div class="u-inner-container-layout u-sidenav-overflow">
               <div class="u-menu-close"></div>
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Playerpage.php">Home</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Logout.html">Logout</a>
+                <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link" href="#">Logout</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="More.html">More</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank" href="contact.php">Contact</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank" href="about.php">About us</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Edit-Profile-player.php">Edit Profile</a>
                 </li>
               </ul>
             </div>
@@ -232,111 +236,111 @@ $r = $result->rowCount();
 
 
   <div class="mybackground-img2">
-  <span id="player-coaches">
+    <span id="player-coaches">
       <!-- Content of the target section -->
       <span>
-    <div class="container-Listing">
+        <div class="container-Listing">
 
-      <h1 class="heading-Listing">Coaches</h1>
+          <h1 class="heading-Listing">Coaches</h1>
 
-      <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
+          <input id="searchInput" type="text" class="form-control mb-3" placeholder="Search...">
 
-      <div id="table2" class="box-container-Listing">
-
-
-
-
-
-        <?php for ($i = 0; $i < $r; $i++) {
-          $row = $result->fetch(PDO::FETCH_NUM);
-        ?>
-
-          <div class="box-Listing myRows">
-            <div class="image-Listing">
-              <img src="<?php echo !empty($row[2]) ? $row[2] : 'img/default-user.jpg'; ?>" alt="">
-            </div>
-            <div class="content-Listing">
-
-              <h3><?php echo $row[0] ?></h3>
-
-
-              <p class="user_email"><?php echo $row[1] ?></p>
-
-              <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Read More
-              </a>
-
-              <div class="icons-Listing">
-
-              </div>
-            </div>
-          </div>
-
-
-        <?php
-        }
-        ?>
+          <div id="table2" class="box-container-Listing">
 
 
 
 
 
-        <!-- READ MORE MODEL -->
-        <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Coach Info</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
+            <?php for ($i = 0; $i < $r; $i++) {
+              $row = $result->fetch(PDO::FETCH_NUM);
+            ?>
 
-                <div class="view_user_data">
-
+              <div class="box-Listing myRows">
+                <div class="image-Listing">
+                  <img src="<?php echo !empty($row[2]) ? $row[2] : 'img/default-user.jpg'; ?>" alt="">
                 </div>
+                <div class="content-Listing">
 
+                  <h3><?php echo $row[0] ?></h3>
+
+
+                  <p class="user_email"><?php echo $row[1] ?></p>
+
+                  <a href="#" type="button" class="btn btn-success view_data" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Read More
+                  </a>
+
+                  <div class="icons-Listing">
+
+                  </div>
+                </div>
               </div>
-              <div class="modal-footer">
+
+
+            <?php
+            }
+            ?>
+
+
+
+
+
+            <!-- READ MORE MODEL -->
+            <div class="modal fade" id="viewusermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Coach Info</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+
+                    <div class="view_user_data">
+
+                    </div>
+
+                  </div>
+                  <div class="modal-footer">
+                  </div>
+                </div>
               </div>
             </div>
+
+            <!-- READ MORE MODEL -->
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
+
+          <div id="load-more"> load more </div>
+
         </div>
 
-        <!-- READ MORE MODEL -->
+        <script>
+          let loadMoreBtn = document.querySelector('#load-more');
+          let currentItem = 4;
 
+          loadMoreBtn.onclick = () => {
+            let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
+            for (var i = currentItem; i < currentItem + 4; i++) {
+              boxes[i].style.display = 'inline-block';
+            }
+            currentItem += 4;
 
-
-
-
-
-
-
-
-
-
-
-      </div>
-
-      <div id="load-more"> load more </div>
-
-    </div>
-
-    <script>
-      let loadMoreBtn = document.querySelector('#load-more');
-      let currentItem = 4;
-
-      loadMoreBtn.onclick = () => {
-        let boxes = [...document.querySelectorAll('.container-Listing .box-container-Listing .box-Listing')];
-        for (var i = currentItem; i < currentItem + 4; i++) {
-          boxes[i].style.display = 'inline-block';
-        }
-        currentItem += 4;
-
-        if (currentItem >= boxes.length) {
-          loadMoreBtn.style.display = 'none';
-        }
-      }
-    </script>
+            if (currentItem >= boxes.length) {
+              loadMoreBtn.style.display = 'none';
+            }
+          }
+        </script>
 
 
   </div>

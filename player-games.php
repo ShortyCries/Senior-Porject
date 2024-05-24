@@ -77,9 +77,6 @@ if (isset($_GET['decEventID'], $_GET['decEvent'])) {
   $delete777 = "DELETE FROM participate WHERE PReventid = '$decEventID' AND PRplayeremail = '$playerEmail'";
 
   $result777 = $pdo->exec($delete777);
-  
-
-
 }
 
 
@@ -247,11 +244,15 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
             <div class="u-inner-container-layout u-sidenav-overflow">
               <div class="u-menu-close"></div>
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Playerpage.php">Home</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Logout.html">Logout</a>
+                <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link" href="#">Logout</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="More.html">More</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank" href="contact.php">Contact</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank" href="about.php">About us</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Edit-Profile-player.php">Edit Profile</a>
                 </li>
               </ul>
             </div>
@@ -514,16 +515,16 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
 
 
                             <?php
-                              $query777 = "SELECT Eid, CRname, CRlocation, CRsportname, Evdate, Evtime, Rname FROM participate NATURAL JOIN events NATURAL JOIN courts NATURAL JOIN role WHERE Rid = PRroleid AND CRid = Evcourtid AND Eid = PReventid AND PRstatus = 'invited' AND PRplayeremail = '$playerEmail' AND Evstatus = 'booked'";
-                              $result777 = $pdo->query($query777);
-                              $r777 = $result777->rowCount();
+                            $query777 = "SELECT Eid, CRname, CRlocation, CRsportname, Evdate, Evtime, Rname FROM participate NATURAL JOIN events NATURAL JOIN courts NATURAL JOIN role WHERE Rid = PRroleid AND CRid = Evcourtid AND Eid = PReventid AND PRstatus = 'invited' AND PRplayeremail = '$playerEmail' AND Evstatus = 'booked'";
+                            $result777 = $pdo->query($query777);
+                            $r777 = $result777->rowCount();
 
-                              for($i =0; $i < $r777; $i++){
-                                $row777 = $result777->fetch(PDO::FETCH_NUM);
+                            for ($i = 0; $i < $r777; $i++) {
+                              $row777 = $result777->fetch(PDO::FETCH_NUM);
 
-                              
+
                             ?>
-                            <tr>
+                              <tr>
                                 <td><?php echo $row777[0] ?></td>
                                 <td><?php echo $row777[1] ?></td>
                                 <td><?php echo $row777[2] ?></td>
@@ -533,15 +534,15 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                                 <td><span style="background-color: #6eb5ff; padding: 2px;"> Invited </span></td>
                                 <form action="accept-event-invite.php" method="post">
                                   <input type="hidden" name="eventID" value="<?php echo $row777[0] ?>">
-                                <td class="text-center" colspan=2><button type="submit" class='btn btn-primary'>Accept</button></td>
+                                  <td class="text-center" colspan=2><button type="submit" class='btn btn-primary'>Accept</button></td>
                                 </form>
                                 <td class="text-center"><a href="player-games.php?decEventID=<?php echo $row777[0] ?>&decEvent=true" class='btn btn-danger'>Decline</a></td>
-                              
-                                
 
-                            </tr>
+
+
+                              </tr>
                             <?php
-                              }
+                            }
                             ?>
 
 

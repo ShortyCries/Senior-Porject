@@ -5,16 +5,15 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $academyEmail = $_SESSION['email'];
 
 
-if(isset($_GET['courtid'], $_GET['removeCourt'])){
+if (isset($_GET['courtid'], $_GET['removeCourt'])) {
 
-   
+
 
     $courtID = $_GET['courtid'];
 
     $deleteCourt = "DELETE FROM courts WHERE CRid = '$courtID'";
 
     $result = $pdo->exec($deleteCourt);
-
 }
 
 
@@ -162,11 +161,15 @@ if(isset($_GET['courtid'], $_GET['removeCourt'])){
                         <div class="u-inner-container-layout u-sidenav-overflow">
                             <div class="u-menu-close"></div>
                             <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Academypage.php">Home</a>
                                 </li>
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Logout.html">Logout</a>
+                                <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link" href="#">Logout</a>
                                 </li>
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="More.html">More</a>
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank" href="contact.php">Contact</a>
+                                </li>
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank" href="about.php">About us</a>
+                                </li>
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Edit-Profile-academy.php">Edit Profile</a>
                                 </li>
                             </ul>
                         </div>

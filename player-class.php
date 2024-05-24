@@ -95,11 +95,15 @@ $playerEmail = $_SESSION['email'];
             <div class="u-inner-container-layout u-sidenav-overflow">
               <div class="u-menu-close"></div>
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Playerpage.php">Home</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Logout.html">Logout</a>
+                <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link" href="#">Logout</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="More.html">More</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank" href="contact.php">Contact</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank" href="about.php">About us</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Edit-Profile-player.php">Edit Profile</a>
                 </li>
               </ul>
             </div>
@@ -183,138 +187,138 @@ $playerEmail = $_SESSION['email'];
 
 
   <div class="mybackground-img2">
-  <span id="player-class">
+    <span id="player-class">
       <!-- Content of the target section -->
       <span>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-12">
-          <?php
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <?php
 
-          if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
-
-
-          ?>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-
-          <?php
-            unset($_SESSION['status']);
-          }
+              if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
 
 
+              ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Nice!</strong> <?php echo $_SESSION['status']; ?>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+              <?php
+                unset($_SESSION['status']);
+              }
 
 
-          ?>
-          <div class="card">
-            <div class="card-header">
-              <h4 class="text-center">Classes</h4>
-              <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
 
-                <table id="table2" class="table table-striped table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Id</th>
-                      <th scope="col">Academy</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Sport</th>
-                      <th scope="col">Time</th>
-                      <th scope="col" colspan="2"></th>
 
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- -->
-                    <?php
+              ?>
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="text-center">Classes</h4>
+                  <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
 
-                    $query3 =  "SELECT id, cname, sportname, schedule, name FROM class NATURAL JOIN joins NATURAL JOIN academy WHERE academyemail = email AND id = classId AND playeremail = '$playerEmail' AND status = 'pending'";
-                    $result3 = $pdo->query($query3);
+                    <table id="table2" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">Id</th>
+                          <th scope="col">Academy</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Sport</th>
+                          <th scope="col">Time</th>
+                          <th scope="col" colspan="2"></th>
 
-                    $r3 = $result3->rowCount();
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- -->
+                        <?php
 
-                    for ($i = 0; $i < $r3; $i++) {
-                      $row3 = $result3->fetch(PDO::FETCH_NUM);
-                    ?>
-                      <tr class="myRows">
-                        <td class="myclassid"><?php echo  $row3[0] ?></td>
-                        <td><?php echo  $row3[4] ?></td>
-                        <td><?php echo  $row3[1] ?></td>
-                        <td><?php echo  $row3[2] ?></td>
-                        <td><?php echo  $row3[3] ?></td>
-                        <td class="text-center"> <a href="#" type="button" class="btn btn-primary accept_btn">
-                            Accept
-                          </a> </td>
-                        <td class="text-center"> <a href="#" class="btn btn-danger">Decline</a> </td>
-                      </tr>
-                    <?php
-                    }
-                    ?>
-                    <!-- -->
+                        $query3 =  "SELECT id, cname, sportname, schedule, name FROM class NATURAL JOIN joins NATURAL JOIN academy WHERE academyemail = email AND id = classId AND playeremail = '$playerEmail' AND status = 'pending'";
+                        $result3 = $pdo->query($query3);
 
-                    <!-- -->
+                        $r3 = $result3->rowCount();
 
-                    <?php
+                        for ($i = 0; $i < $r3; $i++) {
+                          $row3 = $result3->fetch(PDO::FETCH_NUM);
+                        ?>
+                          <tr class="myRows">
+                            <td class="myclassid"><?php echo  $row3[0] ?></td>
+                            <td><?php echo  $row3[4] ?></td>
+                            <td><?php echo  $row3[1] ?></td>
+                            <td><?php echo  $row3[2] ?></td>
+                            <td><?php echo  $row3[3] ?></td>
+                            <td class="text-center"> <a href="#" type="button" class="btn btn-primary accept_btn">
+                                Accept
+                              </a> </td>
+                            <td class="text-center"> <a href="#" class="btn btn-danger">Decline</a> </td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
+                        <!-- -->
 
-                    $query4 =  "SELECT id, cname, sportname, schedule, name FROM class NATURAL JOIN joins NATURAL JOIN academy WHERE academyemail = email AND id = classId AND playeremail = '$playerEmail' AND status = 'accepted'";
-                    $result4 = $pdo->query($query4);
+                        <!-- -->
 
-                    $r4 = $result4->rowCount();
+                        <?php
 
-                    for ($i = 0; $i < $r4; $i++) {
-                      $row4 = $result4->fetch(PDO::FETCH_NUM);
-                    ?>
-                      <tr class="myRows">
-                        <td class="myclassid"><?php echo  $row4[0] ?></td>
-                        <td><?php echo  $row4[4] ?></td>
-                        <td><?php echo  $row4[1] ?></td>
-                        <td><?php echo  $row4[2] ?></td>
-                        <td><?php echo  $row4[3] ?></td>
-                        <td colspan="2" class="text-center"> <a href="#" type="button" class="btn btn-primary view_games">
-                            View Games
-                          </a> </td>
+                        $query4 =  "SELECT id, cname, sportname, schedule, name FROM class NATURAL JOIN joins NATURAL JOIN academy WHERE academyemail = email AND id = classId AND playeremail = '$playerEmail' AND status = 'accepted'";
+                        $result4 = $pdo->query($query4);
 
-                      </tr>
-                    <?php
-                    }
-                    ?>
-                    <!-- -->
+                        $r4 = $result4->rowCount();
 
-                  </tbody>
-                </table>
+                        for ($i = 0; $i < $r4; $i++) {
+                          $row4 = $result4->fetch(PDO::FETCH_NUM);
+                        ?>
+                          <tr class="myRows">
+                            <td class="myclassid"><?php echo  $row4[0] ?></td>
+                            <td><?php echo  $row4[4] ?></td>
+                            <td><?php echo  $row4[1] ?></td>
+                            <td><?php echo  $row4[2] ?></td>
+                            <td><?php echo  $row4[3] ?></td>
+                            <td colspan="2" class="text-center"> <a href="#" type="button" class="btn btn-primary view_games">
+                                View Games
+                              </a> </td>
+
+                          </tr>
+                        <?php
+                        }
+                        ?>
+                        <!-- -->
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
               </div>
-
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
 
 
-    <div class="modal fade" id="viewgamesmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Matches Info</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
+        <div class="modal fade" id="viewgamesmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Matches Info</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
 
-            <div class="view_games_data">
+                <div class="view_games_data">
 
+                </div>
+
+              </div>
+              <div class="modal-footer">
+              </div>
             </div>
-
-          </div>
-          <div class="modal-footer">
           </div>
         </div>
-      </div>
-    </div>
 
 
   </div>

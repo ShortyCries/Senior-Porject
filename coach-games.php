@@ -93,11 +93,15 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
             <div class="u-inner-container-layout u-sidenav-overflow">
               <div class="u-menu-close"></div>
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="CoachPage.php">Home</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Logout.html">Logout</a>
+                <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link" href="#">Logout</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="More.html">More</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank" href="contact.php">Contact</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" target="_blank" href="about.php">About us</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Edit-Profile-coach.php">Edit Profile</a>
                 </li>
               </ul>
             </div>
@@ -171,75 +175,75 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
 
 
   <div class="mybackground-img2">
-  <span id="coach-games">
-            <!-- Content of the target section -->
-            <span>
-    <div class="container">
+    <span id="coach-games">
+      <!-- Content of the target section -->
+      <span>
+        <div class="container">
 
-      <div class="row justify-content-center">
-        <div class="col-md-12">
-
-
-
-
-          <div class="card">
-            <div class="card-header">
-              <h4 class="text-center">Matches</h4>
-              <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-
-                <table id="table2" class="table table-striped table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Id</th>
-                      <th scope="col">Team1</th>
-                      <th scope="col">Team2</th>
-                      <th scope="col">Court</th>
-                      <th scope="col">Date</th>
-                      <th scope="col">Time</th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                    <?php
-
-                    $query3 =  "SELECT matchs.Mid AS MatchID, c1.Cname AS Team1Name, c2.Cname AS Team2Name, courts.CRname AS CourtName, matchs.Mdate AS MatchDate, matchs.Mtime AS MatchTime FROM matchs JOIN class AS c1 ON matchs.team1 = c1.id JOIN class AS c2 ON matchs.team2 = c2.id JOIN courts ON matchs.McourtId = courts.CRid WHERE courts.CRAcademyemail = '$academyEmail' AND matchs.Mtype = 'local';";
-                    $result3 = $pdo->query($query3);
-
-                    $r3 = $result3->rowCount();
-
-                    for ($i = 0; $i < $r3; $i++) {
-                      $row3 = $result3->fetch(PDO::FETCH_NUM);
-                    ?>
-                      <tr class="myRows">
-                        <td id="myclassid"><?php echo  $row3[0] ?></td>
-                        <td><?php echo  $row3[1] ?></td>
-                        <td><?php echo  $row3[2] ?></td>
-                        <td><?php echo  $row3[3] ?></td>
-                        <td><?php echo $row3[4] ?></td>
-                        <td><?php echo $row3[5] ?></td>
-
-                      </tr>
-                    <?php
-                    }
-                    ?>
+          <div class="row justify-content-center">
+            <div class="col-md-12">
 
 
 
-                  </tbody>
-                </table>
+
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="text-center">Matches</h4>
+                  <input id="searchInput" type="text" class="form-control float-start" placeholder="Search..." style="width: 200px;">
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+
+                    <table id="table2" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">Id</th>
+                          <th scope="col">Team1</th>
+                          <th scope="col">Team2</th>
+                          <th scope="col">Court</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Time</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <?php
+
+                        $query3 =  "SELECT matchs.Mid AS MatchID, c1.Cname AS Team1Name, c2.Cname AS Team2Name, courts.CRname AS CourtName, matchs.Mdate AS MatchDate, matchs.Mtime AS MatchTime FROM matchs JOIN class AS c1 ON matchs.team1 = c1.id JOIN class AS c2 ON matchs.team2 = c2.id JOIN courts ON matchs.McourtId = courts.CRid WHERE courts.CRAcademyemail = '$academyEmail' AND matchs.Mtype = 'local';";
+                        $result3 = $pdo->query($query3);
+
+                        $r3 = $result3->rowCount();
+
+                        for ($i = 0; $i < $r3; $i++) {
+                          $row3 = $result3->fetch(PDO::FETCH_NUM);
+                        ?>
+                          <tr class="myRows">
+                            <td id="myclassid"><?php echo  $row3[0] ?></td>
+                            <td><?php echo  $row3[1] ?></td>
+                            <td><?php echo  $row3[2] ?></td>
+                            <td><?php echo  $row3[3] ?></td>
+                            <td><?php echo $row3[4] ?></td>
+                            <td><?php echo $row3[5] ?></td>
+
+                          </tr>
+                        <?php
+                        }
+                        ?>
+
+
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
               </div>
-
             </div>
           </div>
+
+
         </div>
-      </div>
-
-
-    </div>
   </div>
 
 
@@ -398,37 +402,34 @@ $academyEmail = $result->fetch(PDO::FETCH_COLUMN);
 
 
 
-<script>
-    
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
-           var search_input = document.getElementById("searchInput");
-           var table2 = document.getElementById("table2");
-           var num_of_rows = table2.getElementsByClassName("myRows");
+      var search_input = document.getElementById("searchInput");
+      var table2 = document.getElementById("table2");
+      var num_of_rows = table2.getElementsByClassName("myRows");
 
-           search_input.addEventListener('keyup', function(){
-            var search_value = search_input.value.toLowerCase();
-            for(let i = 0; i < num_of_rows.length; i++){
-                var data_cells = num_of_rows[i].getElementsByTagName('td');
-                let found = false;
+      search_input.addEventListener('keyup', function() {
+        var search_value = search_input.value.toLowerCase();
+        for (let i = 0; i < num_of_rows.length; i++) {
+          var data_cells = num_of_rows[i].getElementsByTagName('td');
+          let found = false;
 
-                for(let j = 0; j < data_cells.length; j++){
-                    var cellText = data_cells[j].textContent.toLowerCase();
-                    if(cellText.includes(search_value)){
-                        found = true;
-                        break;
-                    }
-                }
-                if(found){
-                    num_of_rows[i].style.display = "";
-                } else {
-                    num_of_rows[i].style.display = "none";
-                }
+          for (let j = 0; j < data_cells.length; j++) {
+            var cellText = data_cells[j].textContent.toLowerCase();
+            if (cellText.includes(search_value)) {
+              found = true;
+              break;
             }
-           })
-        });
-
-    
-    </script>
+          }
+          if (found) {
+            num_of_rows[i].style.display = "";
+          } else {
+            num_of_rows[i].style.display = "none";
+          }
+        }
+      })
+    });
+  </script>
 </body>
 
 </html>
