@@ -250,7 +250,8 @@ $coachEmail =  $_SESSION['email'];
                                     </div>
                                     <div class="content-Listing">
 
-                                        <h3><?php echo $row1[1]; ?></h3> <!-- name -->
+                                        <h3><?php echo $row1[1]; ?></h3>
+                                        <h3 style="display: none;"><?php echo $row1[0] ?></h3> <!-- name -->
 
 
                                         <p class="user_email"><?php echo $row1[0]; ?></p> <!-- email -->

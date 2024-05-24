@@ -22,7 +22,7 @@ if (isset($_POST['sport'], $_POST['role'])) {
 
     $result2 = $pdo->exec($query2);
 
-
+    header("location:Edit-Profile-player.php");
    
 }
 

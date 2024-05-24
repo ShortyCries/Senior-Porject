@@ -259,6 +259,7 @@ $r = $result->rowCount();
                 <div class="content-Listing">
 
                   <h3><?php echo $row[0] ?></h3>
+                  <h3 style="display: none;"><?php echo $row[1] ?></h3>
 
 
                   <p class="user_email"><?php echo $row[1] ?></p>
