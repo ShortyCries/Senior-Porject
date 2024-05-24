@@ -7,7 +7,7 @@ try {
 
     extract($_POST);
 
-    $hashpw=md5($password);
+    $hashpw = md5($password);
 
     $query = "SELECT * FROM login WHERE email = ? AND password = ? AND status = 'active'";
 
@@ -62,5 +62,6 @@ try {
 
   $pdo = null;
 } catch (PDOException $e) {
-  die($e->getMessage());
+  $_SESSION['logstatus'] = 'Error executing query!';
+  header("location:login.php");
 }

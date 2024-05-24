@@ -762,7 +762,8 @@ if (isset($_GET['courtid'], $_GET['removeCourt'])) {
                                     </div>
 
                                 </div>
-
+                            
+                                <i>Note: This will overwrite your old schedule for this day</i>
 
 
 

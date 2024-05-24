@@ -678,12 +678,12 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
 
                     <div class="showRoleForm text-center">
 
-
+                  
                     </div>
 
 
 
-
+                    <i>Note: Leave at 0 if you dont need role</i>
 
                   </div>
 
@@ -822,7 +822,11 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
 
                   <div class="view_user_data">
 
+
+              
                   </div>
+
+                  
 
                 </div>
                 <div class="modal-footer">

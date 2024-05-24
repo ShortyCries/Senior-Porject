@@ -49,6 +49,7 @@ if (isset($_POST['courtID'], $_POST['eventID'])) {
     echo "<div class=\"info-section\"><span class=\"label\">Location:</span><span class=\"content\">" . htmlspecialchars($row[2], ENT_QUOTES, 'UTF-8') . "</span></div>";
     echo "<div class=\"info-section\"><span class=\"label\">Court name:</span><span class=\"content\">" . htmlspecialchars($row[3], ENT_QUOTES, 'UTF-8') . "</span></div>";
     echo "<div class=\"info-section\"><span class=\"label\">Court size:</span><span class=\"content\">" . htmlspecialchars($row[4], ENT_QUOTES, 'UTF-8') . "</span></div>";
+    echo "<div class=\"info-section\"><span class=\"label\">Price:</span><span class=\"content\">" . htmlspecialchars($row[8], ENT_QUOTES, 'UTF-8') . "$/hour</span></div>";
     echo "<div class=\"info-section\"><span class=\"label\">Sport:</span><span class=\"content\">" . htmlspecialchars($row[6], ENT_QUOTES, 'UTF-8') . "</span></div>";
     echo "<div class=\"info-section\"><span class=\"label\">Capacity:</span><span class=\"content\">" . htmlspecialchars($row[7], ENT_QUOTES, 'UTF-8') . "</span></div>";
     echo "<div class=\"info-section\"><span class=\"label\">Date:</span><span class=\"content\">" . htmlspecialchars($row[13], ENT_QUOTES, 'UTF-8') . "</span></div>";

@@ -13,7 +13,7 @@ if (isset($_POST['sport'], $_POST['city'])) {
 
     $city = $_POST['city'];
 
-    $query = "SELECT CRid, CRname FROM courts WHERE CRsportname = '$sport' AND CRlocation = '$city' AND CRtype = 'public'";
+    $query = "SELECT CRid, CRname, CRsize, CRprice FROM courts WHERE CRsportname = '$sport' AND CRlocation = '$city' AND CRtype = 'public'";
 
     $result = $pdo->query($query);
 
@@ -24,7 +24,7 @@ if (isset($_POST['sport'], $_POST['city'])) {
     for ($i = 0; $i < $r; $i++) {
         $row = $result->fetch(PDO::FETCH_NUM);
 
-        echo "<option value=\"$row[0]\"> $row[1] </option>";
+        echo "<option value=\"$row[0]\"> $row[1] | $row[2] | $row[3]$/hour </option>";
     }
 }
 

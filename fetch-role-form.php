@@ -65,12 +65,12 @@ try {
         echo "<input type=\"hidden\" name=\"MIN\" style=\"border:solid;\" value=\"$MIN\">";
         echo "<input type=\"hidden\" name=\"MAX\" style=\"border:solid;\" value=\"$MAX\">";
 
+        echo "<table>";
         for ($i = 0; $i < $r7; $i++) {
             $row = $result7->fetch(PDO::FETCH_NUM);
-
-            echo "$row[1] : <input type=\"number\" name=\"roleNumber[]\" style=\"border:solid;\" value=\"0\"> <br>";
+            echo "<tr><td>$row[1] :</td><td><input type=\"number\" name=\"roleNumber[]\" style=\"border:solid;\" value=\"0\"></td></tr>";
         }
-
+        echo "</table>";
 
 
 
