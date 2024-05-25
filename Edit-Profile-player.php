@@ -4,11 +4,14 @@ require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $playerEmail = $_SESSION['email'];
 
-$query = "SELECT email, name, description, phone, PLimg FROM player WHERE email = '$playerEmail'";
+$query = "SELECT email, name, description, phone, PLimg, Gender FROM player WHERE email = '$playerEmail'";
 
 $result = $pdo->query($query);
 
 $r = $result->fetch(PDO::FETCH_NUM);
+
+
+$Gender = $r[5];
 
 
 
@@ -77,9 +80,9 @@ $r = $result->fetch(PDO::FETCH_NUM);
             </li>
             <li class="u-nav-item"><a onclick="logoutAlert()" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Logout</a>
             </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"  target="_blank" href="contact.php" style="padding: 10px 20px;">Contact</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" target="_blank" href="contact.php" style="padding: 10px 20px;">Contact</a>
             </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"  target="_blank" href="about.php" style="padding: 10px 20px;">About us</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" target="_blank" href="about.php" style="padding: 10px 20px;">About us</a>
             </li>
             <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Edit-Profile-player.php" style="padding: 10px 20px;">Edit Profile</a>
           </ul>
@@ -165,6 +168,14 @@ $r = $result->fetch(PDO::FETCH_NUM);
             <div class="form-group">
               <label style="font-weight: bold; color:black" for="inputEmail4">Phone Number</label>
               <input name="phone" type="number" class="form-control" id="realphone" placeholder="<?php echo $r[3]; ?>" />
+            </div>
+            <div class="form-group">
+              <label style="font-weight: bold; color:black" for="inputEmail4">Gender</label>
+              <select name="Gender" id="realGender" class="form-control" placeholder="<?php echo $Gender ?>">
+                <option <?php echo ($Gender == "") ? "selected" : ""; ?> value="">Choose...</option>
+                <option <?php echo ($Gender == "Male") ? "selected" : ""; ?>>Male</option>
+                <option <?php echo ($Gender == "Female") ? "selected" : ""; ?>>Female</option>
+              </select>
             </div>
             <div class="row">
               <div class="col-md-2">

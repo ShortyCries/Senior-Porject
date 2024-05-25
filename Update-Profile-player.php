@@ -14,7 +14,7 @@ try {
 
     extract($_POST);
 
-    $query = "UPDATE player SET name='$name', description = '$description', phone = '$phone' WHERE email = '$playerEmail'";
+    $query = "UPDATE player SET name='$name', description = '$description', phone = '$phone', Gender = '$Gender' WHERE email = '$playerEmail'";
 
     $result = $pdo->exec($query);
 
