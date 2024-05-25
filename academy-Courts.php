@@ -298,6 +298,7 @@ if (isset($_GET['courtid'], $_GET['removeCourt'])) {
                                                     <th scope="col">City</th>
                                                     <th scope="col">Sport</th>
                                                     <th scope="col">Capacity</th>
+                                                    <th scope="col">Type</th>
                                                     <th scope="col">Set</th>
                                                     <th scope="col">Schedule</th>
                                                     <th scope="col">Remove</th>
@@ -307,7 +308,7 @@ if (isset($_GET['courtid'], $_GET['removeCourt'])) {
 
                                                 <?php
 
-                                                $query3 =  "SELECT CRid, CRname, CRsportname, CRmaxcapacity, CRlocation FROM courts WHERE CRacademyemail = '$academyEmail'";
+                                                $query3 =  "SELECT CRid, CRname, CRsportname, CRmaxcapacity, CRlocation, CRtype FROM courts WHERE CRacademyemail = '$academyEmail'";
                                                 $result3 = $pdo->query($query3);
 
                                                 $r3 = $result3->rowCount();
@@ -321,6 +322,7 @@ if (isset($_GET['courtid'], $_GET['removeCourt'])) {
                                                         <td><?php echo  $row3[4] ?></td>
                                                         <td><?php echo  $row3[2] ?></td>
                                                         <td><?php echo  $row3[3] ?></td>
+                                                        <td><?php echo  $row3[5] ?></td>
                                                         <td> <a href="#" type="button" class="btn btn-primary set_schedule" data-bs-toggle="modal" data-bs-target="#setSchedulemodal">
                                                                 Set Schedule
                                                             </a> </td>
