@@ -1239,7 +1239,7 @@ if (isset($_GET['EVENTID'])) {
             select.appendChild(currentDateOption);
 
             // Add dates within 1 week range
-            for (var i = 1; i <= 6; i++) {
+            for (var i = 1; i <= 14; i++) {
                 var nextDate = new Date();
                 nextDate.setDate(today.getDate() + i);
                 var option = document.createElement("option");
@@ -1275,7 +1275,7 @@ if (isset($_GET['EVENTID'])) {
             select.appendChild(currentDateOption);
 
             // Add dates within 1 week range
-            for (var i = 1; i <= 6; i++) {
+            for (var i = 1; i <= 14; i++) {
                 var nextDate = new Date();
                 nextDate.setDate(today.getDate() + i);
                 var option = document.createElement("option");
