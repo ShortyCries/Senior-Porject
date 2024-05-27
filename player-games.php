@@ -518,7 +518,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
 
 
                             <?php
-                            $query777 = "SELECT Eid, CRname, CRlocation, CRsportname, Evdate, Evtime, Rname FROM participate NATURAL JOIN events NATURAL JOIN courts NATURAL JOIN role WHERE Rid = PRroleid AND CRid = Evcourtid AND Eid = PReventid AND PRstatus = 'invited' AND PRplayeremail = '$playerEmail' AND Evstatus = 'booked'";
+                            $query777 = "SELECT Eid, CRname, CRlocation, CRsportname, Evdate, Evtime, Rname,CRLocDescription FROM participate NATURAL JOIN events NATURAL JOIN courts NATURAL JOIN role WHERE Rid = PRroleid AND CRid = Evcourtid AND Eid = PReventid AND PRstatus = 'invited' AND PRplayeremail = '$playerEmail' AND Evstatus = 'booked'";
                             $result777 = $pdo->query($query777);
                             $r777 = $result777->rowCount();
 
@@ -531,6 +531,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                                 <td><?php echo $row777[0] ?></td>
                                 <td><?php echo $row777[1] ?></td>
                                 <td><?php echo $row777[2] ?></td>
+                                <td><?php echo $row777[7] ?></td>
                                 <td><?php echo $row777[3] ?> (<?php echo $row777[6] ?>)</td>
                                 <td><?php echo $row777[4] ?></td>
                                 <td><?php echo $row777[5] ?></td>
