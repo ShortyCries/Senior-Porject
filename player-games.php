@@ -406,6 +406,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                               <th scope="col">Id</th>
                               <th scope="col">Court Name</th>
                               <th scope="col">City</th>
+                              <th scope="col">Location</th>
                               <th scope="col">Sport</th>
                               <th scope="col">Date</th>
                               <th scope="col">Time</th>
@@ -419,7 +420,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
 
                             <?php
 
-                            $query3 = "SELECT CRid, Eid, CRname, Evdate, Evtime, Evstatus, CRlocation, CRsportname  FROM events NATURAL JOIN courts WHERE playerEmail = '$playerEmail' AND CRid = Evcourtid ORDER BY CASE 
+                            $query3 = "SELECT CRid, Eid, CRname, Evdate, Evtime, Evstatus, CRlocation, CRsportname, CRLocDescription  FROM events NATURAL JOIN courts WHERE playerEmail = '$playerEmail' AND CRid = Evcourtid ORDER BY CASE 
                                         WHEN Evstatus = 'booked' THEN 1
                                         WHEN Evstatus = 'ongoing' THEN 2 
                                         WHEN Evstatus = 'finished' THEN 3
@@ -437,6 +438,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                                 <td id="myeventID"><?php echo  $row3[1] ?></td>
                                 <td id="mycourtID" value="<?php echo $row3[0] ?>"><?php echo  $row3[2] ?></td>
                                 <td><?php echo  $row3[6] ?></td>
+                                <td><?php echo  $row3[8] ?></td>
                                 <td><?php echo  $row3[7] ?></td>
                                 <td><?php echo  $row3[3] ?></td>
                                 <td><?php echo  $row3[4] ?></td>
@@ -471,7 +473,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                             ?>
 
                             <?php
-                            $query68 = "SELECT Eid, CRname, Evdate, Evtime, PRstatus, CRlocation, CRsportname , Evstatus FROM participate NATURAL JOIN events NATURAL JOIN courts WHERE PRplayeremail = '$playerEmail' AND PReventid = Eid AND Evcourtid = CRid AND (PRstatus = 'requested' OR PRstatus = 'accepted')";
+                            $query68 = "SELECT Eid, CRname, Evdate, Evtime, PRstatus, CRlocation, CRsportname , Evstatus, CRLocDescription FROM participate NATURAL JOIN events NATURAL JOIN courts WHERE PRplayeremail = '$playerEmail' AND PReventid = Eid AND Evcourtid = CRid AND (PRstatus = 'requested' OR PRstatus = 'accepted')";
                             $result68 = $pdo->query($query68);
 
                             $r68 = $result68->rowCount();
@@ -484,6 +486,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
                                 <td id="TheEventID"><?php echo  $row68[0] ?></td>
                                 <td><?php echo  $row68[1] ?></td>
                                 <td><?php echo  $row68[5] ?></td>
+                                <td><?php echo  $row68[8] ?></td>
                                 <td><?php echo  $row68[6] ?></td>
                                 <td><?php echo  $row68[2] ?></td>
                                 <td><?php echo  $row68[3] ?></td>
