@@ -112,7 +112,7 @@ $playerEmail = $_SESSION['email'];
         </div>
       </nav>
       <p style="border-left: solid; padding-left: 30px;" class="u-align-center u-text u-text-default u-text-1"><?php echo "" . $_SESSION['name'] . "" ?></p>
-      <a href="Academypage.php" class="u-image u-logo u-image-1" data-image-width="498" data-image-height="102">
+      <a href="PlayerPage.php" class="u-image u-logo u-image-1" data-image-width="498" data-image-height="102">
         <img src="img/2-1.png" class="u-logo-image u-logo-image-1">
       </a>
     </div>
