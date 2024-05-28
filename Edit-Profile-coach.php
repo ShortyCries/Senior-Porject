@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (!isset($_SESSION['Logged']) || $_SESSION['Logged'] !== true || $_SESSION['user'] !== 'coach') {
+  // If not, redirect to the login page or an error page
+  header("location:login.php");
+  exit();
+}
 require_once("config.php");
 $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 $coachEmail = $_SESSION['email'];
