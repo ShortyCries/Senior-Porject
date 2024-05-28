@@ -317,10 +317,10 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
 
                     </div>
 
-                    <div id="load-more"> load more </div>
+                    <!-- <div id="load-more"> load more </div> -->
 
                 </div>
-
+<!-- 
                 <script>
                     let loadMoreBtn = document.querySelector('#load-more');
                     let currentItem = 4;
@@ -336,7 +336,7 @@ $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
                             loadMoreBtn.style.display = 'none';
                         }
                     }
-                </script>
+                </script> -->
 
 
     </div>

@@ -35,7 +35,38 @@
 .container-Listing .box-container-Listing .box-Listing:nth-child(1),
 .container-Listing .box-container-Listing .box-Listing:nth-child(2),
 .container-Listing .box-container-Listing .box-Listing:nth-child(3),
-.container-Listing .box-container-Listing .box-Listing:nth-child(4){
+.container-Listing .box-container-Listing .box-Listing:nth-child(4),
+.container-Listing .box-container-Listing .box-Listing:nth-child(5),
+.container-Listing .box-container-Listing .box-Listing:nth-child(6),
+.container-Listing .box-container-Listing .box-Listing:nth-child(7),
+.container-Listing .box-container-Listing .box-Listing:nth-child(8),
+.container-Listing .box-container-Listing .box-Listing:nth-child(9),
+.container-Listing .box-container-Listing .box-Listing:nth-child(10),
+.container-Listing .box-container-Listing .box-Listing:nth-child(11),
+.container-Listing .box-container-Listing .box-Listing:nth-child(12),
+.container-Listing .box-container-Listing .box-Listing:nth-child(13),
+.container-Listing .box-container-Listing .box-Listing:nth-child(14),
+.container-Listing .box-container-Listing .box-Listing:nth-child(15),
+.container-Listing .box-container-Listing .box-Listing:nth-child(16),
+.container-Listing .box-container-Listing .box-Listing:nth-child(17),
+.container-Listing .box-container-Listing .box-Listing:nth-child(18)
+.container-Listing .box-container-Listing .box-Listing:nth-child(19),
+.container-Listing .box-container-Listing .box-Listing:nth-child(20),
+.container-Listing .box-container-Listing .box-Listing:nth-child(21),
+.container-Listing .box-container-Listing .box-Listing:nth-child(22),
+.container-Listing .box-container-Listing .box-Listing:nth-child(23),
+.container-Listing .box-container-Listing .box-Listing:nth-child(24)
+.container-Listing .box-container-Listing .box-Listing:nth-child(25),
+.container-Listing .box-container-Listing .box-Listing:nth-child(26),
+.container-Listing .box-container-Listing .box-Listing:nth-child(27),
+.container-Listing .box-container-Listing .box-Listing:nth-child(28),
+.container-Listing .box-container-Listing .box-Listing:nth-child(29),
+.container-Listing .box-container-Listing .box-Listing:nth-child(30),
+.container-Listing .box-container-Listing .box-Listing:nth-child(31),
+.container-Listing .box-container-Listing .box-Listing:nth-child(32),
+.container-Listing .box-container-Listing .box-Listing:nth-child(33),
+.container-Listing .box-container-Listing .box-Listing:nth-child(34)
+{
   display: inline-block;
 }
 

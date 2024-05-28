@@ -318,9 +318,9 @@ $academyEmail = $_SESSION['email'];
 
                     </div>
 
-                    <div id="load-more"> load more
+                    <!-- <div id="load-more"> load more
 
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -404,7 +404,7 @@ $academyEmail = $_SESSION['email'];
 
 
 
-
+<!-- 
     <script>
         let loadMoreBtn = document.querySelector('#load-more');
         let currentItem = 4;
@@ -420,7 +420,7 @@ $academyEmail = $_SESSION['email'];
                 loadMoreBtn.style.display = 'none';
             }
         }
-    </script>
+    </script> -->
 
 
 

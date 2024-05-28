@@ -659,7 +659,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
 
                 </div>
 
-                <div id="load-more"> load more </div>
+                <!-- <div id="load-more"> load more </div> -->
               </div>
 
 
@@ -1051,7 +1051,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
   </script>
 
 
-
+<!-- 
   <script>
     let loadMoreBtn = document.querySelector('#load-more');
     let currentItem = 3;
@@ -1067,7 +1067,7 @@ if (isset($_GET['EVENTID'], $_GET['leaveEvent'])) {
         loadMoreBtn.style.display = 'none';
       }
     }
-  </script>
+  </script> -->
 
 
 
