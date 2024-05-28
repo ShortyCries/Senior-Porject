@@ -29,15 +29,19 @@ try {
         // Redirect based on user type
         switch ($row['Type']) {
           case 'player':
+            $_SESSION['user'] = $row['Type'];
             header("location:PlayerPage.php");
             break;
           case 'coach':
+            $_SESSION['user'] = $row['Type'];
             header("location:CoachPage.php");
             break;
           case 'academy':
+            $_SESSION['user'] = $row['Type'];
             header("location:AcademyPage.php");
             break;
           case 'admin':
+            $_SESSION['user'] = $row['Type'];
             header("location:adminPage.php");
             break;
           default:
